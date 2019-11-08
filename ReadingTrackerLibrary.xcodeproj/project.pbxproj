@@ -7,16 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE9504A62374EAE300FF97A4 /* ReadingTrackerLibrary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504A52374EAE300FF97A4 /* ReadingTrackerLibrary.hpp */; };
-		DE9504A82374EAE300FF97A4 /* ReadingTrackerLibraryPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504A72374EAE300FF97A4 /* ReadingTrackerLibraryPriv.hpp */; };
-		DE9504AA2374EAE300FF97A4 /* ReadingTrackerLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504A92374EAE300FF97A4 /* ReadingTrackerLibrary.cpp */; };
+		DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */; };
+		DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */; };
+		DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CE2374EF2200FF97A4 /* Book.hpp */; };
+		DE9504D92374EF2200FF97A4 /* Author.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504CF2374EF2200FF97A4 /* Author.cpp */; };
+		DE9504DA2374EF2200FF97A4 /* Book.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504D02374EF2200FF97A4 /* Book.cpp */; };
+		DE9504DB2374EF2200FF97A4 /* FileMethods.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504D12374EF2200FF97A4 /* FileMethods.hpp */; };
+		DE9504DC2374EF2200FF97A4 /* FileMethods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504D22374EF2200FF97A4 /* FileMethods.cpp */; };
+		DE9504DD2374EF2200FF97A4 /* gui.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504D32374EF2200FF97A4 /* gui.hpp */; };
+		DE9504DE2374EF2200FF97A4 /* Author.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504D42374EF2200FF97A4 /* Author.hpp */; };
+		DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504D52374EF2200FF97A4 /* gui.cpp */; };
+		DE9505062374F5B100FF97A4 /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
+		DE95050D2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE95050C2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE9505072374F5B100FF97A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE95049A2374EAE300FF97A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE9504A12374EAE300FF97A4;
+			remoteInfo = ReadingTrackerLibrary;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libReadingTrackerLibrary.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE9504A52374EAE300FF97A4 /* ReadingTrackerLibrary.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ReadingTrackerLibrary.hpp; sourceTree = "<group>"; };
-		DE9504A72374EAE300FF97A4 /* ReadingTrackerLibraryPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ReadingTrackerLibraryPriv.hpp; sourceTree = "<group>"; };
-		DE9504A92374EAE300FF97A4 /* ReadingTrackerLibrary.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ReadingTrackerLibrary.cpp; sourceTree = "<group>"; };
+		DE9504C82374EB8600FF97A4 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ReadBook.hpp; sourceTree = "<group>"; };
+		DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ReadBook.cpp; sourceTree = "<group>"; };
+		DE9504CE2374EF2200FF97A4 /* Book.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Book.hpp; sourceTree = "<group>"; };
+		DE9504CF2374EF2200FF97A4 /* Author.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = Author.cpp; sourceTree = "<group>"; };
+		DE9504D02374EF2200FF97A4 /* Book.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = Book.cpp; sourceTree = "<group>"; };
+		DE9504D12374EF2200FF97A4 /* FileMethods.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = FileMethods.hpp; sourceTree = "<group>"; };
+		DE9504D22374EF2200FF97A4 /* FileMethods.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = FileMethods.cpp; sourceTree = "<group>"; };
+		DE9504D32374EF2200FF97A4 /* gui.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = gui.hpp; sourceTree = "<group>"; };
+		DE9504D42374EF2200FF97A4 /* Author.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Author.hpp; sourceTree = "<group>"; };
+		DE9504D52374EF2200FF97A4 /* gui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = gui.cpp; sourceTree = "<group>"; };
+		DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestReadingTrackerLibrary.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9505052374F5B100FF97A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE95050C2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestReadingTrackerLibrary.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +57,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE9504FE2374F5B100FF97A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE9505062374F5B100FF97A4 /* libReadingTrackerLibrary.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -34,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				DE9504A42374EAE300FF97A4 /* ReadingTrackerLibrary */,
+				DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */,
 				DE9504A32374EAE300FF97A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -42,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */,
+				DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -49,11 +89,36 @@
 		DE9504A42374EAE300FF97A4 /* ReadingTrackerLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				DE9504A52374EAE300FF97A4 /* ReadingTrackerLibrary.hpp */,
-				DE9504A72374EAE300FF97A4 /* ReadingTrackerLibraryPriv.hpp */,
-				DE9504A92374EAE300FF97A4 /* ReadingTrackerLibrary.cpp */,
+				DE9504E02374EFD100FF97A4 /* Classes */,
+				DE9504C82374EB8600FF97A4 /* main.cpp */,
 			);
 			path = ReadingTrackerLibrary;
+			sourceTree = "<group>";
+		};
+		DE9504E02374EFD100FF97A4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DE9504CF2374EF2200FF97A4 /* Author.cpp */,
+				DE9504D42374EF2200FF97A4 /* Author.hpp */,
+				DE9504D02374EF2200FF97A4 /* Book.cpp */,
+				DE9504CE2374EF2200FF97A4 /* Book.hpp */,
+				DE9504D22374EF2200FF97A4 /* FileMethods.cpp */,
+				DE9504D12374EF2200FF97A4 /* FileMethods.hpp */,
+				DE9504D52374EF2200FF97A4 /* gui.cpp */,
+				DE9504D32374EF2200FF97A4 /* gui.hpp */,
+				DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */,
+				DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				DE95050C2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm */,
+				DE9505052374F5B100FF97A4 /* Info.plist */,
+			);
+			path = TestReadingTrackerLibrary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -63,8 +128,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE9504A62374EAE300FF97A4 /* ReadingTrackerLibrary.hpp in Headers */,
-				DE9504A82374EAE300FF97A4 /* ReadingTrackerLibraryPriv.hpp in Headers */,
+				DE9504DE2374EF2200FF97A4 /* Author.hpp in Headers */,
+				DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */,
+				DE9504DB2374EF2200FF97A4 /* FileMethods.hpp in Headers */,
+				DE9504DD2374EF2200FF97A4 /* gui.hpp in Headers */,
+				DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +156,24 @@
 			productReference = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
+		DE9505002374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE9505092374F5B100FF97A4 /* Build configuration list for PBXNativeTarget "TestReadingTrackerLibrary" */;
+			buildPhases = (
+				DE9504FD2374F5B100FF97A4 /* Sources */,
+				DE9504FE2374F5B100FF97A4 /* Frameworks */,
+				DE9504FF2374F5B100FF97A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE9505082374F5B100FF97A4 /* PBXTargetDependency */,
+			);
+			name = TestReadingTrackerLibrary;
+			productName = TestReadingTrackerLibrary;
+			productReference = DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -98,6 +184,9 @@
 				ORGANIZATIONNAME = "Russell Goddard";
 				TargetAttributes = {
 					DE9504A12374EAE300FF97A4 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					DE9505002374F5B100FF97A4 = {
 						CreatedOnToolsVersion = 11.2;
 					};
 				};
@@ -116,20 +205,51 @@
 			projectRoot = "";
 			targets = (
 				DE9504A12374EAE300FF97A4 /* ReadingTrackerLibrary */,
+				DE9505002374F5B100FF97A4 /* TestReadingTrackerLibrary */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE9504FF2374F5B100FF97A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DE95049F2374EAE300FF97A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE9504AA2374EAE300FF97A4 /* ReadingTrackerLibrary.cpp in Sources */,
+				DE9504DA2374EF2200FF97A4 /* Book.cpp in Sources */,
+				DE9504D92374EF2200FF97A4 /* Author.cpp in Sources */,
+				DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */,
+				DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */,
+				DE9504DC2374EF2200FF97A4 /* FileMethods.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE9504FD2374F5B100FF97A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE95050D2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE9505082374F5B100FF97A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE9504A12374EAE300FF97A4 /* ReadingTrackerLibrary */;
+			targetProxy = DE9505072374F5B100FF97A4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DE9504AB2374EAE300FF97A4 /* Debug */ = {
@@ -251,6 +371,7 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				HEADER_SEARCH_PATHS = /Users/frobu/Desktop/ReadingTrackerLibrary/ReadingTrackerLibrary/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -266,8 +387,41 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				HEADER_SEARCH_PATHS = /Users/frobu/Desktop/ReadingTrackerLibrary/ReadingTrackerLibrary/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DE95050A2374F5B100FF97A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TestReadingTrackerLibrary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = RT.TestReadingTrackerLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DE95050B2374F5B100FF97A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TestReadingTrackerLibrary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = RT.TestReadingTrackerLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -288,6 +442,15 @@
 			buildConfigurations = (
 				DE9504AE2374EAE300FF97A4 /* Debug */,
 				DE9504AF2374EAE300FF97A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE9505092374F5B100FF97A4 /* Build configuration list for PBXNativeTarget "TestReadingTrackerLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE95050A2374F5B100FF97A4 /* Debug */,
+				DE95050B2374F5B100FF97A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
