@@ -11,9 +11,11 @@
 #include <string>
 #include <ctime>
 
-int convertAbbrMonthToInt(std::string month);
-
 enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
+
+int convertAbbrMonthToInt(std::string month);
+Genre convertStringToGenre(std::string genre);
+std::string convertGenreToString(Genre genre);
 
 class Book {
 public:
@@ -31,14 +33,14 @@ public:
     void setTitle(std::string title);
     void setSeries(std::string series);
     void setPublisher(std::string publisher);
-    void setPageCount(int wordCount);
+    void setPageCount(int pageCount);
+    void setPageCount(char pageCount); //will result in pageCount being set to -1
+    void setPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
     void setGenre(Genre genre);
     void setGenre(std::string genre);
     void setPublishDate(time_t publishDate);
     void setPublishDate(std::string publishDate);
     Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
-    static Genre convertStringToGenre(std::string genre);
-    static std::string convertGenreToString(Genre genre);
 private:
     std::string author;
     std::string title;

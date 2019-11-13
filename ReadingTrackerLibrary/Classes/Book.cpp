@@ -47,6 +47,57 @@ int convertAbbrMonthToInt(std::string month) {
     return -1;
 }
 
+Genre convertStringToGenre(std::string genre) {
+    Genre returnGenre;
+    
+    if (genre == "detective") { returnGenre = detective; }
+    else if (genre == "dystopia") { returnGenre = dystopia; }
+    else if (genre == "fantasy") { returnGenre = fantasy; }
+    else if (genre == "mystery") { returnGenre = mystery; }
+    else if (genre == "romance") { returnGenre = romance; }
+    else if (genre == "science fiction" || genre == "sci fi") { returnGenre = scienceFiction; }
+    else if (genre == "thriller") { returnGenre = thriller; }
+    else if (genre == "western") { returnGenre = western; }
+    else { returnGenre = genreNotSet; }
+    return returnGenre;
+}
+
+std::string convertGenreToString(Genre genre) {
+    std::string returnString;
+    switch(genre) {
+        case detective:
+            returnString = "detective";
+            break;
+        case dystopia:
+            returnString = "dystopia";
+            break;
+        case fantasy:
+            returnString = "fantasy";
+            break;
+        case mystery:
+            returnString = "mystery";
+            break;
+        case romance:
+            returnString = "romance";
+            break;
+        case scienceFiction:
+            returnString = "science fiction";
+            break;
+        case thriller:
+            returnString = "thriller";
+            break;
+        case western:
+            returnString = "western";
+            break;
+        case genreNotSet: //fall through to default
+        default:
+            returnString = "genre not set";
+            break;
+    }
+    
+    return returnString;
+}
+
 std::string Book::getAuthor() const {
     return this->author;
 }
@@ -124,7 +175,30 @@ void Book::setPublisher(std::string publisher) {
 }
 
 void Book::setPageCount(int pageCount) {
+    //books can only have positive page counts, if it isn't mark as -1 as error
+    if (pageCount <= 0) {
+        pageCount = -1;
+    }
+    
     this->pageCount = pageCount;
+    
+    return;
+}
+
+//pageCount can't be changed by character, keep whatever is in there before
+void Book::setPageCount(char pageCount) {
+    return;
+}
+
+//will attempt a stoi if it fails set pageCount to -1
+void Book::setPageCount(std::string pageCount) {
+    
+    try {
+        int newPageCount = stoi(pageCount);
+        this->pageCount = newPageCount;
+    } catch (std::invalid_argument) {
+        //keep pageCount what it was
+    }
     
     return;
 }
@@ -143,6 +217,9 @@ void Book::setGenre(std::string genre) {
 
 void Book::setPublishDate(time_t publishDate) {
     this->publishDate = *std::gmtime(&publishDate);
+    this->publishDate.tm_sec = 0;
+    this->publishDate.tm_min = 0;
+    this->publishDate.tm_hour = 0;
     
     return;
 }
@@ -162,8 +239,11 @@ void Book::setPublishDate(std::string publishDate) {
         return;
     }
     
+    this->publishDate.tm_sec = 0;
+    this->publishDate.tm_min = 0;
+    this->publishDate.tm_hour = 0;
     this->publishDate.tm_mon = intMonth;
-    this->publishDate.tm_mday = stoi(day); //days are zero based in struct tm
+    this->publishDate.tm_mday = stoi(day);
     this->publishDate.tm_year = stoi(year) - 1900;
     
     time_t validateTime = std::mktime(&this->publishDate);
@@ -183,57 +263,6 @@ Book::Book(std::string author, std::string title, std::string series, std::strin
     this->publishDate = *std::gmtime(&publishDate);
     
     return;
-}
-
-Genre Book::convertStringToGenre(std::string genre) {
-    Genre returnGenre;
-    
-    if (genre == "detective") { returnGenre = detective; }
-    else if (genre == "dystopia") { returnGenre = dystopia; }
-    else if (genre == "fantasy") { returnGenre = fantasy; }
-    else if (genre == "mystery") { returnGenre = mystery; }
-    else if (genre == "romance") { returnGenre = romance; }
-    else if (genre == "science fiction") { returnGenre = scienceFiction; }
-    else if (genre == "thriller") { returnGenre = thriller; }
-    else if (genre == "western") { returnGenre = western; }
-    else { returnGenre = genreNotSet; }
-    return returnGenre;
-}
-
-std::string Book::convertGenreToString(Genre genre) {
-    std::string returnString;
-    switch(genre) {
-        case detective:
-            returnString = "detective";
-            break;
-        case dystopia:
-            returnString = "dystopia";
-            break;
-        case fantasy:
-            returnString = "fantasy";
-            break;
-        case mystery:
-            returnString = "mystery";
-            break;
-        case romance:
-            returnString = "romance";
-            break;
-        case scienceFiction:
-            returnString = "science fiction";
-            break;
-        case thriller:
-            returnString = "thriller";
-            break;
-        case western:
-            returnString = "western";
-            break;
-        case genreNotSet: //fall through to default
-        default:
-            returnString = "genre not set";
-            break;
-    }
-    
-    return returnString;
 }
 
 bool operator==(const Book& lhs, const Book& rhs) {
@@ -267,7 +296,7 @@ bool operator<(const Book& lhs, const Book& rhs) {
         }
     }
     
-    return true;
+    return false;
 }
 
 bool operator>(const Book& lhs, const Book& rhs) {

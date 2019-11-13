@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ReadingTrackerCommandLine.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>ReadingTrackerLibrary.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>DE9504E42374F04800FF97A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DE9505002374F5B100FF97A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DEF9CC9F2377B30200B5089A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

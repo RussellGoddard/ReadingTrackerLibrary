@@ -19,6 +19,8 @@
 		DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504D52374EF2200FF97A4 /* gui.cpp */; };
 		DE9505062374F5B100FF97A4 /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 		DE95050D2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE95050C2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm */; };
+		DEF9CCA72377B30A00B5089A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504C82374EB8600FF97A4 /* main.cpp */; };
+		DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,9 +33,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DEF9CC9E2377B30200B5089A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libReadingTrackerLibrary.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE9504C82374EB8600FF97A4 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DE9504C82374EB8600FF97A4 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../ReadingTrackerLibrary/main.cpp; sourceTree = "<group>"; };
 		DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ReadBook.hpp; sourceTree = "<group>"; };
 		DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ReadBook.cpp; sourceTree = "<group>"; };
 		DE9504CE2374EF2200FF97A4 /* Book.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Book.hpp; sourceTree = "<group>"; };
@@ -47,6 +61,7 @@
 		DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestReadingTrackerLibrary.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9505052374F5B100FF97A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE95050C2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestReadingTrackerLibrary.mm; sourceTree = "<group>"; };
+		DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReadingTrackerCommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +80,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEF9CC9D2377B30200B5089A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -73,7 +96,9 @@
 			children = (
 				DE9504A42374EAE300FF97A4 /* ReadingTrackerLibrary */,
 				DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */,
+				DEF9CCA12377B30200B5089A /* ReadingTrackerCommandLine */,
 				DE9504A32374EAE300FF97A4 /* Products */,
+				DEF9CCA82377B44A00B5089A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +107,7 @@
 			children = (
 				DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */,
 				DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */,
+				DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				DE9504E02374EFD100FF97A4 /* Classes */,
-				DE9504C82374EB8600FF97A4 /* main.cpp */,
 			);
 			path = ReadingTrackerLibrary;
 			sourceTree = "<group>";
@@ -119,6 +144,21 @@
 				DE9505052374F5B100FF97A4 /* Info.plist */,
 			);
 			path = TestReadingTrackerLibrary;
+			sourceTree = "<group>";
+		};
+		DEF9CCA12377B30200B5089A /* ReadingTrackerCommandLine */ = {
+			isa = PBXGroup;
+			children = (
+				DE9504C82374EB8600FF97A4 /* main.cpp */,
+			);
+			path = ReadingTrackerCommandLine;
+			sourceTree = "<group>";
+		};
+		DEF9CCA82377B44A00B5089A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +214,23 @@
 			productReference = DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DEF9CC9F2377B30200B5089A /* ReadingTrackerCommandLine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEF9CCA62377B30200B5089A /* Build configuration list for PBXNativeTarget "ReadingTrackerCommandLine" */;
+			buildPhases = (
+				DEF9CC9C2377B30200B5089A /* Sources */,
+				DEF9CC9D2377B30200B5089A /* Frameworks */,
+				DEF9CC9E2377B30200B5089A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReadingTrackerCommandLine;
+			productName = ReadingTrackerCommandLine;
+			productReference = DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -187,6 +244,9 @@
 						CreatedOnToolsVersion = 11.2;
 					};
 					DE9505002374F5B100FF97A4 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					DEF9CC9F2377B30200B5089A = {
 						CreatedOnToolsVersion = 11.2;
 					};
 				};
@@ -206,6 +266,7 @@
 			targets = (
 				DE9504A12374EAE300FF97A4 /* ReadingTrackerLibrary */,
 				DE9505002374F5B100FF97A4 /* TestReadingTrackerLibrary */,
+				DEF9CC9F2377B30200B5089A /* ReadingTrackerCommandLine */,
 			);
 		};
 /* End PBXProject section */
@@ -238,6 +299,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE95050D2374F61C00FF97A4 /* TestReadingTrackerLibrary.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEF9CC9C2377B30200B5089A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEF9CCA72377B30A00B5089A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +494,22 @@
 			};
 			name = Release;
 		};
+		DEF9CCA42377B30200B5089A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DEF9CCA52377B30200B5089A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -451,6 +536,15 @@
 			buildConfigurations = (
 				DE95050A2374F5B100FF97A4 /* Debug */,
 				DE95050B2374F5B100FF97A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEF9CCA62377B30200B5089A /* Build configuration list for PBXNativeTarget "ReadingTrackerCommandLine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEF9CCA42377B30200B5089A /* Debug */,
+				DEF9CCA52377B30200B5089A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
