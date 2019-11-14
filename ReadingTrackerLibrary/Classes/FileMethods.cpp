@@ -58,7 +58,7 @@ ReadBook convertJsonToReadBook(nlohmann::json json) {
     int rating = json["rating"].get<int>();
     std::string time = json["dateRead"].get<std::string>();
     
-    return ReadBook(author, title, series, publisher, pageCount, genre, rating, time);
+    return ReadBook(author, title, series, publisher, pageCount, genre, publishDate, rating, time);
 }
 
 std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
@@ -73,7 +73,7 @@ std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
     int rating = json["rating"].get<int>();
     std::string time = json["dateRead"].get<std::string>();
     
-    std::shared_ptr<ReadBook> newReadBook = std::make_shared<ReadBook>(author, title, series, publisher, pageCount, genre, rating, time);
+    std::shared_ptr<ReadBook> newReadBook = std::make_shared<ReadBook>(author, title, series, publisher, pageCount, genre, publishDate, rating, time);
     
     return newReadBook;
 }

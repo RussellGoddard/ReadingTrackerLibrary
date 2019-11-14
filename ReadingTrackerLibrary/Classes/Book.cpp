@@ -187,14 +187,26 @@ void Book::setPageCount(int pageCount) {
 
 //pageCount can't be changed by character, keep whatever is in there before
 void Book::setPageCount(char pageCount) {
+    int newPageCount = std::atoi(&pageCount);
+    
+    //if newPageCount == 0 then atoi failed to conver to an integer or the pageCount passed was zero which is invalid
+    if (newPageCount <= 0) {
+        return;
+    }
+    this->pageCount = newPageCount;
+    
     return;
 }
 
 //will attempt a stoi if it fails set pageCount to -1
 void Book::setPageCount(std::string pageCount) {
-    
     try {
-        int newPageCount = stoi(pageCount);
+        int newPageCount = std::stoi(pageCount);
+        //pageCount cannot be less than 1, if it is don't change anything
+        if (newPageCount <= 0) {
+            return;
+        }
+        
         this->pageCount = newPageCount;
     } catch (std::invalid_argument) {
         //keep pageCount what it was
@@ -249,18 +261,30 @@ void Book::setPublishDate(std::string publishDate) {
     time_t validateTime = std::mktime(&this->publishDate);
     
     this->publishDate = *std::gmtime(&validateTime);
-    
+
     return;
 }
 
 Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
-    this->author = author;
-    this->title = title;
-    this->series = series;
-    this->publisher = publisher;
-    this->pageCount = pageCount;
-    this->genre = genre;
-    this->publishDate = *std::gmtime(&publishDate);
+    this->setAuthor(author);
+    this->setTitle(title);
+    this->setSeries(series);
+    this->setPublisher(publisher);
+    this->setPageCount(pageCount);
+    this->setGenre(genre);
+    this->setPublishDate(publishDate);
+    
+    return;
+}
+
+Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate) {
+    this->setAuthor(author);
+    this->setTitle(title);
+    this->setSeries(series);
+    this->setPublisher(publisher);
+    this->setPageCount(pageCount);
+    this->setGenre(genre);
+    this->setPublishDate(publishDate);
     
     return;
 }

@@ -41,6 +41,7 @@ public:
     void setPublishDate(time_t publishDate);
     void setPublishDate(std::string publishDate);
     Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
+    Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
 private:
     std::string author;
     std::string title;

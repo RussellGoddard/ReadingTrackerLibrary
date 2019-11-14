@@ -1,5 +1,5 @@
 //
-//  test.m
+//  testReadingTrackerLibrary.mm
 //  TestReadingTrackerLibrary
 //
 //  Created by Frobu on 11/7/19.
@@ -18,13 +18,11 @@
 Book testBook;
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    
-    
+
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+
 }
 
 - (void)testBookGetAndSet {
@@ -46,7 +44,6 @@ Book testBook;
 }
 
 - (void)testSetPublishedDateString {
-    
     
     testBook.setPublishDate("Jan 01 2008");
     XCTAssert("Jan 01 2008" == testBook.printPublishDate());
@@ -102,11 +99,15 @@ Book testBook;
     
     testBook.setPageCount(-10);
     XCTAssert(-1 == testBook.getPageCount());
-    testBook.setPageCount('a');
-    XCTAssert(-1 == testBook.getPageCount());
+    testBook.setPageCount('1');
+    XCTAssert(1 == testBook.getPageCount());
+    testBook.setPageCount('Z');
+    XCTAssert(1 == testBook.getPageCount());
     testBook.setPageCount("15");
     XCTAssert(15 == testBook.getPageCount());
     testBook.setPageCount("a");
+    XCTAssert(15 == testBook.getPageCount());
+    testBook.setPageCount("-100");
     XCTAssert(15 == testBook.getPageCount());
 }
 
