@@ -89,10 +89,10 @@ Book testBook;
     
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
     testBook.setPublishDate(testTimeInitial);
-    XCTAssert(testTimeInitial == testBook.getPublishDate());
+    XCTAssert(testTimeInitial == testBook.getPublishDateAsTimeT());
     time_t testTime = 1199165003; //Tuesday, January 1, 2008 12:23:23 AM GMT -5
     testBook.setPublishDate(testTime);
-    XCTAssert(testTimeInitial == testBook.getPublishDate());
+    XCTAssert(testTimeInitial == testBook.getPublishDateAsTimeT());
 }
 
 - (void)testSetPageCount {
@@ -195,8 +195,6 @@ Book testBook;
     
     XCTAssert(testBook != testBook2);
 }
-
-//sort by author -> series -> publish date -> title
 
 - (void)testBookLessThan {
     testBook.setAuthor("a");
@@ -337,6 +335,28 @@ Book testBook;
     testBook2.setPageCount(110);
     testBook2.setTitle("a");
     XCTAssert(testBook2 >= testBook);
+}
+
+- (void)testBookConstructor {
+    //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
+    Book testBookConstructor("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, romance, 1199163600);
+    XCTAssert("testAuthor" == testBookConstructor.getAuthor());
+    XCTAssert("testTitle" == testBookConstructor.getTitle());
+    XCTAssert("testSeries" == testBookConstructor.getSeries());
+    XCTAssert("testPublisher" == testBookConstructor.getPublisher());
+    XCTAssert(1111 == testBookConstructor.getPageCount());
+    XCTAssert(romance == testBookConstructor.getGenre());
+    XCTAssert(1199163600 == testBookConstructor.getPublishDateAsTimeT());
+    
+    //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
+    Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, thriller, "Nov 16 1991");
+    XCTAssert("testAuthor2" == testBookConstructor2.getAuthor());
+    XCTAssert("testTitle2" == testBookConstructor2.getTitle());
+    XCTAssert("testSeries2" == testBookConstructor2.getSeries());
+    XCTAssert("testPublisher2" == testBookConstructor2.getPublisher());
+    XCTAssert(2222 == testBookConstructor2.getPageCount());
+    XCTAssert(thriller == testBookConstructor2.getGenre());
+    XCTAssert("Nov 16 1991" == testBookConstructor2.printPublishDate());
 }
 
 @end

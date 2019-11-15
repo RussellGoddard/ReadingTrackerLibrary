@@ -46,16 +46,6 @@ void ReadBook::setDateRead(std::string time) {
     return;
 }
 
-time_t ReadBook::getDateRead() {
-    return std::mktime(&dateRead);
-}
-
-std::string ReadBook::printDateRead() {
-    char buffer [50];
-    std::strftime(buffer, 50, "%b %d %Y", &this->dateRead);
-    return buffer;
-}
-
 //1-10 rating scale
 void ReadBook::setRating(int rating) {
     if (rating < 1) {
@@ -99,7 +89,22 @@ void ReadBook::setRating(std::string rating) {
     return;
 }
 
-int ReadBook::getRating() {
+tm ReadBook::getDateRead() const {
+    return this->dateRead;
+}
+
+time_t ReadBook::getDateReadAsTimeT() {
+    
+    return std::mktime(&dateRead);
+}
+
+std::string ReadBook::printDateRead() const {
+    char buffer [50];
+    std::strftime(buffer, 50, "%b %d %Y", &this->dateRead);
+    return buffer;
+}
+
+int ReadBook::getRating() const {
     return this->rating;
 }
 
@@ -115,7 +120,7 @@ int ReadBook::getRating() {
     "dateRead" : "Sat Oct 26 18:09:27 2019"
 }
 */
-std::string ReadBook::printJson() {
+std::string ReadBook::printJson() const {
     std::string returnString;
     
     returnString = this->Book::printJson(); //get Book as a JSON object
@@ -127,14 +132,14 @@ std::string ReadBook::printJson() {
     return returnString;
 }
 
-ReadBook::ReadBook(Book book, int rating, time_t dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDate()) {
+ReadBook::ReadBook(Book book, int rating, time_t dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
     this->setDateRead(dateRead);
     this->setRating(rating);
     
     return;
 }
 
-ReadBook::ReadBook(Book book, int rating, std::string dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre()) {
+ReadBook::ReadBook(Book book, int rating, std::string dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
     this->setDateRead(dateRead);
     this->setRating(rating);
     
@@ -156,3 +161,68 @@ ReadBook::ReadBook(std::string author, std::string title, std::string series, st
     return;
 }
     
+bool operator==(const ReadBook& lhs, const ReadBook& rhs) {
+    if (lhs.printJson() == rhs.printJson()) {
+        return true;
+    }
+    
+    return false;
+}
+
+bool operator!=(const ReadBook& lhs, const ReadBook& rhs) {
+    return !operator==(lhs, rhs);
+}
+
+bool operator<(const ReadBook& lhs, const ReadBook& rhs) {
+    //see if this can be simplified TODO
+    //sort by Book comparison then by dateRead
+    //TODO simplify this by calling Book==Book then only compare ReadBook by dateRead
+    
+    tm lhstm;
+    tm rhstm;
+    time_t lhstt;
+    time_t rhstt;
+    
+    if (lhs.getAuthor() < rhs.getAuthor()) { return true; }
+    else if (lhs.getAuthor() > rhs.getAuthor()) { return false; }
+    else {
+        if (lhs.getSeries() < rhs.getSeries()) { return true; }
+        else if (lhs.getSeries() > rhs.getSeries()) { return false; }
+        else {
+            lhstm = lhs.getPublishDate();
+            lhstt = std::mktime(&lhstm);
+            rhstm = rhs.getPublishDate();
+            rhstt = std::mktime(&rhstm);
+            
+            if (lhstt < rhstt) { return true; }
+            else if (lhstt  > rhstt) { return false; }
+            else {
+                if (lhs.getTitle() < rhs.getTitle()) { return true; }
+                else if (lhs.getTitle() > rhs.getTitle()) { return false; }
+                else {
+                    lhstm = lhs.getDateRead();
+                    lhstt = std::mktime(&lhstm);
+                    rhstm = rhs.getDateRead();
+                    rhstt = std::mktime(&rhstm);
+                    
+                    if (lhstt < rhstt) { return true; }
+                    else if (rhstt > lhstt) { return false; }
+                }
+            }
+        }
+    }
+    
+    return false;
+}
+
+bool operator>(const ReadBook& lhs, const ReadBook& rhs) {
+    return operator<(rhs, lhs);
+}
+
+bool operator<=(const ReadBook& lhs, const ReadBook& rhs) {
+    return !operator>(lhs, rhs);
+}
+
+bool operator>=(const ReadBook& lhs, const ReadBook& rhs) {
+    return !operator<(lhs, rhs);
+}

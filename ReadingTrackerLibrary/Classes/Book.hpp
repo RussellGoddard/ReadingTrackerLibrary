@@ -26,7 +26,8 @@ public:
     int getPageCount() const;
     Genre getGenre() const;
     std::string printGenre() const;
-    time_t getPublishDate();
+    tm getPublishDate() const;
+    time_t getPublishDateAsTimeT();
     std::string printPublishDate() const;
     std::string printJson() const;
     void setAuthor(std::string author);
@@ -49,7 +50,7 @@ private:
     std::string series;
     Genre genre;
     int pageCount;
-    struct tm publishDate;
+    tm publishDate;
 };
 
 bool operator==(const Book& lhs, const Book& rhs);

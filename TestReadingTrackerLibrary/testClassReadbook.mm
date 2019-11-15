@@ -26,10 +26,10 @@ ReadBook testReadBook;
 - (void)testSetReadDateTimeT {
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
     testReadBook.setDateRead(testTimeInitial);
-    XCTAssert(testTimeInitial == testReadBook.getDateRead());
+    XCTAssert(testTimeInitial == testReadBook.getDateReadAsTimeT());
     time_t testTime = 1199165003; //Tuesday, January 1, 2008 12:23:23 AM GMT -5
     testReadBook.setPublishDate(testTime);
-    XCTAssert(testTimeInitial == testReadBook.getDateRead());
+    XCTAssert(testTimeInitial == testReadBook.getDateReadAsTimeT());
 }
 
 - (void)testSetReadDateString {
@@ -95,6 +95,225 @@ ReadBook testReadBook;
 }
 
 
+- (void)testReadBookEquals {
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setRating(4);
+    testReadBook1.setDateRead("Mar 25 1993");
+    
+    ReadBook testReadBook2;
+    testReadBook2.setAuthor("a");
+    testReadBook2.setTitle("a");
+    testReadBook2.setSeries("a");
+    testReadBook2.setPublisher("a");
+    testReadBook2.setGenre("fantasy");
+    testReadBook2.setPageCount(100);
+    testReadBook2.setPublishDate("Dec 01 1990");
+    testReadBook2.setRating(4);
+    testReadBook2.setDateRead("Mar 25 1993");
+    
+    XCTAssert(testReadBook1 == testReadBook2);
+}
+
+- (void)testReadBookNotEquals {
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setRating(4);
+    testReadBook1.setDateRead("Mar 25 1993");
+    
+    ReadBook testReadBook2;
+    testReadBook2.setAuthor("b");
+    testReadBook2.setTitle("b");
+    testReadBook2.setSeries("b");
+    testReadBook2.setPublisher("a");
+    testReadBook2.setGenre("fantasy");
+    testReadBook2.setPageCount(100);
+    testReadBook2.setPublishDate("Dec 01 1991");
+    testReadBook2.setRating(5);
+    testReadBook2.setDateRead("Mar 26 1993");
+    
+    XCTAssert(testReadBook1 != testReadBook2);
+}
+
+- (void)testReadBookLessThan {
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setRating(4);
+    testReadBook1.setDateRead("Mar 25 1993");
+    
+    ReadBook testReadBook2;
+    testReadBook2.setAuthor("b");
+    testReadBook2.setTitle("b");
+    testReadBook2.setSeries("b");
+    testReadBook2.setPublisher("a");
+    testReadBook2.setGenre("fantasy");
+    testReadBook2.setPageCount(100);
+    testReadBook2.setPublishDate("Dec 01 1991");
+    testReadBook2.setRating(5);
+    testReadBook2.setDateRead("Mar 26 1993");
+    
+    XCTAssert(testReadBook1 < testReadBook2);
+
+    testReadBook2.setAuthor("a");
+    XCTAssert(testReadBook1 < testReadBook2);
+    
+    testReadBook2.setSeries("a");
+    XCTAssert(testReadBook1 < testReadBook2);
+    
+    
+    testReadBook2.setPublishDate("Dec 01 1990");
+    XCTAssert(testReadBook1 < testReadBook2);
+    
+    testReadBook2.setGenre("western");
+    testReadBook2.setPageCount(110);
+    testReadBook2.setTitle("a");
+    XCTAssert(testReadBook1 < testReadBook2);
+    
+    testReadBook2.setDateRead("Mar 25 1993");
+    XCTAssert(!(testReadBook2 < testReadBook1));
+}
+
+- (void)testReadBookLessEqualsThan {
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setDateRead("Mar 25 1993");
+    
+    ReadBook testReadBook2;
+    testReadBook2.setAuthor("b");
+    testReadBook2.setTitle("b");
+    testReadBook2.setSeries("b");
+    testReadBook2.setPublisher("a");
+    testReadBook2.setGenre("fantasy");
+    testReadBook2.setPageCount(100);
+    testReadBook2.setPublishDate("Dec 01 1991");
+    testReadBook2.setDateRead("Mar 26 1993");
+    
+    XCTAssert(testReadBook1 <= testReadBook2);
+
+    testReadBook2.setAuthor("a");
+    XCTAssert(testReadBook1 <= testReadBook2);
+    
+    testReadBook2.setSeries("a");
+    XCTAssert(testReadBook1 <= testReadBook2);
+    
+    testReadBook2.setPublishDate("Dec 01 1990");
+    XCTAssert(testReadBook1 <= testReadBook2);
+    
+    testReadBook2.setGenre("western");
+    testReadBook2.setPageCount(110);
+    testReadBook2.setTitle("a");
+    XCTAssert(testReadBook1 <= testReadBook2);
+    
+    testReadBook2.setDateRead("Mar 25 1993");
+    XCTAssert(testReadBook2 <= testReadBook1);
+}
+
+- (void)testReadBookGreaterThan {
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setDateRead("Mar 25 1993");
+    
+    ReadBook testReadBook2;
+    testReadBook2.setAuthor("b");
+    testReadBook2.setTitle("b");
+    testReadBook2.setSeries("b");
+    testReadBook2.setPublisher("a");
+    testReadBook2.setGenre("fantasy");
+    testReadBook2.setPageCount(100);
+    testReadBook2.setPublishDate("Dec 01 1991");
+    testReadBook2.setDateRead("Mar 26 1993");
+    
+    XCTAssert(testReadBook2 > testReadBook1);
+
+    testReadBook2.setAuthor("a");
+    XCTAssert(testReadBook2 > testReadBook1);
+    
+    testReadBook2.setSeries("a");
+    XCTAssert(testReadBook2 > testReadBook1);
+    
+    testReadBook2.setPublishDate("Dec 01 1990");
+    XCTAssert(testReadBook2 > testReadBook1);
+    
+    testReadBook2.setGenre("western");
+    testReadBook2.setPageCount(110);
+    testReadBook2.setTitle("a");
+    XCTAssert(testReadBook2 > testReadBook1);
+    
+    testReadBook2.setDateRead("Mar 25 1993");
+    XCTAssert(!(testReadBook1 > testReadBook2));
+}
+
+- (void)testReadBookGreaterEqualsThan {
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setDateRead("Mar 25 1993");
+    
+    ReadBook testReadBook2;
+    testReadBook2.setAuthor("b");
+    testReadBook2.setTitle("b");
+    testReadBook2.setSeries("b");
+    testReadBook2.setPublisher("a");
+    testReadBook2.setGenre("fantasy");
+    testReadBook2.setPageCount(100);
+    testReadBook2.setPublishDate("Dec 01 1991");
+    testReadBook2.setDateRead("Mar 26 1993");
+    
+    XCTAssert(testReadBook2 >= testReadBook1);
+
+    testReadBook2.setAuthor("a");
+    XCTAssert(testReadBook2 >= testReadBook1);
+    
+    testReadBook2.setSeries("a");
+    XCTAssert(testReadBook2 >= testReadBook1);
+    
+    testReadBook2.setPublishDate("Dec 01 1990");
+    XCTAssert(testReadBook2 >= testReadBook1);
+    
+    testReadBook2.setGenre("western");
+    testReadBook2.setPageCount(110);
+    testReadBook2.setTitle("a");
+    XCTAssert(testReadBook2 >= testReadBook1);
+    
+    testReadBook2.setDateRead("Mar 25 1993");
+    XCTAssert(testReadBook2 >= testReadBook1);
+}
+
 - (void)testConstructors {
     
     Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, fantasy, 1199163600);
@@ -105,9 +324,21 @@ ReadBook testReadBook;
     XCTAssert("testPublisher" == testConstructor.getPublisher());
     XCTAssert(111 == testConstructor.getPageCount());
     XCTAssert(fantasy == testConstructor.getGenre());
-    XCTAssert(1199163600 == testConstructor.getPublishDate());
+    XCTAssert(1199163600 == testConstructor.getPublishDateAsTimeT());
     XCTAssert(9 == testConstructor.getRating());
-    XCTAssert(1199163600 == testConstructor.getDateRead());
+    XCTAssert(1199163600 == testConstructor.getDateReadAsTimeT());
+    
+    //ReadBook(Book book, int rating, std::string dateRead);
+    ReadBook testConstructor3(newBook, 1, "Feb 11 1913");
+    XCTAssert("testAuthor" == testConstructor3.getAuthor());
+    XCTAssert("testTitle" == testConstructor3.getTitle());
+    XCTAssert("testSeries" == testConstructor3.getSeries());
+    XCTAssert("testPublisher" == testConstructor3.getPublisher());
+    XCTAssert(111 == testConstructor3.getPageCount());
+    XCTAssert(fantasy == testConstructor3.getGenre());
+    XCTAssert(1199163600 == testConstructor3.getPublishDateAsTimeT());
+    XCTAssert(1 == testConstructor3.getRating());
+    XCTAssert("Feb 11 1913" == testConstructor3.printDateRead());
     
     //ReadBook(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, int rating = 0, time_t time = std::time(0));
     ReadBook testConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 222, western, 1199181600, 8, 1199181600);
@@ -117,12 +348,21 @@ ReadBook testReadBook;
     XCTAssert("testPublisher2" == testConstructor2.getPublisher());
     XCTAssert(222 == testConstructor2.getPageCount());
     XCTAssert(western == testConstructor2.getGenre());
-    XCTAssert(1199163600 == testConstructor2.getPublishDate());
+    XCTAssert(1199163600 == testConstructor2.getPublishDateAsTimeT());
     XCTAssert(8 == testConstructor2.getRating());
-    XCTAssert(1199163600 == testConstructor2.getDateRead());
+    XCTAssert(1199163600 == testConstructor2.getDateReadAsTimeT());
     
-    //ReadBook(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, int rating, std::string time);
-    
+    //ReadBook::ReadBook(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead)
+    ReadBook testConstructor4("testAuthor4", "testTitle4", "testSeries4", "testPublisher4", 444, "mystery", "Aug 13 1972", 4, "Nov 14 2019");
+    XCTAssert("testAuthor4" == testConstructor4.getAuthor());
+    XCTAssert("testTitle4" == testConstructor4.getTitle());
+    XCTAssert("testSeries4" == testConstructor4.getSeries());
+    XCTAssert("testPublisher4" == testConstructor4.getPublisher());
+    XCTAssert(444 == testConstructor4.getPageCount());
+    XCTAssert("mystery" == testConstructor4.printGenre());
+    XCTAssert("Aug 13 1972" == testConstructor4.printPublishDate());
+    XCTAssert(4 == testConstructor4.getRating());
+    XCTAssert("Nov 14 2019" == testConstructor4.printDateRead());
 }
 
 @end

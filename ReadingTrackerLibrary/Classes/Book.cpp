@@ -140,7 +140,11 @@ std::string Book::printJson() const {
     return returnString;
 }
 
-time_t Book::getPublishDate() {
+tm Book::getPublishDate() const {
+    return this->publishDate;
+}
+
+time_t Book::getPublishDateAsTimeT() {
     return std::mktime(&this->publishDate);
 }
 
@@ -304,6 +308,10 @@ bool operator!=(const Book& lhs, const Book& rhs) {
 bool operator<(const Book& lhs, const Book& rhs) {
     //see if this can be simplified TODO
     //sort by author -> series -> publish date -> title
+    tm lhstm;
+    tm rhstm;
+    time_t lhstt;
+    time_t rhstt;
     
     if (lhs.getAuthor() < rhs.getAuthor()) { return true; }
     else if (lhs.getAuthor() > rhs.getAuthor()) { return false; }
@@ -311,8 +319,13 @@ bool operator<(const Book& lhs, const Book& rhs) {
         if (lhs.getSeries() < rhs.getSeries()) { return true; }
         else if (lhs.getSeries() > rhs.getSeries()) { return false; }
         else {
-            if (lhs.printPublishDate() < rhs.printPublishDate()) { return true; }
-            else if (lhs.printPublishDate() > rhs.printPublishDate()) { return false; }
+            lhstm = lhs.getPublishDate();
+            lhstt = std::mktime(&lhstm);
+            rhstm = rhs.getPublishDate();
+            rhstt = std::mktime(&lhstm);
+            
+            if (lhstt < rhstt) { return true; }
+            else if (lhstt > rhstt) { return false; }
             else {
                 if (lhs.getTitle() < rhs.getTitle()) { return true; }
                 else if (lhs.getTitle() > rhs.getTitle()) { return false; }
