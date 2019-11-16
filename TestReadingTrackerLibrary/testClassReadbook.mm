@@ -71,6 +71,21 @@ ReadBook testReadBook;
     XCTAssert("Dec 25 1999" == testReadBook.printDateRead());
     testReadBook.setDateRead("");
     XCTAssert("Dec 25 1999" == testReadBook.printDateRead());
+    
+    testReadBook.setDateRead("AAA 01 1980");
+    XCTAssert("Dec 25 1999" == testReadBook.printDateRead());
+    
+    testReadBook.setDateRead("Dec -1 1980");
+    XCTAssert("Dec 25 1999" == testReadBook.printDateRead());
+    
+    testReadBook.setDateRead("Dec 01 1890");
+    XCTAssert("Dec 25 1999" == testReadBook.printDateRead());
+    
+    testReadBook.setDateRead("Dec ab 1980");
+    XCTAssert("Dec 25 1999" == testReadBook.printDateRead());
+    
+    testReadBook.setDateRead("AAA 01 asdf");
+    XCTAssert("Dec 25 1999" == testReadBook.printDateRead());
 }
 
 - (void)testSetRating {

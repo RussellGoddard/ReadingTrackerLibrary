@@ -26,18 +26,36 @@ void ReadBook::setDateRead(std::string time) {
     std::string day = time.substr(4, 2);
     std::string year = time.substr(7, 4);
     
+    int intYear;
     int intMonth = convertAbbrMonthToInt(month);
+    int intDay;
     
     if (intMonth == -1) {
         return;
     }
     
+    try {
+        intDay = stoi(day);
+        intYear = stoi(year) - 1900; //TODO HANDLE DATES BEFORE 1970
+    }
+    catch (std::invalid_argument) {
+        //don't change date
+        return;
+    }
+    
+    if (intDay <= 0) {
+        return;
+    }
+    else if (intYear <= 0) {
+        return;
+    }
+    
+    this->dateRead.tm_year = intYear;
+    this->dateRead.tm_mon = intMonth;
+    this->dateRead.tm_mday = intDay;
     this->dateRead.tm_sec = 0;
     this->dateRead.tm_min = 0;
     this->dateRead.tm_hour = 0;
-    this->dateRead.tm_mon = intMonth;
-    this->dateRead.tm_mday = stoi(day);
-    this->dateRead.tm_year = stoi(year) - 1900;
     
     time_t validateTime = std::mktime(&this->dateRead);
     

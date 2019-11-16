@@ -18,14 +18,15 @@ int convertAbbrMonthToInt(std::string month); //don't like this needing to be de
 class Author {
 public:
     void setName(std::string name);
-    std::string getName();
     void setDateBorn(time_t dateBorn);
     void setDateBorn(std::string dateBorn);
-    time_t getDateBorn();
-    std::string printDateBorn();
     void addBookWritten(std::shared_ptr<Book> book);
     void addBooksWritten(std::vector<std::shared_ptr<Book>> books);
-    std::vector<std::shared_ptr<Book>> getBooksWritten();
+    std::vector<std::shared_ptr<Book>> getBooksWritten() const;
+    std::string getName() const;
+    tm getDateBorn() const;
+    time_t getDateBornTimeT();
+    std::string printDateBorn() const;
     Author() = delete; //Author class HAS to be constructed with a name
     Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
     Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});

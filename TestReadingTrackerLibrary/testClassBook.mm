@@ -83,6 +83,21 @@ Book testBook;
     XCTAssert("Dec 25 1999" == testBook.printPublishDate());
     testBook.setPublishDate("");
     XCTAssert("Dec 25 1999" == testBook.printPublishDate());
+    
+    testBook.setPublishDate("AAA 01 1980");
+    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
+    
+    testBook.setPublishDate("Dec -1 1980");
+    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
+    
+    testBook.setPublishDate("Dec 01 1890");
+    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
+    
+    testBook.setPublishDate("Dec ab 1980");
+    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
+    
+    testBook.setPublishDate("AAA 01 asdf");
+    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
 }
 
 - (void)testSetPublishDateTimeT {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */; };
 		DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE5FC261237CDD7400346E3E /* testClassReadbook.mm */; };
 		DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */; };
 		DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassAuthor.mm; sourceTree = "<group>"; };
 		DE5FC261237CDD7400346E3E /* testClassReadbook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassReadbook.mm; sourceTree = "<group>"; };
 		DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libReadingTrackerLibrary.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9504C82374EB8600FF97A4 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../ReadingTrackerLibrary/main.cpp; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */,
 				DE5FC261237CDD7400346E3E /* testClassReadbook.mm */,
 				DE95050C2374F61C00FF97A4 /* testClassBook.mm */,
 				DE9505052374F5B100FF97A4 /* Info.plist */,
@@ -303,6 +306,7 @@
 			files = (
 				DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */,
 				DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */,
+				DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

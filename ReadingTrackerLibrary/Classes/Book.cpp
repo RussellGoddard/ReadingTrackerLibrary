@@ -249,18 +249,36 @@ void Book::setPublishDate(std::string publishDate) {
     std::string day = publishDate.substr(4, 2);
     std::string year = publishDate.substr(7, 4);
     
+    int intYear;
     int intMonth = convertAbbrMonthToInt(month);
+    int intDay;
     
     if (intMonth == -1) {
         return;
     }
     
+    try {
+        intDay = stoi(day);
+        intYear = stoi(year) - 1900; //TODO HANDLE DATES BEFORE 1970
+    }
+    catch (std::invalid_argument) {
+        //don't change date
+        return;
+    }
+    
+    if (intDay <= 0) {
+        return;
+    }
+    else if (intYear <= 0) {
+        return;
+    }
+    
+    this->publishDate.tm_year = intYear;
+    this->publishDate.tm_mon = intMonth;
+    this->publishDate.tm_mday = intDay;
     this->publishDate.tm_sec = 0;
     this->publishDate.tm_min = 0;
     this->publishDate.tm_hour = 0;
-    this->publishDate.tm_mon = intMonth;
-    this->publishDate.tm_mday = stoi(day);
-    this->publishDate.tm_year = stoi(year) - 1900;
     
     time_t validateTime = std::mktime(&this->publishDate);
     

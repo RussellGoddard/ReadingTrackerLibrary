@@ -13,12 +13,11 @@ void Author::setName(std::string name) {
     return;
 }
 
-std::string Author::getName() {
-    return name;
-}
-
 void Author::setDateBorn(time_t dateBorn) {
     this->dateBorn = *std::gmtime(&dateBorn);
+    this->dateBorn.tm_sec = 0;
+    this->dateBorn.tm_min = 0;
+    this->dateBorn.tm_hour = 0;
     
     return;
 }
@@ -32,31 +31,42 @@ void Author::setDateBorn(std::string dateBorn) {
     std::string day = dateBorn.substr(4, 2);
     std::string year = dateBorn.substr(7, 4);
     
+    int intYear;
     int intMonth = convertAbbrMonthToInt(month);
+    int intDay;
     
     if (intMonth == -1) {
         return;
     }
     
+    try {
+        intDay = stoi(day);
+        intYear = stoi(year) - 1900; //TODO HANDLE DATES BEFORE 1970
+    }
+    catch (std::invalid_argument) {
+        //don't change date
+        return;
+    }
+    
+    if (intDay <= 0) {
+        return;
+    }
+    else if (intYear <= 0) {
+        return;
+    }
+    
+    this->dateBorn.tm_year = intYear;
     this->dateBorn.tm_mon = intMonth;
-    this->dateBorn.tm_mday = stoi(day) - 1; //days are zero based in struct tm
-    this->dateBorn.tm_year = stoi(year) - 1900;
+    this->dateBorn.tm_mday = intDay;
+    this->dateBorn.tm_sec = 0;
+    this->dateBorn.tm_min = 0;
+    this->dateBorn.tm_hour = 0;
     
     time_t validateTime = std::mktime(&this->dateBorn);
     
     this->dateBorn = *std::gmtime(&validateTime);
     
     return;
-}
-
-time_t Author::getDateBorn() {
-    return std::mktime(&this->dateBorn);
-}
-
-std::string Author::printDateBorn() {
-    char buffer [50];
-    std::strftime(buffer, 50, "%b %d %Y", &this->dateBorn);
-    return buffer;
 }
 
 void Author::addBookWritten(std::shared_ptr<Book> book) {
@@ -71,7 +81,25 @@ void Author::addBooksWritten(std::vector<std::shared_ptr<Book>> books) {
     return;
 }
 
-std::vector<std::shared_ptr<Book>> Author::getBooksWritten() {
+std::string Author::getName() const {
+    return name;
+}
+
+tm Author::getDateBorn() const {
+    return this->dateBorn;
+}
+
+time_t Author::getDateBornTimeT() {
+    return std::mktime(&this->dateBorn);
+}
+
+std::string Author::printDateBorn() const {
+    char buffer [50];
+    std::strftime(buffer, 50, "%b %d %Y", &this->dateBorn);
+    return buffer;
+}
+
+std::vector<std::shared_ptr<Book>> Author::getBooksWritten() const {
     return this->booksWritten;
 }
 
