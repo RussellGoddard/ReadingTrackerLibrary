@@ -15,8 +15,6 @@
 
 @implementation testClassReadbook
 
-ReadBook testReadBook;
-
 - (void)setUp {
 }
 
@@ -24,6 +22,7 @@ ReadBook testReadBook;
 }
 
 - (void)testSetReadDateTimeT {
+    ReadBook testReadBook;
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
     testReadBook.setDateRead(testTimeInitial);
     XCTAssert(testTimeInitial == testReadBook.getDateReadAsTimeT());
@@ -33,6 +32,7 @@ ReadBook testReadBook;
 }
 
 - (void)testSetReadDateString {
+    ReadBook testReadBook;
     testReadBook.setDateRead("Jan 01 2008");
     XCTAssert("Jan 01 2008" == testReadBook.printDateRead());
     testReadBook.setDateRead("Feb 29 2001");
@@ -89,24 +89,25 @@ ReadBook testReadBook;
 }
 
 - (void)testSetRating {
-    testReadBook.setRating(-1);
-    XCTAssert(1 == testReadBook.getRating());
-    testReadBook.setRating(1);
-    XCTAssert(1 == testReadBook.getRating());
-    testReadBook.setRating(10);
-    XCTAssert(10 == testReadBook.getRating());
-    testReadBook.setRating(11);
-    XCTAssert(10 == testReadBook.getRating());
-    testReadBook.setRating('9');
-    XCTAssert(9 == testReadBook.getRating());
-    testReadBook.setRating('a');
-    XCTAssert(9 == testReadBook.getRating());
-    testReadBook.setRating("2");
-    XCTAssert(2 == testReadBook.getRating());
-    testReadBook.setRating("z4");
-    XCTAssert(2 == testReadBook.getRating());
-    testReadBook.setRating("-20");
-    XCTAssert(2 == testReadBook.getRating());
+    ReadBook testRating;
+    testRating.setRating(-1);
+    XCTAssert(1 == testRating.getRating());
+    testRating.setRating(1);
+    XCTAssert(1 == testRating.getRating());
+    testRating.setRating(10);
+    XCTAssert(10 == testRating.getRating());
+    testRating.setRating(11);
+    XCTAssert(10 == testRating.getRating());
+    testRating.setRating('9');
+    XCTAssert(9 == testRating.getRating());
+    testRating.setRating('a');
+    XCTAssert(9 == testRating.getRating());
+    testRating.setRating("2");
+    XCTAssert(2 == testRating.getRating());
+    testRating.setRating("z4");
+    XCTAssert(2 == testRating.getRating());
+    testRating.setRating("-20");
+    XCTAssert(2 == testRating.getRating());
 }
 
 

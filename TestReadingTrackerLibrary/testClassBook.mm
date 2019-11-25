@@ -15,8 +15,6 @@
 
 @implementation testClassBook
 
-Book testBook;
-
 - (void)setUp {
 
 }
@@ -26,7 +24,7 @@ Book testBook;
 }
 
 - (void)testBookGetAndSet {
-    
+    Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -44,7 +42,7 @@ Book testBook;
 }
 
 - (void)testSetPublishedDateString {
-    
+    Book testBook;
     testBook.setPublishDate("Jan 01 2008");
     XCTAssert("Jan 01 2008" == testBook.printPublishDate());
     testBook.setPublishDate("Feb 29 2001");
@@ -101,7 +99,7 @@ Book testBook;
 }
 
 - (void)testSetPublishDateTimeT {
-    
+    Book testBook;
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
     testBook.setPublishDate(testTimeInitial);
     XCTAssert(testTimeInitial == testBook.getPublishDateAsTimeT());
@@ -111,7 +109,7 @@ Book testBook;
 }
 
 - (void)testSetPageCount {
-    
+    Book testBook;
     testBook.setPageCount(-10);
     XCTAssert(-1 == testBook.getPageCount());
     testBook.setPageCount('1');
@@ -127,13 +125,14 @@ Book testBook;
 }
 
 - (void)testGetGenre {
-    
+    Book testBook;
     Genre newGenre = western;
     testBook.setGenre(newGenre);
     XCTAssert(newGenre == testBook.getGenre());
 }
 
 - (void)testPrintJson {
+    Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -147,6 +146,7 @@ Book testBook;
 }
 
 - (void)testPrintGenre {
+    Book testBook;
     testBook.setGenre("detective");
     XCTAssert("detective" == testBook.printGenre());
     testBook.setGenre("dystopia");
@@ -170,6 +170,7 @@ Book testBook;
 }
 
 - (void)testBookEquals {
+    Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -191,6 +192,7 @@ Book testBook;
 }
 
 - (void)testBookNotEquals {
+    Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -212,6 +214,7 @@ Book testBook;
 }
 
 - (void)testBookLessThan {
+    Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -248,6 +251,7 @@ Book testBook;
 }
 
 - (void)testBookLessEqualsThan {
+    Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -283,6 +287,7 @@ Book testBook;
 }
 
 - (void)testBookGreaterThan {
+    Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -318,6 +323,7 @@ Book testBook;
 }
 
 - (void)testBookGreaterEqualsThan {
+    Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -353,6 +359,7 @@ Book testBook;
 }
 
 - (void)testBookConstructor {
+    Book testBook;
     //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
     Book testBookConstructor("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, romance, 1199163600);
     XCTAssert("testAuthor" == testBookConstructor.getAuthor());

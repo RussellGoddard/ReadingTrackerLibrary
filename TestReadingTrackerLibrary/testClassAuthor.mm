@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include "Author.hpp"
+#include "Book.hpp"
 
 @interface testClassAuthor : XCTestCase
 
@@ -15,10 +16,19 @@
 
 @implementation testClassAuthor
 
+std::vector<std::shared_ptr<Book>> bookCollection;
+std::shared_ptr<Book> testBook1;
+std::shared_ptr<Book> testBook2;
+
 - (void)setUp {
+    testBook1 = std::make_shared<Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 11, fantasy, "Nov 11 1992");
+    testBook2 = std::make_shared<Book>("testA", "testT", "testS", "testP", 22, western, "Nov 13 1999");
+    bookCollection.push_back(testBook1);
+    bookCollection.push_back(testBook2);
 }
 
 - (void)tearDown {
+    bookCollection.clear();
 }
 
 - (void)testSetName {
@@ -59,6 +69,45 @@
     XCTAssert("Dec 01 1990" == testAuthor.printDateBorn());
     
     
+}
+
+- (void)testAddBook {    
+    Author newAuthor("testAuthor");
+    std::shared_ptr<Book> testBook = std::make_shared<Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 111, fantasy, "Nov 11 1992");
+    
+    XCTAssert(true == newAuthor.getBooksWritten().empty());
+    
+    newAuthor.addBookWritten(testBook);
+    
+    XCTAssert(1 == newAuthor.getBooksWritten().size());
+    XCTAssert(testBook == newAuthor.getBooksWritten().at(0));
+}
+
+- (void)testAddBooks {
+    Author newAuthor("testAuthors");
+    
+    XCTAssert(newAuthor.getBooksWritten().empty());
+    
+    newAuthor.addBookWritten(bookCollection);
+    
+    XCTAssert(2 == newAuthor.getBooksWritten().size());
+    XCTAssert(testBook1 = newAuthor.getBooksWritten().at(0));
+    XCTAssert(testBook2 = newAuthor.getBooksWritten().at(1));
+}
+
+- (void)testAuthorConstructor {
+    //Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
+    Author testAuthor1("testAuthor1", 660027600);
+    XCTAssert("testAuthor1" == testAuthor1.getName());
+    XCTAssert(660027600 == testAuthor1.getDateBornTimeT());
+    XCTAssert(0 == testAuthor1.getBooksWritten().size());
+    
+    //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
+    Author testAuthor2("testAuthor2", "Dec 01 1990", bookCollection);
+    XCTAssert("testAuthor2" == testAuthor2.getName());
+    XCTAssert("Dec 01 1990" == testAuthor2.printDateBorn());
+    XCTAssert(2 == testAuthor2.getBooksWritten().size());
+    XCTAssert(testBook1 == testAuthor2.getBooksWritten().at(0));
 }
 
 @end

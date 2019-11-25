@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */; };
 		DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE5FC261237CDD7400346E3E /* testClassReadbook.mm */; };
+		DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE7AC029238B73DB00292006 /* testFileMethods.mm */; };
+		DE7AC032238B7F9000292006 /* testFileLoad.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE7AC031238B7F8500292006 /* testFileLoad.txt */; };
 		DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */; };
 		DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */; };
 		DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CE2374EF2200FF97A4 /* Book.hpp */; };
@@ -36,6 +38,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		DE7AC02B238B7E2700292006 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				DE7AC032238B7F9000292006 /* testFileLoad.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DEF9CC9E2377B30200B5089A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,8 +62,10 @@
 /* Begin PBXFileReference section */
 		DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassAuthor.mm; sourceTree = "<group>"; };
 		DE5FC261237CDD7400346E3E /* testClassReadbook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassReadbook.mm; sourceTree = "<group>"; };
+		DE7AC029238B73DB00292006 /* testFileMethods.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testFileMethods.mm; sourceTree = "<group>"; };
+		DE7AC031238B7F8500292006 /* testFileLoad.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = testFileLoad.txt; sourceTree = "<group>"; };
 		DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libReadingTrackerLibrary.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE9504C82374EB8600FF97A4 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../ReadingTrackerLibrary/main.cpp; sourceTree = "<group>"; };
+		DE9504C82374EB8600FF97A4 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ReadBook.hpp; sourceTree = "<group>"; };
 		DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ReadBook.cpp; sourceTree = "<group>"; };
 		DE9504CE2374EF2200FF97A4 /* Book.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Book.hpp; sourceTree = "<group>"; };
@@ -95,9 +109,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE7AC030238B7F8500292006 /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				DE7AC031238B7F8500292006 /* testFileLoad.txt */,
+			);
+			name = TestFiles;
+			path = TestReadingTrackerLibrary/TestFiles;
+			sourceTree = "<group>";
+		};
 		DE9504992374EAE300FF97A4 = {
 			isa = PBXGroup;
 			children = (
+				DE7AC030238B7F8500292006 /* TestFiles */,
 				DE9504A42374EAE300FF97A4 /* ReadingTrackerLibrary */,
 				DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */,
 				DEF9CCA12377B30200B5089A /* ReadingTrackerCommandLine */,
@@ -144,6 +168,7 @@
 		DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				DE7AC029238B73DB00292006 /* testFileMethods.mm */,
 				DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */,
 				DE5FC261237CDD7400346E3E /* testClassReadbook.mm */,
 				DE95050C2374F61C00FF97A4 /* testClassBook.mm */,
@@ -209,6 +234,7 @@
 				DE9504FD2374F5B100FF97A4 /* Sources */,
 				DE9504FE2374F5B100FF97A4 /* Frameworks */,
 				DE9504FF2374F5B100FF97A4 /* Resources */,
+				DE7AC02B238B7E2700292006 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -304,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */,
 				DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */,
 				DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */,
 				DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */,
@@ -379,6 +406,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -431,6 +460,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -448,7 +479,7 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				HEADER_SEARCH_PATHS = /Users/frobu/Desktop/ReadingTrackerLibrary/ReadingTrackerLibrary/;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -464,7 +495,7 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				HEADER_SEARCH_PATHS = /Users/frobu/Desktop/ReadingTrackerLibrary/ReadingTrackerLibrary/;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -475,6 +506,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				INFOPLIST_FILE = TestReadingTrackerLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -491,6 +523,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				INFOPLIST_FILE = TestReadingTrackerLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -506,6 +539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -514,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

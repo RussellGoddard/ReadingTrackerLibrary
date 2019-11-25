@@ -21,7 +21,7 @@ public:
     void setDateBorn(time_t dateBorn);
     void setDateBorn(std::string dateBorn);
     void addBookWritten(std::shared_ptr<Book> book);
-    void addBooksWritten(std::vector<std::shared_ptr<Book>> books);
+    void addBookWritten(std::vector<std::shared_ptr<Book>> books);
     std::vector<std::shared_ptr<Book>> getBooksWritten() const;
     std::string getName() const;
     tm getDateBorn() const;

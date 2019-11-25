@@ -79,13 +79,12 @@ void ReadBook::setRating(int rating) {
 
 //will result in rating being set to 0
 void ReadBook::setRating(char rating) {
-    int newRating = std::atoi(&rating);
+    int newRating = rating - '0';
     
     //if rating == 0 then atoi failed to conver to an integer or the rating passed was zero which is invalid
-    if (newRating <= 0) {
-        return;
+    if (newRating >= 1 && newRating <= 10) {
+        this->rating = newRating;
     }
-    this->rating = newRating;
     
     return;
 }

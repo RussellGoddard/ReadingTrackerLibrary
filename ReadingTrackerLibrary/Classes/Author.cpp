@@ -75,7 +75,7 @@ void Author::addBookWritten(std::shared_ptr<Book> book) {
     return;
 }
 
-void Author::addBooksWritten(std::vector<std::shared_ptr<Book>> books) {
+void Author::addBookWritten(std::vector<std::shared_ptr<Book>> books) {
     this->booksWritten.insert(std::end(this->booksWritten), std::begin(books), std::end(books));
     
     return;
