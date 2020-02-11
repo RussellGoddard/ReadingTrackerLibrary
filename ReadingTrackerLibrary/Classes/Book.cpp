@@ -191,9 +191,13 @@ void Book::setPageCount(int pageCount) {
 
 //pageCount can't be changed by character, keep whatever is in there before
 void Book::setPageCount(char pageCount) {
-    int newPageCount = std::atoi(&pageCount);
+    int newPageCount = -1;
+    std::stringstream sstream;
     
-    //if newPageCount == 0 then atoi failed to conver to an integer or the pageCount passed was zero which is invalid
+    sstream << pageCount;
+    sstream >> newPageCount;
+    
+    //if newPageCount == 0 then failed to convert to an integer or the pageCount passed was zero which is invalid
     if (newPageCount <= 0) {
         return;
     }
@@ -236,6 +240,10 @@ void Book::setPublishDate(time_t publishDate) {
     this->publishDate.tm_sec = 0;
     this->publishDate.tm_min = 0;
     this->publishDate.tm_hour = 0;
+    this->publishDate.tm_wday = 0;
+    this->publishDate.tm_isdst = 0;
+    this->publishDate.tm_gmtoff = 0;
+    this->publishDate.tm_zone = nullptr;
     
     return;
 }
@@ -279,6 +287,10 @@ void Book::setPublishDate(std::string publishDate) {
     this->publishDate.tm_sec = 0;
     this->publishDate.tm_min = 0;
     this->publishDate.tm_hour = 0;
+    this->publishDate.tm_wday = 0;
+    this->publishDate.tm_isdst = 0;
+    this->publishDate.tm_gmtoff = 0;
+    this->publishDate.tm_zone = nullptr;
     
     time_t validateTime = std::mktime(&this->publishDate);
     

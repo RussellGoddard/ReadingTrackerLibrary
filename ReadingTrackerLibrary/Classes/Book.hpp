@@ -10,6 +10,7 @@
 
 #include <string>
 #include <ctime>
+#include <sstream>
 
 enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
 

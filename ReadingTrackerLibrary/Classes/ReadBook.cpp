@@ -12,6 +12,10 @@ void ReadBook::setDateRead(time_t time) {
     this->dateRead.tm_sec = 0;
     this->dateRead.tm_min = 0;
     this->dateRead.tm_hour = 0;
+    this->dateRead.tm_wday = 0;
+    this->dateRead.tm_isdst = 0;
+    this->dateRead.tm_gmtoff = 0;
+    this->dateRead.tm_zone = nullptr;
     
     return;
 }
@@ -56,6 +60,10 @@ void ReadBook::setDateRead(std::string time) {
     this->dateRead.tm_sec = 0;
     this->dateRead.tm_min = 0;
     this->dateRead.tm_hour = 0;
+    this->dateRead.tm_wday = 0;
+    this->dateRead.tm_isdst = 0;
+    this->dateRead.tm_gmtoff = 0;
+    this->dateRead.tm_zone = nullptr;
     
     time_t validateTime = std::mktime(&this->dateRead);
     
@@ -79,9 +87,13 @@ void ReadBook::setRating(int rating) {
 
 //will result in rating being set to 0
 void ReadBook::setRating(char rating) {
-    int newRating = rating - '0';
+    int newRating = -1;
+    std::stringstream sstream;
     
-    //if rating == 0 then atoi failed to conver to an integer or the rating passed was zero which is invalid
+    sstream << rating;
+    sstream >> newRating;
+    
+    //if rating == 0 then failed to convert to an integer or the rating passed was zero which is invalid
     if (newRating >= 1 && newRating <= 10) {
         this->rating = newRating;
     }

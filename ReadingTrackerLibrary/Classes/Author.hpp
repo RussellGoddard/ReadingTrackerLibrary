@@ -8,12 +8,17 @@
 #ifndef Author_hpp
 #define Author_hpp
 
+#include <algorithm>
+#include <ctime>
 #include <string>
 #include <vector>
-#include <ctime>
+
 
 class Book; //forward declaration of book
+template <typename T>
+void sortUnique(std::vector<T>& input);
 int convertAbbrMonthToInt(std::string month); //don't like this needing to be declared here, definition in book.cpp TODO
+
 
 class Author {
 public:
@@ -35,5 +40,13 @@ private:
     struct tm dateBorn;
     std::vector<std::shared_ptr<Book>> booksWritten;
 };
+
+bool operator==(const Author& lhs, const Author& rhs);
+bool operator!=(const Author& lhs, const Author& rhs);
+bool operator<(const Author& lhs, const Author& rhs);
+bool operator>(const Author& lhs, const Author& rhs);
+bool operator>=(const Author& lhs, const Author& rhs);
+bool operator<=(const Author& lhs, const Author& rhs);
+
 
 #endif /* Author_hpp */

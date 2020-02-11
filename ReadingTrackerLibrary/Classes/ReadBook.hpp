@@ -9,6 +9,7 @@
 #define ReadBook_hpp
 
 #include "Book.hpp"
+#include <sstream>
 
 class ReadBook : public Book {
 public:

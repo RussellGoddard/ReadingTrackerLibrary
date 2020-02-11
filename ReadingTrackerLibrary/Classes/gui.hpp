@@ -9,9 +9,16 @@
 #define gui_hpp
 
 #include <iostream>
-#include "ReadBook.hpp"
+#include <limits>
+#include "FileMethods.hpp"
 
+std::string& rightTrim(std::string& input);
+std::string& leftTrim(std::string& input);
+std::string& trim(std::string& input);
 ReadBook getNewReadBook();
-void outputString(std::string output);
+void outputLine(std::string output);
+void mainMenu();
+std::string getInput();
+
 
 #endif /* gui_hpp */

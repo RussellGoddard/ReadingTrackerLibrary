@@ -269,7 +269,7 @@
 		DE95049A2374EAE300FF97A4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Russell Goddard";
 				TargetAttributes = {
 					DE9504A12374EAE300FF97A4 = {
@@ -538,6 +538,7 @@
 		DEF9CCA42377B30200B5089A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -547,6 +548,7 @@
 		DEF9CCA52377B30200B5089A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = $SRCROOT/include/;
 				PRODUCT_NAME = "$(TARGET_NAME)";

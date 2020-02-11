@@ -110,4 +110,66 @@ std::shared_ptr<Book> testBook2;
     XCTAssert(testBook1 == testAuthor2.getBooksWritten().at(0));
 }
 
+- (void)testEquals {
+    Author testAuthor1("testAuthor1", "Dec 01 1990");
+    Author testAuthor2("testAuthor1", "Dec 01 1990");
+    
+    XCTAssert(testAuthor1 == testAuthor2);
+}
+
+- (void)testNotEquals {
+    Author testAuthor1("testAuthor1", "Dec 01 1990");
+    Author testAuthor2("testAuthor2", "Dec 01 1990");
+    
+    XCTAssert(testAuthor1 != testAuthor2);
+}
+
+- (void)testLessThan {
+    Author testAuthor1("a", "Dec 01 1990");
+    Author testAuthor2("b", "Dec 01 1990");
+    
+    XCTAssert(testAuthor1 < testAuthor2);
+    
+    testAuthor1.setName("chris test");
+    
+    XCTAssert(testAuthor2 < testAuthor1);
+    
+    testAuthor2.setName("Laura Winner");
+    
+    XCTAssert(testAuthor1 < testAuthor2);
+    
+    testAuthor1.setName("a");
+    testAuthor2.setName("a");
+    testAuthor1.setDateBorn("Dec 02 1990");
+    
+    XCTAssert(testAuthor2 < testAuthor1);
+}
+
+- (void)testLessThanEquals {
+}
+
+- (void)testGreaterThan {
+    Author testAuthor1("a", "Dec 01 1990");
+    Author testAuthor2("b", "Dec 01 1990");
+    
+    XCTAssert(testAuthor2 > testAuthor1);
+    
+    testAuthor1.setName("chris test");
+    
+    XCTAssert(testAuthor1 > testAuthor2);
+    
+    testAuthor2.setName("Laura Winner");
+    
+    XCTAssert(testAuthor2 > testAuthor1);
+    
+    testAuthor1.setName("a");
+    testAuthor2.setName("a");
+    testAuthor1.setDateBorn("Dec 02 1990");
+    
+    XCTAssert(testAuthor1 > testAuthor2);
+}
+
+- (void)testGreaterThanEquals {
+}
+
 @end
