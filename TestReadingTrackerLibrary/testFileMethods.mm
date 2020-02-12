@@ -183,4 +183,69 @@
 
 }
 
+- (void)testConvertJsonToReadBookPtr {
+    
+    nlohmann::json jsonTest = R"(
+      {
+        "author":"Robert Jordan",
+        "dateRead":"Jan 29 2020",
+        "genre":"fantasy",
+        "pageCount":684,
+        "publisher":"Tor Books",
+        "rating":9,
+        "series":"The Wheel of Time",
+        "title":"The Fires of Heaven",
+        "publishDate":"Sep 15 1992"
+      }
+    )"_json;
+    
+    std::shared_ptr<ReadBook> testPtrReadBook1 = convertJsonToReadBookPtr(jsonTest);
+    
+    XCTAssert(testPtrReadBook1->getAuthor() == jsonTest["author"].get<std::string>());
+    XCTAssert(testPtrReadBook1->printDateRead() == jsonTest["dateRead"].get<std::string>());
+    XCTAssert(testPtrReadBook1->printGenre() == jsonTest["genre"].get<std::string>());
+    XCTAssert(testPtrReadBook1->getPageCount() == jsonTest["pageCount"].get<int>());
+    XCTAssert(testPtrReadBook1->getPublisher() == jsonTest["publisher"].get<std::string>());
+    XCTAssert(testPtrReadBook1->getRating() == jsonTest["rating"].get<int>());
+    XCTAssert(testPtrReadBook1->getSeries() == jsonTest["series"].get<std::string>());
+    XCTAssert(testPtrReadBook1->getTitle() == jsonTest["title"].get<std::string>());
+    XCTAssert(testPtrReadBook1->printPublishDate() == jsonTest["publishDate"].get<std::string>());
+}
+
+- (void)testConvertJsonToReadBook {
+    nlohmann::json jsonTest = R"(
+      {
+        "author":"Robert Jordan",
+        "dateRead":"Jan 29 2020",
+        "genre":"fantasy",
+        "pageCount":684,
+        "publisher":"Tor Books",
+        "rating":9,
+        "series":"The Wheel of Time",
+        "title":"The Fires of Heaven",
+        "publishDate":"Sep 15 1992"
+      }
+    )"_json;
+    
+    ReadBook testReadBook1 = convertJsonToReadBook(jsonTest);
+    
+    XCTAssert(testReadBook1.getAuthor() == jsonTest["author"].get<std::string>());
+    XCTAssert(testReadBook1.printDateRead() == jsonTest["dateRead"].get<std::string>());
+    XCTAssert(testReadBook1.printGenre() == jsonTest["genre"].get<std::string>());
+    XCTAssert(testReadBook1.getPageCount() == jsonTest["pageCount"].get<int>());
+    XCTAssert(testReadBook1.getPublisher() == jsonTest["publisher"].get<std::string>());
+    XCTAssert(testReadBook1.getRating() == jsonTest["rating"].get<int>());
+    XCTAssert(testReadBook1.getSeries() == jsonTest["series"].get<std::string>());
+    XCTAssert(testReadBook1.getTitle() == jsonTest["title"].get<std::string>());
+    XCTAssert(testReadBook1.printPublishDate() == jsonTest["publishDate"].get<std::string>());
+}
+
+- (void)testSaveReadingList {
+    XCTAssert(false);
+}
+
+- (void)testLoadReadingList {
+    XCTAssert(false);
+}
+
 @end
