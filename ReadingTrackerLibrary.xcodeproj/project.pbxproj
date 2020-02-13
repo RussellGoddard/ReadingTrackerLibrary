@@ -23,6 +23,7 @@
 		DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504D52374EF2200FF97A4 /* gui.cpp */; };
 		DE9505062374F5B100FF97A4 /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 		DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE95050C2374F61C00FF97A4 /* testClassBook.mm */; };
+		DE989E8323F4F94700D3C424 /* testGui.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE989E8223F4F94700D3C424 /* testGui.mm */; };
 		DEF9CCA72377B30A00B5089A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504C82374EB8600FF97A4 /* main.cpp */; };
 		DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestReadingTrackerLibrary.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9505052374F5B100FF97A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE95050C2374F61C00FF97A4 /* testClassBook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassBook.mm; sourceTree = "<group>"; };
+		DE989E8223F4F94700D3C424 /* testGui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testGui.mm; sourceTree = "<group>"; };
 		DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReadingTrackerCommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -173,6 +175,7 @@
 				DE5FC261237CDD7400346E3E /* testClassReadbook.mm */,
 				DE95050C2374F61C00FF97A4 /* testClassBook.mm */,
 				DE9505052374F5B100FF97A4 /* Info.plist */,
+				DE989E8223F4F94700D3C424 /* testGui.mm */,
 			);
 			path = TestReadingTrackerLibrary;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */,
 				DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */,
 				DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */,
+				DE989E8323F4F94700D3C424 /* testGui.mm in Sources */,
 				DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

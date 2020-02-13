@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#include <filesystem>
 #include <vector>
 #include "FileMethods.hpp"
 
@@ -240,12 +241,31 @@
     XCTAssert(testReadBook1.printPublishDate() == jsonTest["publishDate"].get<std::string>());
 }
 
-- (void)testSaveReadingList {
-    XCTAssert(false);
-}
-
-- (void)testLoadReadingList {
-    XCTAssert(false);
+- (void)testSaveAndLoadReadingList {
+    nlohmann::json jsonTest = R"(
+      {
+        "author":"Robert Jordan",
+        "dateRead":"Jan 29 2020",
+        "genre":"fantasy",
+        "pageCount":684,
+        "publisher":"Tor Books",
+        "rating":9,
+        "series":"The Wheel of Time",
+        "title":"The Fires of Heaven",
+        "publishDate":"Sep 15 1992"
+      }
+    )"_json;
+    
+    std::vector<nlohmann::json> jsonSave(1, jsonTest);
+    
+    saveReadingList(jsonSave, "./testSaveFile.txt");
+    
+    std::vector<std::shared_ptr<ReadBook>> jsonLoad = loadReadingList("./testSaveFile.txt");
+    
+    XCTAssert(jsonLoad.size() == 1);
+    XCTAssert(*convertJsonToReadBookPtr(jsonTest) == *jsonLoad.at(0));
+    
+    std::remove("./testSaveFile.txt");
 }
 
 @end

@@ -15,6 +15,7 @@ bool saveReadingList(std::vector<json> input, std::string filePath) {
     
     //check if file exists/is locked by another process
     if(!saveFile.good()) {
+        saveFile.close();
         return false;
     };
     
@@ -34,6 +35,7 @@ std::vector<std::shared_ptr<ReadBook>> loadReadingList(std::string filePath) {
     
     //check if file exists/is locked by another process
     if (!loadFile.good()) {
+        loadFile.close();
         return std::vector<std::shared_ptr<ReadBook>>(); //empty vector is returned
     }
     
