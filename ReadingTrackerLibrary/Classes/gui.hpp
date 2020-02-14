@@ -10,15 +10,16 @@
 
 #include <iostream>
 #include <limits>
+#include <sstream>
 #include "FileMethods.hpp"
 
 std::string& rightTrim(std::string& input);
 std::string& leftTrim(std::string& input);
 std::string& trim(std::string& input);
-ReadBook getNewReadBook();
+ReadBook getNewReadBook(std::istream &inputStream);
 void outputLine(std::string output);
 void mainMenu();
-std::string getInput();
+std::string getInput(std::istream &inputStream);
 
 
 #endif /* gui_hpp */

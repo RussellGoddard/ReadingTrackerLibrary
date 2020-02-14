@@ -40,36 +40,36 @@ std::string& trim(std::string& str)
     "dateRead" : "Oct 26 2019"
 }
 */
-ReadBook getNewReadBook() {
+ReadBook getNewReadBook(std::istream &inputStream) {
     std::string input;
     ReadBook newReadBook;
     
     outputLine("Input author");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setAuthor(input);
     outputLine("Input title");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setTitle(input);
     outputLine("Input publisher");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setPublisher(input);
     outputLine("Input series");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setSeries(input);
     outputLine("Input genre");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setGenre(input);
     outputLine("Input date published");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setPublishDate(input);
     outputLine("Input page count");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setPageCount(stoi(input));
     outputLine("Input date you finished reading");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setDateRead(input);
     outputLine("On a scale of 1 - 10 rate the book");
-    input = getInput();
+    input = getInput(inputStream);
     newReadBook.setRating(stoi(input));
     
     return newReadBook;
@@ -79,9 +79,9 @@ void outputLine(std::string output) {
     std::cout << output << std::endl;
 }
 
-std::string getInput() {
+std::string getInput(std::istream &inputStream) {
     std::string returnString;
-    std::getline(std::cin, returnString);
+    std::getline(inputStream, returnString);
     return returnString;
 }
 
@@ -106,7 +106,7 @@ void mainMenu() {
         outputLine("9: Quit");
         outputLine("");
         
-        std::string input = getInput();
+        std::string input = getInput(std::cin);
         
         if (trim(input).empty() || trim(input).size() > 1) {
             userInputAgain();
@@ -120,11 +120,11 @@ void mainMenu() {
         
         switch(charInput) {
             case '1': {
-                ReadBook newReadBook = getNewReadBook(); //TODO DO SOMETHING WITH THIS
+                ReadBook newReadBook = getNewReadBook(std::cin); //TODO DO SOMETHING WITH THIS
                 outputLine("Would you like to save:");
                 outputLine(newReadBook.printJson() + "?");
                 outputLine("Y/N");
-                input = getInput();
+                input = getInput(std::cin);
                 if (trim(input).empty() || trim(input).size() > 1) {
                     userInputAgain();
                     continue;
@@ -151,7 +151,7 @@ void mainMenu() {
                 break;
             case '9':
                 outputLine("Are you sure you wish to quit? (Y/N)");
-                input = getInput();
+                input = getInput(std::cin);
                 if (!input.empty() && (input.at(0) == 'Y' || input.at(0) == 'y')) {
                     return;
                 }
