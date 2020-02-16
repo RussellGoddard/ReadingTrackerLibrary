@@ -16,8 +16,8 @@
 std::string& rightTrim(std::string& input);
 std::string& leftTrim(std::string& input);
 std::string& trim(std::string& input);
-ReadBook getNewReadBook(std::istream &inputStream);
-void outputLine(std::string output);
+ReadBook getNewReadBook(std::istream &inputStream, std::ostream &outputStream);
+void outputLine(std::ostream &outputStream, std::string output);
 void mainMenu();
 std::string getInput(std::istream &inputStream);
 

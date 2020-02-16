@@ -40,43 +40,43 @@ std::string& trim(std::string& str)
     "dateRead" : "Oct 26 2019"
 }
 */
-ReadBook getNewReadBook(std::istream &inputStream) {
+ReadBook getNewReadBook(std::istream &inputStream, std::ostream &outputStream) {
     std::string input;
     ReadBook newReadBook;
     
-    outputLine("Input author");
+    outputLine(outputStream, "Input author");
     input = getInput(inputStream);
     newReadBook.setAuthor(input);
-    outputLine("Input title");
+    outputLine(outputStream, "Input title");
     input = getInput(inputStream);
     newReadBook.setTitle(input);
-    outputLine("Input publisher");
+    outputLine(outputStream, "Input publisher");
     input = getInput(inputStream);
     newReadBook.setPublisher(input);
-    outputLine("Input series");
+    outputLine(outputStream, "Input series");
     input = getInput(inputStream);
     newReadBook.setSeries(input);
-    outputLine("Input genre");
+    outputLine(outputStream, "Input genre");
     input = getInput(inputStream);
     newReadBook.setGenre(input);
-    outputLine("Input date published");
+    outputLine(outputStream, "Input date published");
     input = getInput(inputStream);
     newReadBook.setPublishDate(input);
-    outputLine("Input page count");
+    outputLine(outputStream, "Input page count");
     input = getInput(inputStream);
     newReadBook.setPageCount(stoi(input));
-    outputLine("Input date you finished reading");
+    outputLine(outputStream, "Input date you finished reading");
     input = getInput(inputStream);
     newReadBook.setDateRead(input);
-    outputLine("On a scale of 1 - 10 rate the book");
+    outputLine(outputStream, "On a scale of 1 - 10 rate the book");
     input = getInput(inputStream);
     newReadBook.setRating(stoi(input));
     
     return newReadBook;
 }
 
-void outputLine(std::string output) {
-    std::cout << output << std::endl;
+void outputLine(std::ostream &outputStream, std::string output) {
+    outputStream << output << std::endl;
 }
 
 std::string getInput(std::istream &inputStream) {
@@ -86,7 +86,7 @@ std::string getInput(std::istream &inputStream) {
 }
 
 void userInputAgain() {
-    outputLine("Invalid selection, please try again");
+    outputLine(std::cout, "Invalid selection, please try again");
     
     std::cout << "\f";
     
@@ -99,12 +99,12 @@ void mainMenu() {
     InMemoryContainers& masterList = InMemoryContainers::getInstance();
     
     while(true) {
-        outputLine("One step at a time");
-        outputLine("Please select your option by typing the number displayed");
-        outputLine("1: Add new Book");
-        outputLine("2: Display all ReadBooks");
-        outputLine("9: Quit");
-        outputLine("");
+        outputLine(std::cout, "One step at a time");
+        outputLine(std::cout, "Please select your option by typing the number displayed");
+        outputLine(std::cout, "1: Add new Book");
+        outputLine(std::cout, "2: Display all ReadBooks");
+        outputLine(std::cout, "9: Quit");
+        outputLine(std::cout, "");
         
         std::string input = getInput(std::cin);
         
@@ -120,10 +120,10 @@ void mainMenu() {
         
         switch(charInput) {
             case '1': {
-                ReadBook newReadBook = getNewReadBook(std::cin); //TODO DO SOMETHING WITH THIS
-                outputLine("Would you like to save:");
-                outputLine(newReadBook.printJson() + "?");
-                outputLine("Y/N");
+                ReadBook newReadBook = getNewReadBook(std::cin, std::cout); //TODO DO SOMETHING WITH THIS
+                outputLine(std::cout, "Would you like to save:");
+                outputLine(std::cout, newReadBook.printJson() + "?");
+                outputLine(std::cout, "Y/N");
                 input = getInput(std::cin);
                 if (trim(input).empty() || trim(input).size() > 1) {
                     userInputAgain();
@@ -146,11 +146,11 @@ void mainMenu() {
             }
             case '2':
                 for (auto x : masterList.getMasterReadBooks()) {
-                    outputLine(x->printJson());
+                    outputLine(std::cout, x->printJson());
                 }
                 break;
             case '9':
-                outputLine("Are you sure you wish to quit? (Y/N)");
+                outputLine(std::cout, "Are you sure you wish to quit? (Y/N)");
                 input = getInput(std::cin);
                 if (!input.empty() && (input.at(0) == 'Y' || input.at(0) == 'y')) {
                     return;
