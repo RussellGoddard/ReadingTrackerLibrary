@@ -116,11 +116,15 @@ std::vector<std::shared_ptr<Book>> Author::getBooksWritten() const {
 
 std::string Author::printJson() const {
     std::string returnString;
-    returnString = R"({"name":")" + this->getName() + R"(","dateBorn":")" + this->printDateBorn() + R"(",{)";
+    returnString = R"({"name":")" + this->getName() + R"(","dateBorn":")" + this->printDateBorn() + R"(","booksWritten":[)";
     for (std::shared_ptr<Book> x : this->getBooksWritten()) {
         returnString += x->printJson();
+        returnString += ',';
     }
-    returnString += R"(}})";
+    if (returnString.back() == ',') {
+        returnString.pop_back();
+    }
+    returnString += R"(]})";
     
     return returnString;
 }

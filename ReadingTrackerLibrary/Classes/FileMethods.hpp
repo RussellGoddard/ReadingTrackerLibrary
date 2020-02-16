@@ -30,6 +30,8 @@ public:
     void addMasterAuthors(std::vector<std::shared_ptr<Author>> newAuthorVector);
     void addMasterAuthors(std::shared_ptr<Author> newAuthor);
     
+    bool saveInMemoryToFile(std::string filePath);
+    bool loadInMemoryFromFile(std::string filePath);
     void clearAll();
     
     static InMemoryContainers& getInstance() {
@@ -55,6 +57,11 @@ bool saveJson(nlohmann::json input, std::string filePath);
 bool saveJson(std::vector<nlohmann::json> input, std::string filePath);
 std::vector<std::shared_ptr<ReadBook>> loadReadingList(std::string filePath);
 ReadBook convertJsonToReadBook(nlohmann::json json);
+std::shared_ptr<Book> convertJsonToBookPtr(nlohmann::json json);
 std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json);
+std::shared_ptr<Author> convertJsonToAuthorPtr(nlohmann::json json);
+std::string& rightTrim(std::string& input);
+std::string& leftTrim(std::string& input);
+std::string& trim(std::string& input);
 
 #endif /* FileMethods_hpp */

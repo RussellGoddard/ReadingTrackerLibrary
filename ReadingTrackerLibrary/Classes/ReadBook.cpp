@@ -183,7 +183,7 @@ ReadBook::ReadBook(std::string author, std::string title, std::string series, st
     return;
 }
 
-ReadBook::ReadBook(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book(author, title, series, publisher, pageCount, convertStringToGenre(genre), publishDate) {
+ReadBook::ReadBook(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
     this->setDateRead(dateRead);
     this->setRating(rating);
     

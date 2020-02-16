@@ -87,29 +87,4 @@
     XCTAssert(word3 == "23");
 }
 
-- (void)testTrim {
-    std::string test1 = "test1";
-    std::string test2 = "   test2";
-    std::string test3 = "test3   ";
-    std::string test4 = "   test4   ";
-    std::string test5 = " a  test5  b";
-    std::string test6 = "\ttest6";
-    std::string test7 = "test7 \n";
-    std::string test8 = "  \v  test8    ";
-    std::string test9 = "\ftest9\f";
-    std::string test10 = "\rtest10           a   ";
-    
-    XCTAssert(trim(test1) == "test1");
-    XCTAssert(trim(test2) == "test2");
-    XCTAssert(trim(test3) == "test3");
-    XCTAssert(trim(test4) == "test4");
-    XCTAssert(trim(test5) == "a  test5  b");
-    XCTAssert(trim(test6) == "test6");
-    XCTAssert(trim(test7) == "test7");
-    XCTAssert(trim(test8) == "test8");
-    XCTAssert(trim(test9) == "test9");
-    XCTAssert(trim(test10) == "test10           a");
-    
-}
-
 @end

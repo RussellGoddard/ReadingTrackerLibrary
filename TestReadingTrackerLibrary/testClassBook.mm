@@ -141,7 +141,7 @@
     testBook.setPageCount(10);
     testBook.setPublishDate("Dec 01 1990");
     
-    std::string answer = "{\"author\":\"testAuthor\",\"title\":\"testTitle\",\"series\":\"testSeries\",\"publisher\":\"testPublisher\",\"genre\":\"fantasy\",\"pageCount\":10}";
+    std::string answer = R"({"author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"Dec 01 1990"})";
     XCTAssert(answer == testBook.printJson());
 }
 
@@ -370,8 +370,8 @@
     XCTAssert(romance == testBookConstructor.getGenre());
     XCTAssert(1199163600 == testBookConstructor.getPublishDateAsTimeT());
     
-    //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
-    Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, thriller, "Nov 16 1991");
+    //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
+    Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, "thriller", "Nov 16 1991");
     XCTAssert("testAuthor2" == testBookConstructor2.getAuthor());
     XCTAssert("testTitle2" == testBookConstructor2.getTitle());
     XCTAssert("testSeries2" == testBookConstructor2.getSeries());

@@ -7,10 +7,26 @@
 
 #include "FileMethods.hpp"
 
-bool saveJson(nlohmann::json input, std::string filePath) {
-    std::fstream saveFile;
-    saveFile.open(filePath, std::fstream::out);
-    
+std::string& leftTrim(std::string& input) {
+  auto it2 =  std::find_if(input.begin(), input.end(), [](char ch){ return !std::isspace<char>(ch, std::locale::classic()); } );
+  input.erase(input.begin(), it2);
+  return input;
+}
+
+std::string& rightTrim(std::string& input)
+{
+  auto it1 = std::find_if(input.rbegin(), input.rend(), [](char ch) { return !std::isspace<char>(ch, std::locale::classic()); } );
+  input.erase(it1.base(), input.end());
+  return input;
+}
+
+std::string& trim(std::string& str)
+{
+   return leftTrim(rightTrim(str));
+}
+
+
+bool saveJson(nlohmann::json input, std::fstream& saveFile) {
     //check if file exists/is locked by another process
     if(!saveFile.good()) {
         saveFile.close();
@@ -18,15 +34,11 @@ bool saveJson(nlohmann::json input, std::string filePath) {
     };
     
     saveFile << input << std::endl;
-    
-    saveFile.close();
+
     return true;
 }
 
-bool saveJson(std::vector<nlohmann::json> input, std::string filePath) {
-    std::fstream saveFile;
-    saveFile.open(filePath, std::fstream::out);
-    
+bool saveJson(std::vector<nlohmann::json> input, std::fstream& saveFile) {
     //check if file exists/is locked by another process
     if(!saveFile.good()) {
         saveFile.close();
@@ -37,29 +49,7 @@ bool saveJson(std::vector<nlohmann::json> input, std::string filePath) {
         saveFile << x << std::endl;
     }
     
-    saveFile.close();
     return true;
-}
-
-std::vector<std::shared_ptr<ReadBook>> loadReadingList(std::string filePath) {
-    InMemoryContainers& masterList = InMemoryContainers::getInstance();
-    std::string line;
-    std::fstream loadFile;
-    loadFile.open(filePath, std::fstream::in);
-    
-    //check if file exists/is locked by another process
-    if (!loadFile.good()) {
-        loadFile.close();
-        return std::vector<std::shared_ptr<ReadBook>>(); //empty vector is returned
-    }
-    
-    while(std::getline(loadFile, line)) { //while there is a new json object to get
-        nlohmann::json newReadBook = nlohmann::json::parse(line); //convert the string into json
-        masterList.addMasterReadBooks(convertJsonToReadBookPtr(newReadBook)); //add json object to collection
-    }
-    
-    loadFile.close();
-    return masterList.getMasterReadBooks();
 }
 
 ReadBook convertJsonToReadBook(nlohmann::json json) {
@@ -77,6 +67,20 @@ ReadBook convertJsonToReadBook(nlohmann::json json) {
     return ReadBook(author, title, series, publisher, pageCount, genre, publishDate, rating, time);
 }
 
+std::shared_ptr<Book> convertJsonToBookPtr(nlohmann::json json) {
+    std::string author = json["author"].get<std::string>();
+    std::string title = json["title"].get<std::string>();
+    std::string series = json["series"].get<std::string>();
+    std::string publisher = json["publisher"].get<std::string>();
+    int pageCount = json["pageCount"].get<int>();
+    std::string genre = json["genre"].get<std::string>();
+    std::string publishDate = json["publishDate"].get<std::string>();
+    
+    std::shared_ptr<Book> newBook = std::make_shared<Book>(author, title, series, publisher, pageCount, genre, publishDate);
+    
+    return newBook;
+}
+
 std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
     
     std::string author = json["author"].get<std::string>();
@@ -92,6 +96,19 @@ std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
     std::shared_ptr<ReadBook> newReadBook = std::make_shared<ReadBook>(author, title, series, publisher, pageCount, genre, publishDate, rating, time);
     
     return newReadBook;
+}
+
+std::shared_ptr<Author> convertJsonToAuthorPtr(nlohmann::json json) {
+    std::string name = json["name"].get<std::string>();
+    std::string dateBorn = json["dateBorn"].get<std::string>();
+    std::vector<std::shared_ptr<Book>> booksWritten;
+    for (auto x : json.at("booksWritten")) {
+        booksWritten.push_back(convertJsonToBookPtr(x));
+    }
+    
+    std::shared_ptr<Author> newAuthor = std::make_shared<Author>(name, dateBorn, booksWritten);
+    
+    return newAuthor;
 }
 
 std::vector<std::shared_ptr<ReadBook>> InMemoryContainers::getMasterReadBooks() {
@@ -202,3 +219,99 @@ void sortUnique(std::vector<T>& input) {
     return;
 }
 
+//TO DO investigate a way to remove for loops
+bool InMemoryContainers::saveInMemoryToFile(std::string filePath) {
+    bool successfulSave = true;
+    std::vector<nlohmann::json> bookJson;
+    std::vector<nlohmann::json> readBookJson;
+    std::vector<nlohmann::json> authorJson;
+    
+    for (auto x : this->getMasterBooks()) {
+        bookJson.push_back(nlohmann::json::parse(x->printJson()));
+    }
+    
+    for (auto x : this->getMasterReadBooks()) {
+        readBookJson.push_back(nlohmann::json::parse(x->printJson()));
+    }
+    
+    for (auto x : this->getMasterAuthors()) {
+        authorJson.push_back(nlohmann::json::parse(x->printJson()));
+    }
+    
+    
+    std::fstream saveFile;
+    saveFile.open(filePath, std::fstream::out);
+    if(!saveFile.good()) {
+        saveFile.close();
+        return false;
+    };
+    
+    if (successfulSave) {
+        saveFile << "[\n";
+        successfulSave = saveJson(bookJson, saveFile);
+    }
+    if (successfulSave) {
+        saveFile << "]\n[\n";
+        successfulSave = saveJson(readBookJson, saveFile);
+    }
+    if (successfulSave) {
+        saveFile << "]\n[\n";
+        successfulSave = saveJson(authorJson, saveFile);
+    }
+    if (successfulSave) {
+        saveFile << "]";
+        saveFile.close();
+    }
+    
+    return successfulSave;
+}
+
+bool InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
+    bool successfulLoad = true;
+    int trackLoad = 0;
+    std::fstream loadFile;
+    std::string line;
+    loadFile.open(filePath, std::fstream::in);
+    if(!loadFile.good()) {
+        loadFile.close();
+        return false;
+    };
+    
+    while(std::getline(loadFile, line)) {
+        if (line == "[") {
+            continue;
+        }
+        else if (line == "]") {
+            ++trackLoad;
+        }
+        else {
+            switch(trackLoad) {
+                //book
+                case 0 : {
+                    this->addMasterBooks(convertJsonToBookPtr(nlohmann::json::parse(line))); //add json object to collection
+                    break;
+                }
+                //readbook
+                case 1 : {
+                    this->addMasterReadBooks(convertJsonToReadBookPtr(nlohmann::json::parse(line))); //add json object to collection
+                    break;
+                }
+                //author
+                case 2 : {
+                    this->addMasterAuthors(convertJsonToAuthorPtr(nlohmann::json::parse(line))); //add json object to collection
+                    break;
+                }
+                default : {
+                    loadFile.close();
+                    return false;
+                }
+            }
+        }
+    }
+    
+    if (successfulLoad) {
+        loadFile.close();
+    }
+    
+    return successfulLoad;
+}

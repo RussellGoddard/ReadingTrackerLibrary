@@ -8,23 +8,6 @@
 #include "gui.hpp"
 
 
-std::string& leftTrim(std::string& input) {
-  auto it2 =  std::find_if(input.begin(), input.end(), [](char ch){ return !std::isspace<char>(ch, std::locale::classic()); } );
-  input.erase(input.begin(), it2);
-  return input;
-}
-
-std::string& rightTrim(std::string& input)
-{
-  auto it1 = std::find_if(input.rbegin(), input.rend(), [](char ch) { return !std::isspace<char>(ch, std::locale::classic()); } );
-  input.erase(it1.base(), input.end());
-  return input;
-}
-
-std::string& trim(std::string& str)
-{
-   return leftTrim(rightTrim(str));
-}
 
 
 /*
@@ -74,35 +57,6 @@ ReadBook getNewReadBook(std::istream &inputStream, std::ostream &outputStream) {
     
     return newReadBook;
 }
-
-bool saveInMemoryToFile(std::string filePath) {
-    
-    InMemoryContainers& saveContainers = InMemoryContainers::getInstance();
-    std::vector<nlohmann::json> readBookJson;
-    std::vector<nlohmann::json> bookJson;
-    std::vector<nlohmann::json> authorJson;
-    
-    
-    for (auto x : saveContainers.getMasterReadBooks()) {
-        readBookJson.push_back(x->printJson());
-    }
-    
-    for (auto x : saveContainers.getMasterBooks()) {
-        readBookJson.push_back(x->printJson());
-    }
-    
-    //for (auto x : saveContainers.getMasterAuthors()) {
-    //    readBookJson.push_back(x->printJson);
-    //}
-    
-    saveJson(readBookJson, filePath);
-    saveJson(bookJson, filePath);
-    saveJson(authorJson, filePath);
-    
-    return false;
-}
-
-
 
 void outputLine(std::ostream &outputStream, std::string output) {
     outputStream << output << std::endl;

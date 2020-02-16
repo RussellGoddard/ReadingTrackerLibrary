@@ -125,18 +125,10 @@ Genre Book::getGenre() const {
 std::string Book::printGenre() const {
     return convertGenreToString(this->genre);
 }
-/*
-{
-    "author" : "Robert Jordan",
-    "title" : "Eye of the World",
-    "publisher" : "Tor Books",
-    "genre" : "fantasy",
-    "pageCount" : 782
-}
-*/
+
 std::string Book::printJson() const {
-    std::string returnString;
-    returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(})";
+    std::string returnString = "test\"\"";
+    returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(,"publishDate":")" + this->printPublishDate() + R"("})";
     return returnString;
 }
 
@@ -318,6 +310,18 @@ Book::Book(std::string author, std::string title, std::string series, std::strin
     this->setPublisher(publisher);
     this->setPageCount(pageCount);
     this->setGenre(genre);
+    this->setPublishDate(publishDate);
+    
+    return;
+}
+
+Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate) {
+    this->setAuthor(author);
+    this->setTitle(title);
+    this->setSeries(series);
+    this->setPublisher(publisher);
+    this->setPageCount(pageCount);
+    this->setGenre(convertStringToGenre(genre));
     this->setPublishDate(publishDate);
     
     return;

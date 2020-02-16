@@ -21,8 +21,8 @@ std::shared_ptr<Book> testBook1;
 std::shared_ptr<Book> testBook2;
 
 - (void)setUp {
-    testBook1 = std::make_shared<Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 11, fantasy, "Nov 11 1992");
-    testBook2 = std::make_shared<Book>("testA", "testT", "testS", "testP", 22, western, "Nov 13 1999");
+    testBook1 = std::make_shared<Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 11, "fantasy", "Nov 11 1992");
+    testBook2 = std::make_shared<Book>("testA", "testT", "testS", "testP", 22, "western", "Nov 13 1999");
     bookCollection.push_back(testBook1);
     bookCollection.push_back(testBook2);
 }
@@ -223,9 +223,9 @@ std::shared_ptr<Book> testBook2;
     testAuthor3.addBookWritten(testBook1);
     testAuthor3.addBookWritten(testBook2);
     
-    XCTAssert(testAuthor1.printJson() == R"({"name":"a","dateBorn":"Dec 01 1990",{}})");
-    XCTAssert(testAuthor2.printJson() == R"({"name":"b","dateBorn":"Nov 12 2001",{}})");
-    XCTAssert(testAuthor3.printJson() == R"({"name":"3rd","dateBorn":"Apr 01 2000",{{"author":"testAuthor1","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1}{"author":"testAuthor2","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22}}})");
+    XCTAssert(testAuthor1.printJson() == R"({"name":"a","dateBorn":"Dec 01 1990","booksWritten":[]})");
+    XCTAssert(testAuthor2.printJson() == R"({"name":"b","dateBorn":"Nov 12 2001","booksWritten":[]})");
+    XCTAssert(testAuthor3.printJson() == R"({"name":"3rd","dateBorn":"Apr 01 2000","booksWritten":[{"author":"testAuthor1","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"Nov 11 1992"},{"author":"testAuthor2","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"Nov 11 2020"}]})");
 }
 
 @end

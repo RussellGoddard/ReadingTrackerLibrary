@@ -184,6 +184,30 @@
 
 }
 
+- (void)testConvertJsonToBookPtr {
+    nlohmann::json jsonTest = R"(
+      {
+        "author":"Robert Jordan",
+        "genre":"fantasy",
+        "pageCount":684,
+        "publisher":"Tor Books",
+        "series":"The Wheel of Time",
+        "title":"The Fires of Heaven",
+        "publishDate":"Sep 15 1992"
+      }
+    )"_json;
+    
+    std::shared_ptr<Book> testPtrBook1 = convertJsonToBookPtr(jsonTest);
+    
+    XCTAssert(testPtrBook1->getAuthor() == jsonTest["author"].get<std::string>());
+    XCTAssert(testPtrBook1->printGenre() == jsonTest["genre"].get<std::string>());
+    XCTAssert(testPtrBook1->getPageCount() == jsonTest["pageCount"].get<int>());
+    XCTAssert(testPtrBook1->getPublisher() == jsonTest["publisher"].get<std::string>());
+    XCTAssert(testPtrBook1->getSeries() == jsonTest["series"].get<std::string>());
+    XCTAssert(testPtrBook1->getTitle() == jsonTest["title"].get<std::string>());
+    XCTAssert(testPtrBook1->printPublishDate() == jsonTest["publishDate"].get<std::string>());
+}
+
 - (void)testConvertJsonToReadBookPtr {
     
     nlohmann::json jsonTest = R"(
@@ -193,24 +217,57 @@
         "genre":"fantasy",
         "pageCount":684,
         "publisher":"Tor Books",
-        "rating":9,
         "series":"The Wheel of Time",
         "title":"The Fires of Heaven",
-        "publishDate":"Sep 15 1992"
+        "publishDate":"Sep 15 1992",
+        "rating":9,
+        "dateRead":"Sep 25 1993"
       }
     )"_json;
     
     std::shared_ptr<ReadBook> testPtrReadBook1 = convertJsonToReadBookPtr(jsonTest);
     
     XCTAssert(testPtrReadBook1->getAuthor() == jsonTest["author"].get<std::string>());
-    XCTAssert(testPtrReadBook1->printDateRead() == jsonTest["dateRead"].get<std::string>());
     XCTAssert(testPtrReadBook1->printGenre() == jsonTest["genre"].get<std::string>());
     XCTAssert(testPtrReadBook1->getPageCount() == jsonTest["pageCount"].get<int>());
     XCTAssert(testPtrReadBook1->getPublisher() == jsonTest["publisher"].get<std::string>());
-    XCTAssert(testPtrReadBook1->getRating() == jsonTest["rating"].get<int>());
     XCTAssert(testPtrReadBook1->getSeries() == jsonTest["series"].get<std::string>());
     XCTAssert(testPtrReadBook1->getTitle() == jsonTest["title"].get<std::string>());
     XCTAssert(testPtrReadBook1->printPublishDate() == jsonTest["publishDate"].get<std::string>());
+    XCTAssert(testPtrReadBook1->getRating() == jsonTest["rating"].get<int>());
+    XCTAssert(testPtrReadBook1->printDateRead() == jsonTest["dateRead"].get<std::string>());
+}
+
+- (void)testConvertJsonToAuthorPtr {
+    nlohmann::json jsonTest = R"(
+      {
+          "name": "3rd",
+          "dateBorn": "Apr 01 2000",
+          "booksWritten": [{
+              "author": "testAuthor1",
+              "title": "testTitle1",
+              "series": "testSeries1",
+              "publisher": "testPublisher1",
+              "genre": "fantasy",
+              "pageCount": 1,
+              "publishDate": "Oct 15 1978"
+          }, {
+              "author": "testAuthor2",
+              "title": "testTitle2",
+              "series": "testSeries2",
+              "publisher": "testPublisher2",
+              "genre": "western",
+              "pageCount": 22,
+              "publishDate": "Apr 25 1983"
+          }]
+      }
+    )"_json;
+    
+    std::shared_ptr<Author> testPtrAuthor1 = convertJsonToAuthorPtr(jsonTest);
+    
+    XCTAssert(testPtrAuthor1->getName() == jsonTest["name"].get<std::string>());
+    XCTAssert(testPtrAuthor1->printDateBorn() == jsonTest["dateBorn"].get<std::string>());
+    XCTAssert(testPtrAuthor1->getBooksWritten().size() == jsonTest.at("booksWritten").size());
 }
 
 - (void)testConvertJsonToReadBook {
@@ -241,52 +298,80 @@
     XCTAssert(testReadBook1.printPublishDate() == jsonTest["publishDate"].get<std::string>());
 }
 
-- (void)testSaveAndLoadReadingList {
-    nlohmann::json jsonTest = R"(
-      {
-        "author":"Robert Jordan",
-        "dateRead":"Jan 29 2020",
-        "genre":"fantasy",
-        "pageCount":684,
-        "publisher":"Tor Books",
-        "rating":9,
-        "series":"The Wheel of Time",
-        "title":"The Fires of Heaven",
-        "publishDate":"Sep 15 1992"
-      }
-    )"_json;
+- (void)testSaveAndLoadInMemoryToFile {
+    //std::string testFilePath = "./testSaveFile.txt";
+    std::string testFilePath = "/Users/Frobu/Desktop/testFileSaveTest.txt";
     
-    nlohmann::json jsonTest1 = R"(
-      {
-        "author":"Stieg Larsson",
-        "dateRead":"Nov 19 2019",
-        "genre":"thriller",
-        "pageCount":480,
-        "publisher":"Norstedts Förlag",
-        "rating":9,
-        "series":"Millennium",
-        "title":"The Girl with the Dragon Tattoo",
-        "publishDate":"Aug 01 2005"
-      }
-    )"_json;
+    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    Book testBook1;
+    testBook1.setAuthor("testAuthor");
+    testBook1.setTitle("testTitle");
+    testBook1.setSeries("testSeries");
+    testBook1.setPublisher("testPublisher");
+    testBook1.setGenre("fantasy");
+    testBook1.setPageCount(10);
+    testBook1.setPublishDate("Dec 01 1990");
     
-    std::vector<nlohmann::json> jsonSave(1, jsonTest);
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setRating(4);
+    testReadBook1.setDateRead("Mar 25 1993");
     
-    saveJson(jsonSave, "./testSaveFile.txt");
+    std::vector<std::shared_ptr<Book>> testBookVector1;
+    testBookVector1.push_back(std::make_shared<Book>(testBook1));
+    testBookVector1.push_back(std::make_shared<Book>(testReadBook1));
     
-    std::vector<std::shared_ptr<ReadBook>> jsonLoad = loadReadingList("./testSaveFile.txt");
+    Author testAuthor1("testAuthor", "Dec 01 1990", testBookVector1);
     
-    XCTAssert(jsonLoad.size() == 1);
-    XCTAssert(*convertJsonToReadBookPtr(jsonTest) == *jsonLoad.at(0));
+    testContainers.addMasterAuthors(std::make_shared<Author>(testAuthor1));
+    testContainers.addMasterBooks(std::make_shared<Book>(testBook1));
+    testContainers.addMasterReadBooks(std::make_shared<ReadBook>(testReadBook1));
     
-    saveJson(jsonTest1, "./testSaveFile.txt");
+    testContainers.saveInMemoryToFile(testFilePath);
+    testContainers.clearAll();
+    testContainers.loadInMemoryFromFile(testFilePath);
     
-    jsonLoad = loadReadingList("./testSaveFile.txt");
+    XCTAssert(testContainers.getMasterBooks().size() == 1);
+    XCTAssert(testContainers.getMasterReadBooks().size() == 1);
+    XCTAssert(testContainers.getMasterAuthors().size() == 1);
+    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().size() == 2);
+    XCTAssert(*testContainers.getMasterBooks().at(0) == testBook1);
+    XCTAssert(*testContainers.getMasterReadBooks().at(0) == testReadBook1);
+    XCTAssert(*testContainers.getMasterAuthors().at(0) == testAuthor1);
     
-    XCTAssert(jsonLoad.size() == 2);
-    XCTAssert(*convertJsonToReadBookPtr(jsonTest1) == *jsonLoad.at(1));
+    std::remove(testFilePath.c_str());
+}
+
+- (void)testTrim {
     
-    std::remove("./testSaveFile.txt");
+    std::string test1 = "test1";
+    std::string test2 = "   test2";
+    std::string test3 = "test3   ";
+    std::string test4 = "   test4   ";
+    std::string test5 = " a  test5  b";
+    std::string test6 = "\ttest6";
+    std::string test7 = "test7 \n";
+    std::string test8 = "  \v  test8    ";
+    std::string test9 = "\ftest9\f";
+    std::string test10 = "\rtest10           a   ";
+    
+    XCTAssert(trim(test1) == "test1");
+    XCTAssert(trim(test2) == "test2");
+    XCTAssert(trim(test3) == "test3");
+    XCTAssert(trim(test4) == "test4");
+    XCTAssert(trim(test5) == "a  test5  b");
+    XCTAssert(trim(test6) == "test6");
+    XCTAssert(trim(test7) == "test7");
+    XCTAssert(trim(test8) == "test8");
+    XCTAssert(trim(test9) == "test9");
+    XCTAssert(trim(test10) == "test10           a");
+    
 }
 
 @end
