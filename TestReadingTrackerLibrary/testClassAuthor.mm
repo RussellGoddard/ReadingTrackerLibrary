@@ -214,4 +214,18 @@ std::shared_ptr<Book> testBook2;
     XCTAssert(testAuthor2 >= testAuthor1);
 }
 
+- (void)testAuthorPrintJson {
+    std::shared_ptr<Book> testBook1 = std::make_shared<Book>("testAuthor1", "testTitle1", "testSeries1", "testPublisher1", 1, fantasy, "Nov 11 1992");
+    std::shared_ptr<Book> testBook2 = std::make_shared<Book>("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 22, western, "Nov 11 2020");
+    Author testAuthor1("a", "Dec 01 1990");
+    Author testAuthor2("b", "Nov 12 2001");
+    Author testAuthor3("3rd", "Apr 01 2000");
+    testAuthor3.addBookWritten(testBook1);
+    testAuthor3.addBookWritten(testBook2);
+    
+    XCTAssert(testAuthor1.printJson() == R"({"name":"a","dateBorn":"Dec 01 1990",{}})");
+    XCTAssert(testAuthor2.printJson() == R"({"name":"b","dateBorn":"Nov 12 2001",{}})");
+    XCTAssert(testAuthor3.printJson() == R"({"name":"3rd","dateBorn":"Apr 01 2000",{{"author":"testAuthor1","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1}{"author":"testAuthor2","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22}}})");
+}
+
 @end

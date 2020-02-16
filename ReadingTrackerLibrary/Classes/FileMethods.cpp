@@ -7,9 +7,23 @@
 
 #include "FileMethods.hpp"
 
-using namespace nlohmann;
+bool saveJson(nlohmann::json input, std::string filePath) {
+    std::fstream saveFile;
+    saveFile.open(filePath, std::fstream::out);
+    
+    //check if file exists/is locked by another process
+    if(!saveFile.good()) {
+        saveFile.close();
+        return false;
+    };
+    
+    saveFile << input << std::endl;
+    
+    saveFile.close();
+    return true;
+}
 
-bool saveReadingList(std::vector<json> input, std::string filePath) {
+bool saveJson(std::vector<nlohmann::json> input, std::string filePath) {
     std::fstream saveFile;
     saveFile.open(filePath, std::fstream::out);
     
@@ -40,7 +54,7 @@ std::vector<std::shared_ptr<ReadBook>> loadReadingList(std::string filePath) {
     }
     
     while(std::getline(loadFile, line)) { //while there is a new json object to get
-        json newReadBook = json::parse(line); //convert the string into json
+        nlohmann::json newReadBook = nlohmann::json::parse(line); //convert the string into json
         masterList.addMasterReadBooks(convertJsonToReadBookPtr(newReadBook)); //add json object to collection
     }
     

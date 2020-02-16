@@ -256,14 +256,35 @@
       }
     )"_json;
     
+    nlohmann::json jsonTest1 = R"(
+      {
+        "author":"Stieg Larsson",
+        "dateRead":"Nov 19 2019",
+        "genre":"thriller",
+        "pageCount":480,
+        "publisher":"Norstedts Förlag",
+        "rating":9,
+        "series":"Millennium",
+        "title":"The Girl with the Dragon Tattoo",
+        "publishDate":"Aug 01 2005"
+      }
+    )"_json;
+    
     std::vector<nlohmann::json> jsonSave(1, jsonTest);
     
-    saveReadingList(jsonSave, "./testSaveFile.txt");
+    saveJson(jsonSave, "./testSaveFile.txt");
     
     std::vector<std::shared_ptr<ReadBook>> jsonLoad = loadReadingList("./testSaveFile.txt");
     
     XCTAssert(jsonLoad.size() == 1);
     XCTAssert(*convertJsonToReadBookPtr(jsonTest) == *jsonLoad.at(0));
+    
+    saveJson(jsonTest1, "./testSaveFile.txt");
+    
+    jsonLoad = loadReadingList("./testSaveFile.txt");
+    
+    XCTAssert(jsonLoad.size() == 2);
+    XCTAssert(*convertJsonToReadBookPtr(jsonTest1) == *jsonLoad.at(1));
     
     std::remove("./testSaveFile.txt");
 }

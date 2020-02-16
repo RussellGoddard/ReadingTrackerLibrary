@@ -12,12 +12,11 @@
 #include <ctime>
 #include <string>
 #include <vector>
+#include "ReadBook.hpp" //this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook TO DO
 
-
-class Book; //forward declaration of book
 template <typename T>
 void sortUnique(std::vector<T>& input);
-int convertAbbrMonthToInt(std::string month); //don't like this needing to be declared here, definition in book.cpp TODO
+int convertAbbrMonthToInt(std::string month); //don't like this needing to be declared here, TODO
 
 
 class Author {
@@ -32,6 +31,7 @@ public:
     tm getDateBorn() const;
     time_t getDateBornTimeT();
     std::string printDateBorn() const;
+    std::string printJson() const;
     Author() = delete; //Author class HAS to be constructed with a name
     Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
     Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});

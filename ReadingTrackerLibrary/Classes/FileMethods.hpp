@@ -12,8 +12,8 @@
 #include <memory>
 #include <set>
 #include <nlohmann/json.hpp>
-#include "ReadBook.hpp"
 #include "Author.hpp"
+//#include "ReadBook.hpp" see Author.hpp includes TO DO
 
 class InMemoryContainers {
 public:
@@ -51,7 +51,8 @@ private:
 
 template <typename T>
 void sortUnique(std::vector<T>& input); //this shouldn't be declared here but everytime I try to move it to a util header I break everything TO DO
-bool saveReadingList(std::vector<nlohmann::json> input, std::string filePath);
+bool saveJson(nlohmann::json input, std::string filePath);
+bool saveJson(std::vector<nlohmann::json> input, std::string filePath);
 std::vector<std::shared_ptr<ReadBook>> loadReadingList(std::string filePath);
 ReadBook convertJsonToReadBook(nlohmann::json json);
 std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json);

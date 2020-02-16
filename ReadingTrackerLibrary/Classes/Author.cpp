@@ -114,6 +114,17 @@ std::vector<std::shared_ptr<Book>> Author::getBooksWritten() const {
     return this->booksWritten;
 }
 
+std::string Author::printJson() const {
+    std::string returnString;
+    returnString = R"({"name":")" + this->getName() + R"(","dateBorn":")" + this->printDateBorn() + R"(",{)";
+    for (std::shared_ptr<Book> x : this->getBooksWritten()) {
+        returnString += x->printJson();
+    }
+    returnString += R"(}})";
+    
+    return returnString;
+}
+
 Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_ptr<Book>> booksWritten) {
     this->name = name;
     this->setDateBorn(dateBorn);
@@ -148,6 +159,7 @@ bool operator!=(const Author& lhs, const Author& rhs) {
     return !operator==(lhs, rhs);
 }
 
+//TO DO this shouldn't be in author
 std::vector<std::string> splitString(const std::string& input, const std::string& delim) {
     std::vector<std::string> returnVector;
     std::size_t current = 0;

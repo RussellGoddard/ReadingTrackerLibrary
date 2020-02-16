@@ -75,6 +75,35 @@ ReadBook getNewReadBook(std::istream &inputStream, std::ostream &outputStream) {
     return newReadBook;
 }
 
+bool saveInMemoryToFile(std::string filePath) {
+    
+    InMemoryContainers& saveContainers = InMemoryContainers::getInstance();
+    std::vector<nlohmann::json> readBookJson;
+    std::vector<nlohmann::json> bookJson;
+    std::vector<nlohmann::json> authorJson;
+    
+    
+    for (auto x : saveContainers.getMasterReadBooks()) {
+        readBookJson.push_back(x->printJson());
+    }
+    
+    for (auto x : saveContainers.getMasterBooks()) {
+        readBookJson.push_back(x->printJson());
+    }
+    
+    //for (auto x : saveContainers.getMasterAuthors()) {
+    //    readBookJson.push_back(x->printJson);
+    //}
+    
+    saveJson(readBookJson, filePath);
+    saveJson(bookJson, filePath);
+    saveJson(authorJson, filePath);
+    
+    return false;
+}
+
+
+
 void outputLine(std::ostream &outputStream, std::string output) {
     outputStream << output << std::endl;
 }
@@ -103,6 +132,12 @@ void mainMenu() {
         outputLine(std::cout, "Please select your option by typing the number displayed");
         outputLine(std::cout, "1: Add new Book");
         outputLine(std::cout, "2: Display all ReadBooks");
+        outputLine(std::cout, "3:");
+        outputLine(std::cout, "4:");
+        outputLine(std::cout, "5:");
+        outputLine(std::cout, "6:");
+        outputLine(std::cout, "7: Save to file");
+        outputLine(std::cout, "8: Load file (adds to list, does not overwrite)");
         outputLine(std::cout, "9: Quit");
         outputLine(std::cout, "");
         
@@ -144,12 +179,19 @@ void mainMenu() {
                 
                 break;
             }
-            case '2':
+            case '2': {
                 for (auto x : masterList.getMasterReadBooks()) {
                     outputLine(std::cout, x->printJson());
                 }
                 break;
-            case '9':
+            }
+            case '7': {
+                
+            }
+            case '8': {
+                
+            }
+            case '9': {
                 outputLine(std::cout, "Are you sure you wish to quit? (Y/N)");
                 input = getInput(std::cin);
                 if (!input.empty() && (input.at(0) == 'Y' || input.at(0) == 'y')) {
@@ -158,6 +200,7 @@ void mainMenu() {
                 else {
                     break;
                 }
+            }
             default:
                 userInputAgain();
                 input = "";
