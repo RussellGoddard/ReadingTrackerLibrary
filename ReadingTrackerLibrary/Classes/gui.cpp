@@ -76,26 +76,26 @@ void userInputAgain() {
     return;
 }
 
-void mainMenu() {
+void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
     
     char charInput = 'p';
     InMemoryContainers& masterList = InMemoryContainers::getInstance();
     
     while(true) {
-        outputLine(std::cout, "One step at a time");
-        outputLine(std::cout, "Please select your option by typing the number displayed");
-        outputLine(std::cout, "1: Add new Book");
-        outputLine(std::cout, "2: Display all ReadBooks");
-        outputLine(std::cout, "3:");
-        outputLine(std::cout, "4:");
-        outputLine(std::cout, "5:");
-        outputLine(std::cout, "6:");
-        outputLine(std::cout, "7: Save to file");
-        outputLine(std::cout, "8: Load file (adds to list, does not overwrite)");
-        outputLine(std::cout, "9: Quit");
-        outputLine(std::cout, "");
+        outputLine(outputStream, "One step at a time");
+        outputLine(outputStream, "Please select your option by typing the number displayed");
+        outputLine(outputStream, "1: Add new ReadBook");
+        outputLine(outputStream, "2: Display all ReadBooks");
+        outputLine(outputStream, "3: nothing yet");
+        outputLine(outputStream, "4: nothing yet");
+        outputLine(outputStream, "5: nothing yet");
+        outputLine(outputStream, "6: nothing yet");
+        outputLine(outputStream, "7: Save to file");
+        outputLine(outputStream, "8: Load file (adds to list, does not overwrite)");
+        outputLine(outputStream, "9: Quit");
+        outputLine(outputStream, "");
         
-        std::string input = getInput(std::cin);
+        std::string input = getInput(inputStream);
         
         if (trim(input).empty() || trim(input).size() > 1) {
             userInputAgain();
@@ -109,11 +109,11 @@ void mainMenu() {
         
         switch(charInput) {
             case '1': {
-                ReadBook newReadBook = getNewReadBook(std::cin, std::cout); //TODO DO SOMETHING WITH THIS
-                outputLine(std::cout, "Would you like to save:");
-                outputLine(std::cout, newReadBook.printJson() + "?");
-                outputLine(std::cout, "Y/N");
-                input = getInput(std::cin);
+                ReadBook newReadBook = getNewReadBook(inputStream, outputStream); //TODO DO SOMETHING WITH THIS
+                outputLine(outputStream, "Would you like to save:");
+                outputLine(outputStream, newReadBook.printJson() + "?");
+                outputLine(outputStream, "Y/N");
+                input = getInput(inputStream);
                 if (trim(input).empty() || trim(input).size() > 1) {
                     userInputAgain();
                     continue;
@@ -135,19 +135,33 @@ void mainMenu() {
             }
             case '2': {
                 for (auto x : masterList.getMasterReadBooks()) {
-                    outputLine(std::cout, x->printJson());
+                    outputLine(outputStream, x->printJson());
                 }
                 break;
             }
             case '7': {
-                
+                outputLine(outputStream, "Input file path for save file");
+                input = getInput(inputStream);
+                //shortcut for my desktop so I can test quicker TO DO change so it's generic desktop
+                if(input == "desktop") {
+                    input = "/Users/Frobu/Desktop/testFile.txt";
+                }
+                (masterList.saveInMemoryToFile(input) ? outputLine(outputStream, "save success") : outputLine(outputStream, "error saving"));
+                break;
             }
             case '8': {
-                
+                outputLine(outputStream, "Input file path to load file");
+                input = getInput(inputStream);
+                //shortcut for my desktop so I can test quicker TO DO change so it's generic desktop
+                if(input == "desktop") {
+                    input = "/Users/Frobu/Desktop/testFile.txt";
+                }
+                (masterList.loadInMemoryFromFile(input) ? outputLine(outputStream, "load success") : outputLine(outputStream, "error loading"));
+                break;
             }
             case '9': {
-                outputLine(std::cout, "Are you sure you wish to quit? (Y/N)");
-                input = getInput(std::cin);
+                outputLine(outputStream, "Are you sure you wish to quit? (Y/N)");
+                input = getInput(inputStream);
                 if (!input.empty() && (input.at(0) == 'Y' || input.at(0) == 'y')) {
                     return;
                 }

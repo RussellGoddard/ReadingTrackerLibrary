@@ -247,19 +247,19 @@ bool InMemoryContainers::saveInMemoryToFile(std::string filePath) {
     };
     
     if (successfulSave) {
-        saveFile << "[\n";
+        saveFile << "*[*\n";
         successfulSave = saveJson(bookJson, saveFile);
     }
     if (successfulSave) {
-        saveFile << "]\n[\n";
+        saveFile << "*]*\n*[*\n";
         successfulSave = saveJson(readBookJson, saveFile);
     }
     if (successfulSave) {
-        saveFile << "]\n[\n";
+        saveFile << "*]*\n*[*\n";
         successfulSave = saveJson(authorJson, saveFile);
     }
     if (successfulSave) {
-        saveFile << "]";
+        saveFile << "*]*";
         saveFile.close();
     }
     
@@ -277,11 +277,18 @@ bool InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
         return false;
     };
     
+    //verify that first line is "*[*"
+    std::getline(loadFile, line);
+    if (line != "*[*") {
+        loadFile.close();
+        return false;
+    }
+    
     while(std::getline(loadFile, line)) {
-        if (line == "[") {
+        if (line == "*[*") {
             continue;
         }
-        else if (line == "]") {
+        else if (line == "*]*") {
             ++trackLoad;
         }
         else {
@@ -307,6 +314,12 @@ bool InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
                 }
             }
         }
+    }
+    
+    //currently only books, readBooks, and authors supported so trackLoad should end at 3
+    if (trackLoad != 3) {
+        loadFile.close();
+        return false;
     }
     
     if (successfulLoad) {

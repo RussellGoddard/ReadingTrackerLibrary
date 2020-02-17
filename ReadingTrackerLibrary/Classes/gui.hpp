@@ -16,7 +16,7 @@
 
 ReadBook getNewReadBook(std::istream &inputStream, std::ostream &outputStream);
 void outputLine(std::ostream &outputStream, std::string output);
-void mainMenu();
+void mainMenu(std::istream& inputStream, std::ostream& outputStream);
 std::string getInput(std::istream &inputStream);
 
 

@@ -70,7 +70,6 @@
     XCTAssert(testReadBook.getPageCount() == 123);
     XCTAssert(testReadBook.printDateRead() == "Oct 02 1999");
     XCTAssert(testReadBook.getRating() == 9);
-    
 }
 
 - (void)testOutputLine {
