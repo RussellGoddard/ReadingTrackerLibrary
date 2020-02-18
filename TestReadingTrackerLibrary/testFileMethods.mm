@@ -337,11 +337,12 @@
     testContainers.clearAll();
     testContainers.loadInMemoryFromFile(testFilePath);
     
-    XCTAssert(testContainers.getMasterBooks().size() == 1);
+    XCTAssert(testContainers.getMasterBooks().size() == 2);
     XCTAssert(testContainers.getMasterReadBooks().size() == 1);
     XCTAssert(testContainers.getMasterAuthors().size() == 1);
     XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().size() == 2);
-    XCTAssert(*testContainers.getMasterBooks().at(0) == testBook1);
+    XCTAssert(*testContainers.getMasterBooks().at(0) == testReadBook1);
+    XCTAssert(*testContainers.getMasterBooks().at(1) == testBook1);
     XCTAssert(*testContainers.getMasterReadBooks().at(0) == testReadBook1);
     XCTAssert(*testContainers.getMasterAuthors().at(0) == testAuthor1);
     

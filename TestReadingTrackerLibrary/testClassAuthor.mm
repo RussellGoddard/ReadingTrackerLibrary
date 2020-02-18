@@ -228,4 +228,34 @@ std::shared_ptr<Book> testBook2;
     XCTAssert(testAuthor3.printJson() == R"({"name":"3rd","dateBorn":"Apr 01 2000","booksWritten":[{"author":"testAuthor1","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"Nov 11 1992"},{"author":"testAuthor2","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"Nov 11 2020"}]})");
 }
 
+- (void)testAuthorConstructors {
+    //Author(std::string name, time_t dateBorn = std::time(&jan2038), std::vector<std::shared_ptr<Book>> booksWritten = {});
+    //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
+    
+    Author testAuthor("testName");
+    XCTAssert(testAuthor.getName() == "testName");
+    XCTAssert(testAuthor.printDateBorn() == "Jan 01 2038");
+    XCTAssert(testAuthor.getBooksWritten().size() == 0);
+    
+    Author testAuthor2("testName2", "Dec 01 1990");
+    XCTAssert(testAuthor2.getName() == "testName2");
+    XCTAssert(testAuthor2.printDateBorn() == "Dec 01 1990");
+    XCTAssert(testAuthor2.getBooksWritten().size() == 0);
+    
+    Author testAuthor3("testName3", "Jun 02 1975", bookCollection);
+    XCTAssert(testAuthor3.getName() == "testName3");
+    XCTAssert(testAuthor3.printDateBorn() == "Jun 02 1975");
+    XCTAssert(testAuthor3.getBooksWritten() == bookCollection);
+    
+    Author testAuthor4("testName4", "Aug 27 1984");
+    XCTAssert(testAuthor4.getName() == "testName4");
+    XCTAssert(testAuthor4.printDateBorn() == "Aug 27 1984");
+    XCTAssert(testAuthor4.getBooksWritten().size() == 0);
+    
+    Author testAuthor5("testName5", "Feb 21 2001", bookCollection);
+    XCTAssert(testAuthor5.getName() == "testName5");
+    XCTAssert(testAuthor5.printDateBorn() == "Feb 21 2001");
+    XCTAssert(testAuthor5.getBooksWritten() == bookCollection);
+}
+
 @end

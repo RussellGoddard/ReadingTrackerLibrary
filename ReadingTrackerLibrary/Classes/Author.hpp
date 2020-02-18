@@ -14,6 +14,7 @@
 #include <vector>
 #include "ReadBook.hpp" //this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook TO DO
 
+const time_t jan2038 = 2145916800;
 template <typename T>
 void sortUnique(std::vector<T>& input);
 int convertAbbrMonthToInt(std::string month); //don't like this needing to be declared here, TODO
@@ -33,7 +34,7 @@ public:
     std::string printDateBorn() const;
     std::string printJson() const;
     Author() = delete; //Author class HAS to be constructed with a name
-    Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
+    Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<Book>> booksWritten = {});
     Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
 private:
     std::string name;

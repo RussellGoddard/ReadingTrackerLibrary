@@ -295,17 +295,19 @@ bool InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
             switch(trackLoad) {
                 //book
                 case 0 : {
-                    this->addMasterBooks(convertJsonToBookPtr(nlohmann::json::parse(line))); //add json object to collection
+                    this->addMasterBooks(convertJsonToBookPtr(nlohmann::json::parse(line)));
                     break;
                 }
                 //readbook
                 case 1 : {
-                    this->addMasterReadBooks(convertJsonToReadBookPtr(nlohmann::json::parse(line))); //add json object to collection
+                    this->addMasterReadBooks(convertJsonToReadBookPtr(nlohmann::json::parse(line)));
+                    //all readbooks are all books
+                    this->addMasterBooks(convertJsonToReadBookPtr(nlohmann::json::parse(line)));
                     break;
                 }
                 //author
                 case 2 : {
-                    this->addMasterAuthors(convertJsonToAuthorPtr(nlohmann::json::parse(line))); //add json object to collection
+                    this->addMasterAuthors(convertJsonToAuthorPtr(nlohmann::json::parse(line)));
                     break;
                 }
                 default : {
