@@ -356,7 +356,7 @@ bool operator<(const Book& lhs, const Book& rhs) {
             lhstm = lhs.getPublishDate();
             lhstt = std::mktime(&lhstm);
             rhstm = rhs.getPublishDate();
-            rhstt = std::mktime(&lhstm);
+            rhstt = std::mktime(&rhstm);
             
             if (lhstt < rhstt) { return true; }
             else if (lhstt > rhstt) { return false; }

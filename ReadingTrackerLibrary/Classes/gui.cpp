@@ -151,7 +151,6 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
         outputLine(outputStream, "7: Save to file");
         outputLine(outputStream, "8: Load file (adds to list, does not overwrite)");
         outputLine(outputStream, "x: Quit");
-        outputLine(outputStream, "");
         
         std::string input = getInput(inputStream);
         

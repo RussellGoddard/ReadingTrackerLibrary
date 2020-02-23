@@ -240,7 +240,6 @@
     testBook2.setSeries("a");
     XCTAssert(testBook < testBook2);
     
-    
     testBook2.setPublishDate("Dec 01 1990");
     XCTAssert(testBook < testBook2);
     

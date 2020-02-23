@@ -224,7 +224,7 @@ bool operator<(const ReadBook& lhs, const ReadBook& rhs) {
             rhstt = std::mktime(&rhstm);
             
             if (lhstt < rhstt) { return true; }
-            else if (lhstt  > rhstt) { return false; }
+            else if (lhstt > rhstt) { return false; }
             else {
                 if (lhs.getTitle() < rhs.getTitle()) { return true; }
                 else if (lhs.getTitle() > rhs.getTitle()) { return false; }
