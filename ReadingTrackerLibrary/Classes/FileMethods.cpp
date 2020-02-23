@@ -116,12 +116,14 @@ std::vector<std::shared_ptr<ReadBook>> InMemoryContainers::getMasterReadBooks() 
 }
 
 void InMemoryContainers::addMasterReadBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector) {
+    this->addMasterBooks(newReadBookVector); //add readbook to book vector as well (will be discarded if it already exists
     this->readBookVector.insert(std::end(readBookVector), std::begin(newReadBookVector), std::end(newReadBookVector));
     sortUnique(this->readBookVector);
     return;
 }
 
 void InMemoryContainers::addMasterReadBooks(std::shared_ptr<ReadBook> newReadBook) {
+    this->addMasterBooks(newReadBook); //add readbook to book vector as well (will be discarded if it already exists
     this->readBookVector.push_back(newReadBook);
     sortUnique(this->readBookVector);
     return;
@@ -129,6 +131,14 @@ void InMemoryContainers::addMasterReadBooks(std::shared_ptr<ReadBook> newReadBoo
 
 std::vector<std::shared_ptr<Book>> InMemoryContainers::getMasterBooks() {
     return this->bookVector;
+}
+
+void InMemoryContainers::addMasterBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector) {
+    for (auto x : newReadBookVector) {
+        this->bookVector.push_back(x);
+    }
+    sortUnique(this->bookVector);
+    return;
 }
 
 void InMemoryContainers::addMasterBooks(std::vector<std::shared_ptr<Book>> newBookVector) {

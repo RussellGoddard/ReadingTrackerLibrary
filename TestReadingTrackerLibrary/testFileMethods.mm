@@ -24,7 +24,7 @@
     InMemoryContainers& testContainer = InMemoryContainers::getInstance();
     testContainer.clearAll();
 }
-//figure out how to test FileMethods TO DO
+
 - (void)testReadBookVector {
     ReadBook testReadBook1;
     testReadBook1.setAuthor("a");
@@ -73,12 +73,17 @@
     
     XCTAssert(testContainers.getMasterReadBooks().size() == 1);
     XCTAssert(testContainers.getMasterReadBooks().at(0) == testPtrReadBook1);
+    XCTAssert(testContainers.getMasterBooks().size() == 1);
+    XCTAssert(testContainers.getMasterBooks().at(0) == testPtrReadBook1);
     
     testContainers.addMasterReadBooks(testReadBooks);
     
     XCTAssert(testContainers.getMasterReadBooks().size() == 2);
     XCTAssert(testContainers.getMasterReadBooks().at(0) == testPtrReadBook1);
     XCTAssert(testContainers.getMasterReadBooks().at(1) == testPtrReadBook2);
+    XCTAssert(testContainers.getMasterBooks().size() == 2);
+    XCTAssert(testContainers.getMasterBooks().at(0) == testPtrReadBook1);
+    XCTAssert(testContainers.getMasterBooks().at(1) == testPtrReadBook2);
 }
 
 - (void)testBookVector {

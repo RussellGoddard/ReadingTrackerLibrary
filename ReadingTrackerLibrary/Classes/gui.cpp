@@ -76,23 +76,81 @@ void userInputAgain() {
     return;
 }
 
+//should only be called from mainMenu so not in header
+void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryContainers& masterList) {
+    
+    while(true) {
+        char charInput = 'p';
+        outputLine(outputStream, "Please select what you want to display");
+        outputLine(outputStream, "1: Book");
+        outputLine(outputStream, "2: Books that have been read");
+        outputLine(outputStream, "3: Authors");
+        outputLine(outputStream, "x: Return to main menu");
+        
+        std::string input = getInput(inputStream);
+        
+        if (trim(input).empty() || trim(input).size() > 1) {
+            userInputAgain();
+            input = "";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+        
+        charInput = input.at(0);
+        
+        switch(charInput) {
+            //book
+            case '1': {
+                for (auto x : masterList.getMasterBooks()) {
+                    outputLine(outputStream, x->printJson());
+                    outputLine(outputStream, ""); //blank line for seperation
+                }
+                break;
+            }
+            //readbook
+            case '2': {
+                for (auto x : masterList.getMasterReadBooks()) {
+                    outputLine(outputStream, x->printJson());
+                    outputLine(outputStream, ""); //blank line for seperation
+                }
+                break;
+            }
+            //author
+            case '3': {
+                for (auto x : masterList.getMasterAuthors()) {
+                    outputLine(outputStream, x->printJson());
+                    outputLine(outputStream, ""); //blank line for seperation
+                }
+                break;
+            }
+            case 'X':
+            case 'x': {
+                return;
+            }
+        }
+    }
+    
+    return;
+}
+
 void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
     
-    char charInput = 'p';
     InMemoryContainers& masterList = InMemoryContainers::getInstance();
     
     while(true) {
+        char charInput = 'p';
         outputLine(outputStream, "One step at a time");
         outputLine(outputStream, "Please select your option by typing the number displayed");
         outputLine(outputStream, "1: Add new ReadBook");
-        outputLine(outputStream, "2: Display all ReadBooks");
+        outputLine(outputStream, "2: Display");
         outputLine(outputStream, "3: nothing yet");
         outputLine(outputStream, "4: nothing yet");
         outputLine(outputStream, "5: nothing yet");
         outputLine(outputStream, "6: nothing yet");
         outputLine(outputStream, "7: Save to file");
         outputLine(outputStream, "8: Load file (adds to list, does not overwrite)");
-        outputLine(outputStream, "9: Quit");
+        outputLine(outputStream, "x: Quit");
         outputLine(outputStream, "");
         
         std::string input = getInput(inputStream);
@@ -109,7 +167,7 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
         
         switch(charInput) {
             case '1': {
-                ReadBook newReadBook = getNewReadBook(inputStream, outputStream); //TODO DO SOMETHING WITH THIS
+                ReadBook newReadBook = getNewReadBook(inputStream, outputStream);
                 outputLine(outputStream, "Would you like to save:");
                 outputLine(outputStream, newReadBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
@@ -122,11 +180,15 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
                 char charSaveInput = input.at(0);
                 
                 switch(charSaveInput) {
+                    case 'y':
                     case 'Y': {
                         masterList.addMasterReadBooks(std::make_shared<ReadBook>(newReadBook));
+                        outputLine(outputStream, "Read book added successfully\n");
                         break;
                     }
+                    case 'n':
                     case 'N':
+                        outputLine(outputStream, "Discarding new Read book\n");
                     default:
                         break;
                 }
@@ -134,9 +196,7 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
                 break;
             }
             case '2': {
-                for (auto x : masterList.getMasterReadBooks()) {
-                    outputLine(outputStream, x->printJson());
-                }
+                displayMenu(inputStream, outputStream, masterList);
                 break;
             }
             case '7': {
@@ -146,7 +206,7 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
                 if(input == "desktop") {
                     input = "/Users/Frobu/Desktop/testFile.txt";
                 }
-                (masterList.saveInMemoryToFile(input) ? outputLine(outputStream, "save success") : outputLine(outputStream, "error saving"));
+                (masterList.saveInMemoryToFile(input) ? outputLine(outputStream, "save success\n") : outputLine(outputStream, "error saving"));
                 break;
             }
             case '8': {
@@ -156,10 +216,11 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
                 if(input == "desktop") {
                     input = "/Users/Frobu/Desktop/testFile.txt";
                 }
-                (masterList.loadInMemoryFromFile(input) ? outputLine(outputStream, "load success") : outputLine(outputStream, "error loading"));
+                (masterList.loadInMemoryFromFile(input) ? outputLine(outputStream, "load success\n") : outputLine(outputStream, "error loading"));
                 break;
             }
-            case '9': {
+            case 'X':
+            case 'x': {
                 outputLine(outputStream, "Are you sure you wish to quit? (Y/N)");
                 input = getInput(inputStream);
                 if (!input.empty() && (input.at(0) == 'Y' || input.at(0) == 'y')) {

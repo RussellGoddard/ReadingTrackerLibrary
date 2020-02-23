@@ -40,6 +40,9 @@ public:
     }
     
 private:
+    //only for adding books when vector addMasterReadBooks is called
+    void addMasterBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector);
+    
     InMemoryContainers() = default;
     ~InMemoryContainers() = default;
     InMemoryContainers(InMemoryContainers const&) = delete;
