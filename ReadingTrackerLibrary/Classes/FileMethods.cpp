@@ -142,12 +142,14 @@ void InMemoryContainers::addMasterBooks(std::vector<std::shared_ptr<ReadBook>> n
 }
 
 void InMemoryContainers::addMasterBooks(std::vector<std::shared_ptr<Book>> newBookVector) {
+    this->addMasterAuthors(newBookVector);
     this->bookVector.insert(std::end(this->bookVector), std::begin(newBookVector), std::end(newBookVector));
     sortUnique(this->bookVector);
     return;
 }
 
 void InMemoryContainers::addMasterBooks(std::shared_ptr<Book> newBook) {
+    this->addMasterAuthors(newBook);
     this->bookVector.push_back(newBook);
     sortUnique(this->bookVector);
     return;
@@ -165,6 +167,26 @@ void InMemoryContainers::addMasterAuthors(std::vector<std::shared_ptr<Author>> n
 
 void InMemoryContainers::addMasterAuthors(std::shared_ptr<Author> newAuthor) {
     this->authorVector.push_back(newAuthor);
+    sortUnique(this->authorVector);
+    return;
+}
+
+void InMemoryContainers::addMasterAuthors(std::shared_ptr<Book> newBook) {
+    if (newBook->getAuthor() != "") {
+        std::shared_ptr<Author> newAuthor = std::make_shared<Author>(newBook->getAuthor(), jan2038, newBook);
+        this->authorVector.push_back(newAuthor);
+        sortUnique(this->authorVector);
+    }
+    return;
+}
+
+void InMemoryContainers::addMasterAuthors(std::vector<std::shared_ptr<Book>> newBookVector) {
+    for (auto x : newBookVector) {
+        if (x->getAuthor() != "") {
+            std::shared_ptr<Author> newAuthor = std::make_shared<Author>(x->getAuthor(), jan2038, newBookVector);
+            this->authorVector.push_back(newAuthor);
+        }
+    }
     sortUnique(this->authorVector);
     return;
 }
@@ -311,8 +333,6 @@ bool InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
                 //readbook
                 case 1 : {
                     this->addMasterReadBooks(convertJsonToReadBookPtr(nlohmann::json::parse(line)));
-                    //all readbooks are all books
-                    this->addMasterBooks(convertJsonToReadBookPtr(nlohmann::json::parse(line)));
                     break;
                 }
                 //author

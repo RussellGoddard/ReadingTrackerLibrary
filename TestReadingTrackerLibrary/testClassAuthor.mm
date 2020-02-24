@@ -33,9 +33,9 @@ std::shared_ptr<Book> testBook2;
 
 - (void)testSetName {
     Author testAuthor("testAuthor");
-    XCTAssert("testAuthor" == testAuthor.getName());
+    XCTAssert(testAuthor.getName() == "testAuthor");
     testAuthor.setName("pickle");
-    XCTAssert("pickle" == testAuthor.getName());
+    XCTAssert(testAuthor.getName() == "pickle");
 }
 
 - (void)testSetDateBorn {
@@ -46,27 +46,27 @@ std::shared_ptr<Book> testBook2;
     tm testTm = testAuthor.getDateBorn();
     
     XCTAssert(std::mktime(&initialTm) == std::mktime(&testTm));
-    XCTAssert(1573880400 == testAuthor.getDateBornTimeT());
-    XCTAssert("Nov 16 2019" == testAuthor.printDateBorn());
+    XCTAssert(testAuthor.getDateBornTimeT() == 1573880400);
+    XCTAssert(testAuthor.printDateBorn() == "Nov 16 2019");
     
     testAuthor.setDateBorn("Dec ab 2000");
-    XCTAssert("Nov 16 2019" == testAuthor.printDateBorn());
+    XCTAssert(testAuthor.printDateBorn() == "Nov 16 2019");
     
     testAuthor.setDateBorn("Dec -8 1990");
-    XCTAssert("Nov 16 2019" == testAuthor.printDateBorn());
+    XCTAssert(testAuthor.printDateBorn() == "Nov 16 2019");
     
     testAuthor.setDateBorn("Dec 01 1890");
-    XCTAssert("Nov 16 2019" == testAuthor.printDateBorn());
+    XCTAssert(testAuthor.printDateBorn() == "Nov 16 2019");
     
     testAuthor.setDateBorn("Dec 01 1990");
-    XCTAssert(660045600 == testAuthor.getDateBornTimeT());
-    XCTAssert("Dec 01 1990" == testAuthor.printDateBorn());
+    XCTAssert(testAuthor.getDateBornTimeT() == 660045600);
+    XCTAssert(testAuthor.printDateBorn() == "Dec 01 1990");
     
     testAuthor.setDateBorn("invalid string");
-    XCTAssert("Dec 01 1990" == testAuthor.printDateBorn());
+    XCTAssert(testAuthor.printDateBorn() == "Dec 01 1990");
     
     testAuthor.setDateBorn("AAA 01 3453");
-    XCTAssert("Dec 01 1990" == testAuthor.printDateBorn());
+    XCTAssert(testAuthor.printDateBorn() == "Dec 01 1990");
     
     
 }
@@ -75,12 +75,12 @@ std::shared_ptr<Book> testBook2;
     Author newAuthor("testAuthor");
     std::shared_ptr<Book> testBook = std::make_shared<Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 111, fantasy, "Nov 11 1992");
     
-    XCTAssert(true == newAuthor.getBooksWritten().empty());
+    XCTAssert(newAuthor.getBooksWritten().empty());
     
     newAuthor.addBookWritten(testBook);
     
-    XCTAssert(1 == newAuthor.getBooksWritten().size());
-    XCTAssert(testBook == newAuthor.getBooksWritten().at(0));
+    XCTAssert(newAuthor.getBooksWritten().size() == 1);
+    XCTAssert(newAuthor.getBooksWritten().at(0) == testBook);
 }
 
 - (void)testAddBooks {
@@ -90,24 +90,34 @@ std::shared_ptr<Book> testBook2;
     
     newAuthor.addBookWritten(bookCollection);
     
-    XCTAssert(2 == newAuthor.getBooksWritten().size());
-    XCTAssert(testBook1 = newAuthor.getBooksWritten().at(0));
-    XCTAssert(testBook2 = newAuthor.getBooksWritten().at(1));
+    XCTAssert(newAuthor.getBooksWritten().size() == 2);
+    XCTAssert(newAuthor.getBooksWritten().at(0) == testBook2);
+    XCTAssert(newAuthor.getBooksWritten().at(1) == testBook1);
 }
 
 - (void)testAuthorConstructor {
+    
     //Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
     Author testAuthor1("testAuthor1", 660027600);
-    XCTAssert("testAuthor1" == testAuthor1.getName());
-    XCTAssert(660027600 == testAuthor1.getDateBornTimeT());
-    XCTAssert(0 == testAuthor1.getBooksWritten().size());
+    XCTAssert(testAuthor1.getName() == "testAuthor1");
+    XCTAssert(testAuthor1.getDateBornTimeT() == 660027600);
+    XCTAssert(testAuthor1.getBooksWritten().size() == 0);
     
     //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
     Author testAuthor2("testAuthor2", "Dec 01 1990", bookCollection);
-    XCTAssert("testAuthor2" == testAuthor2.getName());
-    XCTAssert("Dec 01 1990" == testAuthor2.printDateBorn());
-    XCTAssert(2 == testAuthor2.getBooksWritten().size());
-    XCTAssert(testBook1 == testAuthor2.getBooksWritten().at(0));
+    XCTAssert(testAuthor2.getName() == "testAuthor2");
+    XCTAssert(testAuthor2.printDateBorn() == "Dec 01 1990");
+    XCTAssert(testAuthor2.getBooksWritten().size() == bookCollection.size());
+    XCTAssert(testAuthor2.getBooksWritten().size() == 2);
+    XCTAssert(testAuthor2.getBooksWritten().at(0) == testBook2);
+    XCTAssert(testAuthor2.getBooksWritten().at(1) == testBook1);
+    
+    //Author::Author(std::string name, time_t dateBorn, std::shared_ptr<Book> bookWritten)
+    Author testAuthor3("testAuthor3", 660027600, testBook1);
+    XCTAssert(testAuthor3.getName() == "testAuthor3");
+    XCTAssert(testAuthor3.getDateBornTimeT() == 660027600);
+    XCTAssert(testAuthor3.getBooksWritten().size() == 1);
+    XCTAssert(testAuthor3.getBooksWritten().at(0) == testBook1);
 }
 
 - (void)testEquals {
@@ -245,7 +255,10 @@ std::shared_ptr<Book> testBook2;
     Author testAuthor3("testName3", "Jun 02 1975", bookCollection);
     XCTAssert(testAuthor3.getName() == "testName3");
     XCTAssert(testAuthor3.printDateBorn() == "Jun 02 1975");
-    XCTAssert(testAuthor3.getBooksWritten() == bookCollection);
+    XCTAssert(testAuthor3.getBooksWritten().size() == bookCollection.size());
+    XCTAssert(testAuthor3.getBooksWritten().size() == 2);
+    XCTAssert(testAuthor3.getBooksWritten().at(0) == testBook2);
+    XCTAssert(testAuthor3.getBooksWritten().at(1) == testBook1);
     
     Author testAuthor4("testName4", "Aug 27 1984");
     XCTAssert(testAuthor4.getName() == "testName4");
@@ -255,7 +268,10 @@ std::shared_ptr<Book> testBook2;
     Author testAuthor5("testName5", "Feb 21 2001", bookCollection);
     XCTAssert(testAuthor5.getName() == "testName5");
     XCTAssert(testAuthor5.printDateBorn() == "Feb 21 2001");
-    XCTAssert(testAuthor5.getBooksWritten() == bookCollection);
+    XCTAssert(testAuthor5.getBooksWritten().size() == bookCollection.size());
+    XCTAssert(testAuthor5.getBooksWritten().size() == 2);
+    XCTAssert(testAuthor5.getBooksWritten().at(0) == testBook2);
+    XCTAssert(testAuthor5.getBooksWritten().at(1) == testBook1);
 }
 
 @end

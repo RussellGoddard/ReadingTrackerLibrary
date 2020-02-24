@@ -29,6 +29,8 @@ public:
     std::vector<std::shared_ptr<Author>> getMasterAuthors();
     void addMasterAuthors(std::vector<std::shared_ptr<Author>> newAuthorVector);
     void addMasterAuthors(std::shared_ptr<Author> newAuthor);
+    void addMasterAuthors(std::shared_ptr<Book> newBook);
+    void addMasterAuthors(std::vector<std::shared_ptr<Book>> newBookVector);
     
     bool saveInMemoryToFile(std::string filePath);
     bool loadInMemoryFromFile(std::string filePath);

@@ -163,6 +163,56 @@
     XCTAssert(testContainers.getMasterAuthors().at(1) == testPtrAuthor2);
 }
 
+- (void)testAddMasterAuthorsPassedBook {
+    Book testBook1;
+    testBook1.setAuthor("testAuthor1");
+    testBook1.setTitle("testTitle1");
+    testBook1.setSeries("testSeries1");
+    testBook1.setPublisher("testPublisher1");
+    testBook1.setGenre("fantasy");
+    testBook1.setPageCount(1);
+    testBook1.setPublishDate("Dec 01 1990");
+    
+    Book testBook2;
+    testBook2.setAuthor("testAuthor2");
+    testBook2.setTitle("testTitle2");
+    testBook2.setSeries("testSeries2");
+    testBook2.setPublisher("testPublisher2");
+    testBook2.setGenre("western");
+    testBook2.setPageCount(20);
+    testBook2.setPublishDate("Dec 01 1991");
+    
+    Book testBook3;
+    testBook3.setAuthor("testAuthor1");
+    testBook3.setTitle("testTitle1");
+    testBook3.setSeries("testSeries1");
+    testBook3.setPublisher("testPublisher1");
+    testBook3.setGenre("fantasy");
+    testBook3.setPageCount(1);
+    testBook3.setPublishDate("Dec 01 1990");
+    
+    std::shared_ptr<Book> testPtrBook1 = std::make_shared<Book>(testBook1);
+    std::shared_ptr<Book> testPtrBook2 = std::make_shared<Book>(testBook2);
+    std::shared_ptr<Book> testPtrBook3 = std::make_shared<Book>(testBook3);
+    std::vector<std::shared_ptr<Book>> testBooks;
+    testBooks.push_back(testPtrBook1);
+    testBooks.push_back(testPtrBook2);
+    testBooks.push_back(testPtrBook3);
+    
+    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    
+    testContainers.addMasterAuthors(testPtrBook1);
+    
+    XCTAssert(testContainers.getMasterAuthors().size() == 1);
+    XCTAssert(testContainers.getMasterAuthors().at(0)->getName() == "testAuthor1");
+    
+    testContainers.addMasterAuthors(testBooks);
+    
+    XCTAssert(testContainers.getMasterAuthors().size() == 2);
+    XCTAssert(testContainers.getMasterAuthors().at(0)->getName() == "testAuthor1");
+    XCTAssert(testContainers.getMasterAuthors().at(1)->getName() == "testAuthor2");
+}
+
 - (void)testAuthorMergeBooksWhenSameAuthor {
     
     std::vector<std::shared_ptr<Book>> books1;
@@ -344,12 +394,14 @@
     
     XCTAssert(testContainers.getMasterBooks().size() == 2);
     XCTAssert(testContainers.getMasterReadBooks().size() == 1);
-    XCTAssert(testContainers.getMasterAuthors().size() == 1);
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().size() == 2);
+    XCTAssert(testContainers.getMasterAuthors().size() == 2);
+    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().size() == 1);
+    XCTAssert(testContainers.getMasterAuthors().at(1)->getBooksWritten().size() == 2);
     XCTAssert(*testContainers.getMasterBooks().at(0) == testReadBook1);
     XCTAssert(*testContainers.getMasterBooks().at(1) == testBook1);
     XCTAssert(*testContainers.getMasterReadBooks().at(0) == testReadBook1);
-    XCTAssert(*testContainers.getMasterAuthors().at(0) == testAuthor1);
+    XCTAssert(testContainers.getMasterAuthors().at(0)->getName() == "a");
+    XCTAssert(*testContainers.getMasterAuthors().at(1) == testAuthor1);
     
     std::remove(testFilePath.c_str());
 }
@@ -378,6 +430,46 @@
     XCTAssert(trim(test9) == "test9");
     XCTAssert(trim(test10) == "test10           a");
     
+}
+
+- (void)testClearAll {
+    Book testBook1;
+    testBook1.setAuthor("testAuthor");
+    testBook1.setTitle("testTitle");
+    testBook1.setSeries("testSeries");
+    testBook1.setPublisher("testPublisher");
+    testBook1.setGenre("fantasy");
+    testBook1.setPageCount(10);
+    testBook1.setPublishDate("Dec 01 1990");
+    
+    ReadBook testReadBook1;
+    testReadBook1.setAuthor("a");
+    testReadBook1.setTitle("a");
+    testReadBook1.setSeries("a");
+    testReadBook1.setPublisher("a");
+    testReadBook1.setGenre("fantasy");
+    testReadBook1.setPageCount(100);
+    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setRating(4);
+    testReadBook1.setDateRead("Mar 25 1993");
+    
+    Author testAuthor1("test author", "Dec 01 1990");
+    
+    InMemoryContainers& testContainer = InMemoryContainers::getInstance();
+    
+    testContainer.addMasterAuthors(std::make_shared<Author>(testAuthor1));
+    testContainer.addMasterReadBooks(std::make_shared<ReadBook>(testReadBook1));
+    testContainer.addMasterBooks(std::make_shared<Book>(testBook1));
+    
+    XCTAssert(testContainer.getMasterAuthors().size() == 3);
+    XCTAssert(testContainer.getMasterBooks().size() == 2);
+    XCTAssert(testContainer.getMasterReadBooks().size() == 1);
+    
+    testContainer.clearAll();
+    
+    XCTAssert(testContainer.getMasterAuthors().size() == 0);
+    XCTAssert(testContainer.getMasterBooks().size() == 0);
+    XCTAssert(testContainer.getMasterReadBooks().size() == 0);
 }
 
 @end

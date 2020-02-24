@@ -130,19 +130,27 @@ std::string Author::printJson() const {
 }
 
 Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_ptr<Book>> booksWritten) {
-    this->name = name;
+    this->setName(name);
     this->setDateBorn(dateBorn);
-    this->booksWritten = booksWritten;
+    this->addBookWritten(booksWritten);
 }
 
 Author::Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten) {
-    this->name = name;
+    this->setName(name);
     this->setDateBorn(dateBorn);
-    this->booksWritten = booksWritten;
+    this->addBookWritten(booksWritten);
+    
+}
+
+Author::Author(std::string name, time_t dateBorn, std::shared_ptr<Book> bookWritten) {
+    this->setName(name);
+    this->setDateBorn(dateBorn);
+    this->addBookWritten(bookWritten);
 }
 
 bool operator==(const Author& lhs, const Author& rhs) {
     
+    /* disabled birthdate compare so that it is feasible that authors get combined appropriately
     tm lhstm = lhs.getDateBorn();
     tm rhstm = rhs.getDateBorn();
     time_t lhstt = std::mktime(&lhstm);
@@ -151,7 +159,8 @@ bool operator==(const Author& lhs, const Author& rhs) {
     if (lhstt != rhstt) {
         return false;
     }
-    else if (lhs.getName() != rhs.getName()) {
+     */
+    if (lhs.getName() != rhs.getName()) {
         return false;
     }
     

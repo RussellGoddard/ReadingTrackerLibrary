@@ -35,7 +35,9 @@ public:
     std::string printJson() const;
     Author() = delete; //Author class HAS to be constructed with a name
     Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<Book>> booksWritten = {});
+    Author(std::string name, time_t dateBorn, std::shared_ptr<Book> bookWritten);
     Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
+    
 private:
     std::string name;
     struct tm dateBorn;
