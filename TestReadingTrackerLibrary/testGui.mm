@@ -24,35 +24,21 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-/*
- outputLine("Input author");
- input = getInput(inputStream);
- newReadBook.setAuthor(input);
- outputLine("Input title");
- input = getInput(inputStream);
- newReadBook.setTitle(input);
- outputLine("Input publisher");
- input = getInput(inputStream);
- newReadBook.setPublisher(input);
- outputLine("Input series");
- input = getInput(inputStream);
- newReadBook.setSeries(input);
- outputLine("Input genre");
- input = getInput(inputStream);
- newReadBook.setGenre(input);
- outputLine("Input date published");
- input = getInput(inputStream);
- newReadBook.setPublishDate(input);
- outputLine("Input page count");
- input = getInput(inputStream);
- newReadBook.setPageCount(stoi(input));
- outputLine("Input date you finished reading");
- input = getInput(inputStream);
- newReadBook.setDateRead(input);
- outputLine("On a scale of 1 - 10 rate the book");
- input = getInput(inputStream);
- newReadBook.setRating(stoi(input));
- */
+- (void)testGetNewBook {
+    std::stringstream inputSs, outputSs;
+    
+    inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\nOct 01 1999\n123\n");
+    
+    Book testBook = getNewBook(inputSs, outputSs);
+    
+    XCTAssert(testBook.getAuthor() == "testAuthor");
+    XCTAssert(testBook.getTitle() == "testTitle");
+    XCTAssert(testBook.getPublisher() == "testPublisher");
+    XCTAssert(testBook.getSeries() == "testSeries");
+    XCTAssert(testBook.getGenre() == fantasy);
+    XCTAssert(testBook.printPublishDate() == "Oct 01 1999");
+    XCTAssert(testBook.getPageCount() == 123);
+}
 
 - (void)testGetNewReadBook {
     std::stringstream inputSs, outputSs;

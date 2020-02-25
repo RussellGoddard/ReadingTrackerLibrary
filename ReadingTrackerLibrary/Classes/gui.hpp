@@ -13,11 +13,11 @@
 #include <sstream>
 #include "FileMethods.hpp"
 
-
-ReadBook getNewReadBook(std::istream &inputStream, std::ostream &outputStream);
-void outputLine(std::ostream &outputStream, std::string output);
+Book getNewBook(std::istream& inputStream, std::ostream& outputStream);
+ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream);
+void outputLine(std::ostream& outputStream, std::string output);
 void mainMenu(std::istream& inputStream, std::ostream& outputStream);
-std::string getInput(std::istream &inputStream);
+std::string getInput(std::istream& inputStream);
 
 
 #endif /* gui_hpp */
