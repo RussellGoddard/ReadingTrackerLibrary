@@ -9,6 +9,25 @@
 
 
 /*
+    "name":"Robert Jordan",
+    "dateBorn":"Oct 17 1948",
+    "booksWritten":[]
+
+*/
+
+Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
+    std::string name, dateBorn;
+    
+    outputLine(outputStream, "Input author's name");
+    name = getInput(inputStream);
+    outputLine(outputStream, "Input author's date of birth (leave blank if unknown)");
+    dateBorn = getInput(inputStream);
+    Author newAuthor(name, dateBorn);
+    
+    return newAuthor;
+}
+ 
+/*
 {
     "author" : "Robert Jordan",
     "title" : "Eye of the World",
@@ -116,7 +135,7 @@ void userInputAgain() {
     return;
 }
 
-//should only be called from mainMenu so not in header
+//should only be called from mainMenu so not in header, TODO do all the options need to share so much code not abstracted away (too much copy/paste)
 void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryContainers& masterList) {
     
     while(true) {
@@ -200,7 +219,31 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
             }
             //author
             case '3': {
-                outputLine(outputStream, "not yet implemented");
+                Author newAuthor = getNewAuthor(inputStream, outputStream);
+                outputLine(outputStream, "Would you like to save:");
+                outputLine(outputStream, newAuthor.printJson() + "?");
+                outputLine(outputStream, "Y/N");
+                input = getInput(inputStream);
+                if (trim(input).empty() || trim(input).size() > 1) {
+                    userInputAgain();
+                    continue;
+                }
+                
+                char charSaveInput = input.at(0);
+                
+                switch(charSaveInput) {
+                    case 'y':
+                    case 'Y': {
+                        masterList.addMasterAuthors(std::make_shared<Author>(newAuthor));
+                        outputLine(outputStream, "Author added successfully\n");
+                        break;
+                    }
+                    case 'n':
+                    case 'N':
+                        outputLine(outputStream, "Discarding new Author\n");
+                    default:
+                        break;
+                }
                 break;
             }
             case 'X':

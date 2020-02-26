@@ -13,6 +13,7 @@
 #include <sstream>
 #include "FileMethods.hpp"
 
+Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream);
 Book getNewBook(std::istream& inputStream, std::ostream& outputStream);
 ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream);
 void outputLine(std::ostream& outputStream, std::string output);

@@ -24,6 +24,17 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
+- (void)testGetNewAuthor {
+    std::stringstream inputSs, outputSs;
+    
+    inputSs.str("testAuthor\nNov 25 1998\n");
+    
+    Author testAuthor = getNewAuthor(inputSs, outputSs);
+    
+    XCTAssert(testAuthor.getName() == "testAuthor");
+    XCTAssert(testAuthor.printDateBorn() == "Nov 25 1998");
+}
+
 - (void)testGetNewBook {
     std::stringstream inputSs, outputSs;
     
