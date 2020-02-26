@@ -321,8 +321,8 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
     while(true) {
         char charInput = 'p';
         outputLine(outputStream, "Please select your option by typing the number displayed");
-        outputLine(outputStream, "1: Add new ReadBook");
-        outputLine(outputStream, "2: Display");
+        outputLine(outputStream, "1: Add new object");
+        outputLine(outputStream, "2: Display object");
         outputLine(outputStream, "3: nothing yet");
         outputLine(outputStream, "4: nothing yet");
         outputLine(outputStream, "5: nothing yet");
