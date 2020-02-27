@@ -265,6 +265,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
         outputLine(outputStream, "1: Book");
         outputLine(outputStream, "2: Books that have been read");
         outputLine(outputStream, "3: Authors");
+        outputLine(outputStream, "9: All");
         outputLine(outputStream, "x: Return to main menu");
         
         std::string input = getInput(inputStream);
@@ -298,6 +299,29 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
             }
             //author
             case '3': {
+                for (auto x : masterList.getMasterAuthors()) {
+                    outputLine(outputStream, x->printJson());
+                    outputLine(outputStream, ""); //blank line for seperation
+                }
+                break;
+            }
+            case '9': {
+                //book
+                outputLine(outputStream, "Books:\n");
+                for (auto x : masterList.getMasterBooks()) {
+                    outputLine(outputStream, x->printJson());
+                    outputLine(outputStream, ""); //blank line for seperation
+                }
+                
+                //readbook
+                outputLine(outputStream, "Read Books:\n");
+                for (auto x : masterList.getMasterReadBooks()) {
+                    outputLine(outputStream, x->printJson());
+                    outputLine(outputStream, ""); //blank line for seperation
+                }
+
+                //author
+                outputLine(outputStream, "Authors:\n");
                 for (auto x : masterList.getMasterAuthors()) {
                     outputLine(outputStream, x->printJson());
                     outputLine(outputStream, ""); //blank line for seperation
@@ -355,9 +379,10 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
             case '7': {
                 outputLine(outputStream, "Input file path for save file");
                 input = getInput(inputStream);
-                //shortcut for my desktop so I can test quicker TO DO change so it's generic desktop
+                //shortcut to macOS desktop TODO dedicated save space than desktop
                 if(input == "desktop") {
-                    input = "/Users/Frobu/Desktop/testFile.txt";
+                    input = std::getenv("HOME");
+                    input += "/Desktop/testFile.txt";
                 }
                 (masterList.saveInMemoryToFile(input) ? outputLine(outputStream, "save success\n") : outputLine(outputStream, "error saving"));
                 break;
@@ -365,9 +390,10 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
             case '8': {
                 outputLine(outputStream, "Input file path to load file");
                 input = getInput(inputStream);
-                //shortcut for my desktop so I can test quicker TO DO change so it's generic desktop
+                //shortcut to macOS desktop TODO dedicated save space than desktop
                 if(input == "desktop") {
-                    input = "/Users/Frobu/Desktop/testFile.txt";
+                    input = std::getenv("HOME");
+                    input += "/Desktop/testFile.txt";
                 }
                 (masterList.loadInMemoryFromFile(input) ? outputLine(outputStream, "load success\n") : outputLine(outputStream, "error loading"));
                 break;
