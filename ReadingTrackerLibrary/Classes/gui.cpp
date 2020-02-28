@@ -82,9 +82,9 @@ Book getNewBook(std::istream& inputStream, std::ostream& outputStream) {
     "dateRead" : "Oct 26 2019"
 }
 */
-ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream) {
+ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
     std::string input;
-    ReadBook newReadBook;
+    ReadBook newReadBook(readerId);
     
     outputLine(outputStream, "Input author");
     input = getInput(inputStream);
@@ -136,7 +136,7 @@ void userInputAgain() {
 }
 
 //should only be called from mainMenu so not in header, TODO do all the options need to share so much code not abstracted away (too much copy/paste)
-void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryContainers& masterList) {
+void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryContainers& masterList, int readerId) {
     
     while(true) {
         char charInput = 'p';
@@ -190,7 +190,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
             }
             //readbook
             case '2': {
-                ReadBook newReadBook = getNewReadBook(inputStream, outputStream);
+                ReadBook newReadBook = getNewReadBook(inputStream, outputStream, readerId);
                 outputLine(outputStream, "Would you like to save:");
                 outputLine(outputStream, newReadBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
@@ -338,7 +338,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
     return;
 }
 
-void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
+void mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId) {
     
     InMemoryContainers& masterList = InMemoryContainers::getInstance();
     
@@ -369,7 +369,7 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream) {
         
         switch(charInput) {
             case '1': {
-                addMenu(inputStream, outputStream, masterList);
+                addMenu(inputStream, outputStream, masterList, readerId);
                 break;
             }
             case '2': {

@@ -54,6 +54,7 @@ bool saveJson(std::vector<nlohmann::json> input, std::fstream& saveFile) {
 
 ReadBook convertJsonToReadBook(nlohmann::json json) {
     
+    int readerId = json["readerId"].get<int>();
     std::string author = json["author"].get<std::string>();
     std::string title = json["title"].get<std::string>();
     std::string series = json["series"].get<std::string>();
@@ -64,7 +65,7 @@ ReadBook convertJsonToReadBook(nlohmann::json json) {
     int rating = json["rating"].get<int>();
     std::string time = json["dateRead"].get<std::string>();
     
-    return ReadBook(author, title, series, publisher, pageCount, genre, publishDate, rating, time);
+    return ReadBook(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
 }
 
 std::shared_ptr<Book> convertJsonToBookPtr(nlohmann::json json) {
@@ -83,6 +84,7 @@ std::shared_ptr<Book> convertJsonToBookPtr(nlohmann::json json) {
 
 std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
     
+    int readerId = json["readerId"].get<int>();
     std::string author = json["author"].get<std::string>();
     std::string title = json["title"].get<std::string>();
     std::string series = json["series"].get<std::string>();
@@ -93,7 +95,7 @@ std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
     int rating = json["rating"].get<int>();
     std::string time = json["dateRead"].get<std::string>();
     
-    std::shared_ptr<ReadBook> newReadBook = std::make_shared<ReadBook>(author, title, series, publisher, pageCount, genre, publishDate, rating, time);
+    std::shared_ptr<ReadBook> newReadBook = std::make_shared<ReadBook>(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
     
     return newReadBook;
 }

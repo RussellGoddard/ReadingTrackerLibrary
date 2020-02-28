@@ -137,6 +137,10 @@ int ReadBook::getRating() const {
     return this->rating;
 }
 
+int ReadBook::getReaderId() const {
+    return this->readerId;
+}
+
 /*
 {
     "author" : "Robert Jordan",
@@ -156,19 +160,21 @@ std::string ReadBook::printJson() const {
     returnString.pop_back(); //remove ending bracket
     
     //append ReadBook variables
-    returnString += R"(,"rating":)" + std::to_string(this->getRating()) + R"(,"dateRead":")" + this->printDateRead() + R"("})";
+    returnString += R"(,"rating":)" + std::to_string(this->getRating()) + R"(,"dateRead":")" + this->printDateRead() + R"(","readerId":)" + std::to_string(this->getReaderId()) + R"(})";
     
     return returnString;
 }
 
-ReadBook::ReadBook(Book book, int rating, time_t dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
+ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
+    this->readerId = readerId;
     this->setDateRead(dateRead);
     this->setRating(rating);
     
     return;
 }
 
-ReadBook::ReadBook(Book book, int rating, std::string dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
+ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
+    this->readerId = readerId;
     this->setDateRead(dateRead);
     this->setRating(rating);
     
@@ -176,14 +182,16 @@ ReadBook::ReadBook(Book book, int rating, std::string dateRead) : Book(book.getA
 }
 
 
-ReadBook::ReadBook(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate, int rating, time_t dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate, int rating, time_t dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+    this->readerId = readerId;
     this->setDateRead(dateRead);
     this->setRating(rating);
     
     return;
 }
 
-ReadBook::ReadBook(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+    this->readerId = readerId;
     this->setDateRead(dateRead);
     this->setRating(rating);
     

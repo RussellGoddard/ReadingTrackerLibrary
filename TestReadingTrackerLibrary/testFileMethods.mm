@@ -26,7 +26,7 @@
 }
 
 - (void)testReadBookVector {
-    ReadBook testReadBook1;
+    ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
     testReadBook1.setTitle("a");
     testReadBook1.setSeries("a");
@@ -37,7 +37,7 @@
     testReadBook1.setRating(4);
     testReadBook1.setDateRead("Mar 25 1993");
     
-    ReadBook testReadBook2;
+    ReadBook testReadBook2(1);
     testReadBook2.setAuthor("b");
     testReadBook2.setTitle("b");
     testReadBook2.setSeries("b");
@@ -48,7 +48,7 @@
     testReadBook2.setRating(4);
     testReadBook2.setDateRead("Mar 25 1993");
     
-    ReadBook testReadBook3;
+    ReadBook testReadBook3(1);
     testReadBook3.setAuthor("a");
     testReadBook3.setTitle("a");
     testReadBook3.setSeries("a");
@@ -267,6 +267,7 @@
     
     nlohmann::json jsonTest = R"(
       {
+        "readerId":123,
         "author":"Robert Jordan",
         "dateRead":"Jan 29 2020",
         "genre":"fantasy",
@@ -282,6 +283,7 @@
     
     std::shared_ptr<ReadBook> testPtrReadBook1 = convertJsonToReadBookPtr(jsonTest);
     
+    XCTAssert(testPtrReadBook1->getReaderId() == jsonTest["readerId"].get<int>());
     XCTAssert(testPtrReadBook1->getAuthor() == jsonTest["author"].get<std::string>());
     XCTAssert(testPtrReadBook1->printGenre() == jsonTest["genre"].get<std::string>());
     XCTAssert(testPtrReadBook1->getPageCount() == jsonTest["pageCount"].get<int>());
@@ -328,6 +330,7 @@
 - (void)testConvertJsonToReadBook {
     nlohmann::json jsonTest = R"(
       {
+        "readerId":456,
         "author":"Robert Jordan",
         "dateRead":"Jan 29 2020",
         "genre":"fantasy",
@@ -342,6 +345,7 @@
     
     ReadBook testReadBook1 = convertJsonToReadBook(jsonTest);
     
+    XCTAssert(testReadBook1.getReaderId() == jsonTest["readerId"].get<int>());
     XCTAssert(testReadBook1.getAuthor() == jsonTest["author"].get<std::string>());
     XCTAssert(testReadBook1.printDateRead() == jsonTest["dateRead"].get<std::string>());
     XCTAssert(testReadBook1.printGenre() == jsonTest["genre"].get<std::string>());
@@ -367,7 +371,7 @@
     testBook1.setPageCount(10);
     testBook1.setPublishDate("Dec 01 1990");
     
-    ReadBook testReadBook1;
+    ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
     testReadBook1.setTitle("a");
     testReadBook1.setSeries("a");
@@ -442,7 +446,7 @@
     testBook1.setPageCount(10);
     testBook1.setPublishDate("Dec 01 1990");
     
-    ReadBook testReadBook1;
+    ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
     testReadBook1.setTitle("a");
     testReadBook1.setSeries("a");

@@ -56,8 +56,9 @@
     
     inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\nOct 01 1999\n123\nOct 02 1999\n9\n");
     
-    ReadBook testReadBook = getNewReadBook(inputSs, outputSs);
+    ReadBook testReadBook = getNewReadBook(inputSs, outputSs, 123);
     
+    XCTAssert(testReadBook.getReaderId() == 123);
     XCTAssert(testReadBook.getAuthor() == "testAuthor");
     XCTAssert(testReadBook.getTitle() == "testTitle");
     XCTAssert(testReadBook.getPublisher() == "testPublisher");
