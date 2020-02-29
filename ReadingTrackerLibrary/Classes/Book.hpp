@@ -8,9 +8,11 @@
 #ifndef Book_hpp
 #define Book_hpp
 
-#include <string>
+
+#include <ios>
 #include <ctime>
 #include <sstream>
+#include <string>
 
 enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
 
@@ -31,6 +33,7 @@ public:
     time_t getPublishDateAsTimeT();
     std::string printPublishDate() const;
     std::string printJson() const;
+    std::string printCommandLine() const;
     void setAuthor(std::string author);
     void setTitle(std::string title);
     void setSeries(std::string series);
@@ -45,6 +48,8 @@ public:
     Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
     Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
     Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
+    
+    static std::string printCommandLineHeaders();
 private:
     std::string author;
     std::string title;

@@ -380,4 +380,24 @@
     XCTAssert("Nov 16 1991" == testBookConstructor2.printPublishDate());
 }
 
+- (void)testPrintColumnHeaders {
+    std::string testStr = "Author              Title                              Series              Pages";
+    
+    XCTAssert(Book::printCommandLineHeaders() == testStr);
+}
+
+- (void)testPrintCommandLine {
+    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541  ";
+    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    Millennium          480  ";
+    std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 The Wheel of Time12 70212";
+    
+    Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006");
+    Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005");
+    Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990");
+    
+    XCTAssert(bookMist.printCommandLine() == testMist);
+    XCTAssert(bookGirl.printCommandLine() == testGirl);
+    XCTAssert(bookWidth.printCommandLine() == testWidth);
+}
+
 @end

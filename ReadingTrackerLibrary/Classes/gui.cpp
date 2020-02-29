@@ -283,10 +283,12 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
         switch(charInput) {
             //book
             case '1': {
+                //column headers
+                outputLine(outputStream, Book::printCommandLineHeaders());
                 for (auto x : masterList.getMasterBooks()) {
-                    outputLine(outputStream, x->printJson());
-                    outputLine(outputStream, ""); //blank line for seperation
+                    outputLine(outputStream, x->printCommandLine());
                 }
+                outputLine(outputStream, ""); //blank line for seperation
                 break;
             }
             //readbook
@@ -308,10 +310,12 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
             case '9': {
                 //book
                 outputLine(outputStream, "Books:\n");
+                //column headers
+                outputLine(outputStream, Book::printCommandLineHeaders());
                 for (auto x : masterList.getMasterBooks()) {
-                    outputLine(outputStream, x->printJson());
-                    outputLine(outputStream, ""); //blank line for seperation
+                    outputLine(outputStream, x->printCommandLine());
                 }
+                outputLine(outputStream, ""); //blank line for seperation
                 
                 //readbook
                 outputLine(outputStream, "Read Books:\n");

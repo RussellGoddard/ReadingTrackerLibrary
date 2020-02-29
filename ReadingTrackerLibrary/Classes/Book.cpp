@@ -7,6 +7,12 @@
 
 #include "Book.hpp"
 
+//used for printCommandLine and printCommandLineHeaders
+int authorWidth = 20;
+int titleWidth = 35;
+int seriesWidth = 20;
+int pageWidth = 5;
+
 int convertAbbrMonthToInt(std::string month) {
     if (month == "Jan") {
         return 0;
@@ -130,6 +136,41 @@ std::string Book::printJson() const {
     std::string returnString = "test\"\"";
     returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(,"publishDate":")" + this->printPublishDate() + R"("})";
     return returnString;
+}
+
+//Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
+std::string Book::printCommandLine() const {
+    std::stringstream returnStr;
+    std::string test;
+    returnStr.fill(' ');
+    
+    returnStr.width(authorWidth);
+    returnStr << std::left << this->getAuthor().substr(0, authorWidth - 1);
+    returnStr.width(titleWidth);
+    returnStr << std::left << this->getTitle().substr(0, titleWidth - 1);
+    returnStr.width(seriesWidth);
+    returnStr << std::left << this->getSeries().substr(0, seriesWidth - 1);
+    returnStr.width(pageWidth);
+    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, pageWidth);
+    
+    return returnStr.str();
+}
+
+//static Author              Title                              Series              Pages
+std::string Book::printCommandLineHeaders() {
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(authorWidth);
+    returnStr << std::left << "Author";
+    returnStr.width(titleWidth);
+    returnStr << std::left << "Title";
+    returnStr.width(seriesWidth);
+    returnStr << std::left << "Series";
+    returnStr.width(pageWidth);
+    returnStr << std::left << "Pages";
+    
+    return returnStr.str();
 }
 
 tm Book::getPublishDate() const {
