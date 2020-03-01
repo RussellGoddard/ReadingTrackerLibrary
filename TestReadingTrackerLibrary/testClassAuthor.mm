@@ -274,4 +274,38 @@ std::shared_ptr<Book> testBook2;
     XCTAssert(testAuthor5.getBooksWritten().at(1) == testBook1);
 }
 
+- (void)testPrintColumnHeaders {
+    std::string testStr = "Author              Date Born   Books Written                               Year";
+    
+    XCTAssert(Author::printCommandLineHeaders() == testStr);
+}
+
+- (void)testPrintCommandLine {
+    std::string testMist = "Brandon Sanderson   Dec 19 1975 Mistborn: The Final Empire                  2006\n                                Mistborn: The Well of Ascension             2007\n                                Mistborn: The Hero of Ages                  2008";
+    std::string testGirl = "Stieg Larsson       Aug 15 1964 The Girl with the Dragon Tattoo             2005";
+    std::string testWidth = "Robert Jordan123456 Oct 17 1948 The Eye of the World12345678901234567890123 1990";
+    
+    Book bookMist1("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006");
+    Book bookMist2("Brandon Sanderson", "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2007");
+    Book bookMist3("Brandon Sanderson", "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2008");
+    Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005");
+    Book bookWidth("Robert Jordan1234567", "The Eye of the World1234567890123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990");
+    
+    std::vector<std::shared_ptr<Book>> mistbornVector;
+    mistbornVector.push_back(std::make_shared<Book>(bookMist1));
+    mistbornVector.push_back(std::make_shared<Book>(bookMist2));
+    mistbornVector.push_back(std::make_shared<Book>(bookMist3));
+    
+    Author authorMist("Brandon Sanderson", "Dec 19 1975", mistbornVector);
+    Author authorGirl("Stieg Larsson", "Aug 15 1964");
+    authorGirl.addBookWritten(std::make_shared<Book>(bookGirl));
+    Author authorWidth("Robert Jordan1234567");
+    authorWidth.setDateBorn("Oct 17 1948");
+    authorWidth.addBookWritten(std::make_shared<Book>(bookWidth));
+    
+    XCTAssert(authorMist.printCommandLine() == testMist);
+    XCTAssert(authorGirl.printCommandLine() == testGirl);
+    XCTAssert(authorWidth.printCommandLine() == testWidth);
+}
+
 @end

@@ -259,6 +259,8 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
 //should only be called from mainMenu so not in header
 void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryContainers& masterList) {
     
+    std::string displayMode = "Json";
+    
     while(true) {
         char charInput = 'p';
         outputLine(outputStream, "Please select what you want to display");
@@ -266,6 +268,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
         outputLine(outputStream, "2: Books that have been read");
         outputLine(outputStream, "3: Authors");
         outputLine(outputStream, "9: All");
+        outputLine(outputStream, "s: Switch display mode. Currently: " + displayMode);
         outputLine(outputStream, "x: Return to main menu");
         
         std::string input = getInput(inputStream);
@@ -283,52 +286,118 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
         switch(charInput) {
             //book
             case '1': {
-                //column headers
-                outputLine(outputStream, Book::printCommandLineHeaders());
-                for (auto x : masterList.getMasterBooks()) {
-                    outputLine(outputStream, x->printCommandLine());
+                if (displayMode == "Simple") {
+                    //column headers
+                    outputLine(outputStream, Book::printCommandLineHeaders());
+                    for (auto x : masterList.getMasterBooks()) {
+                        outputLine(outputStream, x->printCommandLine());
+                    }
+                    outputLine(outputStream, ""); //blank line for seperation
                 }
-                outputLine(outputStream, ""); //blank line for seperation
+                else {
+                    for (auto x : masterList.getMasterBooks()) {
+                        outputLine(outputStream, x->printJson());
+                        outputLine(outputStream, ""); //blank line for seperation
+                    }
+                }
                 break;
             }
             //readbook
             case '2': {
-                for (auto x : masterList.getMasterReadBooks()) {
-                    outputLine(outputStream, x->printJson());
+                if (displayMode == "Simple") {
+                    //column headers
+                    outputLine(outputStream, ReadBook::printCommandLineHeaders());
+                    for (auto x : masterList.getMasterReadBooks()) {
+                        outputLine(outputStream, x->printCommandLine());
+                    }
                     outputLine(outputStream, ""); //blank line for seperation
+                }
+                else {
+                    for (auto x : masterList.getMasterReadBooks()) {
+                        outputLine(outputStream, x->printJson());
+                        outputLine(outputStream, ""); //blank line for seperation
+                    }
                 }
                 break;
             }
             //author
             case '3': {
-                for (auto x : masterList.getMasterAuthors()) {
-                    outputLine(outputStream, x->printJson());
+                if (displayMode == "Simple") {
+                    //column headers
+                    outputLine(outputStream, Author::printCommandLineHeaders());
+                    for (auto x : masterList.getMasterAuthors()) {
+                        outputLine(outputStream, x->printCommandLine());
+                    }
                     outputLine(outputStream, ""); //blank line for seperation
+                }
+                else {
+                    for (auto x : masterList.getMasterAuthors()) {
+                        outputLine(outputStream, x->printJson());
+                        outputLine(outputStream, ""); //blank line for seperation
+                    }
                 }
                 break;
             }
             case '9': {
-                //book
-                outputLine(outputStream, "Books:\n");
-                //column headers
-                outputLine(outputStream, Book::printCommandLineHeaders());
-                for (auto x : masterList.getMasterBooks()) {
-                    outputLine(outputStream, x->printCommandLine());
-                }
-                outputLine(outputStream, ""); //blank line for seperation
-                
-                //readbook
-                outputLine(outputStream, "Read Books:\n");
-                for (auto x : masterList.getMasterReadBooks()) {
-                    outputLine(outputStream, x->printJson());
+                if (displayMode == "Simple") {
+                    //book
+                    outputLine(outputStream, "Books:\n");
+                    //column headers
+                    outputLine(outputStream, Book::printCommandLineHeaders());
+                    for (auto x : masterList.getMasterBooks()) {
+                        outputLine(outputStream, x->printCommandLine());
+                    }
                     outputLine(outputStream, ""); //blank line for seperation
-                }
+                    
+                    //readbook
+                    outputLine(outputStream, "Read Books:\n");
+                    //column headers
+                    outputLine(outputStream, ReadBook::printCommandLineHeaders());
+                    for (auto x : masterList.getMasterReadBooks()) {
+                        outputLine(outputStream, x->printCommandLine());
+                    }
+                    outputLine(outputStream, ""); //blank line for seperation
 
-                //author
-                outputLine(outputStream, "Authors:\n");
-                for (auto x : masterList.getMasterAuthors()) {
-                    outputLine(outputStream, x->printJson());
+                    //author
+                    outputLine(outputStream, "Authors:\n");
+                    //column headers
+                    outputLine(outputStream, Author::printCommandLineHeaders());
+                    for (auto x : masterList.getMasterAuthors()) {
+                        outputLine(outputStream, x->printCommandLine());
+                    }
                     outputLine(outputStream, ""); //blank line for seperation
+                }
+                else {
+                    //book
+                    outputLine(outputStream, "Books:\n");
+                    for (auto x : masterList.getMasterBooks()) {
+                        outputLine(outputStream, x->printJson());
+                        outputLine(outputStream, ""); //blank line for seperation
+                    }
+                    
+                    //readbook
+                    outputLine(outputStream, "Read Books:\n");
+                    for (auto x : masterList.getMasterReadBooks()) {
+                        outputLine(outputStream, x->printJson());
+                        outputLine(outputStream, ""); //blank line for seperation
+                    }
+
+                    //author
+                    outputLine(outputStream, "Authors:\n");
+                    for (auto x : masterList.getMasterAuthors()) {
+                        outputLine(outputStream, x->printJson());
+                        outputLine(outputStream, ""); //blank line for seperation
+                    }
+                }
+                break;
+            }
+            case 'S':
+            case 's': {
+                if (displayMode == "Json") {
+                    displayMode = "Simple";
+                }
+                else if (displayMode == "Simple") {
+                    displayMode = "Json";
                 }
                 break;
             }

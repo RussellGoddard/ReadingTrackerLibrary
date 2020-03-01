@@ -8,10 +8,10 @@
 #include "Book.hpp"
 
 //used for printCommandLine and printCommandLineHeaders
-int authorWidth = 20;
-int titleWidth = 35;
-int seriesWidth = 20;
-int pageWidth = 5;
+int widthAuthor = 20;
+int widthTitle = 35;
+int widthSeries = 20;
+int widthPage = 5;
 
 int convertAbbrMonthToInt(std::string month) {
     if (month == "Jan") {
@@ -141,33 +141,32 @@ std::string Book::printJson() const {
 //Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
 std::string Book::printCommandLine() const {
     std::stringstream returnStr;
-    std::string test;
     returnStr.fill(' ');
     
-    returnStr.width(authorWidth);
-    returnStr << std::left << this->getAuthor().substr(0, authorWidth - 1);
-    returnStr.width(titleWidth);
-    returnStr << std::left << this->getTitle().substr(0, titleWidth - 1);
-    returnStr.width(seriesWidth);
-    returnStr << std::left << this->getSeries().substr(0, seriesWidth - 1);
-    returnStr.width(pageWidth);
-    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, pageWidth);
+    returnStr.width(widthAuthor);
+    returnStr << std::left << this->getAuthor().substr(0, widthAuthor - 1);
+    returnStr.width(widthTitle);
+    returnStr << std::left << this->getTitle().substr(0, widthTitle - 1);
+    returnStr.width(widthSeries);
+    returnStr << std::left << this->getSeries().substr(0, widthSeries - 1);
+    returnStr.width(widthPage);
+    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, widthPage);
     
     return returnStr.str();
 }
 
-//static Author              Title                              Series              Pages
+//Author              Title                              Series              Pages
 std::string Book::printCommandLineHeaders() {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(authorWidth);
+    returnStr.width(widthAuthor);
     returnStr << std::left << "Author";
-    returnStr.width(titleWidth);
+    returnStr.width(widthTitle);
     returnStr << std::left << "Title";
-    returnStr.width(seriesWidth);
+    returnStr.width(widthSeries);
     returnStr << std::left << "Series";
-    returnStr.width(pageWidth);
+    returnStr.width(widthPage);
     returnStr << std::left << "Pages";
     
     return returnStr.str();

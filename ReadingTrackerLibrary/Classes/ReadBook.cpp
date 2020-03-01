@@ -7,6 +7,14 @@
 
 #include "ReadBook.hpp"
 
+//used for printCommandLine and printCommandLineHeaders
+//TODO implement namespaces
+int widthAuthorRB = 20;
+int widthTitleRB = 35;
+int widthPageRB = 6;
+int widthDateReadRB = 13;
+int widthRatingRB = 6;
+
 void ReadBook::setDateRead(time_t time) {
     this->dateRead = *std::gmtime(&time);
     this->dateRead.tm_sec = 0;
@@ -163,6 +171,44 @@ std::string ReadBook::printJson() const {
     returnString += R"(,"rating":)" + std::to_string(this->getRating()) + R"(,"dateRead":")" + this->printDateRead() + R"(","readerId":)" + std::to_string(this->getReaderId()) + R"(})";
     
     return returnString;
+}
+
+//Brandon Sanderson   Mistborn: The Final Empire         541   Sep 13 2019  9
+std::string ReadBook::printCommandLine() const {
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(widthAuthorRB);
+    returnStr << std::left << this->getAuthor().substr(0, widthAuthorRB - 1);
+    returnStr.width(widthTitleRB);
+    returnStr << std::left << this->getTitle().substr(0, widthTitleRB - 1);
+    returnStr.width(widthPageRB);
+    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, widthPageRB - 1);
+    returnStr.width(widthDateReadRB);
+    returnStr << std::left << this->printDateRead().substr(0, widthDateReadRB - 1);
+    returnStr.width(widthRatingRB);
+    returnStr << std::left << std::to_string(this->getRating()).substr(0, widthRatingRB - 1);
+    
+    return returnStr.str();
+}
+
+//Author              Title                              Pages Date Read    Rating
+std::string ReadBook::printCommandLineHeaders() {
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(widthAuthorRB);
+    returnStr << std::left << "Author";
+    returnStr.width(widthTitleRB);
+    returnStr << std::left << "Title";
+    returnStr.width(widthPageRB);
+    returnStr << std::left << "Pages";
+    returnStr.width(widthDateReadRB);
+    returnStr << std::left << "Date Read";
+    returnStr.width(widthRatingRB);
+    returnStr << std::left << "Rating";
+    
+    return returnStr.str();
 }
 
 ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {

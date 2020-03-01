@@ -402,4 +402,24 @@ int testReaderId = 1;
     XCTAssert(testConstructor4.printDateRead() == "Nov 14 2019");
 }
 
+- (void)testPrintColumnHeaders {
+    std::string testStr = "Author              Title                              Pages Date Read    Rating";
+    
+    XCTAssert(ReadBook::printCommandLineHeaders() == testStr);
+}
+
+- (void)testPrintCommandLine {
+    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire         541   Sep 13 2019  9     ";
+    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    480   Nov 19 2019  9     ";
+    std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 70212 Oct 27 2019  8     ";
+
+    ReadBook bookMist(123, "Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006", 9, "Sep 13 2019");
+    ReadBook bookGirl(123, "Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005", 9, "Nov 19 2019");
+    ReadBook bookWidth(123, "Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990", 8, "Oct 27 2019");
+    
+    XCTAssert(bookMist.printCommandLine() == testMist);
+    XCTAssert(bookGirl.printCommandLine() == testGirl);
+    XCTAssert(bookWidth.printCommandLine() == testWidth);
+}
+
 @end

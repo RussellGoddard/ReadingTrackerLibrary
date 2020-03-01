@@ -7,6 +7,14 @@
 
 #include "Author.hpp"
 
+//used for printCommandLine and printCommandLineHeaders
+//TODO implement namespaces
+int widthAuthorA = 20;
+int widthDateBornA = 12;
+int widthTitleA = 44;
+int widthYearA = 4;
+
+
 void Author::setName(std::string name) {
     this->name = name;
     
@@ -127,6 +135,59 @@ std::string Author::printJson() const {
     returnString += R"(]})";
     
     return returnString;
+}
+
+/*
+Brandon Sanderson   Dec 19 1975 Mistborn: The Final Empire                  2006
+                                Mistborn: The Well of Ascension             2007
+                                Mistborn: The Hero of Ages                  2008
+ */
+std::string Author::printCommandLine() const {
+    std::stringstream returnStr;
+    std::string test;
+    returnStr.fill(' ');
+    
+    returnStr.width(widthAuthorA);
+    returnStr << std::left << this->getName().substr(0, widthAuthorA - 1);
+    returnStr.width(widthDateBornA);
+    returnStr << std::left << this->printDateBorn().substr(0, widthDateBornA - 1);
+    if (!this->getBooksWritten().empty()) {
+        std::vector<std::shared_ptr<Book>> booksWritten = this->getBooksWritten();
+        returnStr.width(widthTitleA);
+        returnStr << std::left << booksWritten.at(0)->getTitle().substr(0, widthTitleA - 1);
+        returnStr.width(widthYearA);
+        returnStr << std::left << booksWritten.at(0)->printPublishDate().substr(booksWritten.at(0)->printPublishDate().size() - 4);
+test = returnStr.str();
+        for (int i = 1; i < booksWritten.size(); ++i) {
+            returnStr << std::endl;
+            returnStr.width(widthAuthorA + widthDateBornA);
+            returnStr << std::left << " ";
+            returnStr.width(widthTitleA);
+            returnStr << std::left << booksWritten.at(i)->getTitle().substr(0, widthTitleA - 1);
+            returnStr.width(widthYearA);
+            returnStr << std::left << booksWritten.at(i)->printPublishDate().substr(booksWritten.at(0)->printPublishDate().size() - 4);
+        }
+    }
+    
+test = returnStr.str();
+    return returnStr.str();
+}
+
+//Author              Date Born   Books Written                               Year
+std::string Author::printCommandLineHeaders() {
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(widthAuthorA);
+    returnStr << std::left << "Author";
+    returnStr.width(widthDateBornA);
+    returnStr << std::left << "Date Born";
+    returnStr.width(widthTitleA);
+    returnStr << std::left << "Books Written";
+    returnStr.width(widthYearA);
+    returnStr << std::left << "Year";
+
+    return returnStr.str();
 }
 
 Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_ptr<Book>> booksWritten) {
