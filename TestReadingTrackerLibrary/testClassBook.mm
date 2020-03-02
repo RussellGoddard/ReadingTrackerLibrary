@@ -400,4 +400,14 @@
     XCTAssert(bookWidth.printCommandLine() == testWidth);
 }
 
+- (void)testSetandGetOclc {
+    Book testBook;
+    std::string testString = "1234";
+    
+    
+    testBook.setOclc(testString);
+    
+    XCTAssert(testBook.getOclc() == testString);
+}
+
 @end

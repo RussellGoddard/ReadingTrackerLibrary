@@ -132,6 +132,10 @@ std::string Book::printGenre() const {
     return convertGenreToString(this->genre);
 }
 
+std::string Book::getOclc() const {
+    return this->oclc;
+}
+
 std::string Book::printJson() const {
     std::string returnString = "test\"\"";
     returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(,"publishDate":")" + this->printPublishDate() + R"("})";
@@ -328,6 +332,12 @@ void Book::setPublishDate(std::string publishDate) {
     
     this->publishDate = *std::gmtime(&validateTime);
 
+    return;
+}
+
+void Book::setOclc(std::string oclc) {
+    this->oclc = oclc;
+    
     return;
 }
 

@@ -25,19 +25,6 @@ std::string& trim(std::string& str)
    return leftTrim(rightTrim(str));
 }
 
-
-bool saveJson(nlohmann::json input, std::fstream& saveFile) {
-    //check if file exists/is locked by another process
-    if(!saveFile.good()) {
-        saveFile.close();
-        return false;
-    };
-    
-    saveFile << input << std::endl;
-
-    return true;
-}
-
 bool saveJson(std::vector<nlohmann::json> input, std::fstream& saveFile) {
     //check if file exists/is locked by another process
     if(!saveFile.good()) {

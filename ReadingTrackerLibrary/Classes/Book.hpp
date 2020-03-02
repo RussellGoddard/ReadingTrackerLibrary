@@ -31,6 +31,7 @@ public:
     std::string printGenre() const;
     tm getPublishDate() const;
     time_t getPublishDateAsTimeT();
+    std::string getOclc() const;
     std::string printPublishDate() const;
     std::string printJson() const;
     std::string printCommandLine() const;
@@ -45,12 +46,14 @@ public:
     void setGenre(std::string genre);
     void setPublishDate(time_t publishDate);
     void setPublishDate(std::string publishDate);
+    void setOclc(std::string oclc);
     Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
     Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
     Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
     
     static std::string printCommandLineHeaders();
 private:
+    std::string oclc;
     std::string author;
     std::string title;
     std::string publisher;
