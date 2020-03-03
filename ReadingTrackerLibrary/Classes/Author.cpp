@@ -44,7 +44,7 @@ void Author::setDateBorn(std::string dateBorn) {
     std::string year = dateBorn.substr(7, 4);
     
     int intYear;
-    int intMonth = convertAbbrMonthToInt(month);
+    int intMonth = rtlBook::convertAbbrMonthToInt(month);
     int intDay;
     
     if (intMonth == -1) {
@@ -85,7 +85,7 @@ void Author::setDateBorn(std::string dateBorn) {
     return;
 }
 
-void Author::addBookWritten(std::shared_ptr<Book> book) {
+void Author::addBookWritten(std::shared_ptr<rtlBook::Book> book) {
     this->booksWritten.push_back(book);
 
     sortUnique(this->booksWritten);
@@ -93,7 +93,7 @@ void Author::addBookWritten(std::shared_ptr<Book> book) {
     return;
 }
 
-void Author::addBookWritten(std::vector<std::shared_ptr<Book>> books) {
+void Author::addBookWritten(std::vector<std::shared_ptr<rtlBook::Book>> books) {
     this->booksWritten.insert(std::end(this->booksWritten), std::begin(books), std::end(books));
     sortUnique(this->booksWritten);
     
@@ -118,14 +118,14 @@ std::string Author::printDateBorn() const {
     return buffer;
 }
 
-std::vector<std::shared_ptr<Book>> Author::getBooksWritten() const {
+std::vector<std::shared_ptr<rtlBook::Book>> Author::getBooksWritten() const {
     return this->booksWritten;
 }
 
 std::string Author::printJson() const {
     std::string returnString;
     returnString = R"({"name":")" + this->getName() + R"(","dateBorn":")" + this->printDateBorn() + R"(","booksWritten":[)";
-    for (std::shared_ptr<Book> x : this->getBooksWritten()) {
+    for (std::shared_ptr<rtlBook::Book> x : this->getBooksWritten()) {
         returnString += x->printJson();
         returnString += ',';
     }
@@ -152,7 +152,7 @@ std::string Author::printCommandLine() const {
     returnStr.width(widthDateBornA);
     returnStr << std::left << this->printDateBorn().substr(0, widthDateBornA - 1);
     if (!this->getBooksWritten().empty()) {
-        std::vector<std::shared_ptr<Book>> booksWritten = this->getBooksWritten();
+        std::vector<std::shared_ptr<rtlBook::Book>> booksWritten = this->getBooksWritten();
         returnStr.width(widthTitleA);
         returnStr << std::left << booksWritten.at(0)->getTitle().substr(0, widthTitleA - 1);
         returnStr.width(widthYearA);
@@ -190,20 +190,20 @@ std::string Author::printCommandLineHeaders() {
     return returnStr.str();
 }
 
-Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_ptr<Book>> booksWritten) {
+Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_ptr<rtlBook::Book>> booksWritten) {
     this->setName(name);
     this->setDateBorn(dateBorn);
     this->addBookWritten(booksWritten);
 }
 
-Author::Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten) {
+Author::Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtlBook::Book>> booksWritten) {
     this->setName(name);
     this->setDateBorn(dateBorn);
     this->addBookWritten(booksWritten);
     
 }
 
-Author::Author(std::string name, time_t dateBorn, std::shared_ptr<Book> bookWritten) {
+Author::Author(std::string name, time_t dateBorn, std::shared_ptr<rtlBook::Book> bookWritten) {
     this->setName(name);
     this->setDateBorn(dateBorn);
     this->addBookWritten(bookWritten);

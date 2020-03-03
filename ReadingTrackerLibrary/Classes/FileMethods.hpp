@@ -22,15 +22,15 @@ public:
     void addMasterReadBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector);
     void addMasterReadBooks(std::shared_ptr<ReadBook> newReadBook);
     
-    std::vector<std::shared_ptr<Book>> getMasterBooks();
-    void addMasterBooks(std::vector<std::shared_ptr<Book>> newBookVector);
-    void addMasterBooks(std::shared_ptr<Book> newBook);
+    std::vector<std::shared_ptr<rtlBook::Book>> getMasterBooks();
+    void addMasterBooks(std::vector<std::shared_ptr<rtlBook::Book>> newBookVector);
+    void addMasterBooks(std::shared_ptr<rtlBook::Book> newBook);
     
     std::vector<std::shared_ptr<Author>> getMasterAuthors();
     void addMasterAuthors(std::vector<std::shared_ptr<Author>> newAuthorVector);
     void addMasterAuthors(std::shared_ptr<Author> newAuthor);
-    void addMasterAuthors(std::shared_ptr<Book> newBook);
-    void addMasterAuthors(std::vector<std::shared_ptr<Book>> newBookVector);
+    void addMasterAuthors(std::shared_ptr<rtlBook::Book> newBook);
+    void addMasterAuthors(std::vector<std::shared_ptr<rtlBook::Book>> newBookVector);
     
     bool saveInMemoryToFile(std::string filePath);
     bool loadInMemoryFromFile(std::string filePath);
@@ -52,7 +52,7 @@ private:
     
     
     std::vector<std::shared_ptr<ReadBook>> readBookVector;
-    std::vector<std::shared_ptr<Book>> bookVector;
+    std::vector<std::shared_ptr<rtlBook::Book>> bookVector;
     std::vector<std::shared_ptr<Author>> authorVector;
 };
 
@@ -61,7 +61,7 @@ void sortUnique(std::vector<T>& input); //this shouldn't be declared here but ev
 bool saveJson(std::vector<nlohmann::json> input, std::string filePath);
 std::vector<std::shared_ptr<ReadBook>> loadReadingList(std::string filePath);
 ReadBook convertJsonToReadBook(nlohmann::json json);
-std::shared_ptr<Book> convertJsonToBookPtr(nlohmann::json json);
+std::shared_ptr<rtlBook::Book> convertJsonToBookPtr(nlohmann::json json);
 std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json);
 std::shared_ptr<Author> convertJsonToAuthorPtr(nlohmann::json json);
 std::string& rightTrim(std::string& input);

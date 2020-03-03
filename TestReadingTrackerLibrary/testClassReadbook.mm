@@ -352,7 +352,7 @@ int testReaderId = 1;
 
 - (void)testConstructors {
     
-    Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, fantasy, 1199163600);
+    rtlBook::Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtlBook::fantasy, 1199163600);
     ReadBook testConstructor(2147483647, newBook, 9, 1199163600);
     XCTAssert(testConstructor.getReaderId() == 2147483647);
     XCTAssert(testConstructor.getAuthor() == "testAuthor");
@@ -360,7 +360,7 @@ int testReaderId = 1;
     XCTAssert(testConstructor.getSeries() == "testSeries");
     XCTAssert(testConstructor.getPublisher() == "testPublisher");
     XCTAssert(testConstructor.getPageCount() == 111);
-    XCTAssert(testConstructor.getGenre() == fantasy);
+    XCTAssert(testConstructor.getGenre() == rtlBook::fantasy);
     XCTAssert(testConstructor.getPublishDateAsTimeT() == 1199163600);
     XCTAssert(testConstructor.getRating() == 9);
     XCTAssert(testConstructor.getDateReadAsTimeT() == 1199163600);
@@ -372,19 +372,19 @@ int testReaderId = 1;
     XCTAssert(testConstructor3.getSeries() == "testSeries");
     XCTAssert(testConstructor3.getPublisher() == "testPublisher");
     XCTAssert(testConstructor3.getPageCount() == 111);
-    XCTAssert(testConstructor3.getGenre() == fantasy);
+    XCTAssert(testConstructor3.getGenre() == rtlBook::fantasy);
     XCTAssert(testConstructor3.getPublishDateAsTimeT() == 1199163600);
     XCTAssert(testConstructor3.getRating() == 1);
     XCTAssert(testConstructor3.printDateRead() == "Feb 11 1913" );
     
     //ReadBook(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, int rating = 0, time_t time = std::time(0));
-    ReadBook testConstructor2(789, "testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 222, western, 1199181600, 8, 1199181600);
+    ReadBook testConstructor2(789, "testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 222, rtlBook::western, 1199181600, 8, 1199181600);
     XCTAssert(testConstructor2.getAuthor() == "testAuthor2");
     XCTAssert(testConstructor2.getTitle() == "testTitle2");
     XCTAssert(testConstructor2.getSeries() == "testSeries2");
     XCTAssert(testConstructor2.getPublisher() == "testPublisher2");
     XCTAssert(testConstructor2.getPageCount() == 222);
-    XCTAssert(testConstructor2.getGenre() == western);
+    XCTAssert(testConstructor2.getGenre() == rtlBook::western);
     XCTAssert(testConstructor2.getPublishDateAsTimeT() == 1199163600);
     XCTAssert(testConstructor2.getRating() == 8);
     XCTAssert(testConstructor2.getDateReadAsTimeT() == 1199163600);

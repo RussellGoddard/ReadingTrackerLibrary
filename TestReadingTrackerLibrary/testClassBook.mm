@@ -24,7 +24,7 @@
 }
 
 - (void)testBookGetAndSet {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -42,7 +42,7 @@
 }
 
 - (void)testSetPublishedDateString {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setPublishDate("Jan 01 2008");
     XCTAssert("Jan 01 2008" == testBook.printPublishDate());
     testBook.setPublishDate("Feb 29 2001");
@@ -99,7 +99,7 @@
 }
 
 - (void)testSetPublishDateTimeT {
-    Book testBook;
+    rtlBook::Book testBook;
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
     testBook.setPublishDate(testTimeInitial);
     XCTAssert(testTimeInitial == testBook.getPublishDateAsTimeT());
@@ -109,7 +109,7 @@
 }
 
 - (void)testSetPageCount {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setPageCount(-10);
     XCTAssert(-1 == testBook.getPageCount());
     testBook.setPageCount('1');
@@ -125,14 +125,14 @@
 }
 
 - (void)testGetGenre {
-    Book testBook;
-    Genre newGenre = western;
+    rtlBook::Book testBook;
+    rtlBook::Genre newGenre = rtlBook::western;
     testBook.setGenre(newGenre);
     XCTAssert(newGenre == testBook.getGenre());
 }
 
 - (void)testPrintJson {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -146,7 +146,7 @@
 }
 
 - (void)testPrintGenre {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setGenre("detective");
     XCTAssert("detective" == testBook.printGenre());
     testBook.setGenre("dystopia");
@@ -170,7 +170,7 @@
 }
 
 - (void)testBookEquals {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -179,7 +179,7 @@
     testBook.setPageCount(10);
     testBook.setPublishDate("Dec 01 1990");
     
-    Book testBook2;
+    rtlBook::Book testBook2;
     testBook2.setAuthor("testAuthor");
     testBook2.setTitle("testTitle");
     testBook2.setSeries("testSeries");
@@ -192,7 +192,7 @@
 }
 
 - (void)testBookNotEquals {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("testAuthor");
     testBook.setTitle("testTitle");
     testBook.setSeries("testSeries");
@@ -201,7 +201,7 @@
     testBook.setPageCount(10);
     testBook.setPublishDate("Dec 01 1990");
     
-    Book testBook2;
+    rtlBook::Book testBook2;
     testBook2.setAuthor("testAuthor2");
     testBook2.setTitle("testTitle2");
     testBook2.setSeries("testSeries2");
@@ -214,7 +214,7 @@
 }
 
 - (void)testBookLessThan {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -223,7 +223,7 @@
     testBook.setPageCount(100);
     testBook.setPublishDate("Dec 01 1990");
     
-    Book testBook2;
+    rtlBook::Book testBook2;
     testBook2.setAuthor("b");
     testBook2.setTitle("b");
     testBook2.setSeries("b");
@@ -250,7 +250,7 @@
 }
 
 - (void)testBookLessEqualsThan {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -259,7 +259,7 @@
     testBook.setPageCount(100);
     testBook.setPublishDate("Dec 01 1990");
     
-    Book testBook2;
+    rtlBook::Book testBook2;
     testBook2.setAuthor("b");
     testBook2.setTitle("b");
     testBook2.setSeries("b");
@@ -286,7 +286,7 @@
 }
 
 - (void)testBookGreaterThan {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -295,7 +295,7 @@
     testBook.setPageCount(100);
     testBook.setPublishDate("Dec 01 1990");
     
-    Book testBook2;
+    rtlBook::Book testBook2;
     testBook2.setAuthor("b");
     testBook2.setTitle("b");
     testBook2.setSeries("b");
@@ -322,7 +322,7 @@
 }
 
 - (void)testBookGreaterEqualsThan {
-    Book testBook;
+    rtlBook::Book testBook;
     testBook.setAuthor("a");
     testBook.setTitle("a");
     testBook.setSeries("a");
@@ -331,7 +331,7 @@
     testBook.setPageCount(100);
     testBook.setPublishDate("Dec 01 1990");
     
-    Book testBook2;
+    rtlBook::Book testBook2;
     testBook2.setAuthor("b");
     testBook2.setTitle("b");
     testBook2.setSeries("b");
@@ -358,32 +358,32 @@
 }
 
 - (void)testBookConstructor {
-    Book testBook;
+    rtlBook::Book testBook;
     //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
-    Book testBookConstructor("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, romance, 1199163600);
+    rtlBook::Book testBookConstructor("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtlBook::romance, 1199163600);
     XCTAssert("testAuthor" == testBookConstructor.getAuthor());
     XCTAssert("testTitle" == testBookConstructor.getTitle());
     XCTAssert("testSeries" == testBookConstructor.getSeries());
     XCTAssert("testPublisher" == testBookConstructor.getPublisher());
     XCTAssert(1111 == testBookConstructor.getPageCount());
-    XCTAssert(romance == testBookConstructor.getGenre());
+    XCTAssert(rtlBook::romance == testBookConstructor.getGenre());
     XCTAssert(1199163600 == testBookConstructor.getPublishDateAsTimeT());
     
     //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
-    Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, "thriller", "Nov 16 1991");
+    rtlBook::Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, "thriller", "Nov 16 1991");
     XCTAssert("testAuthor2" == testBookConstructor2.getAuthor());
     XCTAssert("testTitle2" == testBookConstructor2.getTitle());
     XCTAssert("testSeries2" == testBookConstructor2.getSeries());
     XCTAssert("testPublisher2" == testBookConstructor2.getPublisher());
     XCTAssert(2222 == testBookConstructor2.getPageCount());
-    XCTAssert(thriller == testBookConstructor2.getGenre());
+    XCTAssert(rtlBook::thriller == testBookConstructor2.getGenre());
     XCTAssert("Nov 16 1991" == testBookConstructor2.printPublishDate());
 }
 
 - (void)testPrintColumnHeaders {
     std::string testStr = "Author              Title                              Series              Pages";
     
-    XCTAssert(Book::printCommandLineHeaders() == testStr);
+    XCTAssert(rtlBook::Book::printCommandLineHeaders() == testStr);
 }
 
 - (void)testPrintCommandLine {
@@ -391,9 +391,9 @@
     std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    Millennium          480  ";
     std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 The Wheel of Time12 70212";
     
-    Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006");
-    Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005");
-    Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990");
+    rtlBook::Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006");
+    rtlBook::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005");
+    rtlBook::Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990");
     
     XCTAssert(bookMist.printCommandLine() == testMist);
     XCTAssert(bookGirl.printCommandLine() == testGirl);
@@ -401,10 +401,9 @@
 }
 
 - (void)testSetandGetOclc {
-    Book testBook;
+    rtlBook::Book testBook;
     std::string testString = "1234";
-    
-    
+                              
     testBook.setOclc(testString);
     
     XCTAssert(testBook.getOclc() == testString);

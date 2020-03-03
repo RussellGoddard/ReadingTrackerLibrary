@@ -39,7 +39,7 @@ void ReadBook::setDateRead(std::string time) {
     std::string year = time.substr(7, 4);
     
     int intYear;
-    int intMonth = convertAbbrMonthToInt(month);
+    int intMonth = rtlBook::convertAbbrMonthToInt(month);
     int intDay;
     
     if (intMonth == -1) {
@@ -228,7 +228,7 @@ ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : 
 }
 
 
-ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate, int rating, time_t dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, rtlBook::Genre genre, time_t publishDate, int rating, time_t dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
     this->setDateRead(dateRead);
     this->setRating(rating);

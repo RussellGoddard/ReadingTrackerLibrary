@@ -14,60 +14,63 @@
 #include <sstream>
 #include <string>
 
-enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
+namespace rtlBook {
 
-int convertAbbrMonthToInt(std::string month);
-Genre convertStringToGenre(std::string genre);
-std::string convertGenreToString(Genre genre);
+    enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
 
-class Book {
-public:
-    std::string getAuthor() const;
-    std::string getTitle() const;
-    std::string getSeries() const;
-    std::string getPublisher() const;
-    int getPageCount() const;
-    Genre getGenre() const;
-    std::string printGenre() const;
-    tm getPublishDate() const;
-    time_t getPublishDateAsTimeT();
-    std::string getOclc() const;
-    std::string printPublishDate() const;
-    std::string printJson() const;
-    std::string printCommandLine() const;
-    void setAuthor(std::string author);
-    void setTitle(std::string title);
-    void setSeries(std::string series);
-    void setPublisher(std::string publisher);
-    void setPageCount(int pageCount);
-    void setPageCount(char pageCount); //will result in pageCount being set to -1
-    void setPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
-    void setGenre(Genre genre);
-    void setGenre(std::string genre);
-    void setPublishDate(time_t publishDate);
-    void setPublishDate(std::string publishDate);
-    void setOclc(std::string oclc);
-    Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
-    Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
-    Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
-    
-    static std::string printCommandLineHeaders();
-private:
-    std::string oclc;
-    std::string author;
-    std::string title;
-    std::string publisher;
-    std::string series;
-    Genre genre;
-    int pageCount;
-    tm publishDate;
-};
+    int convertAbbrMonthToInt(std::string month);
+    Genre convertStringToGenre(std::string genre);
+    std::string convertGenreToString(Genre genre);
 
-bool operator==(const Book& lhs, const Book& rhs);
-bool operator!=(const Book& lhs, const Book& rhs);
-bool operator<(const Book& lhs, const Book& rhs);
-bool operator>(const Book& lhs, const Book& rhs);
-bool operator>=(const Book& lhs, const Book& rhs);
-bool operator<=(const Book& lhs, const Book& rhs);
+    class Book {
+    public:
+        std::string getAuthor() const;
+        std::string getTitle() const;
+        std::string getSeries() const;
+        std::string getPublisher() const;
+        int getPageCount() const;
+        Genre getGenre() const;
+        std::string printGenre() const;
+        tm getPublishDate() const;
+        time_t getPublishDateAsTimeT();
+        std::string getOclc() const;
+        std::string printPublishDate() const;
+        std::string printJson() const;
+        std::string printCommandLine() const;
+        void setAuthor(std::string author);
+        void setTitle(std::string title);
+        void setSeries(std::string series);
+        void setPublisher(std::string publisher);
+        void setPageCount(int pageCount);
+        void setPageCount(char pageCount); //will result in pageCount being set to -1
+        void setPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
+        void setGenre(Genre genre);
+        void setGenre(std::string genre);
+        void setPublishDate(time_t publishDate);
+        void setPublishDate(std::string publishDate);
+        void setOclc(std::string oclc);
+        Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
+        Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
+        Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
+        
+        static std::string printCommandLineHeaders();
+    private:
+        std::string oclc;
+        std::string author;
+        std::string title;
+        std::string publisher;
+        std::string series;
+        Genre genre;
+        int pageCount;
+        tm publishDate;
+    };
+
+    bool operator==(const Book& lhs, const Book& rhs);
+    bool operator!=(const Book& lhs, const Book& rhs);
+    bool operator<(const Book& lhs, const Book& rhs);
+    bool operator>(const Book& lhs, const Book& rhs);
+    bool operator>=(const Book& lhs, const Book& rhs);
+    bool operator<=(const Book& lhs, const Book& rhs);
+}
 
 #endif /* Book_hpp */

@@ -39,9 +39,9 @@ Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
 }
 */
 
-Book getNewBook(std::istream& inputStream, std::ostream& outputStream) {
+rtlBook::Book getNewBook(std::istream& inputStream, std::ostream& outputStream) {
     std::string input;
-    Book newBook;
+    rtlBook::Book newBook;
     
     outputLine(outputStream, "Input author");
     input = getInput(inputStream);
@@ -161,7 +161,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
         switch(charInput) {
             //book
             case '1': {
-                Book newBook = getNewBook(inputStream, outputStream);
+                rtlBook::Book newBook = getNewBook(inputStream, outputStream);
                 outputLine(outputStream, "Would you like to save:");
                 outputLine(outputStream, newBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
@@ -176,7 +176,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
-                        masterList.addMasterBooks(std::make_shared<Book>(newBook));
+                        masterList.addMasterBooks(std::make_shared<rtlBook::Book>(newBook));
                         outputLine(outputStream, "Book added successfully\n");
                         break;
                     }
@@ -288,7 +288,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
             case '1': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, Book::printCommandLineHeaders());
+                    outputLine(outputStream, rtlBook::Book::printCommandLineHeaders());
                     for (auto x : masterList.getMasterBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
@@ -343,7 +343,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
                     //book
                     outputLine(outputStream, "Books:\n");
                     //column headers
-                    outputLine(outputStream, Book::printCommandLineHeaders());
+                    outputLine(outputStream, rtlBook::Book::printCommandLineHeaders());
                     for (auto x : masterList.getMasterBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }

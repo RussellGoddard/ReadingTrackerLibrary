@@ -40,13 +40,13 @@
     
     inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\nOct 01 1999\n123\n");
     
-    Book testBook = getNewBook(inputSs, outputSs);
+    rtlBook::Book testBook = getNewBook(inputSs, outputSs);
     
     XCTAssert(testBook.getAuthor() == "testAuthor");
     XCTAssert(testBook.getTitle() == "testTitle");
     XCTAssert(testBook.getPublisher() == "testPublisher");
     XCTAssert(testBook.getSeries() == "testSeries");
-    XCTAssert(testBook.getGenre() == fantasy);
+    XCTAssert(testBook.getGenre() == rtlBook::fantasy);
     XCTAssert(testBook.printPublishDate() == "Oct 01 1999");
     XCTAssert(testBook.getPageCount() == 123);
 }
@@ -63,7 +63,7 @@
     XCTAssert(testReadBook.getTitle() == "testTitle");
     XCTAssert(testReadBook.getPublisher() == "testPublisher");
     XCTAssert(testReadBook.getSeries() == "testSeries");
-    XCTAssert(testReadBook.getGenre() == fantasy);
+    XCTAssert(testReadBook.getGenre() == rtlBook::fantasy);
     XCTAssert(testReadBook.printPublishDate() == "Oct 01 1999");
     XCTAssert(testReadBook.getPageCount() == 123);
     XCTAssert(testReadBook.printDateRead() == "Oct 02 1999");
