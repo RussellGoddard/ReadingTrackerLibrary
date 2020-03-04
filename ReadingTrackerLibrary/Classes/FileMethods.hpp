@@ -18,9 +18,9 @@
 class InMemoryContainers {
 public:
     
-    std::vector<std::shared_ptr<ReadBook>> getMasterReadBooks();
-    void addMasterReadBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector);
-    void addMasterReadBooks(std::shared_ptr<ReadBook> newReadBook);
+    std::vector<std::shared_ptr<rtlBook::ReadBook>> getMasterReadBooks();
+    void addMasterReadBooks(std::vector<std::shared_ptr<rtlBook::ReadBook>> newReadBookVector);
+    void addMasterReadBooks(std::shared_ptr<rtlBook::ReadBook> newReadBook);
     
     std::vector<std::shared_ptr<rtlBook::Book>> getMasterBooks();
     void addMasterBooks(std::vector<std::shared_ptr<rtlBook::Book>> newBookVector);
@@ -43,7 +43,7 @@ public:
     
 private:
     //only for adding books when vector addMasterReadBooks is called
-    void addMasterBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector);
+    void addMasterBooks(std::vector<std::shared_ptr<rtlBook::ReadBook>> newReadBookVector);
     
     InMemoryContainers() = default;
     ~InMemoryContainers() = default;
@@ -51,7 +51,7 @@ private:
     void operator=(InMemoryContainers const&) = delete;
     
     
-    std::vector<std::shared_ptr<ReadBook>> readBookVector;
+    std::vector<std::shared_ptr<rtlBook::ReadBook>> readBookVector;
     std::vector<std::shared_ptr<rtlBook::Book>> bookVector;
     std::vector<std::shared_ptr<Author>> authorVector;
 };
@@ -59,10 +59,10 @@ private:
 template <typename T>
 void sortUnique(std::vector<T>& input); //this shouldn't be declared here but everytime I try to move it to a util header I break everything TO DO
 bool saveJson(std::vector<nlohmann::json> input, std::string filePath);
-std::vector<std::shared_ptr<ReadBook>> loadReadingList(std::string filePath);
-ReadBook convertJsonToReadBook(nlohmann::json json);
+std::vector<std::shared_ptr<rtlBook::ReadBook>> loadReadingList(std::string filePath);
+rtlBook::ReadBook convertJsonToReadBook(nlohmann::json json);
 std::shared_ptr<rtlBook::Book> convertJsonToBookPtr(nlohmann::json json);
-std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json);
+std::shared_ptr<rtlBook::ReadBook> convertJsonToReadBookPtr(nlohmann::json json);
 std::shared_ptr<Author> convertJsonToAuthorPtr(nlohmann::json json);
 std::string& rightTrim(std::string& input);
 std::string& leftTrim(std::string& input);

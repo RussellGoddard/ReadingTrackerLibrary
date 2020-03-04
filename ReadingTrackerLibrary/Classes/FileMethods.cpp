@@ -39,7 +39,7 @@ bool saveJson(std::vector<nlohmann::json> input, std::fstream& saveFile) {
     return true;
 }
 
-ReadBook convertJsonToReadBook(nlohmann::json json) {
+rtlBook::ReadBook convertJsonToReadBook(nlohmann::json json) {
     
     int readerId = json["readerId"].get<int>();
     std::string author = json["author"].get<std::string>();
@@ -52,7 +52,7 @@ ReadBook convertJsonToReadBook(nlohmann::json json) {
     int rating = json["rating"].get<int>();
     std::string time = json["dateRead"].get<std::string>();
     
-    return ReadBook(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
+    return rtlBook::ReadBook(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
 }
 
 std::shared_ptr<rtlBook::Book> convertJsonToBookPtr(nlohmann::json json) {
@@ -69,7 +69,7 @@ std::shared_ptr<rtlBook::Book> convertJsonToBookPtr(nlohmann::json json) {
     return newBook;
 }
 
-std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
+std::shared_ptr<rtlBook::ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
     
     int readerId = json["readerId"].get<int>();
     std::string author = json["author"].get<std::string>();
@@ -82,7 +82,7 @@ std::shared_ptr<ReadBook> convertJsonToReadBookPtr(nlohmann::json json) {
     int rating = json["rating"].get<int>();
     std::string time = json["dateRead"].get<std::string>();
     
-    std::shared_ptr<ReadBook> newReadBook = std::make_shared<ReadBook>(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
+    std::shared_ptr<rtlBook::ReadBook> newReadBook = std::make_shared<rtlBook::ReadBook>(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
     
     return newReadBook;
 }
@@ -100,18 +100,18 @@ std::shared_ptr<Author> convertJsonToAuthorPtr(nlohmann::json json) {
     return newAuthor;
 }
 
-std::vector<std::shared_ptr<ReadBook>> InMemoryContainers::getMasterReadBooks() {
+std::vector<std::shared_ptr<rtlBook::ReadBook>> InMemoryContainers::getMasterReadBooks() {
     return this->readBookVector;
 }
 
-void InMemoryContainers::addMasterReadBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector) {
+void InMemoryContainers::addMasterReadBooks(std::vector<std::shared_ptr<rtlBook::ReadBook>> newReadBookVector) {
     this->addMasterBooks(newReadBookVector); //add readbook to book vector as well (will be discarded if it already exists
     this->readBookVector.insert(std::end(readBookVector), std::begin(newReadBookVector), std::end(newReadBookVector));
     sortUnique(this->readBookVector);
     return;
 }
 
-void InMemoryContainers::addMasterReadBooks(std::shared_ptr<ReadBook> newReadBook) {
+void InMemoryContainers::addMasterReadBooks(std::shared_ptr<rtlBook::ReadBook> newReadBook) {
     this->addMasterBooks(newReadBook); //add readbook to book vector as well (will be discarded if it already exists
     this->readBookVector.push_back(newReadBook);
     sortUnique(this->readBookVector);
@@ -122,7 +122,7 @@ std::vector<std::shared_ptr<rtlBook::Book>> InMemoryContainers::getMasterBooks()
     return this->bookVector;
 }
 
-void InMemoryContainers::addMasterBooks(std::vector<std::shared_ptr<ReadBook>> newReadBookVector) {
+void InMemoryContainers::addMasterBooks(std::vector<std::shared_ptr<rtlBook::ReadBook>> newReadBookVector) {
     for (auto x : newReadBookVector) {
         this->bookVector.push_back(x);
     }

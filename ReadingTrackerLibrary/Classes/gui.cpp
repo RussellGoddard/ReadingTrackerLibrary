@@ -82,9 +82,9 @@ rtlBook::Book getNewBook(std::istream& inputStream, std::ostream& outputStream) 
     "dateRead" : "Oct 26 2019"
 }
 */
-ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
+rtlBook::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
     std::string input;
-    ReadBook newReadBook(readerId);
+    rtlBook::ReadBook newReadBook(readerId);
     
     outputLine(outputStream, "Input author");
     input = getInput(inputStream);
@@ -190,7 +190,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
             }
             //readbook
             case '2': {
-                ReadBook newReadBook = getNewReadBook(inputStream, outputStream, readerId);
+                rtlBook::ReadBook newReadBook = getNewReadBook(inputStream, outputStream, readerId);
                 outputLine(outputStream, "Would you like to save:");
                 outputLine(outputStream, newReadBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
@@ -205,7 +205,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
-                        masterList.addMasterReadBooks(std::make_shared<ReadBook>(newReadBook));
+                        masterList.addMasterReadBooks(std::make_shared<rtlBook::ReadBook>(newReadBook));
                         outputLine(outputStream, "Read book added successfully\n");
                         break;
                     }
@@ -306,7 +306,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
             case '2': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, ReadBook::printCommandLineHeaders());
+                    outputLine(outputStream, rtlBook::ReadBook::printCommandLineHeaders());
                     for (auto x : masterList.getMasterReadBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
@@ -352,7 +352,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
                     //readbook
                     outputLine(outputStream, "Read Books:\n");
                     //column headers
-                    outputLine(outputStream, ReadBook::printCommandLineHeaders());
+                    outputLine(outputStream, rtlBook::ReadBook::printCommandLineHeaders());
                     for (auto x : masterList.getMasterReadBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
