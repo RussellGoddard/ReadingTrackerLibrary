@@ -26,7 +26,7 @@
 }
 
 - (void)testReadBookVector {
-    rtlBook::ReadBook testReadBook1(1);
+    rtl::ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
     testReadBook1.setTitle("a");
     testReadBook1.setSeries("a");
@@ -37,7 +37,7 @@
     testReadBook1.setRating(4);
     testReadBook1.setDateRead("Mar 25 1993");
     
-    rtlBook::ReadBook testReadBook2(1);
+    rtl::ReadBook testReadBook2(1);
     testReadBook2.setAuthor("b");
     testReadBook2.setTitle("b");
     testReadBook2.setSeries("b");
@@ -48,7 +48,7 @@
     testReadBook2.setRating(4);
     testReadBook2.setDateRead("Mar 25 1993");
     
-    rtlBook::ReadBook testReadBook3(1);
+    rtl::ReadBook testReadBook3(1);
     testReadBook3.setAuthor("a");
     testReadBook3.setTitle("a");
     testReadBook3.setSeries("a");
@@ -59,10 +59,10 @@
     testReadBook3.setRating(4);
     testReadBook3.setDateRead("Mar 25 1993");
     
-    std::shared_ptr<rtlBook::ReadBook> testPtrReadBook1 = std::make_shared<rtlBook::ReadBook>(testReadBook1);
-    std::shared_ptr<rtlBook::ReadBook> testPtrReadBook2 = std::make_shared<rtlBook::ReadBook>(testReadBook2);
-    std::shared_ptr<rtlBook::ReadBook> testPtrReadBook3 = std::make_shared<rtlBook::ReadBook>(testReadBook3);
-    std::vector<std::shared_ptr<rtlBook::ReadBook>> testReadBooks;
+    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = std::make_shared<rtl::ReadBook>(testReadBook1);
+    std::shared_ptr<rtl::ReadBook> testPtrReadBook2 = std::make_shared<rtl::ReadBook>(testReadBook2);
+    std::shared_ptr<rtl::ReadBook> testPtrReadBook3 = std::make_shared<rtl::ReadBook>(testReadBook3);
+    std::vector<std::shared_ptr<rtl::ReadBook>> testReadBooks;
     testReadBooks.push_back(testPtrReadBook1);
     testReadBooks.push_back(testPtrReadBook2);
     testReadBooks.push_back(testPtrReadBook3);
@@ -87,7 +87,7 @@
 }
 
 - (void)testBookVector {
-    rtlBook::Book testBook1;
+    rtl::Book testBook1;
     testBook1.setAuthor("testAuthor");
     testBook1.setTitle("testTitle");
     testBook1.setSeries("testSeries");
@@ -96,7 +96,7 @@
     testBook1.setPageCount(10);
     testBook1.setPublishDate("Dec 01 1990");
     
-    rtlBook::Book testBook2;
+    rtl::Book testBook2;
     testBook2.setAuthor("testAuthor2");
     testBook2.setTitle("testTitle2");
     testBook2.setSeries("testSeries2");
@@ -105,7 +105,7 @@
     testBook2.setPageCount(100);
     testBook2.setPublishDate("Dec 01 1991");
     
-    rtlBook::Book testBook3;
+    rtl::Book testBook3;
     testBook3.setAuthor("testAuthor");
     testBook3.setTitle("testTitle");
     testBook3.setSeries("testSeries");
@@ -114,10 +114,10 @@
     testBook3.setPageCount(10);
     testBook3.setPublishDate("Dec 01 1990");
     
-    std::shared_ptr<rtlBook::Book> testPtrBook1 = std::make_shared<rtlBook::Book>(testBook1);
-    std::shared_ptr<rtlBook::Book> testPtrBook2 = std::make_shared<rtlBook::Book>(testBook2);
-    std::shared_ptr<rtlBook::Book> testPtrBook3 = std::make_shared<rtlBook::Book>(testBook3);
-    std::vector<std::shared_ptr<rtlBook::Book>> testBooks;
+    std::shared_ptr<rtl::Book> testPtrBook1 = std::make_shared<rtl::Book>(testBook1);
+    std::shared_ptr<rtl::Book> testPtrBook2 = std::make_shared<rtl::Book>(testBook2);
+    std::shared_ptr<rtl::Book> testPtrBook3 = std::make_shared<rtl::Book>(testBook3);
+    std::vector<std::shared_ptr<rtl::Book>> testBooks;
     testBooks.push_back(testPtrBook1);
     testBooks.push_back(testPtrBook2);
     testBooks.push_back(testPtrBook3);
@@ -137,14 +137,14 @@
 }
 
 - (void)testAuthorVector {
-    Author testAuthor1("test author", "Dec 01 1990");
-    Author testAuthor2("test buthor", "Dec 03 1990");
-    Author testAuthor3("test author", "Dec 01 1990");
+    rtl::Author testAuthor1("test author", "Dec 01 1990");
+    rtl::Author testAuthor2("test buthor", "Dec 03 1990");
+    rtl::Author testAuthor3("test author", "Dec 01 1990");
     
-    std::shared_ptr<Author> testPtrAuthor1 = std::make_shared<Author>(testAuthor1);
-    std::shared_ptr<Author> testPtrAuthor2 = std::make_shared<Author>(testAuthor2);
-    std::shared_ptr<Author> testPtrAuthor3 = std::make_shared<Author>(testAuthor3);
-    std::vector<std::shared_ptr<Author>> testAuthors;
+    std::shared_ptr<rtl::Author> testPtrAuthor1 = std::make_shared<rtl::Author>(testAuthor1);
+    std::shared_ptr<rtl::Author> testPtrAuthor2 = std::make_shared<rtl::Author>(testAuthor2);
+    std::shared_ptr<rtl::Author> testPtrAuthor3 = std::make_shared<rtl::Author>(testAuthor3);
+    std::vector<std::shared_ptr<rtl::Author>> testAuthors;
     testAuthors.push_back(testPtrAuthor1);
     testAuthors.push_back(testPtrAuthor2);
     testAuthors.push_back(testPtrAuthor3);
@@ -164,7 +164,7 @@
 }
 
 - (void)testAddMasterAuthorsPassedBook {
-    rtlBook::Book testBook1;
+    rtl::Book testBook1;
     testBook1.setAuthor("testAuthor1");
     testBook1.setTitle("testTitle1");
     testBook1.setSeries("testSeries1");
@@ -173,7 +173,7 @@
     testBook1.setPageCount(1);
     testBook1.setPublishDate("Dec 01 1990");
     
-    rtlBook::Book testBook2;
+    rtl::Book testBook2;
     testBook2.setAuthor("testAuthor2");
     testBook2.setTitle("testTitle2");
     testBook2.setSeries("testSeries2");
@@ -182,7 +182,7 @@
     testBook2.setPageCount(20);
     testBook2.setPublishDate("Dec 01 1991");
     
-    rtlBook::Book testBook3;
+    rtl::Book testBook3;
     testBook3.setAuthor("testAuthor1");
     testBook3.setTitle("testTitle1");
     testBook3.setSeries("testSeries1");
@@ -191,10 +191,10 @@
     testBook3.setPageCount(1);
     testBook3.setPublishDate("Dec 01 1990");
     
-    std::shared_ptr<rtlBook::Book> testPtrBook1 = std::make_shared<rtlBook::Book>(testBook1);
-    std::shared_ptr<rtlBook::Book> testPtrBook2 = std::make_shared<rtlBook::Book>(testBook2);
-    std::shared_ptr<rtlBook::Book> testPtrBook3 = std::make_shared<rtlBook::Book>(testBook3);
-    std::vector<std::shared_ptr<rtlBook::Book>> testBooks;
+    std::shared_ptr<rtl::Book> testPtrBook1 = std::make_shared<rtl::Book>(testBook1);
+    std::shared_ptr<rtl::Book> testPtrBook2 = std::make_shared<rtl::Book>(testBook2);
+    std::shared_ptr<rtl::Book> testPtrBook3 = std::make_shared<rtl::Book>(testBook3);
+    std::vector<std::shared_ptr<rtl::Book>> testBooks;
     testBooks.push_back(testPtrBook1);
     testBooks.push_back(testPtrBook2);
     testBooks.push_back(testPtrBook3);
@@ -215,16 +215,16 @@
 
 - (void)testAuthorMergeBooksWhenSameAuthor {
     
-    std::vector<std::shared_ptr<rtlBook::Book>> books1;
-    std::vector<std::shared_ptr<rtlBook::Book>> books2;
+    std::vector<std::shared_ptr<rtl::Book>> books1;
+    std::vector<std::shared_ptr<rtl::Book>> books2;
     
-    books1.push_back(std::make_shared<rtlBook::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtlBook::romance, 1199163600));
-    books1.push_back(std::make_shared<rtlBook::Book>("testAuthor", "testTitle3", "testSeries3", "testPublisher3", 3333, rtlBook::romance, 1199163600));
-    books2.push_back(std::make_shared<rtlBook::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtlBook::romance, 1199163600));
-    books2.push_back(std::make_shared<rtlBook::Book>("testAuthor", "testTitle2", "testSeries2", "testPublisher2", 2222, rtlBook::romance, 1199163600));
+    books1.push_back(std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtl::romance, 1199163600));
+    books1.push_back(std::make_shared<rtl::Book>("testAuthor", "testTitle3", "testSeries3", "testPublisher3", 3333, rtl::romance, 1199163600));
+    books2.push_back(std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtl::romance, 1199163600));
+    books2.push_back(std::make_shared<rtl::Book>("testAuthor", "testTitle2", "testSeries2", "testPublisher2", 2222, rtl::romance, 1199163600));
     
-    std::shared_ptr<Author> testPtrAuthor1 = std::make_shared<Author>("testAuthor", "Dec 01 1990", books1);
-    std::shared_ptr<Author> testPtrAuthor2 = std::make_shared<Author>("testAuthor", "Dec 01 1990", books2);
+    std::shared_ptr<rtl::Author> testPtrAuthor1 = std::make_shared<rtl::Author>("testAuthor", "Dec 01 1990", books1);
+    std::shared_ptr<rtl::Author> testPtrAuthor2 = std::make_shared<rtl::Author>("testAuthor", "Dec 01 1990", books2);
     
     InMemoryContainers& testContainers = InMemoryContainers::getInstance();
     
@@ -252,7 +252,7 @@
       }
     )"_json;
     
-    std::shared_ptr<rtlBook::Book> testPtrBook1 = convertJsonToBookPtr(jsonTest);
+    std::shared_ptr<rtl::Book> testPtrBook1 = convertJsonToBookPtr(jsonTest);
     
     XCTAssert(testPtrBook1->getAuthor() == jsonTest["author"].get<std::string>());
     XCTAssert(testPtrBook1->printGenre() == jsonTest["genre"].get<std::string>());
@@ -281,7 +281,7 @@
       }
     )"_json;
     
-    std::shared_ptr<rtlBook::ReadBook> testPtrReadBook1 = convertJsonToReadBookPtr(jsonTest);
+    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = convertJsonToReadBookPtr(jsonTest);
     
     XCTAssert(testPtrReadBook1->getReaderId() == jsonTest["readerId"].get<int>());
     XCTAssert(testPtrReadBook1->getAuthor() == jsonTest["author"].get<std::string>());
@@ -320,7 +320,7 @@
       }
     )"_json;
     
-    std::shared_ptr<Author> testPtrAuthor1 = convertJsonToAuthorPtr(jsonTest);
+    std::shared_ptr<rtl::Author> testPtrAuthor1 = convertJsonToAuthorPtr(jsonTest);
     
     XCTAssert(testPtrAuthor1->getName() == jsonTest["name"].get<std::string>());
     XCTAssert(testPtrAuthor1->printDateBorn() == jsonTest["dateBorn"].get<std::string>());
@@ -343,7 +343,7 @@
       }
     )"_json;
     
-    rtlBook::ReadBook testReadBook1 = convertJsonToReadBook(jsonTest);
+    rtl::ReadBook testReadBook1 = convertJsonToReadBook(jsonTest);
     
     XCTAssert(testReadBook1.getReaderId() == jsonTest["readerId"].get<int>());
     XCTAssert(testReadBook1.getAuthor() == jsonTest["author"].get<std::string>());
@@ -362,7 +362,7 @@
     std::string testFilePath = "/Users/Frobu/Desktop/testFileSaveTest.txt";
     
     InMemoryContainers& testContainers = InMemoryContainers::getInstance();
-    rtlBook::Book testBook1;
+    rtl::Book testBook1;
     testBook1.setAuthor("testAuthor");
     testBook1.setTitle("testTitle");
     testBook1.setSeries("testSeries");
@@ -371,7 +371,7 @@
     testBook1.setPageCount(10);
     testBook1.setPublishDate("Dec 01 1990");
     
-    rtlBook::ReadBook testReadBook1(1);
+    rtl::ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
     testReadBook1.setTitle("a");
     testReadBook1.setSeries("a");
@@ -382,15 +382,15 @@
     testReadBook1.setRating(4);
     testReadBook1.setDateRead("Mar 25 1993");
     
-    std::vector<std::shared_ptr<rtlBook::Book>> testBookVector1;
-    testBookVector1.push_back(std::make_shared<rtlBook::Book>(testBook1));
-    testBookVector1.push_back(std::make_shared<rtlBook::Book>(testReadBook1));
+    std::vector<std::shared_ptr<rtl::Book>> testBookVector1;
+    testBookVector1.push_back(std::make_shared<rtl::Book>(testBook1));
+    testBookVector1.push_back(std::make_shared<rtl::Book>(testReadBook1));
     
-    Author testAuthor1("testAuthor", "Dec 01 1990", testBookVector1);
+    rtl::Author testAuthor1("testAuthor", "Dec 01 1990", testBookVector1);
     
-    testContainers.addMasterAuthors(std::make_shared<Author>(testAuthor1));
-    testContainers.addMasterBooks(std::make_shared<rtlBook::Book>(testBook1));
-    testContainers.addMasterReadBooks(std::make_shared<rtlBook::ReadBook>(testReadBook1));
+    testContainers.addMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
+    testContainers.addMasterBooks(std::make_shared<rtl::Book>(testBook1));
+    testContainers.addMasterReadBooks(std::make_shared<rtl::ReadBook>(testReadBook1));
     
     testContainers.saveInMemoryToFile(testFilePath);
     testContainers.clearAll();
@@ -437,7 +437,7 @@
 }
 
 - (void)testClearAll {
-    rtlBook::Book testBook1;
+    rtl::Book testBook1;
     testBook1.setAuthor("testAuthor");
     testBook1.setTitle("testTitle");
     testBook1.setSeries("testSeries");
@@ -446,7 +446,7 @@
     testBook1.setPageCount(10);
     testBook1.setPublishDate("Dec 01 1990");
     
-    rtlBook::ReadBook testReadBook1(1);
+    rtl::ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
     testReadBook1.setTitle("a");
     testReadBook1.setSeries("a");
@@ -457,13 +457,13 @@
     testReadBook1.setRating(4);
     testReadBook1.setDateRead("Mar 25 1993");
     
-    Author testAuthor1("test author", "Dec 01 1990");
+    rtl::Author testAuthor1("test author", "Dec 01 1990");
     
     InMemoryContainers& testContainer = InMemoryContainers::getInstance();
     
-    testContainer.addMasterAuthors(std::make_shared<Author>(testAuthor1));
-    testContainer.addMasterReadBooks(std::make_shared<rtlBook::ReadBook>(testReadBook1));
-    testContainer.addMasterBooks(std::make_shared<rtlBook::Book>(testBook1));
+    testContainer.addMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
+    testContainer.addMasterReadBooks(std::make_shared<rtl::ReadBook>(testReadBook1));
+    testContainer.addMasterBooks(std::make_shared<rtl::Book>(testBook1));
     
     XCTAssert(testContainer.getMasterAuthors().size() == 3);
     XCTAssert(testContainer.getMasterBooks().size() == 2);

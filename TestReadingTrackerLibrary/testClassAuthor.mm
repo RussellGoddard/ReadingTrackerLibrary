@@ -16,13 +16,13 @@
 
 @implementation testClassAuthor
 
-std::vector<std::shared_ptr<rtlBook::Book>> bookCollection;
-std::shared_ptr<rtlBook::Book> testBook1;
-std::shared_ptr<rtlBook::Book> testBook2;
+std::vector<std::shared_ptr<rtl::Book>> bookCollection;
+std::shared_ptr<rtl::Book> testBook1;
+std::shared_ptr<rtl::Book> testBook2;
 
 - (void)setUp {
-    testBook1 = std::make_shared<rtlBook::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 11, "fantasy", "Nov 11 1992");
-    testBook2 = std::make_shared<rtlBook::Book>("testA", "testT", "testS", "testP", 22, "western", "Nov 13 1999");
+    testBook1 = std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 11, "fantasy", "Nov 11 1992");
+    testBook2 = std::make_shared<rtl::Book>("testA", "testT", "testS", "testP", 22, "western", "Nov 13 1999");
     bookCollection.push_back(testBook1);
     bookCollection.push_back(testBook2);
 }
@@ -32,14 +32,14 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testSetName {
-    Author testAuthor("testAuthor");
+    rtl::Author testAuthor("testAuthor");
     XCTAssert(testAuthor.getName() == "testAuthor");
     testAuthor.setName("pickle");
     XCTAssert(testAuthor.getName() == "pickle");
 }
 
 - (void)testSetDateBorn {
-    Author testAuthor("testAuthor");
+    rtl::Author testAuthor("testAuthor");
     time_t testValue = 1573862400;
     testAuthor.setDateBorn(testValue);
     tm initialTm = *std::gmtime(&testValue);
@@ -72,8 +72,8 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testAddBook {    
-    Author newAuthor("testAuthor");
-    std::shared_ptr<rtlBook::Book> testBook = std::make_shared<rtlBook::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtlBook::fantasy, "Nov 11 1992");
+    rtl::Author newAuthor("testAuthor");
+    std::shared_ptr<rtl::Book> testBook = std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::fantasy, "Nov 11 1992");
     
     XCTAssert(newAuthor.getBooksWritten().empty());
     
@@ -84,7 +84,7 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testAddBooks {
-    Author newAuthor("testAuthors");
+    rtl::Author newAuthor("testAuthors");
     
     XCTAssert(newAuthor.getBooksWritten().empty());
     
@@ -98,13 +98,13 @@ std::shared_ptr<rtlBook::Book> testBook2;
 - (void)testAuthorConstructor {
     
     //Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
-    Author testAuthor1("testAuthor1", 660027600);
+    rtl::Author testAuthor1("testAuthor1", 660027600);
     XCTAssert(testAuthor1.getName() == "testAuthor1");
     XCTAssert(testAuthor1.getDateBornTimeT() == 660027600);
     XCTAssert(testAuthor1.getBooksWritten().size() == 0);
     
     //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
-    Author testAuthor2("testAuthor2", "Dec 01 1990", bookCollection);
+    rtl::Author testAuthor2("testAuthor2", "Dec 01 1990", bookCollection);
     XCTAssert(testAuthor2.getName() == "testAuthor2");
     XCTAssert(testAuthor2.printDateBorn() == "Dec 01 1990");
     XCTAssert(testAuthor2.getBooksWritten().size() == bookCollection.size());
@@ -113,7 +113,7 @@ std::shared_ptr<rtlBook::Book> testBook2;
     XCTAssert(testAuthor2.getBooksWritten().at(1) == testBook1);
     
     //Author::Author(std::string name, time_t dateBorn, std::shared_ptr<Book> bookWritten)
-    Author testAuthor3("testAuthor3", 660027600, testBook1);
+    rtl::Author testAuthor3("testAuthor3", 660027600, testBook1);
     XCTAssert(testAuthor3.getName() == "testAuthor3");
     XCTAssert(testAuthor3.getDateBornTimeT() == 660027600);
     XCTAssert(testAuthor3.getBooksWritten().size() == 1);
@@ -121,22 +121,22 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testEquals {
-    Author testAuthor1("testAuthor1", "Dec 01 1990");
-    Author testAuthor2("testAuthor1", "Dec 01 1990");
+    rtl::Author testAuthor1("testAuthor1", "Dec 01 1990");
+    rtl::Author testAuthor2("testAuthor1", "Dec 01 1990");
     
     XCTAssert(testAuthor1 == testAuthor2);
 }
 
 - (void)testNotEquals {
-    Author testAuthor1("testAuthor1", "Dec 01 1990");
-    Author testAuthor2("testAuthor2", "Dec 01 1990");
+    rtl::Author testAuthor1("testAuthor1", "Dec 01 1990");
+    rtl::Author testAuthor2("testAuthor2", "Dec 01 1990");
     
     XCTAssert(testAuthor1 != testAuthor2);
 }
 
 - (void)testLessThan {
-    Author testAuthor1("a", "Dec 01 1990");
-    Author testAuthor2("b", "Dec 01 1990");
+    rtl::Author testAuthor1("a", "Dec 01 1990");
+    rtl::Author testAuthor2("b", "Dec 01 1990");
     
     XCTAssert(testAuthor1 < testAuthor2);
     
@@ -156,8 +156,8 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testLessThanEquals {
-    Author testAuthor1("a", "Dec 01 1990");
-    Author testAuthor2("b", "Dec 01 1990");
+    rtl::Author testAuthor1("a", "Dec 01 1990");
+    rtl::Author testAuthor2("b", "Dec 01 1990");
     
     XCTAssert(testAuthor1 <= testAuthor2);
     
@@ -180,8 +180,8 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testGreaterThan {
-    Author testAuthor1("a", "Dec 01 1990");
-    Author testAuthor2("b", "Dec 01 1990");
+    rtl::Author testAuthor1("a", "Dec 01 1990");
+    rtl::Author testAuthor2("b", "Dec 01 1990");
     
     XCTAssert(testAuthor2 > testAuthor1);
     
@@ -201,8 +201,8 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testGreaterThanEquals {
-    Author testAuthor1("a", "Dec 01 1990");
-    Author testAuthor2("b", "Dec 01 1990");
+    rtl::Author testAuthor1("a", "Dec 01 1990");
+    rtl::Author testAuthor2("b", "Dec 01 1990");
     
     XCTAssert(testAuthor2 >= testAuthor1);
     
@@ -225,11 +225,11 @@ std::shared_ptr<rtlBook::Book> testBook2;
 }
 
 - (void)testAuthorPrintJson {
-    std::shared_ptr<rtlBook::Book> testBook1 = std::make_shared<rtlBook::Book>("testAuthor1", "testTitle1", "testSeries1", "testPublisher1", 1, rtlBook::fantasy, "Nov 11 1992");
-    std::shared_ptr<rtlBook::Book> testBook2 = std::make_shared<rtlBook::Book>("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 22, rtlBook::western, "Nov 11 2020");
-    Author testAuthor1("a", "Dec 01 1990");
-    Author testAuthor2("b", "Nov 12 2001");
-    Author testAuthor3("3rd", "Apr 01 2000");
+    std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("testAuthor1", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::fantasy, "Nov 11 1992");
+    std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::western, "Nov 11 2020");
+    rtl::Author testAuthor1("a", "Dec 01 1990");
+    rtl::Author testAuthor2("b", "Nov 12 2001");
+    rtl::Author testAuthor3("3rd", "Apr 01 2000");
     testAuthor3.addBookWritten(testBook1);
     testAuthor3.addBookWritten(testBook2);
     
@@ -242,17 +242,17 @@ std::shared_ptr<rtlBook::Book> testBook2;
     //Author(std::string name, time_t dateBorn = std::time(&jan2038), std::vector<std::shared_ptr<Book>> booksWritten = {});
     //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
     
-    Author testAuthor("testName");
+    rtl::Author testAuthor("testName");
     XCTAssert(testAuthor.getName() == "testName");
     XCTAssert(testAuthor.printDateBorn() == "Jan 01 2038");
     XCTAssert(testAuthor.getBooksWritten().size() == 0);
     
-    Author testAuthor2("testName2", "Dec 01 1990");
+    rtl::Author testAuthor2("testName2", "Dec 01 1990");
     XCTAssert(testAuthor2.getName() == "testName2");
     XCTAssert(testAuthor2.printDateBorn() == "Dec 01 1990");
     XCTAssert(testAuthor2.getBooksWritten().size() == 0);
     
-    Author testAuthor3("testName3", "Jun 02 1975", bookCollection);
+    rtl::Author testAuthor3("testName3", "Jun 02 1975", bookCollection);
     XCTAssert(testAuthor3.getName() == "testName3");
     XCTAssert(testAuthor3.printDateBorn() == "Jun 02 1975");
     XCTAssert(testAuthor3.getBooksWritten().size() == bookCollection.size());
@@ -260,12 +260,12 @@ std::shared_ptr<rtlBook::Book> testBook2;
     XCTAssert(testAuthor3.getBooksWritten().at(0) == testBook2);
     XCTAssert(testAuthor3.getBooksWritten().at(1) == testBook1);
     
-    Author testAuthor4("testName4", "Aug 27 1984");
+    rtl::Author testAuthor4("testName4", "Aug 27 1984");
     XCTAssert(testAuthor4.getName() == "testName4");
     XCTAssert(testAuthor4.printDateBorn() == "Aug 27 1984");
     XCTAssert(testAuthor4.getBooksWritten().size() == 0);
     
-    Author testAuthor5("testName5", "Feb 21 2001", bookCollection);
+    rtl::Author testAuthor5("testName5", "Feb 21 2001", bookCollection);
     XCTAssert(testAuthor5.getName() == "testName5");
     XCTAssert(testAuthor5.printDateBorn() == "Feb 21 2001");
     XCTAssert(testAuthor5.getBooksWritten().size() == bookCollection.size());
@@ -277,7 +277,7 @@ std::shared_ptr<rtlBook::Book> testBook2;
 - (void)testPrintColumnHeaders {
     std::string testStr = "Author              Date Born   Books Written                               Year";
     
-    XCTAssert(Author::printCommandLineHeaders() == testStr);
+    XCTAssert(rtl::Author::printCommandLineHeaders() == testStr);
 }
 
 - (void)testPrintCommandLine {
@@ -285,23 +285,23 @@ std::shared_ptr<rtlBook::Book> testBook2;
     std::string testGirl = "Stieg Larsson       Aug 15 1964 The Girl with the Dragon Tattoo             2005";
     std::string testWidth = "Robert Jordan123456 Oct 17 1948 The Eye of the World12345678901234567890123 1990";
     
-    rtlBook::Book bookMist1("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006");
-    rtlBook::Book bookMist2("Brandon Sanderson", "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2007");
-    rtlBook::Book bookMist3("Brandon Sanderson", "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2008");
-    rtlBook::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005");
-    rtlBook::Book bookWidth("Robert Jordan1234567", "The Eye of the World1234567890123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990");
+    rtl::Book bookMist1("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006");
+    rtl::Book bookMist2("Brandon Sanderson", "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2007");
+    rtl::Book bookMist3("Brandon Sanderson", "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2008");
+    rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005");
+    rtl::Book bookWidth("Robert Jordan1234567", "The Eye of the World1234567890123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990");
     
-    std::vector<std::shared_ptr<rtlBook::Book>> mistbornVector;
-    mistbornVector.push_back(std::make_shared<rtlBook::Book>(bookMist1));
-    mistbornVector.push_back(std::make_shared<rtlBook::Book>(bookMist2));
-    mistbornVector.push_back(std::make_shared<rtlBook::Book>(bookMist3));
+    std::vector<std::shared_ptr<rtl::Book>> mistbornVector;
+    mistbornVector.push_back(std::make_shared<rtl::Book>(bookMist1));
+    mistbornVector.push_back(std::make_shared<rtl::Book>(bookMist2));
+    mistbornVector.push_back(std::make_shared<rtl::Book>(bookMist3));
     
-    Author authorMist("Brandon Sanderson", "Dec 19 1975", mistbornVector);
-    Author authorGirl("Stieg Larsson", "Aug 15 1964");
-    authorGirl.addBookWritten(std::make_shared<rtlBook::Book>(bookGirl));
-    Author authorWidth("Robert Jordan1234567");
+    rtl::Author authorMist("Brandon Sanderson", "Dec 19 1975", mistbornVector);
+    rtl::Author authorGirl("Stieg Larsson", "Aug 15 1964");
+    authorGirl.addBookWritten(std::make_shared<rtl::Book>(bookGirl));
+    rtl::Author authorWidth("Robert Jordan1234567");
     authorWidth.setDateBorn("Oct 17 1948");
-    authorWidth.addBookWritten(std::make_shared<rtlBook::Book>(bookWidth));
+    authorWidth.addBookWritten(std::make_shared<rtl::Book>(bookWidth));
     
     XCTAssert(authorMist.printCommandLine() == testMist);
     XCTAssert(authorGirl.printCommandLine() == testGirl);

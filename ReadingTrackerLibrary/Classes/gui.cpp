@@ -15,14 +15,14 @@
 
 */
 
-Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
+rtl::Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
     std::string name, dateBorn;
     
     outputLine(outputStream, "Input author's name");
     name = getInput(inputStream);
     outputLine(outputStream, "Input author's date of birth (leave blank if unknown)");
     dateBorn = getInput(inputStream);
-    Author newAuthor(name, dateBorn);
+    rtl::Author newAuthor(name, dateBorn);
     
     return newAuthor;
 }
@@ -39,9 +39,9 @@ Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
 }
 */
 
-rtlBook::Book getNewBook(std::istream& inputStream, std::ostream& outputStream) {
+rtl::Book getNewBook(std::istream& inputStream, std::ostream& outputStream) {
     std::string input;
-    rtlBook::Book newBook;
+    rtl::Book newBook;
     
     outputLine(outputStream, "Input author");
     input = getInput(inputStream);
@@ -82,9 +82,9 @@ rtlBook::Book getNewBook(std::istream& inputStream, std::ostream& outputStream) 
     "dateRead" : "Oct 26 2019"
 }
 */
-rtlBook::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
+rtl::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
     std::string input;
-    rtlBook::ReadBook newReadBook(readerId);
+    rtl::ReadBook newReadBook(readerId);
     
     outputLine(outputStream, "Input author");
     input = getInput(inputStream);
@@ -161,7 +161,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
         switch(charInput) {
             //book
             case '1': {
-                rtlBook::Book newBook = getNewBook(inputStream, outputStream);
+                rtl::Book newBook = getNewBook(inputStream, outputStream);
                 outputLine(outputStream, "Would you like to save:");
                 outputLine(outputStream, newBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
@@ -176,7 +176,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
-                        masterList.addMasterBooks(std::make_shared<rtlBook::Book>(newBook));
+                        masterList.addMasterBooks(std::make_shared<rtl::Book>(newBook));
                         outputLine(outputStream, "Book added successfully\n");
                         break;
                     }
@@ -190,7 +190,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
             }
             //readbook
             case '2': {
-                rtlBook::ReadBook newReadBook = getNewReadBook(inputStream, outputStream, readerId);
+                rtl::ReadBook newReadBook = getNewReadBook(inputStream, outputStream, readerId);
                 outputLine(outputStream, "Would you like to save:");
                 outputLine(outputStream, newReadBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
@@ -205,7 +205,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
-                        masterList.addMasterReadBooks(std::make_shared<rtlBook::ReadBook>(newReadBook));
+                        masterList.addMasterReadBooks(std::make_shared<rtl::ReadBook>(newReadBook));
                         outputLine(outputStream, "Read book added successfully\n");
                         break;
                     }
@@ -219,7 +219,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
             }
             //author
             case '3': {
-                Author newAuthor = getNewAuthor(inputStream, outputStream);
+                rtl::Author newAuthor = getNewAuthor(inputStream, outputStream);
                 outputLine(outputStream, "Would you like to save:");
                 outputLine(outputStream, newAuthor.printJson() + "?");
                 outputLine(outputStream, "Y/N");
@@ -234,7 +234,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
-                        masterList.addMasterAuthors(std::make_shared<Author>(newAuthor));
+                        masterList.addMasterAuthors(std::make_shared<rtl::Author>(newAuthor));
                         outputLine(outputStream, "Author added successfully\n");
                         break;
                     }
@@ -288,7 +288,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
             case '1': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, rtlBook::Book::printCommandLineHeaders());
+                    outputLine(outputStream, rtl::Book::printCommandLineHeaders());
                     for (auto x : masterList.getMasterBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
@@ -306,7 +306,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
             case '2': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, rtlBook::ReadBook::printCommandLineHeaders());
+                    outputLine(outputStream, rtl::ReadBook::printCommandLineHeaders());
                     for (auto x : masterList.getMasterReadBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
@@ -324,7 +324,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
             case '3': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, Author::printCommandLineHeaders());
+                    outputLine(outputStream, rtl::Author::printCommandLineHeaders());
                     for (auto x : masterList.getMasterAuthors()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
@@ -343,7 +343,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
                     //book
                     outputLine(outputStream, "Books:\n");
                     //column headers
-                    outputLine(outputStream, rtlBook::Book::printCommandLineHeaders());
+                    outputLine(outputStream, rtl::Book::printCommandLineHeaders());
                     for (auto x : masterList.getMasterBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
@@ -352,7 +352,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
                     //readbook
                     outputLine(outputStream, "Read Books:\n");
                     //column headers
-                    outputLine(outputStream, rtlBook::ReadBook::printCommandLineHeaders());
+                    outputLine(outputStream, rtl::ReadBook::printCommandLineHeaders());
                     for (auto x : masterList.getMasterReadBooks()) {
                         outputLine(outputStream, x->printCommandLine());
                     }
@@ -361,7 +361,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
                     //author
                     outputLine(outputStream, "Authors:\n");
                     //column headers
-                    outputLine(outputStream, Author::printCommandLineHeaders());
+                    outputLine(outputStream, rtl::Author::printCommandLineHeaders());
                     for (auto x : masterList.getMasterAuthors()) {
                         outputLine(outputStream, x->printCommandLine());
                     }

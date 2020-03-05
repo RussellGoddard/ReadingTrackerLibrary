@@ -13,9 +13,9 @@
 #include <sstream>
 #include "FileMethods.hpp"
 
-Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream);
-rtlBook::Book getNewBook(std::istream& inputStream, std::ostream& outputStream);
-rtlBook::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId);
+rtl::Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream);
+rtl::Book getNewBook(std::istream& inputStream, std::ostream& outputStream);
+rtl::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId);
 void outputLine(std::ostream& outputStream, std::string output);
 void mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);
 std::string getInput(std::istream& inputStream);

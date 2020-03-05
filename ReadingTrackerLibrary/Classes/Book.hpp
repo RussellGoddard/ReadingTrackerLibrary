@@ -14,7 +14,7 @@
 #include <sstream>
 #include <string>
 
-namespace rtlBook {
+namespace rtl {
 
     enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
 

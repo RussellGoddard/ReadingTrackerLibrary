@@ -11,9 +11,9 @@
 #include "Book.hpp"
 #include <sstream>
 
-namespace rtlBook {
+namespace rtl {
 
-    class ReadBook : public rtlBook::Book {
+    class ReadBook : public rtl::Book {
     public:
         void setDateRead(time_t time);
         void setDateRead(std::string time);
@@ -29,7 +29,7 @@ namespace rtlBook {
         std::string printCommandLine() const;
         ReadBook(int readerId, Book book, int rating, time_t dateRead);
         ReadBook(int readerId, Book book, int rating, std::string dateRead);
-        ReadBook(int readerId, std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, rtlBook::Genre genre = rtlBook::genreNotSet, time_t publishDate = std::time(0), int rating = 0, time_t dateRead = std::time(0));
+        ReadBook(int readerId, std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, rtl::Genre genre = rtl::genreNotSet, time_t publishDate = std::time(0), int rating = 0, time_t dateRead = std::time(0));
         ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead);
         
         static std::string printCommandLineHeaders();

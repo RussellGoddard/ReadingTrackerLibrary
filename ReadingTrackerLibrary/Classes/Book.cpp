@@ -13,7 +13,7 @@ int widthTitle = 35;
 int widthSeries = 20;
 int widthPage = 5;
 
-int rtlBook::convertAbbrMonthToInt(std::string month) {
+int rtl::convertAbbrMonthToInt(std::string month) {
     if (month == "Jan") {
         return 0;
     }
@@ -53,49 +53,49 @@ int rtlBook::convertAbbrMonthToInt(std::string month) {
     return -1;
 }
 
-rtlBook::Genre rtlBook::convertStringToGenre(std::string genre) {
-    rtlBook::Genre returnGenre;
+rtl::Genre rtl::convertStringToGenre(std::string genre) {
+    rtl::Genre returnGenre;
     
-    if (genre == "detective") { returnGenre = rtlBook::detective; }
-    else if (genre == "dystopia") { returnGenre = rtlBook::dystopia; }
-    else if (genre == "fantasy") { returnGenre = rtlBook::fantasy; }
-    else if (genre == "mystery") { returnGenre = rtlBook::mystery; }
-    else if (genre == "romance") { returnGenre = rtlBook::romance; }
-    else if (genre == "science fiction" || genre == "sci fi") { returnGenre = rtlBook::scienceFiction; }
-    else if (genre == "thriller") { returnGenre = rtlBook::thriller; }
-    else if (genre == "western") { returnGenre = rtlBook::western; }
-    else { returnGenre = rtlBook::genreNotSet; }
+    if (genre == "detective") { returnGenre = rtl::detective; }
+    else if (genre == "dystopia") { returnGenre = rtl::dystopia; }
+    else if (genre == "fantasy") { returnGenre = rtl::fantasy; }
+    else if (genre == "mystery") { returnGenre = rtl::mystery; }
+    else if (genre == "romance") { returnGenre = rtl::romance; }
+    else if (genre == "science fiction" || genre == "sci fi") { returnGenre = rtl::scienceFiction; }
+    else if (genre == "thriller") { returnGenre = rtl::thriller; }
+    else if (genre == "western") { returnGenre = rtl::western; }
+    else { returnGenre = rtl::genreNotSet; }
     return returnGenre;
 }
 
-std::string rtlBook::convertGenreToString(rtlBook::Genre genre) {
+std::string rtl::convertGenreToString(rtl::Genre genre) {
     std::string returnString;
     switch(genre) {
-        case rtlBook::detective:
+        case rtl::detective:
             returnString = "detective";
             break;
-        case rtlBook::dystopia:
+        case rtl::dystopia:
             returnString = "dystopia";
             break;
-        case rtlBook::fantasy:
+        case rtl::fantasy:
             returnString = "fantasy";
             break;
-        case rtlBook::mystery:
+        case rtl::mystery:
             returnString = "mystery";
             break;
-        case rtlBook::romance:
+        case rtl::romance:
             returnString = "romance";
             break;
-        case rtlBook::scienceFiction:
+        case rtl::scienceFiction:
             returnString = "science fiction";
             break;
-        case rtlBook::thriller:
+        case rtl::thriller:
             returnString = "thriller";
             break;
-        case rtlBook::western:
+        case rtl::western:
             returnString = "western";
             break;
-        case rtlBook::genreNotSet: //fall through to default
+        case rtl::genreNotSet: //fall through to default
         default:
             returnString = "genre not set";
             break;
@@ -104,46 +104,46 @@ std::string rtlBook::convertGenreToString(rtlBook::Genre genre) {
     return returnString;
 }
 
-std::string rtlBook::Book::getAuthor() const {
+std::string rtl::Book::getAuthor() const {
     return this->author;
 }
 
-std::string rtlBook::Book::getTitle() const {
+std::string rtl::Book::getTitle() const {
     return this->title;
 }
 
-std::string rtlBook::Book::getSeries() const {
+std::string rtl::Book::getSeries() const {
     return series;
 }
 
-int rtlBook::Book::getPageCount() const {
+int rtl::Book::getPageCount() const {
     return pageCount;
 }
 
-std::string rtlBook::Book::getPublisher() const {
+std::string rtl::Book::getPublisher() const {
     return this->publisher;
 }
 
-rtlBook::Genre rtlBook::Book::getGenre() const {
+rtl::Genre rtl::Book::getGenre() const {
     return genre;
 }
 
-std::string rtlBook::Book::printGenre() const {
+std::string rtl::Book::printGenre() const {
     return convertGenreToString(this->genre);
 }
 
-std::string rtlBook::Book::getOclc() const {
+std::string rtl::Book::getOclc() const {
     return this->oclc;
 }
 
-std::string rtlBook::Book::printJson() const {
+std::string rtl::Book::printJson() const {
     std::string returnString = "test\"\"";
     returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(,"publishDate":")" + this->printPublishDate() + R"("})";
     return returnString;
 }
 
 //Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
-std::string rtlBook::Book::printCommandLine() const {
+std::string rtl::Book::printCommandLine() const {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
@@ -160,7 +160,7 @@ std::string rtlBook::Book::printCommandLine() const {
 }
 
 //Author              Title                              Series              Pages
-std::string rtlBook::Book::printCommandLineHeaders() {
+std::string rtl::Book::printCommandLineHeaders() {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
@@ -176,45 +176,45 @@ std::string rtlBook::Book::printCommandLineHeaders() {
     return returnStr.str();
 }
 
-tm rtlBook::Book::getPublishDate() const {
+tm rtl::Book::getPublishDate() const {
     return this->publishDate;
 }
 
-time_t rtlBook::Book::getPublishDateAsTimeT() {
+time_t rtl::Book::getPublishDateAsTimeT() {
     return std::mktime(&this->publishDate);
 }
 
-std::string rtlBook::Book::printPublishDate() const {
+std::string rtl::Book::printPublishDate() const {
     char buffer [50];
     std::strftime(buffer, 50, "%b %d %Y", &this->publishDate);
     return buffer;
 }
 
-void rtlBook::Book::setAuthor(std::string author) {
+void rtl::Book::setAuthor(std::string author) {
     this->author = author;
     
     return;
 }
 
-void rtlBook::Book::setTitle(std::string title) {
+void rtl::Book::setTitle(std::string title) {
     this->title = title;
     
     return;
 }
 
-void rtlBook::Book::setSeries(std::string series) {
+void rtl::Book::setSeries(std::string series) {
     this->series = series;
     
     return;
 }
 
-void rtlBook::Book::setPublisher(std::string publisher) {
+void rtl::Book::setPublisher(std::string publisher) {
     this->publisher = publisher;
     
     return;
 }
 
-void rtlBook::Book::setPageCount(int pageCount) {
+void rtl::Book::setPageCount(int pageCount) {
     //books can only have positive page counts, if it isn't mark as -1 as error
     if (pageCount <= 0) {
         pageCount = -1;
@@ -226,7 +226,7 @@ void rtlBook::Book::setPageCount(int pageCount) {
 }
 
 //pageCount can't be changed by character, keep whatever is in there before
-void rtlBook::Book::setPageCount(char pageCount) {
+void rtl::Book::setPageCount(char pageCount) {
     int newPageCount = -1;
     std::stringstream sstream;
     
@@ -243,7 +243,7 @@ void rtlBook::Book::setPageCount(char pageCount) {
 }
 
 //will attempt a stoi if it fails set pageCount to -1
-void rtlBook::Book::setPageCount(std::string pageCount) {
+void rtl::Book::setPageCount(std::string pageCount) {
     try {
         int newPageCount = std::stoi(pageCount);
         //pageCount cannot be less than 1, if it is don't change anything
@@ -259,19 +259,19 @@ void rtlBook::Book::setPageCount(std::string pageCount) {
     return;
 }
 
-void rtlBook::Book::setGenre(Genre genre) {
+void rtl::Book::setGenre(Genre genre) {
     this->genre = genre;
     
     return;
 }
 
-void rtlBook::Book::setGenre(std::string genre) {
+void rtl::Book::setGenre(std::string genre) {
     this->genre = convertStringToGenre(genre);
     
     return;
 }
 
-void rtlBook::Book::setPublishDate(time_t publishDate) {
+void rtl::Book::setPublishDate(time_t publishDate) {
     this->publishDate = *std::gmtime(&publishDate);
     this->publishDate.tm_sec = 0;
     this->publishDate.tm_min = 0;
@@ -284,7 +284,7 @@ void rtlBook::Book::setPublishDate(time_t publishDate) {
     return;
 }
 
-void rtlBook::Book::setPublishDate(std::string publishDate) {
+void rtl::Book::setPublishDate(std::string publishDate) {
     if (publishDate.size() != 11) {
         return;
     }
@@ -335,13 +335,13 @@ void rtlBook::Book::setPublishDate(std::string publishDate) {
     return;
 }
 
-void rtlBook::Book::setOclc(std::string oclc) {
+void rtl::Book::setOclc(std::string oclc) {
     this->oclc = oclc;
     
     return;
 }
 
-rtlBook::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
+rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
     this->setAuthor(author);
     this->setTitle(title);
     this->setSeries(series);
@@ -353,7 +353,7 @@ rtlBook::Book::Book(std::string author, std::string title, std::string series, s
     return;
 }
 
-rtlBook::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate) {
+rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate) {
     this->setAuthor(author);
     this->setTitle(title);
     this->setSeries(series);
@@ -365,7 +365,7 @@ rtlBook::Book::Book(std::string author, std::string title, std::string series, s
     return;
 }
 
-rtlBook::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate) {
+rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate) {
     this->setAuthor(author);
     this->setTitle(title);
     this->setSeries(series);
@@ -377,7 +377,7 @@ rtlBook::Book::Book(std::string author, std::string title, std::string series, s
     return;
 }
 
-bool rtlBook::operator==(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
+bool rtl::operator==(const rtl::Book& lhs, const rtl::Book& rhs) {
     if (lhs.printJson() == rhs.printJson()) {
         return true;
     }
@@ -385,11 +385,11 @@ bool rtlBook::operator==(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
     return false;
 }
 
-bool rtlBook::operator!=(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
+bool rtl::operator!=(const rtl::Book& lhs, const rtl::Book& rhs) {
     return !operator==(lhs, rhs);
 }
 
-bool rtlBook::operator<(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
+bool rtl::operator<(const rtl::Book& lhs, const rtl::Book& rhs) {
     //see if this can be simplified TODO
     //sort by author -> series -> publish date -> title
     tm lhstm;
@@ -420,14 +420,14 @@ bool rtlBook::operator<(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
     return false;
 }
 
-bool rtlBook::operator>(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
+bool rtl::operator>(const rtl::Book& lhs, const rtl::Book& rhs) {
     return operator<(rhs, lhs);
 }
 
-bool rtlBook::operator<=(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
+bool rtl::operator<=(const rtl::Book& lhs, const rtl::Book& rhs) {
     return !operator>(lhs, rhs);
 }
 
-bool rtlBook::operator>=(const rtlBook::Book& lhs, const rtlBook::Book& rhs) {
+bool rtl::operator>=(const rtl::Book& lhs, const rtl::Book& rhs) {
     return !operator<(lhs, rhs);
 }
