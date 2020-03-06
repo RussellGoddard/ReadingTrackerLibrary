@@ -136,7 +136,7 @@ void userInputAgain() {
 }
 
 //should only be called from mainMenu so not in header, TODO do all the options need to share so much code not abstracted away (too much copy/paste)
-void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryContainers& masterList, int readerId) {
+void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList, int readerId) {
     
     while(true) {
         char charInput = 'p';
@@ -148,7 +148,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
         
         std::string input = getInput(inputStream);
         
-        if (trim(input).empty() || trim(input).size() > 1) {
+        if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
             userInputAgain();
             input = "";
             std::cin.clear();
@@ -166,7 +166,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 outputLine(outputStream, newBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
                 input = getInput(inputStream);
-                if (trim(input).empty() || trim(input).size() > 1) {
+                if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
                     userInputAgain();
                     continue;
                 }
@@ -195,7 +195,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 outputLine(outputStream, newReadBook.printJson() + "?");
                 outputLine(outputStream, "Y/N");
                 input = getInput(inputStream);
-                if (trim(input).empty() || trim(input).size() > 1) {
+                if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
                     userInputAgain();
                     continue;
                 }
@@ -224,7 +224,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
                 outputLine(outputStream, newAuthor.printJson() + "?");
                 outputLine(outputStream, "Y/N");
                 input = getInput(inputStream);
-                if (trim(input).empty() || trim(input).size() > 1) {
+                if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
                     userInputAgain();
                     continue;
                 }
@@ -257,7 +257,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryCont
 }
 
 //should only be called from mainMenu so not in header
-void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemoryContainers& masterList) {
+void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList) {
     
     std::string displayMode = "Json";
     
@@ -273,7 +273,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
         
         std::string input = getInput(inputStream);
         
-        if (trim(input).empty() || trim(input).size() > 1) {
+        if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
             userInputAgain();
             input = "";
             std::cin.clear();
@@ -413,7 +413,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, InMemory
 
 void mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId) {
     
-    InMemoryContainers& masterList = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& masterList = rtl::InMemoryContainers::getInstance();
     
     while(true) {
         char charInput = 'p';
@@ -430,7 +430,7 @@ void mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerI
         
         std::string input = getInput(inputStream);
         
-        if (trim(input).empty() || trim(input).size() > 1) {
+        if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
             userInputAgain();
             input = "";
             std::cin.clear();

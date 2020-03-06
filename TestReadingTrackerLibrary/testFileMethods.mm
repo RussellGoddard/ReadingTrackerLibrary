@@ -21,7 +21,7 @@
 }
 
 - (void)tearDown {
-    InMemoryContainers& testContainer = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::getInstance();
     testContainer.clearAll();
 }
 
@@ -67,7 +67,7 @@
     testReadBooks.push_back(testPtrReadBook2);
     testReadBooks.push_back(testPtrReadBook3);
     
-    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     
     testContainers.addMasterReadBooks(testPtrReadBook1);
     
@@ -122,7 +122,7 @@
     testBooks.push_back(testPtrBook2);
     testBooks.push_back(testPtrBook3);
     
-    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     
     testContainers.addMasterBooks(testPtrBook1);
     
@@ -149,7 +149,7 @@
     testAuthors.push_back(testPtrAuthor2);
     testAuthors.push_back(testPtrAuthor3);
     
-    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     
     testContainers.addMasterAuthors(testPtrAuthor1);
     
@@ -199,7 +199,7 @@
     testBooks.push_back(testPtrBook2);
     testBooks.push_back(testPtrBook3);
     
-    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     
     testContainers.addMasterAuthors(testPtrBook1);
     
@@ -226,7 +226,7 @@
     std::shared_ptr<rtl::Author> testPtrAuthor1 = std::make_shared<rtl::Author>("testAuthor", "Dec 01 1990", books1);
     std::shared_ptr<rtl::Author> testPtrAuthor2 = std::make_shared<rtl::Author>("testAuthor", "Dec 01 1990", books2);
     
-    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     
     testContainers.addMasterAuthors(testPtrAuthor1);
     testContainers.addMasterAuthors(testPtrAuthor2);
@@ -252,7 +252,7 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::Book> testPtrBook1 = convertJsonToBookPtr(jsonTest);
+    std::shared_ptr<rtl::Book> testPtrBook1 = rtl::convertJsonToBookPtr(jsonTest);
     
     XCTAssert(testPtrBook1->getAuthor() == jsonTest["author"].get<std::string>());
     XCTAssert(testPtrBook1->printGenre() == jsonTest["genre"].get<std::string>());
@@ -281,7 +281,7 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = convertJsonToReadBookPtr(jsonTest);
+    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = rtl::convertJsonToReadBookPtr(jsonTest);
     
     XCTAssert(testPtrReadBook1->getReaderId() == jsonTest["readerId"].get<int>());
     XCTAssert(testPtrReadBook1->getAuthor() == jsonTest["author"].get<std::string>());
@@ -320,7 +320,7 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::Author> testPtrAuthor1 = convertJsonToAuthorPtr(jsonTest);
+    std::shared_ptr<rtl::Author> testPtrAuthor1 = rtl::convertJsonToAuthorPtr(jsonTest);
     
     XCTAssert(testPtrAuthor1->getName() == jsonTest["name"].get<std::string>());
     XCTAssert(testPtrAuthor1->printDateBorn() == jsonTest["dateBorn"].get<std::string>());
@@ -343,7 +343,7 @@
       }
     )"_json;
     
-    rtl::ReadBook testReadBook1 = convertJsonToReadBook(jsonTest);
+    rtl::ReadBook testReadBook1 = rtl::convertJsonToReadBook(jsonTest);
     
     XCTAssert(testReadBook1.getReaderId() == jsonTest["readerId"].get<int>());
     XCTAssert(testReadBook1.getAuthor() == jsonTest["author"].get<std::string>());
@@ -361,7 +361,7 @@
     //std::string testFilePath = "./testSaveFile.txt";
     std::string testFilePath = "/Users/Frobu/Desktop/testFileSaveTest.txt";
     
-    InMemoryContainers& testContainers = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     rtl::Book testBook1;
     testBook1.setAuthor("testAuthor");
     testBook1.setTitle("testTitle");
@@ -423,16 +423,16 @@
     std::string test9 = "\ftest9\f";
     std::string test10 = "\rtest10           a   ";
     
-    XCTAssert(trim(test1) == "test1");
-    XCTAssert(trim(test2) == "test2");
-    XCTAssert(trim(test3) == "test3");
-    XCTAssert(trim(test4) == "test4");
-    XCTAssert(trim(test5) == "a  test5  b");
-    XCTAssert(trim(test6) == "test6");
-    XCTAssert(trim(test7) == "test7");
-    XCTAssert(trim(test8) == "test8");
-    XCTAssert(trim(test9) == "test9");
-    XCTAssert(trim(test10) == "test10           a");
+    XCTAssert(rtl::trim(test1) == "test1");
+    XCTAssert(rtl::trim(test2) == "test2");
+    XCTAssert(rtl::trim(test3) == "test3");
+    XCTAssert(rtl::trim(test4) == "test4");
+    XCTAssert(rtl::trim(test5) == "a  test5  b");
+    XCTAssert(rtl::trim(test6) == "test6");
+    XCTAssert(rtl::trim(test7) == "test7");
+    XCTAssert(rtl::trim(test8) == "test8");
+    XCTAssert(rtl::trim(test9) == "test9");
+    XCTAssert(rtl::trim(test10) == "test10           a");
     
 }
 
@@ -459,7 +459,7 @@
     
     rtl::Author testAuthor1("test author", "Dec 01 1990");
     
-    InMemoryContainers& testContainer = InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::getInstance();
     
     testContainer.addMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
     testContainer.addMasterReadBooks(std::make_shared<rtl::ReadBook>(testReadBook1));

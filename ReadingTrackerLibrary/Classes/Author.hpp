@@ -14,12 +14,11 @@
 #include <vector>
 #include "ReadBook.hpp" //this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook TO DO
 
-template <typename T>
-void sortUnique(std::vector<T>& input);
-
 namespace rtl {
 
     const time_t jan2038 = 2145916800;
+    template <typename T>
+    void sortUnique(std::vector<T>& input);
     int convertAbbrMonthToInt(std::string month); //don't like this needing to be declared here, TODO
 
 

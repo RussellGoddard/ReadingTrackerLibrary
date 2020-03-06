@@ -88,14 +88,14 @@ void rtl::Author::setDateBorn(std::string dateBorn) {
 void rtl::Author::addBookWritten(std::shared_ptr<rtl::Book> book) {
     this->booksWritten.push_back(book);
 
-    sortUnique(this->booksWritten);
+    rtl::sortUnique(this->booksWritten);
     
     return;
 }
 
 void rtl::Author::addBookWritten(std::vector<std::shared_ptr<rtl::Book>> books) {
     this->booksWritten.insert(std::end(this->booksWritten), std::begin(books), std::end(books));
-    sortUnique(this->booksWritten);
+    rtl::sortUnique(this->booksWritten);
     
     return;
 }
