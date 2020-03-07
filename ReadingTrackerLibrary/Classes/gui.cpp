@@ -7,6 +7,7 @@
 
 #include "gui.hpp"
 
+using namespace rtlCommandLine;
 
 /*
     "name":"Robert Jordan",
@@ -15,7 +16,7 @@
 
 */
 
-rtl::Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
+rtl::Author rtlCommandLine::getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
     std::string name, dateBorn;
     
     outputLine(outputStream, "Input author's name");
@@ -39,7 +40,7 @@ rtl::Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream) 
 }
 */
 
-rtl::Book getNewBook(std::istream& inputStream, std::ostream& outputStream) {
+rtl::Book rtlCommandLine::getNewBook(std::istream& inputStream, std::ostream& outputStream) {
     std::string input;
     rtl::Book newBook;
     
@@ -82,7 +83,7 @@ rtl::Book getNewBook(std::istream& inputStream, std::ostream& outputStream) {
     "dateRead" : "Oct 26 2019"
 }
 */
-rtl::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
+rtl::ReadBook rtlCommandLine::getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
     std::string input;
     rtl::ReadBook newReadBook(readerId);
     
@@ -117,11 +118,11 @@ rtl::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStre
     return newReadBook;
 }
 
-void outputLine(std::ostream& outputStream, std::string output) {
+void rtlCommandLine::outputLine(std::ostream& outputStream, std::string output) {
     outputStream << output << std::endl;
 }
 
-std::string getInput(std::istream& inputStream) {
+std::string rtlCommandLine::getInput(std::istream& inputStream) {
     std::string returnString;
     std::getline(inputStream, returnString);
     return returnString;
@@ -411,7 +412,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
     return;
 }
 
-void mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId) {
+void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId) {
     
     rtl::InMemoryContainers& masterList = rtl::InMemoryContainers::getInstance();
     

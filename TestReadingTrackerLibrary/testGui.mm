@@ -29,7 +29,7 @@
     
     inputSs.str("testAuthor\nNov 25 1998\n");
     
-    rtl::Author testAuthor = getNewAuthor(inputSs, outputSs);
+    rtl::Author testAuthor = rtlCommandLine::getNewAuthor(inputSs, outputSs);
     
     XCTAssert(testAuthor.getName() == "testAuthor");
     XCTAssert(testAuthor.printDateBorn() == "Nov 25 1998");
@@ -40,7 +40,7 @@
     
     inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\nOct 01 1999\n123\n");
     
-    rtl::Book testBook = getNewBook(inputSs, outputSs);
+    rtl::Book testBook = rtlCommandLine::getNewBook(inputSs, outputSs);
     
     XCTAssert(testBook.getAuthor() == "testAuthor");
     XCTAssert(testBook.getTitle() == "testTitle");
@@ -56,7 +56,7 @@
     
     inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\nOct 01 1999\n123\nOct 02 1999\n9\n");
     
-    rtl::ReadBook testReadBook = getNewReadBook(inputSs, outputSs, 123);
+    rtl::ReadBook testReadBook = rtlCommandLine::getNewReadBook(inputSs, outputSs, 123);
     
     XCTAssert(testReadBook.getReaderId() == 123);
     XCTAssert(testReadBook.getAuthor() == "testAuthor");
@@ -73,7 +73,7 @@
 - (void)testOutputLine {
     std::stringstream outputSs;
     
-    outputLine(outputSs, "test Input 23");
+    rtlCommandLine::outputLine(outputSs, "test Input 23");
     
     std::string word1, word2, word3;
     
