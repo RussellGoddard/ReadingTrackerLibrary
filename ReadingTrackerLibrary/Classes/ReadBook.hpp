@@ -16,7 +16,7 @@ namespace rtl {
     class ReadBook : public rtl::Book {
     public:
         void setDateRead(time_t time);
-        void setDateRead(std::string time);
+        bool setDateRead(std::string time);
         void setRating(int rating);
         void setRating(char pageCount); //will result in rating being set to 0
         void setRating(std::string pageCount); //will attempt a stoi if it fails set rating to 0

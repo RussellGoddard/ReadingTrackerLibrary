@@ -136,7 +136,7 @@ void userInputAgain() {
     return;
 }
 
-//should only be called from mainMenu so not in header, TODO do all the options need to share so much code not abstracted away (too much copy/paste)
+//TODO: should only be called from mainMenu so not in header, do all the options need to share so much code not abstracted away (too much copy/paste)
 void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList, int readerId) {
     
     while(true) {
@@ -453,7 +453,7 @@ void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStr
             case '7': {
                 outputLine(outputStream, "Input file path for save file");
                 input = getInput(inputStream);
-                //shortcut to macOS desktop TODO dedicated save space than desktop
+                //shortcut to macOS desktop TODO: dedicated save space than desktop
                 if(input == "desktop") {
                     input = std::getenv("HOME");
                     input += "/Desktop/testFile.txt";
@@ -464,7 +464,7 @@ void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStr
             case '8': {
                 outputLine(outputStream, "Input file path to load file");
                 input = getInput(inputStream);
-                //shortcut to macOS desktop TODO dedicated save space than desktop
+                //shortcut to macOS desktop TODO: dedicated save space than desktop
                 if(input == "desktop") {
                     input = std::getenv("HOME");
                     input += "/Desktop/testFile.txt";

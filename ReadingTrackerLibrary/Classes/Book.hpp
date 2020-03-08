@@ -11,14 +11,27 @@
 
 #include <ios>
 #include <ctime>
+#include <exception>
 #include <sstream>
 #include <string>
+
+//below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost
+// save diagnostic state
+#pragma GCC diagnostic push
+
+// turn off the specific warning
+#pragma GCC diagnostic ignored "-Wdocumentation"
+#pragma GCC diagnostic ignored "-Wcomma"
+
+#include <boost/date_time/gregorian/gregorian.hpp>
+
+// turn the warnings back on
+#pragma GCC diagnostic pop
 
 namespace rtl {
 
     enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
 
-    int convertAbbrMonthToInt(std::string month);
     Genre convertStringToGenre(std::string genre);
     std::string convertGenreToString(Genre genre);
 
@@ -47,7 +60,7 @@ namespace rtl {
         void setGenre(Genre genre);
         void setGenre(std::string genre);
         void setPublishDate(time_t publishDate);
-        void setPublishDate(std::string publishDate);
+        bool setPublishDate(std::string publishDate);
         void setOclc(std::string oclc);
         Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);

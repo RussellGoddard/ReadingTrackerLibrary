@@ -8,7 +8,7 @@
 #include "Author.hpp"
 
 //used for printCommandLine and printCommandLineHeaders
-//TODO implement namespaces
+//TODO: implement namespaces
 int widthAuthorA = 20;
 int widthDateBornA = 12;
 int widthTitleA = 44;
@@ -34,55 +34,16 @@ void rtl::Author::setDateBorn(time_t dateBorn) {
     return;
 }
 
-void rtl::Author::setDateBorn(std::string dateBorn) {
-    if (dateBorn.size() != 11) {
-        return;
-    }
-    
-    std::string month = dateBorn.substr(0, 3);
-    std::string day = dateBorn.substr(4, 2);
-    std::string year = dateBorn.substr(7, 4);
-    
-    int intYear;
-    int intMonth = rtl::convertAbbrMonthToInt(month);
-    int intDay;
-    
-    if (intMonth == -1) {
-        return;
-    }
-    
+bool rtl::Author::setDateBorn(std::string dateBorn) {
     try {
-        intDay = stoi(day);
-        intYear = stoi(year) - 1900; //TODO HANDLE DATES BEFORE 1970
-    }
-    catch (std::invalid_argument) {
-        //don't change date
-        return;
-    }
-    
-    if (intDay <= 0) {
-        return;
-    }
-    else if (intYear <= 0) {
-        return;
+        boost::gregorian::date d = boost::gregorian::from_string(dateBorn);
+        this->dateBorn = boost::gregorian::to_tm(d);
+    } catch (std::exception& ex) {
+        //TODO: add logging
+        return false;
     }
     
-    this->dateBorn.tm_year = intYear;
-    this->dateBorn.tm_mon = intMonth;
-    this->dateBorn.tm_mday = intDay;
-    this->dateBorn.tm_sec = 0;
-    this->dateBorn.tm_min = 0;
-    this->dateBorn.tm_hour = 0;
-    this->dateBorn.tm_wday = 0;
-    this->dateBorn.tm_isdst = 0;
-    this->dateBorn.tm_gmtoff = 0;
-    this->dateBorn.tm_zone = nullptr;
-    
-    time_t validateTime = std::mktime(&this->dateBorn);
-    
-    this->dateBorn = *std::gmtime(&validateTime);
-    
-    return;
+    return true;
 }
 
 void rtl::Author::addBookWritten(std::shared_ptr<rtl::Book> book) {
@@ -113,9 +74,8 @@ time_t rtl::Author::getDateBornTimeT() {
 }
 
 std::string rtl::Author::printDateBorn() const {
-    char buffer [50];
-    std::strftime(buffer, 50, "%b %d %Y", &this->dateBorn);
-    return buffer;
+    boost::gregorian::date returnDate = boost::gregorian::date_from_tm(this->dateBorn);
+    return boost::gregorian::to_simple_string(returnDate);
 }
 
 std::vector<std::shared_ptr<rtl::Book>> rtl::Author::getBooksWritten() const {
@@ -156,7 +116,7 @@ std::string rtl::Author::printCommandLine() const {
         returnStr.width(widthTitleA);
         returnStr << std::left << booksWritten.at(0)->getTitle().substr(0, widthTitleA - 1);
         returnStr.width(widthYearA);
-        returnStr << std::left << booksWritten.at(0)->printPublishDate().substr(booksWritten.at(0)->printPublishDate().size() - 4);
+        returnStr << std::left << booksWritten.at(0)->printPublishDate().substr(0, 4);
 test = returnStr.str();
         for (int i = 1; i < booksWritten.size(); ++i) {
             returnStr << std::endl;
@@ -165,7 +125,7 @@ test = returnStr.str();
             returnStr.width(widthTitleA);
             returnStr << std::left << booksWritten.at(i)->getTitle().substr(0, widthTitleA - 1);
             returnStr.width(widthYearA);
-            returnStr << std::left << booksWritten.at(i)->printPublishDate().substr(booksWritten.at(0)->printPublishDate().size() - 4);
+            returnStr << std::left << booksWritten.at(i)->printPublishDate().substr(0, 4);
         }
     }
     
@@ -211,7 +171,7 @@ rtl::Author::Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book
 
 bool rtl::operator==(const Author& lhs, const Author& rhs) {
     
-    /* disabled birthdate compare so that it is feasible that authors get combined appropriately
+    /* TODO: add way to combine authors even if birthdate is missing/inccorrect somehow, disabled birthdate compare so that it is feasible that authors get combined appropriately
     tm lhstm = lhs.getDateBorn();
     tm rhstm = rhs.getDateBorn();
     time_t lhstt = std::mktime(&lhstm);
@@ -233,7 +193,7 @@ bool rtl::operator!=(const Author& lhs, const Author& rhs) {
     return !operator==(lhs, rhs);
 }
 
-//TO DO this shouldn't be in author
+//TODO: this shouldn't be in author
 std::vector<std::string> splitString(const std::string& input, const std::string& delim) {
     std::vector<std::string> returnVector;
     std::size_t current = 0;

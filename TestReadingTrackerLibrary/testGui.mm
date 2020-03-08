@@ -27,18 +27,18 @@
 - (void)testGetNewAuthor {
     std::stringstream inputSs, outputSs;
     
-    inputSs.str("testAuthor\nNov 25 1998\n");
+    inputSs.str("testAuthor\n1998-Nov-25\n");
     
     rtl::Author testAuthor = rtlCommandLine::getNewAuthor(inputSs, outputSs);
     
     XCTAssert(testAuthor.getName() == "testAuthor");
-    XCTAssert(testAuthor.printDateBorn() == "Nov 25 1998");
+    XCTAssert(testAuthor.printDateBorn() == "1998-Nov-25");
 }
 
 - (void)testGetNewBook {
     std::stringstream inputSs, outputSs;
     
-    inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\nOct 01 1999\n123\n");
+    inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     
     rtl::Book testBook = rtlCommandLine::getNewBook(inputSs, outputSs);
     
@@ -47,14 +47,14 @@
     XCTAssert(testBook.getPublisher() == "testPublisher");
     XCTAssert(testBook.getSeries() == "testSeries");
     XCTAssert(testBook.getGenre() == rtl::fantasy);
-    XCTAssert(testBook.printPublishDate() == "Oct 01 1999");
+    XCTAssert(testBook.printPublishDate() == "1999-Oct-01");
     XCTAssert(testBook.getPageCount() == 123);
 }
 
 - (void)testGetNewReadBook {
     std::stringstream inputSs, outputSs;
     
-    inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\nOct 01 1999\n123\nOct 02 1999\n9\n");
+    inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
     rtl::ReadBook testReadBook = rtlCommandLine::getNewReadBook(inputSs, outputSs, 123);
     
@@ -64,9 +64,9 @@
     XCTAssert(testReadBook.getPublisher() == "testPublisher");
     XCTAssert(testReadBook.getSeries() == "testSeries");
     XCTAssert(testReadBook.getGenre() == rtl::fantasy);
-    XCTAssert(testReadBook.printPublishDate() == "Oct 01 1999");
+    XCTAssert(testReadBook.printPublishDate() == "1999-Oct-01");
     XCTAssert(testReadBook.getPageCount() == 123);
-    XCTAssert(testReadBook.printDateRead() == "Oct 02 1999");
+    XCTAssert(testReadBook.printDateRead() == "1999-Oct-02");
     XCTAssert(testReadBook.getRating() == 9);
 }
 

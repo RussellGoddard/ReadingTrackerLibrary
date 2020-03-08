@@ -13,45 +13,6 @@ int widthTitle = 35;
 int widthSeries = 20;
 int widthPage = 5;
 
-int rtl::convertAbbrMonthToInt(std::string month) {
-    if (month == "Jan") {
-        return 0;
-    }
-    else if (month == "Feb") {
-        return 1;
-    }
-    else if (month == "Mar") {
-        return 2;
-    }
-    else if (month == "Apr") {
-        return 3;
-    }
-    else if (month == "May") {
-        return 4;
-    }
-    else if (month == "Jun") {
-        return 5;
-    }
-    else if (month == "Jul") {
-        return 6;
-    }
-    else if (month == "Aug") {
-        return 7;
-    }
-    else if (month == "Sep") {
-        return 8;
-    }
-    else if (month == "Oct") {
-        return 9;
-    }
-    else if (month == "Nov") {
-        return 10;
-    }
-    else if (month == "Dec") {
-        return 11;
-    }
-    return -1;
-}
 
 rtl::Genre rtl::convertStringToGenre(std::string genre) {
     rtl::Genre returnGenre;
@@ -185,9 +146,8 @@ time_t rtl::Book::getPublishDateAsTimeT() {
 }
 
 std::string rtl::Book::printPublishDate() const {
-    char buffer [50];
-    std::strftime(buffer, 50, "%b %d %Y", &this->publishDate);
-    return buffer;
+    boost::gregorian::date returnDate = boost::gregorian::date_from_tm(this->publishDate);
+    return boost::gregorian::to_simple_string(returnDate);
 }
 
 void rtl::Book::setAuthor(std::string author) {
@@ -244,6 +204,7 @@ void rtl::Book::setPageCount(char pageCount) {
 
 //will attempt a stoi if it fails set pageCount to -1
 void rtl::Book::setPageCount(std::string pageCount) {
+    
     try {
         int newPageCount = std::stoi(pageCount);
         //pageCount cannot be less than 1, if it is don't change anything
@@ -284,55 +245,15 @@ void rtl::Book::setPublishDate(time_t publishDate) {
     return;
 }
 
-void rtl::Book::setPublishDate(std::string publishDate) {
-    if (publishDate.size() != 11) {
-        return;
-    }
-    
-    std::string month = publishDate.substr(0, 3);
-    std::string day = publishDate.substr(4, 2);
-    std::string year = publishDate.substr(7, 4);
-    
-    int intYear;
-    int intMonth = convertAbbrMonthToInt(month);
-    int intDay;
-    
-    if (intMonth == -1) {
-        return;
-    }
-    
+bool rtl::Book::setPublishDate(std::string publishDate) {
     try {
-        intDay = stoi(day);
-        intYear = stoi(year) - 1900; //TODO HANDLE DATES BEFORE 1970
-    }
-    catch (std::invalid_argument) {
-        //don't change date
-        return;
+        boost::gregorian::date d = boost::gregorian::from_string(publishDate);
+        this->publishDate = boost::gregorian::to_tm(d);
+    } catch (std::exception& ex) {
+        return false;
     }
     
-    if (intDay <= 0) {
-        return;
-    }
-    else if (intYear <= 0) {
-        return;
-    }
-    
-    this->publishDate.tm_year = intYear;
-    this->publishDate.tm_mon = intMonth;
-    this->publishDate.tm_mday = intDay;
-    this->publishDate.tm_sec = 0;
-    this->publishDate.tm_min = 0;
-    this->publishDate.tm_hour = 0;
-    this->publishDate.tm_wday = 0;
-    this->publishDate.tm_isdst = 0;
-    this->publishDate.tm_gmtoff = 0;
-    this->publishDate.tm_zone = nullptr;
-    
-    time_t validateTime = std::mktime(&this->publishDate);
-    
-    this->publishDate = *std::gmtime(&validateTime);
-
-    return;
+    return true;
 }
 
 void rtl::Book::setOclc(std::string oclc) {
@@ -390,7 +311,7 @@ bool rtl::operator!=(const rtl::Book& lhs, const rtl::Book& rhs) {
 }
 
 bool rtl::operator<(const rtl::Book& lhs, const rtl::Book& rhs) {
-    //see if this can be simplified TODO
+    //TODO: see if this can be simplified 
     //sort by author -> series -> publish date -> title
     tm lhstm;
     tm rhstm;

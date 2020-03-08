@@ -8,7 +8,7 @@
 #include "ReadBook.hpp"
 
 //used for printCommandLine and printCommandLineHeaders
-//TODO implement namespaces
+//TODO: implement namespaces
 int widthAuthorRB = 20;
 int widthTitleRB = 35;
 int widthPageRB = 6;
@@ -28,56 +28,16 @@ void rtl::ReadBook::setDateRead(time_t time) {
     return;
 }
 
-//only reads MMM dd YYYY
-void rtl::ReadBook::setDateRead(std::string time) {
-    if (time.size() != 11) {
-        return;
-    }
-    
-    std::string month = time.substr(0, 3);
-    std::string day = time.substr(4, 2);
-    std::string year = time.substr(7, 4);
-    
-    int intYear;
-    int intMonth = rtl::convertAbbrMonthToInt(month);
-    int intDay;
-    
-    if (intMonth == -1) {
-        return;
-    }
-    
+bool rtl::ReadBook::setDateRead(std::string time) {
     try {
-        intDay = stoi(day);
-        intYear = stoi(year) - 1900; //TODO HANDLE DATES BEFORE 1970
-    }
-    catch (std::invalid_argument) {
-        //don't change date
-        return;
-    }
-    
-    if (intDay <= 0) {
-        return;
-    }
-    else if (intYear <= 0) {
-        return;
+        boost::gregorian::date d = boost::gregorian::from_string(time);
+        this->dateRead = boost::gregorian::to_tm(d);
+    } catch (std::exception& ex) {
+        //TODO: add logging
+        return false;
     }
     
-    this->dateRead.tm_year = intYear;
-    this->dateRead.tm_mon = intMonth;
-    this->dateRead.tm_mday = intDay;
-    this->dateRead.tm_sec = 0;
-    this->dateRead.tm_min = 0;
-    this->dateRead.tm_hour = 0;
-    this->dateRead.tm_wday = 0;
-    this->dateRead.tm_isdst = 0;
-    this->dateRead.tm_gmtoff = 0;
-    this->dateRead.tm_zone = nullptr;
-    
-    time_t validateTime = std::mktime(&this->dateRead);
-    
-    this->dateRead = *std::gmtime(&validateTime);
-
-    return;
+    return true;
 }
 
 //1-10 rating scale
@@ -136,9 +96,8 @@ time_t rtl::ReadBook::getDateReadAsTimeT() {
 }
 
 std::string rtl::ReadBook::printDateRead() const {
-    char buffer [50];
-    std::strftime(buffer, 50, "%b %d %Y", &this->dateRead);
-    return buffer;
+    boost::gregorian::date returnDate = boost::gregorian::date_from_tm(this->dateRead);
+    return boost::gregorian::to_simple_string(returnDate);
 }
 
 int rtl::ReadBook::getRating() const {
@@ -257,9 +216,9 @@ bool rtl::operator!=(const ReadBook& lhs, const ReadBook& rhs) {
 }
 
 bool rtl::operator<(const ReadBook& lhs, const ReadBook& rhs) {
-    //see if this can be simplified TODO
+    //TODO: see if this can be simplified
     //sort by Book comparison then by dateRead
-    //TODO simplify this by calling Book==Book then only compare ReadBook by dateRead
+    //TODO: simplify this by calling Book==Book then only compare ReadBook by dateRead
     
     tm lhstm;
     tm rhstm;

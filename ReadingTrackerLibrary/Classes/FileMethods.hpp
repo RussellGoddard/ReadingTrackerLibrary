@@ -10,10 +10,11 @@
 
 #include <fstream>
 #include <memory>
-#include <set>
 #include <nlohmann/json.hpp>
+#include <set>
 #include "Author.hpp"
-//#include "ReadBook.hpp" see Author.hpp includes TO DO
+
+//TODO: #include "ReadBook.hpp" see Author.hpp includes
 
 namespace rtl {
 
@@ -59,7 +60,7 @@ namespace rtl {
     };
 
     template <typename T>
-    void sortUnique(std::vector<T>& input); //this shouldn't be declared here but everytime I try to move it to a util header I break everything TO DO
+    void sortUnique(std::vector<T>& input); //TODO: this shouldn't be declared here but everytime I try to move it to a util header I break everything
     bool saveJson(std::vector<nlohmann::json> input, std::fstream& filePath);
     std::vector<std::shared_ptr<rtl::ReadBook>> loadReadingList(std::string filePath);
     rtl::ReadBook convertJsonToReadBook(nlohmann::json json);

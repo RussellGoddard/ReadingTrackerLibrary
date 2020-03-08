@@ -33,9 +33,9 @@
     testReadBook1.setPublisher("a");
     testReadBook1.setGenre("fantasy");
     testReadBook1.setPageCount(100);
-    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setPublishDate("1990-Dec-01");
     testReadBook1.setRating(4);
-    testReadBook1.setDateRead("Mar 25 1993");
+    testReadBook1.setDateRead("1993-Mar-25");
     
     rtl::ReadBook testReadBook2(1);
     testReadBook2.setAuthor("b");
@@ -44,9 +44,9 @@
     testReadBook2.setPublisher("b");
     testReadBook2.setGenre("fantasy");
     testReadBook2.setPageCount(100);
-    testReadBook2.setPublishDate("Dec 01 1990");
+    testReadBook2.setPublishDate("1990-Dec-01");
     testReadBook2.setRating(4);
-    testReadBook2.setDateRead("Mar 25 1993");
+    testReadBook2.setDateRead("1993-Mar-25");
     
     rtl::ReadBook testReadBook3(1);
     testReadBook3.setAuthor("a");
@@ -55,9 +55,9 @@
     testReadBook3.setPublisher("a");
     testReadBook3.setGenre("fantasy");
     testReadBook3.setPageCount(100);
-    testReadBook3.setPublishDate("Dec 01 1990");
+    testReadBook3.setPublishDate("1990-Dec-01");
     testReadBook3.setRating(4);
-    testReadBook3.setDateRead("Mar 25 1993");
+    testReadBook3.setDateRead("1993-Mar-25");
     
     std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = std::make_shared<rtl::ReadBook>(testReadBook1);
     std::shared_ptr<rtl::ReadBook> testPtrReadBook2 = std::make_shared<rtl::ReadBook>(testReadBook2);
@@ -94,7 +94,7 @@
     testBook1.setPublisher("testPublisher");
     testBook1.setGenre("fantasy");
     testBook1.setPageCount(10);
-    testBook1.setPublishDate("Dec 01 1990");
+    testBook1.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("testAuthor2");
@@ -103,7 +103,7 @@
     testBook2.setPublisher("testPublisher2");
     testBook2.setGenre("western");
     testBook2.setPageCount(100);
-    testBook2.setPublishDate("Dec 01 1991");
+    testBook2.setPublishDate("1991-Dec-01");
     
     rtl::Book testBook3;
     testBook3.setAuthor("testAuthor");
@@ -112,7 +112,7 @@
     testBook3.setPublisher("testPublisher");
     testBook3.setGenre("fantasy");
     testBook3.setPageCount(10);
-    testBook3.setPublishDate("Dec 01 1990");
+    testBook3.setPublishDate("1990-Dec-01");
     
     std::shared_ptr<rtl::Book> testPtrBook1 = std::make_shared<rtl::Book>(testBook1);
     std::shared_ptr<rtl::Book> testPtrBook2 = std::make_shared<rtl::Book>(testBook2);
@@ -137,9 +137,9 @@
 }
 
 - (void)testAuthorVector {
-    rtl::Author testAuthor1("test author", "Dec 01 1990");
-    rtl::Author testAuthor2("test buthor", "Dec 03 1990");
-    rtl::Author testAuthor3("test author", "Dec 01 1990");
+    rtl::Author testAuthor1("test author", "1990-Dec-01");
+    rtl::Author testAuthor2("test buthor", "1990-Dec-03");
+    rtl::Author testAuthor3("test author", "1990-Dec-01");
     
     std::shared_ptr<rtl::Author> testPtrAuthor1 = std::make_shared<rtl::Author>(testAuthor1);
     std::shared_ptr<rtl::Author> testPtrAuthor2 = std::make_shared<rtl::Author>(testAuthor2);
@@ -171,7 +171,7 @@
     testBook1.setPublisher("testPublisher1");
     testBook1.setGenre("fantasy");
     testBook1.setPageCount(1);
-    testBook1.setPublishDate("Dec 01 1990");
+    testBook1.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("testAuthor2");
@@ -180,7 +180,7 @@
     testBook2.setPublisher("testPublisher2");
     testBook2.setGenre("western");
     testBook2.setPageCount(20);
-    testBook2.setPublishDate("Dec 01 1991");
+    testBook2.setPublishDate("1991-Dec-01");
     
     rtl::Book testBook3;
     testBook3.setAuthor("testAuthor1");
@@ -189,7 +189,7 @@
     testBook3.setPublisher("testPublisher1");
     testBook3.setGenre("fantasy");
     testBook3.setPageCount(1);
-    testBook3.setPublishDate("Dec 01 1990");
+    testBook3.setPublishDate("1990-Dec-01");
     
     std::shared_ptr<rtl::Book> testPtrBook1 = std::make_shared<rtl::Book>(testBook1);
     std::shared_ptr<rtl::Book> testPtrBook2 = std::make_shared<rtl::Book>(testBook2);
@@ -223,8 +223,8 @@
     books2.push_back(std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtl::romance, 1199163600));
     books2.push_back(std::make_shared<rtl::Book>("testAuthor", "testTitle2", "testSeries2", "testPublisher2", 2222, rtl::romance, 1199163600));
     
-    std::shared_ptr<rtl::Author> testPtrAuthor1 = std::make_shared<rtl::Author>("testAuthor", "Dec 01 1990", books1);
-    std::shared_ptr<rtl::Author> testPtrAuthor2 = std::make_shared<rtl::Author>("testAuthor", "Dec 01 1990", books2);
+    std::shared_ptr<rtl::Author> testPtrAuthor1 = std::make_shared<rtl::Author>("testAuthor", "1990-Dec-01", books1);
+    std::shared_ptr<rtl::Author> testPtrAuthor2 = std::make_shared<rtl::Author>("testAuthor", "1990-Dec-01", books2);
     
     rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     
@@ -248,7 +248,7 @@
         "publisher":"Tor Books",
         "series":"The Wheel of Time",
         "title":"The Fires of Heaven",
-        "publishDate":"Sep 15 1992"
+        "publishDate":"1992-Sep-15"
       }
     )"_json;
     
@@ -269,15 +269,15 @@
       {
         "readerId":123,
         "author":"Robert Jordan",
-        "dateRead":"Jan 29 2020",
+        "dateRead":"2020-Jan-29",
         "genre":"fantasy",
         "pageCount":684,
         "publisher":"Tor Books",
         "series":"The Wheel of Time",
         "title":"The Fires of Heaven",
-        "publishDate":"Sep 15 1992",
+        "publishDate":"1992-Sep-15",
         "rating":9,
-        "dateRead":"Sep 25 1993"
+        "dateRead":"1993-Sep-25"
       }
     )"_json;
     
@@ -299,7 +299,7 @@
     nlohmann::json jsonTest = R"(
       {
           "name": "3rd",
-          "dateBorn": "Apr 01 2000",
+          "dateBorn": "2000-Apr-01",
           "booksWritten": [{
               "author": "testAuthor1",
               "title": "testTitle1",
@@ -307,7 +307,7 @@
               "publisher": "testPublisher1",
               "genre": "fantasy",
               "pageCount": 1,
-              "publishDate": "Oct 15 1978"
+              "publishDate": "1978-Oct-15"
           }, {
               "author": "testAuthor2",
               "title": "testTitle2",
@@ -315,7 +315,7 @@
               "publisher": "testPublisher2",
               "genre": "western",
               "pageCount": 22,
-              "publishDate": "Apr 25 1983"
+              "publishDate": "1983-Apr-25"
           }]
       }
     )"_json;
@@ -332,14 +332,14 @@
       {
         "readerId":456,
         "author":"Robert Jordan",
-        "dateRead":"Jan 29 2020",
+        "dateRead":"2020-Jan-29",
         "genre":"fantasy",
         "pageCount":684,
         "publisher":"Tor Books",
         "rating":9,
         "series":"The Wheel of Time",
         "title":"The Fires of Heaven",
-        "publishDate":"Sep 15 1992"
+        "publishDate":"1992-Sep-15"
       }
     )"_json;
     
@@ -369,7 +369,7 @@
     testBook1.setPublisher("testPublisher");
     testBook1.setGenre("fantasy");
     testBook1.setPageCount(10);
-    testBook1.setPublishDate("Dec 01 1990");
+    testBook1.setPublishDate("1990-Dec-01");
     
     rtl::ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
@@ -378,15 +378,15 @@
     testReadBook1.setPublisher("a");
     testReadBook1.setGenre("fantasy");
     testReadBook1.setPageCount(100);
-    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setPublishDate("1990-Dec-01");
     testReadBook1.setRating(4);
-    testReadBook1.setDateRead("Mar 25 1993");
+    testReadBook1.setDateRead("1993-Mar-25");
     
     std::vector<std::shared_ptr<rtl::Book>> testBookVector1;
     testBookVector1.push_back(std::make_shared<rtl::Book>(testBook1));
     testBookVector1.push_back(std::make_shared<rtl::Book>(testReadBook1));
     
-    rtl::Author testAuthor1("testAuthor", "Dec 01 1990", testBookVector1);
+    rtl::Author testAuthor1("testAuthor", "1990-Dec-01", testBookVector1);
     
     testContainers.addMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
     testContainers.addMasterBooks(std::make_shared<rtl::Book>(testBook1));
@@ -444,7 +444,7 @@
     testBook1.setPublisher("testPublisher");
     testBook1.setGenre("fantasy");
     testBook1.setPageCount(10);
-    testBook1.setPublishDate("Dec 01 1990");
+    testBook1.setPublishDate("1990-Dec-01");
     
     rtl::ReadBook testReadBook1(1);
     testReadBook1.setAuthor("a");
@@ -453,11 +453,11 @@
     testReadBook1.setPublisher("a");
     testReadBook1.setGenre("fantasy");
     testReadBook1.setPageCount(100);
-    testReadBook1.setPublishDate("Dec 01 1990");
+    testReadBook1.setPublishDate("1990-Dec-01");
     testReadBook1.setRating(4);
-    testReadBook1.setDateRead("Mar 25 1993");
+    testReadBook1.setDateRead("1993-Mar-25");
     
-    rtl::Author testAuthor1("test author", "Dec 01 1990");
+    rtl::Author testAuthor1("test author", "1990-Dec-01");
     
     rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::getInstance();
     

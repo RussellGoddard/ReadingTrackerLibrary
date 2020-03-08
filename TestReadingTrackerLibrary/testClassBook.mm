@@ -31,71 +31,56 @@
     testBook.setPublisher("testPublisher");
     testBook.setGenre("fantasy");
     testBook.setPageCount(10);
-    testBook.setPublishDate("Dec 01 1990");
-    XCTAssert("testAuthor" == testBook.getAuthor());
-    XCTAssert("testTitle" == testBook.getTitle());
-    XCTAssert("testSeries" == testBook.getSeries());
-    XCTAssert("testPublisher" == testBook.getPublisher());
-    XCTAssert("fantasy" == testBook.printGenre());
-    XCTAssert(10 == testBook.getPageCount());
-    XCTAssert("Dec 01 1990" == testBook.printPublishDate());
+    testBook.setPublishDate("1990-12-01");
+    XCTAssert(testBook.getAuthor() == "testAuthor");
+    XCTAssert(testBook.getTitle() == "testTitle");
+    XCTAssert(testBook.getSeries() == "testSeries");
+    XCTAssert(testBook.getPublisher() == "testPublisher");
+    XCTAssert(testBook.printGenre() == "fantasy");
+    XCTAssert(testBook.getPageCount() == 10);
+    XCTAssert(testBook.printPublishDate() == "1990-Dec-01");
 }
 
 - (void)testSetPublishedDateString {
     rtl::Book testBook;
-    testBook.setPublishDate("Jan 01 2008");
-    XCTAssert("Jan 01 2008" == testBook.printPublishDate());
-    testBook.setPublishDate("Feb 29 2001");
-    XCTAssert("Mar 01 2001" == testBook.printPublishDate());
-    testBook.setPublishDate("Feb 29 2008");
-    XCTAssert("Feb 29 2008" == testBook.printPublishDate());
-    testBook.setPublishDate("Feb 29 2008");
-    XCTAssert("Feb 29 2008" == testBook.printPublishDate());
-    testBook.setPublishDate("Mar 13 2017");
-    XCTAssert("Mar 13 2017" == testBook.printPublishDate());
-    testBook.setPublishDate("Apr 02 1950");
-    XCTAssert("Apr 02 1950" == testBook.printPublishDate());
-    testBook.setPublishDate("May 31 2010");
-    XCTAssert("May 31 2010" == testBook.printPublishDate());
-    testBook.setPublishDate("Jun 22 1910");
-    XCTAssert("Jun 22 1910" == testBook.printPublishDate());
-    testBook.setPublishDate("Jul 30 2020");
-    XCTAssert("Jul 30 2020" == testBook.printPublishDate());
-    testBook.setPublishDate("Aug 13 2000");
-    XCTAssert("Aug 13 2000" == testBook.printPublishDate());
-    testBook.setPublishDate("Sep 28 2013");
-    XCTAssert("Sep 28 2013" == testBook.printPublishDate());
-    testBook.setPublishDate("Oct 31 2002");
-    XCTAssert("Oct 31 2002" == testBook.printPublishDate());
-    testBook.setPublishDate("Nov 15 1990");
-    XCTAssert("Nov 15 1990" == testBook.printPublishDate());
-    testBook.setPublishDate("Nov 32 2000");
-    XCTAssert("Dec 02 2000" == testBook.printPublishDate());
-    testBook.setPublishDate("Dec 25 1999");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    testBook.setPublishDate("Not 13 1990");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    testBook.setPublishDate("really long invalid string");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    testBook.setPublishDate("too short");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    testBook.setPublishDate("");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
+    XCTAssert(testBook.setPublishDate("2008 1 01"));
+    XCTAssert(testBook.printPublishDate() == "2008-Jan-01");
+    XCTAssert(testBook.setPublishDate("2001-Feb-28"));
+    XCTAssert(testBook.printPublishDate() == "2001-Feb-28");
+    XCTAssert(testBook.setPublishDate("2008-Feb-29"));
+    XCTAssert(testBook.printPublishDate() == "2008-Feb-29");
+    XCTAssert(testBook.setPublishDate("2017-Mar-13"));
+    XCTAssert(testBook.printPublishDate() == "2017-Mar-13");
+    XCTAssert(testBook.setPublishDate("1950-April-02"));
+    XCTAssert(testBook.printPublishDate() == "1950-Apr-02");
+    XCTAssert(testBook.setPublishDate("2010-May-31"));
+    XCTAssert(testBook.printPublishDate() == "2010-May-31");
+    XCTAssert(testBook.setPublishDate("1910-Jun-22"));
+    XCTAssert(testBook.printPublishDate() == "1910-Jun-22");
+    XCTAssert(testBook.setPublishDate("2020-07-30"));
+    XCTAssert(testBook.printPublishDate() == "2020-Jul-30");
+    XCTAssert(testBook.setPublishDate("2000/Aug/13"));
+    XCTAssert(testBook.printPublishDate() == "2000-Aug-13");
+    XCTAssert(testBook.setPublishDate("2013-9-28"));
+    XCTAssert(testBook.printPublishDate() == "2013-Sep-28");
+    XCTAssert(testBook.setPublishDate("2002-Oct-31"));
+    XCTAssert(testBook.printPublishDate() == "2002-Oct-31");
+    XCTAssert(testBook.setPublishDate("1990-Nov-15"));
+    XCTAssert(testBook.printPublishDate() == "1990-Nov-15");
+    XCTAssert(testBook.setPublishDate("1999-Dec-25"));
+    XCTAssert(testBook.printPublishDate() == "1999-Dec-25");
+    XCTAssert(testBook.setPublishDate("1890-Dec-01"));
+    XCTAssert(testBook.printPublishDate() == "1890-Dec-01");
     
-    testBook.setPublishDate("AAA 01 1980");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    
-    testBook.setPublishDate("Dec -1 1980");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    
-    testBook.setPublishDate("Dec 01 1890");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    
-    testBook.setPublishDate("Dec ab 1980");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
-    
-    testBook.setPublishDate("AAA 01 asdf");
-    XCTAssert("Dec 25 1999" == testBook.printPublishDate());
+    XCTAssert(!testBook.setPublishDate("Dec-ab-1980"));
+    XCTAssert(!testBook.setPublishDate(""));
+    XCTAssert(!testBook.setPublishDate("too short"));
+    XCTAssert(!testBook.setPublishDate("really long invalid string"));
+    XCTAssert(!testBook.setPublishDate("1990-Not-13"));
+    XCTAssert(!testBook.setPublishDate("AAA-01-asdf"));
+    XCTAssert(!testBook.setPublishDate("2001/Feb/29"));
+    XCTAssert(!testBook.setPublishDate("AAA 01 1980"));
+    XCTAssert(!testBook.setPublishDate("Dec-01-1980"));
 }
 
 - (void)testSetPublishDateTimeT {
@@ -139,34 +124,34 @@
     testBook.setPublisher("testPublisher");
     testBook.setGenre("fantasy");
     testBook.setPageCount(10);
-    testBook.setPublishDate("Dec 01 1990");
+    testBook.setPublishDate("1990-Dec-01");
     
-    std::string answer = R"({"author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"Dec 01 1990"})";
+    std::string answer = R"({"author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
     XCTAssert(answer == testBook.printJson());
 }
 
 - (void)testPrintGenre {
     rtl::Book testBook;
     testBook.setGenre("detective");
-    XCTAssert("detective" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "detective");
     testBook.setGenre("dystopia");
-    XCTAssert("dystopia" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "dystopia");
     testBook.setGenre("fantasy");
-    XCTAssert("fantasy" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "fantasy");
     testBook.setGenre("mystery");
-    XCTAssert("mystery" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "mystery");
     testBook.setGenre("romance");
-    XCTAssert("romance" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "romance");
     testBook.setGenre("science fiction");
-    XCTAssert("science fiction" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "science fiction");
     testBook.setGenre("thriller");
-    XCTAssert("thriller" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "thriller");
     testBook.setGenre("western");
-    XCTAssert("western" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "western");
     testBook.setGenre("sci fi");
-    XCTAssert("science fiction" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "science fiction");
     testBook.setGenre("pickle");
-    XCTAssert("genre not set" == testBook.printGenre());
+    XCTAssert(testBook.printGenre() == "genre not set");
 }
 
 - (void)testBookEquals {
@@ -177,7 +162,7 @@
     testBook.setPublisher("testPublisher");
     testBook.setGenre("fantasy");
     testBook.setPageCount(10);
-    testBook.setPublishDate("Dec 01 1990");
+    testBook.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("testAuthor");
@@ -186,7 +171,7 @@
     testBook2.setPublisher("testPublisher");
     testBook2.setGenre("fantasy");
     testBook2.setPageCount(10);
-    testBook2.setPublishDate("Dec 01 1990");
+    testBook2.setPublishDate("1990-Dec-01");
     
     XCTAssert(testBook == testBook2);
 }
@@ -199,7 +184,7 @@
     testBook.setPublisher("testPublisher");
     testBook.setGenre("fantasy");
     testBook.setPageCount(10);
-    testBook.setPublishDate("Dec 01 1990");
+    testBook.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("testAuthor2");
@@ -208,7 +193,7 @@
     testBook2.setPublisher("testPublisher2");
     testBook2.setGenre("western");
     testBook2.setPageCount(100);
-    testBook2.setPublishDate("Dec 01 1991");
+    testBook2.setPublishDate("1991-Dec-01");
     
     XCTAssert(testBook != testBook2);
 }
@@ -221,7 +206,7 @@
     testBook.setPublisher("a");
     testBook.setGenre("fantasy");
     testBook.setPageCount(100);
-    testBook.setPublishDate("Dec 01 1990");
+    testBook.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("b");
@@ -230,7 +215,7 @@
     testBook2.setPublisher("a");
     testBook2.setGenre("fantasy");
     testBook2.setPageCount(100);
-    testBook2.setPublishDate("Dec 01 1991");
+    testBook2.setPublishDate("1991-Dec-01");
     
     XCTAssert(testBook < testBook2);
 
@@ -240,7 +225,7 @@
     testBook2.setSeries("a");
     XCTAssert(testBook < testBook2);
     
-    testBook2.setPublishDate("Dec 01 1990");
+    testBook2.setPublishDate("1990-Dec-01");
     XCTAssert(testBook < testBook2);
     
     testBook2.setGenre("western");
@@ -257,7 +242,7 @@
     testBook.setPublisher("a");
     testBook.setGenre("fantasy");
     testBook.setPageCount(100);
-    testBook.setPublishDate("Dec 01 1990");
+    testBook.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("b");
@@ -266,7 +251,7 @@
     testBook2.setPublisher("a");
     testBook2.setGenre("fantasy");
     testBook2.setPageCount(100);
-    testBook2.setPublishDate("Dec 01 1991");
+    testBook2.setPublishDate("1991-Dec-01");
     
     XCTAssert(testBook <= testBook2);
 
@@ -276,7 +261,7 @@
     testBook2.setSeries("a");
     XCTAssert(testBook <= testBook2);
     
-    testBook2.setPublishDate("Dec 01 1990");
+    testBook2.setPublishDate("1990-Dec-01");
     XCTAssert(testBook <= testBook2);
     
     testBook2.setGenre("western");
@@ -293,7 +278,7 @@
     testBook.setPublisher("a");
     testBook.setGenre("fantasy");
     testBook.setPageCount(100);
-    testBook.setPublishDate("Dec 01 1990");
+    testBook.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("b");
@@ -302,7 +287,7 @@
     testBook2.setPublisher("a");
     testBook2.setGenre("fantasy");
     testBook2.setPageCount(100);
-    testBook2.setPublishDate("Dec 01 1991");
+    testBook2.setPublishDate("1991-Dec-01");
     
     XCTAssert(testBook2 > testBook);
 
@@ -312,7 +297,7 @@
     testBook2.setSeries("a");
     XCTAssert(testBook2 > testBook);
     
-    testBook2.setPublishDate("Dec 01 1990");
+    testBook2.setPublishDate("1990-Dec-01");
     XCTAssert(testBook2 > testBook);
     
     testBook2.setGenre("western");
@@ -329,7 +314,7 @@
     testBook.setPublisher("a");
     testBook.setGenre("fantasy");
     testBook.setPageCount(100);
-    testBook.setPublishDate("Dec 01 1990");
+    testBook.setPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
     testBook2.setAuthor("b");
@@ -338,7 +323,7 @@
     testBook2.setPublisher("a");
     testBook2.setGenre("fantasy");
     testBook2.setPageCount(100);
-    testBook2.setPublishDate("Dec 01 1991");
+    testBook2.setPublishDate("1991-Dec-01");
     
     XCTAssert(testBook2 >= testBook);
 
@@ -348,7 +333,7 @@
     testBook2.setSeries("a");
     XCTAssert(testBook2 >= testBook);
     
-    testBook2.setPublishDate("Dec 01 1990");
+    testBook2.setPublishDate("1990-Dec-01");
     XCTAssert(testBook2 >= testBook);
     
     testBook2.setGenre("western");
@@ -370,14 +355,14 @@
     XCTAssert(1199163600 == testBookConstructor.getPublishDateAsTimeT());
     
     //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
-    rtl::Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, "thriller", "Nov 16 1991");
+    rtl::Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, "thriller", "1991-Nov-16");
     XCTAssert("testAuthor2" == testBookConstructor2.getAuthor());
     XCTAssert("testTitle2" == testBookConstructor2.getTitle());
     XCTAssert("testSeries2" == testBookConstructor2.getSeries());
     XCTAssert("testPublisher2" == testBookConstructor2.getPublisher());
     XCTAssert(2222 == testBookConstructor2.getPageCount());
     XCTAssert(rtl::thriller == testBookConstructor2.getGenre());
-    XCTAssert("Nov 16 1991" == testBookConstructor2.printPublishDate());
+    XCTAssert("1991-Nov-16" == testBookConstructor2.printPublishDate());
 }
 
 - (void)testPrintColumnHeaders {
@@ -391,9 +376,9 @@
     std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    Millennium          480  ";
     std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 The Wheel of Time12 70212";
     
-    rtl::Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "Jul 17 2006");
-    rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "Aug 01 2005");
-    rtl::Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "Jan 15 1990");
+    rtl::Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17");
+    rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01");
+    rtl::Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15");
     
     XCTAssert(bookMist.printCommandLine() == testMist);
     XCTAssert(bookGirl.printCommandLine() == testGirl);

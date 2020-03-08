@@ -188,7 +188,7 @@ void rtl::InMemoryContainers::clearAll() {
     return;
 }
 
-//this whole thing will probably look stupid to me in 6 months TO DO
+//TODO: this whole thing will probably look stupid to me in 6 months 
 //had issue with std::unique not actually removing items even with custom comparator
 //forced to make my own
 template <typename T>
@@ -240,7 +240,7 @@ void rtl::sortUnique(std::vector<T>& input) {
     return;
 }
 
-//TO DO investigate a way to remove for loops
+//TODO: investigate a way to remove for loops
 bool rtl::InMemoryContainers::saveInMemoryToFile(std::string filePath) {
     bool successfulSave = true;
     std::vector<nlohmann::json> bookJson;

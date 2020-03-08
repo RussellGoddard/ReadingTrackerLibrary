@@ -12,7 +12,7 @@
 #include <ctime>
 #include <string>
 #include <vector>
-#include "ReadBook.hpp" //this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook TO DO
+#include "ReadBook.hpp" //TODO: this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook 
 
 namespace rtl {
 
@@ -26,7 +26,7 @@ namespace rtl {
     public:
         void setName(std::string name);
         void setDateBorn(time_t dateBorn);
-        void setDateBorn(std::string dateBorn);
+        bool setDateBorn(std::string dateBorn);
         void addBookWritten(std::shared_ptr<rtl::Book> book);
         void addBookWritten(std::vector<std::shared_ptr<rtl::Book>> books);
         std::vector<std::shared_ptr<rtl::Book>> getBooksWritten() const;
