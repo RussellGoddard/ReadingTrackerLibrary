@@ -20,8 +20,8 @@
 #pragma GCC diagnostic push
 
 // turn off the specific warning
-#pragma GCC diagnostic ignored "-Wdocumentation"
 #pragma GCC diagnostic ignored "-Wcomma"
+#pragma GCC diagnostic ignored "-Wdocumentation"
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 

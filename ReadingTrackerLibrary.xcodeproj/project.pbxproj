@@ -25,6 +25,7 @@
 		DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE95050C2374F61C00FF97A4 /* testClassBook.mm */; };
 		DE989E8323F4F94700D3C424 /* testGui.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE989E8223F4F94700D3C424 /* testGui.mm */; };
 		DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762D2414672500425941 /* libboost_date_time-mt.a */; };
+		DEBC76352414B45F00425941 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762F2414A69F00425941 /* libcurl.a */; };
 		DEF9CCA72377B30A00B5089A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504C82374EB8600FF97A4 /* main.cpp */; };
 		DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,9 @@
 		DE95050C2374F61C00FF97A4 /* testClassBook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassBook.mm; sourceTree = "<group>"; };
 		DE989E8223F4F94700D3C424 /* testGui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testGui.mm; sourceTree = "<group>"; };
 		DEBC762D2414672500425941 /* libboost_date_time-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_date_time-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_date_time-mt.a"; sourceTree = "<group>"; };
+		DEBC762F2414A69F00425941 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../usr/local/Cellar/curl/7.69.0/lib/libcurl.a; sourceTree = "<group>"; };
+		DEBC76312414A9A300425941 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
+		DEBC76332414AA1000425941 /* libcurlpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurlpp.a; path = ../../../../usr/local/Cellar/curlpp/0.8.1/lib/libcurlpp.a; sourceTree = "<group>"; };
 		DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReadingTrackerCommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -91,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEBC76352414B45F00425941 /* libcurl.a in Frameworks */,
 				DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +199,9 @@
 		DEF9CCA82377B44A00B5089A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEBC76332414AA1000425941 /* libcurlpp.a */,
+				DEBC76312414A9A300425941 /* libcurl.tbd */,
+				DEBC762F2414A69F00425941 /* libcurl.a */,
 				DEBC762D2414672500425941 /* libboost_date_time-mt.a */,
 			);
 			name = Frameworks;
@@ -493,6 +501,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/boost/1.72.0/lib,
+					/usr/local/Cellar/curl/7.69.0/lib,
+					/usr/local/Cellar/curlpp/0.8.1/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -514,6 +524,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/boost/1.72.0/lib,
+					/usr/local/Cellar/curl/7.69.0/lib,
+					/usr/local/Cellar/curlpp/0.8.1/lib,
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

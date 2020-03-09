@@ -349,3 +349,116 @@ bool rtl::InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
     
     return successfulLoad;
 }
+
+static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
+
+//TODO: move this?
+bool isDigit(char c) {
+    return  std::isdigit(c);
+}
+
+//queries the open library for info based on given OCLC or ISBN (10 or 13 digit)
+bool rtl::queryBookByIdentifier(std::string identifier, std::string identifierNum, std::vector<std::pair<std::string, std::string>>& getValues) {
+    
+    //validation checks
+    if (rtl::trim(identifier).empty() || rtl::trim(identifierNum).empty()) {
+        //TODO: log the error
+        return false;
+    }
+    
+    std::transform(std::begin(identifier), std::end(identifier), std::begin(identifier), ::toupper);
+    
+    if (identifier != "OCLC" && identifier != "ISBN") {
+        //TODO: log the error
+        return false;
+    }
+    
+    std::remove_if(std::begin(identifierNum), std::end(identifierNum), [](const char& element)
+    {
+        return !std::isdigit(element); //remove anything not 0-9
+    });
+    
+    if (identifierNum.empty()) {
+        return false;
+    }
+    
+    std::string combinedIdentifier = identifier + ':' + identifierNum;
+    std::string curlUrl = "https://openlibrary.org/api/books?bibkeys=" + combinedIdentifier + "&jscmd=data&format=json";
+    
+    CURL *curl;
+    CURLcode res;
+    std::string readBuffer;
+
+    curl = curl_easy_init();
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, curlUrl.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+        
+        nlohmann::json openLibJson = nlohmann::json::parse(readBuffer);
+        
+        for (auto& x : getValues) {
+            if (x.first == "oclc") {
+                x.second = openLibJson[combinedIdentifier]["identifiers"][x.first].at(0).get<std::string>();
+            }
+            else if (x.first == "authors") {
+                //TODO: figure out multiple authors
+                x.second = openLibJson[combinedIdentifier][x.first].at(0)["name"].get<std::string>();
+            }
+            else {
+                x.second = openLibJson[combinedIdentifier][x.first].get<std::string>();
+            }
+        }
+    }
+    
+    return true;
+}
+
+
+//TODO: curl query very fragile due to requiring exact capitalization figure out better way (might have to move google books)
+bool rtl::queryBookByTitle(std::string title, std::vector<std::pair<std::string, std::string>>& getValues) {
+    
+    //validation check
+    if (rtl::trim(title).empty()) {
+        return false;
+    }
+    
+    std::transform(std::begin(title), std::end(title), std::begin(title), [](const char& element)
+    {
+        return std::isspace(element) ? '_' : element; //replace all whitespace with _
+    });
+    
+    std::string curlUrl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&sites=enwiki&titles=" + title + "&props=descriptions%7Cclaims&languages=en";
+    
+    CURL *curl;
+    CURLcode res;
+    std::string readBuffer;
+
+    curl = curl_easy_init();
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, curlUrl.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+        
+        nlohmann::json wikiDataJson = nlohmann::json::parse(readBuffer);
+        
+        std::cout << wikiDataJson << std::endl;
+        
+        std::string test = wikiDataJson["entities"]["Q477994"]["id"].get<std::string>();
+        
+        std::string objectId = wikiDataJson["entities"].begin().key();
+        
+        //for (auto& x : getValues) {
+        //}
+    }
+    
+    return true;
+}

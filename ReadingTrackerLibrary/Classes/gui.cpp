@@ -458,6 +458,7 @@ void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStr
                     input = std::getenv("HOME");
                     input += "/Desktop/testFile.txt";
                 }
+                //TODO: log on error
                 (masterList.saveInMemoryToFile(input) ? outputLine(outputStream, "save success\n") : outputLine(outputStream, "error saving"));
                 break;
             }
@@ -469,6 +470,7 @@ void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStr
                     input = std::getenv("HOME");
                     input += "/Desktop/testFile.txt";
                 }
+                //TODO: log on error
                 (masterList.loadInMemoryFromFile(input) ? outputLine(outputStream, "load success\n") : outputLine(outputStream, "error loading"));
                 break;
             }

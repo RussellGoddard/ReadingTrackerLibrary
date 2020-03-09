@@ -13,6 +13,7 @@
 #include <nlohmann/json.hpp>
 #include <set>
 #include "Author.hpp"
+#include <curl/curl.h>
 
 //TODO: #include "ReadBook.hpp" see Author.hpp includes
 
@@ -59,6 +60,8 @@ namespace rtl {
         std::vector<std::shared_ptr<rtl::Author>> authorVector;
     };
 
+    bool queryBookByIdentifier(std::string identifier, std::string identifierNum, std::vector<std::pair<std::string, std::string>>& getValues);
+    bool queryBookByTitle(std::string title, std::vector<std::pair<std::string, std::string>>& getValues);
     template <typename T>
     void sortUnique(std::vector<T>& input); //TODO: this shouldn't be declared here but everytime I try to move it to a util header I break everything
     bool saveJson(std::vector<nlohmann::json> input, std::fstream& filePath);
