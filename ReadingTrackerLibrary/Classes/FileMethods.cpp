@@ -452,9 +452,18 @@ bool rtl::queryBookByTitle(std::string title, std::vector<std::pair<std::string,
         
         std::cout << wikiDataJson << std::endl;
         
-        std::string test = wikiDataJson["entities"]["Q477994"]["id"].get<std::string>();
-        
         std::string objectId = wikiDataJson["entities"].begin().key();
+
+        //datePublish: P577
+        //"time": "+1990-01-15T00:00:00Z",
+        boost::gregorian::date datePublished = boost::gregorian::from_string(wikiDataJson["entities"][objectId]["claims"]["P577"].at(0)["mainsnak"]["datavalue"]["value"]["time"].get<std::string>().substr(1, 10));
+        
+        std::cout << boost::gregorian::to_simple_string(datePublished) << std::endl;
+        
+        for (auto& x : wikiDataJson["entities"][objectId]["claims"]["P577"].at(0)["mainsnak"]["datavalue"]["value"]["time"].items())
+        {
+            std::cout << "key: " << x.key() << ", value: " << x.value() << '\n';
+        }
         
         //for (auto& x : getValues) {
         //}
