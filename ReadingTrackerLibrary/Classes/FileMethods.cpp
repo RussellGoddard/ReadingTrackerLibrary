@@ -421,6 +421,24 @@ bool rtl::queryBookByIdentifier(std::string identifier, std::string identifierNu
 }
 
 
+bool queryWikiHelper(std::string curlUrl, std::string& readBuffer) {
+    CURL *curl;
+    CURLcode res;
+
+    curl = curl_easy_init();
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, curlUrl.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+
+        return true;
+    }
+    
+    return false;
+}
+
 //TODO: curl query very fragile due to requiring exact capitalization figure out better way (might have to move google books)
 bool rtl::queryBookByTitle(std::string title, std::vector<std::pair<std::string, std::string>>& getValues) {
     
@@ -449,11 +467,37 @@ bool rtl::queryBookByTitle(std::string title, std::vector<std::pair<std::string,
         curl_easy_cleanup(curl);
         
         nlohmann::json wikiDataJson = nlohmann::json::parse(readBuffer);
-        
-        std::cout << wikiDataJson << std::endl;
-        
         std::string objectId = wikiDataJson["entities"].begin().key();
 
+        //title: P1476
+        std::string title = wikiDataJson["entities"][objectId]["claims"]["P1476"].at(0)["mainsnak"]["datavalue"]["value"]["text"].get<std::string>();
+        
+        //series: P179 -> P1476
+        std::string seriesId = wikiDataJson["entities"][objectId]["claims"]["P179"].at(0)["mainsnak"]["datavalue"]["value"]["id"].get<std::string>();
+        
+        std::string seriesCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + seriesId + "&sites=enwiki&props=claims&languages=en";
+        
+        std::string seriesBuffer = "";
+        std::string series = "";
+        if (queryWikiHelper(seriesCurl, seriesBuffer)) {
+            nlohmann::json wikiDataJsonSeries = nlohmann::json::parse(seriesBuffer);
+            series = wikiDataJsonSeries["entities"][seriesId]["claims"]["P1476"].at(0)["mainsnak"]["datavalue"]["value"]["text"].get<std::string>();
+        }
+        
+        //author: P50 -> P742
+        std::string authorId = wikiDataJson["entities"][objectId]["claims"]["P50"].at(0)["mainsnak"]["datavalue"]["value"]["id"].get<std::string>();
+        
+        std::string authorCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + authorId + "&sites=enwiki&props=claims&languages=en";
+        
+        std::string author = "";
+        std::string authorBuffer = "";
+        if (queryWikiHelper(authorCurl, authorBuffer)) {
+            nlohmann::json wikiDataJsonAuthor = nlohmann::json::parse(authorBuffer);
+            author = wikiDataJsonAuthor["entities"][authorId]["claims"]["P742"].at(0)["mainsnak"]["datavalue"]["value"].get<std::string>();
+        }
+        
+        //oclc
+        
         //datePublish: P577
         //"time": "+1990-01-15T00:00:00Z",
         boost::gregorian::date datePublished = boost::gregorian::from_string(wikiDataJson["entities"][objectId]["claims"]["P577"].at(0)["mainsnak"]["datavalue"]["value"]["time"].get<std::string>().substr(1, 10));
