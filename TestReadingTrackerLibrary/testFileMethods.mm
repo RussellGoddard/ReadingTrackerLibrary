@@ -477,28 +477,31 @@
 }
 
 - (void)testQueryBookByIdentifier {
-    std::vector<std::pair<std::string, std::string>> test;
-    test.push_back(std::make_pair("oclc", ""));
-    test.push_back(std::make_pair("title", ""));
-    test.push_back(std::make_pair("authors", ""));
+    rtl::openLibraryValues testQuery;
     
-    XCTAssert(rtl::queryBookByIdentifier("ISBN", "0812511816", test));
-    XCTAssert(test.at(0).second == "22671036");
-    XCTAssert(test.at(1).second == "The eye of the world");
-    XCTAssert(test.at(2).second == "Robert Jordan");
+    testQuery = rtl::queryBookByIdentifier("ISBN", "0812511816");
+    XCTAssert(testQuery.success);
+    XCTAssert(testQuery.oclc == "22671036");
+    XCTAssert(testQuery.title == "The eye of the world");
+    XCTAssert(testQuery.author == "Robert Jordan");
     
-    XCTAssert(rtl::queryBookByIdentifier("oclc", "861961500", test));
-    XCTAssert(test.at(0).second == "861961500");
-    XCTAssert(test.at(1).second == "The Girl with the Dragon Tattoo");
-    XCTAssert(test.at(2).second == "Stieg Larsson");
+    testQuery = rtl::queryBookByIdentifier("oclc", "861961500");
+    XCTAssert(testQuery.success);
+    XCTAssert(testQuery.oclc == "861961500");
+    XCTAssert(testQuery.title == "The Girl with the Dragon Tattoo");
+    XCTAssert(testQuery.author == "Stieg Larsson");
 }
 
 - (void)testQueryBookByTitle {
-    std::vector<std::pair<std::string, std::string>> test;
     
-    rtl::queryBookByTitle("The Eye of the World", test);
+    rtl::wikiDataValues newQuery = rtl::queryBookByTitle("The Eye of the World");
     
-    XCTAssert(false);
+    XCTAssert(newQuery.success == true);
+    XCTAssert(newQuery.author == "Robert Jordan");
+    XCTAssert(newQuery.oclc == "19723327");
+    XCTAssert(newQuery.series == "The Wheel of Time");
+    XCTAssert(newQuery.title == "The Eye of the World");
+    XCTAssert(newQuery.publisher == "Tor Publishing");
 }
 
 @end

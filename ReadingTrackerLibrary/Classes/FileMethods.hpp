@@ -19,6 +19,24 @@
 
 namespace rtl {
 
+    //TODO: should these two structs be here or the queries spun into their own file
+    struct wikiDataValues {
+        bool success = false;
+        std::string oclc = "";
+        std::string title = "";
+        std::string series = "";
+        std::string author = "";
+        std::string publisher = "";
+        boost::gregorian::date datePublished;
+    };
+
+    struct openLibraryValues {
+        bool success = false;
+        std::string oclc = "";
+        std::string author = "";
+        std::string title = "";
+    };
+
     class InMemoryContainers {
     public:
         
@@ -60,8 +78,8 @@ namespace rtl {
         std::vector<std::shared_ptr<rtl::Author>> authorVector;
     };
 
-    bool queryBookByIdentifier(std::string identifier, std::string identifierNum, std::vector<std::pair<std::string, std::string>>& getValues);
-    bool queryBookByTitle(std::string title, std::vector<std::pair<std::string, std::string>>& getValues);
+    rtl::openLibraryValues queryBookByIdentifier(std::string identifier, std::string identifierNum);
+    rtl::wikiDataValues queryBookByTitle(std::string title);
     template <typename T>
     void sortUnique(std::vector<T>& input); //TODO: this shouldn't be declared here but everytime I try to move it to a util header I break everything
     bool saveJson(std::vector<nlohmann::json> input, std::fstream& filePath);
