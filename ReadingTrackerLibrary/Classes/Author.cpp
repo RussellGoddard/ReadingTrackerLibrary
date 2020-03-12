@@ -7,17 +7,8 @@
 
 #include "Author.hpp"
 
-//used for printCommandLine and printCommandLineHeaders
-//TODO: implement namespaces
-int widthAuthorA = 20;
-int widthDateBornA = 12;
-int widthTitleA = 44;
-int widthYearA = 4;
-
-
 void rtl::Author::setName(std::string name) {
     this->name = name;
-    
     return;
 }
 
@@ -36,7 +27,7 @@ void rtl::Author::setDateBorn(time_t dateBorn) {
 
 bool rtl::Author::setDateBorn(std::string dateBorn) {
     try {
-        boost::gregorian::date d = boost::gregorian::from_string(dateBorn);
+        auto d = boost::gregorian::from_string(dateBorn);
         this->dateBorn = boost::gregorian::to_tm(d);
     } catch (std::exception& ex) {
         //TODO: add logging
@@ -48,16 +39,13 @@ bool rtl::Author::setDateBorn(std::string dateBorn) {
 
 void rtl::Author::addBookWritten(std::shared_ptr<rtl::Book> book) {
     this->booksWritten.push_back(book);
-
     rtl::sortUnique(this->booksWritten);
-    
     return;
 }
 
 void rtl::Author::addBookWritten(std::vector<std::shared_ptr<rtl::Book>> books) {
     this->booksWritten.insert(std::end(this->booksWritten), std::begin(books), std::end(books));
     rtl::sortUnique(this->booksWritten);
-    
     return;
 }
 
@@ -74,7 +62,7 @@ time_t rtl::Author::getDateBornTimeT() {
 }
 
 std::string rtl::Author::printDateBorn() const {
-    boost::gregorian::date returnDate = boost::gregorian::date_from_tm(this->dateBorn);
+    auto returnDate = boost::gregorian::date_from_tm(this->dateBorn);
     return boost::gregorian::to_simple_string(returnDate);
 }
 
@@ -104,32 +92,29 @@ Brandon Sanderson   Dec 19 1975 Mistborn: The Final Empire                  2006
  */
 std::string rtl::Author::printCommandLine() const {
     std::stringstream returnStr;
-    std::string test;
     returnStr.fill(' ');
     
-    returnStr.width(widthAuthorA);
-    returnStr << std::left << this->getName().substr(0, widthAuthorA - 1);
-    returnStr.width(widthDateBornA);
-    returnStr << std::left << this->printDateBorn().substr(0, widthDateBornA - 1);
+    returnStr.width(Author::cWidthAuthor);
+    returnStr << std::left << this->getName().substr(0, Author::cWidthAuthor - 1);
+    returnStr.width(Author::cWidthDateBorn);
+    returnStr << std::left << this->printDateBorn().substr(0, Author::cWidthDateBorn - 1);
     if (!this->getBooksWritten().empty()) {
         std::vector<std::shared_ptr<rtl::Book>> booksWritten = this->getBooksWritten();
-        returnStr.width(widthTitleA);
-        returnStr << std::left << booksWritten.at(0)->getTitle().substr(0, widthTitleA - 1);
-        returnStr.width(widthYearA);
+        returnStr.width(Author::cWidthTitle);
+        returnStr << std::left << booksWritten.at(0)->getTitle().substr(0, Author::cWidthTitle - 1);
+        returnStr.width(Author::cWidthYear);
         returnStr << std::left << booksWritten.at(0)->printPublishDate().substr(0, 4);
-test = returnStr.str();
         for (int i = 1; i < booksWritten.size(); ++i) {
             returnStr << std::endl;
-            returnStr.width(widthAuthorA + widthDateBornA);
+            returnStr.width(Author::cWidthAuthor + Author::cWidthDateBorn);
             returnStr << std::left << " ";
-            returnStr.width(widthTitleA);
-            returnStr << std::left << booksWritten.at(i)->getTitle().substr(0, widthTitleA - 1);
-            returnStr.width(widthYearA);
+            returnStr.width(Author::cWidthTitle);
+            returnStr << std::left << booksWritten.at(i)->getTitle().substr(0, Author::cWidthTitle - 1);
+            returnStr.width(Author::cWidthYear);
             returnStr << std::left << booksWritten.at(i)->printPublishDate().substr(0, 4);
         }
     }
     
-test = returnStr.str();
     return returnStr.str();
 }
 
@@ -138,13 +123,13 @@ std::string rtl::Author::printCommandLineHeaders() {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(widthAuthorA);
+    returnStr.width(Author::cWidthAuthor);
     returnStr << std::left << "Author";
-    returnStr.width(widthDateBornA);
+    returnStr.width(Author::cWidthDateBorn);
     returnStr << std::left << "Date Born";
-    returnStr.width(widthTitleA);
+    returnStr.width(Author::cWidthTitle);
     returnStr << std::left << "Books Written";
-    returnStr.width(widthYearA);
+    returnStr.width(Author::cWidthYear);
     returnStr << std::left << "Year";
 
     return returnStr.str();
@@ -160,7 +145,6 @@ rtl::Author::Author(std::string name, std::string dateBorn, std::vector<std::sha
     this->setName(name);
     this->setDateBorn(dateBorn);
     this->addBookWritten(booksWritten);
-    
 }
 
 rtl::Author::Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book> bookWritten) {
@@ -213,6 +197,7 @@ std::vector<std::string> splitString(const std::string& input, const std::string
 
 //sort by last word in name then by birthdate
 bool rtl::operator<(const Author& lhs, const Author& rhs) {
+    //TODO: there is probably a way to do an insensitive case string compare
     //make names lower case for comparison
     std::string lowerLhsName = lhs.getName();
     std::string lowerRhsName = rhs.getName();

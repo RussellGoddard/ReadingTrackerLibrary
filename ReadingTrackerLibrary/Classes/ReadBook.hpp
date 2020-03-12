@@ -37,6 +37,13 @@ namespace rtl {
         int readerId;
         tm dateRead;
         int rating;
+        
+        //used for printCommandLine and printCommandLineHeaders
+        static const int cWidthAuthor = 20;
+        static const int cWidthTitle = 35;
+        static const int cWidthPage = 6;
+        static const int cWidthDateRead = 13;
+        static const int cWidthRating = 6;
     };
 
     bool operator==(const ReadBook& lhs, const ReadBook& rhs);

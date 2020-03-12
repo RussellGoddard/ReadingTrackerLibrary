@@ -7,13 +7,6 @@
 
 #include "Book.hpp"
 
-//used for printCommandLine and printCommandLineHeaders
-int widthAuthor = 20;
-int widthTitle = 35;
-int widthSeries = 20;
-int widthPage = 5;
-
-
 rtl::Genre rtl::convertStringToGenre(std::string genre) {
     rtl::Genre returnGenre;
     
@@ -98,8 +91,7 @@ std::string rtl::Book::getOclc() const {
 }
 
 std::string rtl::Book::printJson() const {
-    std::string returnString = "test\"\"";
-    returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(,"publishDate":")" + this->printPublishDate() + R"("})";
+    std::string returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(,"publishDate":")" + this->printPublishDate() + R"("})";
     return returnString;
 }
 
@@ -108,14 +100,14 @@ std::string rtl::Book::printCommandLine() const {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(widthAuthor);
-    returnStr << std::left << this->getAuthor().substr(0, widthAuthor - 1);
-    returnStr.width(widthTitle);
-    returnStr << std::left << this->getTitle().substr(0, widthTitle - 1);
-    returnStr.width(widthSeries);
-    returnStr << std::left << this->getSeries().substr(0, widthSeries - 1);
-    returnStr.width(widthPage);
-    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, widthPage);
+    returnStr.width(Book::cWidthAuthor);
+    returnStr << std::left << this->getAuthor().substr(0, Book::cWidthAuthor - 1);
+    returnStr.width(Book::cWidthTitle);
+    returnStr << std::left << this->getTitle().substr(0, Book::cWidthTitle - 1);
+    returnStr.width(Book::cWidthSeries);
+    returnStr << std::left << this->getSeries().substr(0, Book::cWidthSeries - 1);
+    returnStr.width(Book::cWidthPage);
+    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, Book::cWidthPage);
     
     return returnStr.str();
 }
@@ -125,13 +117,13 @@ std::string rtl::Book::printCommandLineHeaders() {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(widthAuthor);
+    returnStr.width(Book::cWidthAuthor);
     returnStr << std::left << "Author";
-    returnStr.width(widthTitle);
+    returnStr.width(Book::cWidthTitle);
     returnStr << std::left << "Title";
-    returnStr.width(widthSeries);
+    returnStr.width(Book::cWidthSeries);
     returnStr << std::left << "Series";
-    returnStr.width(widthPage);
+    returnStr.width(Book::cWidthPage);
     returnStr << std::left << "Pages";
     
     return returnStr.str();
@@ -146,31 +138,27 @@ time_t rtl::Book::getPublishDateAsTimeT() {
 }
 
 std::string rtl::Book::printPublishDate() const {
-    boost::gregorian::date returnDate = boost::gregorian::date_from_tm(this->publishDate);
+    auto returnDate = boost::gregorian::date_from_tm(this->publishDate);
     return boost::gregorian::to_simple_string(returnDate);
 }
 
 void rtl::Book::setAuthor(std::string author) {
     this->author = author;
-    
     return;
 }
 
 void rtl::Book::setTitle(std::string title) {
     this->title = title;
-    
     return;
 }
 
 void rtl::Book::setSeries(std::string series) {
     this->series = series;
-    
     return;
 }
 
 void rtl::Book::setPublisher(std::string publisher) {
     this->publisher = publisher;
-    
     return;
 }
 
@@ -179,9 +167,7 @@ void rtl::Book::setPageCount(int pageCount) {
     if (pageCount <= 0) {
         pageCount = -1;
     }
-    
     this->pageCount = pageCount;
-    
     return;
 }
 
@@ -204,7 +190,6 @@ void rtl::Book::setPageCount(char pageCount) {
 
 //will attempt a stoi if it fails set pageCount to -1
 void rtl::Book::setPageCount(std::string pageCount) {
-    
     try {
         int newPageCount = std::stoi(pageCount);
         //pageCount cannot be less than 1, if it is don't change anything
@@ -214,6 +199,7 @@ void rtl::Book::setPageCount(std::string pageCount) {
         
         this->pageCount = newPageCount;
     } catch (std::invalid_argument) {
+        //TODO: Log error
         //keep pageCount what it was
     }
     
@@ -222,13 +208,11 @@ void rtl::Book::setPageCount(std::string pageCount) {
 
 void rtl::Book::setGenre(Genre genre) {
     this->genre = genre;
-    
     return;
 }
 
 void rtl::Book::setGenre(std::string genre) {
     this->genre = convertStringToGenre(genre);
-    
     return;
 }
 
@@ -247,9 +231,10 @@ void rtl::Book::setPublishDate(time_t publishDate) {
 
 bool rtl::Book::setPublishDate(std::string publishDate) {
     try {
-        boost::gregorian::date d = boost::gregorian::from_string(publishDate);
+        auto d = boost::gregorian::from_string(publishDate);
         this->publishDate = boost::gregorian::to_tm(d);
     } catch (std::exception& ex) {
+        //TODO: log error
         return false;
     }
     
@@ -258,7 +243,6 @@ bool rtl::Book::setPublishDate(std::string publishDate) {
 
 void rtl::Book::setOclc(std::string oclc) {
     this->oclc = oclc;
-    
     return;
 }
 
@@ -313,10 +297,6 @@ bool rtl::operator!=(const rtl::Book& lhs, const rtl::Book& rhs) {
 bool rtl::operator<(const rtl::Book& lhs, const rtl::Book& rhs) {
     //TODO: see if this can be simplified 
     //sort by author -> series -> publish date -> title
-    tm lhstm;
-    tm rhstm;
-    time_t lhstt;
-    time_t rhstt;
     
     if (lhs.getAuthor() < rhs.getAuthor()) { return true; }
     else if (lhs.getAuthor() > rhs.getAuthor()) { return false; }
@@ -324,6 +304,11 @@ bool rtl::operator<(const rtl::Book& lhs, const rtl::Book& rhs) {
         if (lhs.getSeries() < rhs.getSeries()) { return true; }
         else if (lhs.getSeries() > rhs.getSeries()) { return false; }
         else {
+            tm lhstm;
+            tm rhstm;
+            time_t lhstt;
+            time_t rhstt;
+            
             lhstm = lhs.getPublishDate();
             lhstt = std::mktime(&lhstm);
             rhstm = rhs.getPublishDate();

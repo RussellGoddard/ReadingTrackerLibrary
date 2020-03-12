@@ -7,14 +7,6 @@
 
 #include "ReadBook.hpp"
 
-//used for printCommandLine and printCommandLineHeaders
-//TODO: implement namespaces
-int widthAuthorRB = 20;
-int widthTitleRB = 35;
-int widthPageRB = 6;
-int widthDateReadRB = 13;
-int widthRatingRB = 6;
-
 void rtl::ReadBook::setDateRead(time_t time) {
     this->dateRead = *std::gmtime(&time);
     this->dateRead.tm_sec = 0;
@@ -30,7 +22,7 @@ void rtl::ReadBook::setDateRead(time_t time) {
 
 bool rtl::ReadBook::setDateRead(std::string time) {
     try {
-        boost::gregorian::date d = boost::gregorian::from_string(time);
+        auto d = boost::gregorian::from_string(time);
         this->dateRead = boost::gregorian::to_tm(d);
     } catch (std::exception& ex) {
         //TODO: add logging
@@ -80,6 +72,7 @@ void rtl::ReadBook::setRating(std::string rating) {
         
         this->rating = newRating;
     } catch (std::invalid_argument) {
+        //TODO: log error
         //keep rating what it was
     }
     
@@ -91,12 +84,11 @@ tm rtl::ReadBook::getDateRead() const {
 }
 
 time_t rtl::ReadBook::getDateReadAsTimeT() {
-    
     return std::mktime(&dateRead);
 }
 
 std::string rtl::ReadBook::printDateRead() const {
-    boost::gregorian::date returnDate = boost::gregorian::date_from_tm(this->dateRead);
+    auto returnDate = boost::gregorian::date_from_tm(this->dateRead);
     return boost::gregorian::to_simple_string(returnDate);
 }
 
@@ -137,16 +129,16 @@ std::string rtl::ReadBook::printCommandLine() const {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(widthAuthorRB);
-    returnStr << std::left << this->getAuthor().substr(0, widthAuthorRB - 1);
-    returnStr.width(widthTitleRB);
-    returnStr << std::left << this->getTitle().substr(0, widthTitleRB - 1);
-    returnStr.width(widthPageRB);
-    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, widthPageRB - 1);
-    returnStr.width(widthDateReadRB);
-    returnStr << std::left << this->printDateRead().substr(0, widthDateReadRB - 1);
-    returnStr.width(widthRatingRB);
-    returnStr << std::left << std::to_string(this->getRating()).substr(0, widthRatingRB - 1);
+    returnStr.width(ReadBook::cWidthAuthor);
+    returnStr << std::left << this->getAuthor().substr(0, ReadBook::cWidthAuthor - 1);
+    returnStr.width(ReadBook::cWidthTitle);
+    returnStr << std::left << this->getTitle().substr(0, ReadBook::cWidthTitle - 1);
+    returnStr.width(ReadBook::cWidthPage);
+    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, ReadBook::cWidthPage - 1);
+    returnStr.width(ReadBook::cWidthDateRead);
+    returnStr << std::left << this->printDateRead().substr(0, ReadBook::cWidthDateRead - 1);
+    returnStr.width(ReadBook::cWidthRating);
+    returnStr << std::left << std::to_string(this->getRating()).substr(0, ReadBook::cWidthRating - 1);
     
     return returnStr.str();
 }
@@ -156,15 +148,15 @@ std::string rtl::ReadBook::printCommandLineHeaders() {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(widthAuthorRB);
+    returnStr.width(ReadBook::cWidthAuthor);
     returnStr << std::left << "Author";
-    returnStr.width(widthTitleRB);
+    returnStr.width(ReadBook::cWidthTitle);
     returnStr << std::left << "Title";
-    returnStr.width(widthPageRB);
+    returnStr.width(ReadBook::cWidthPage);
     returnStr << std::left << "Pages";
-    returnStr.width(widthDateReadRB);
+    returnStr.width(ReadBook::cWidthDateRead);
     returnStr << std::left << "Date Read";
-    returnStr.width(widthRatingRB);
+    returnStr.width(ReadBook::cWidthRating);
     returnStr << std::left << "Rating";
     
     return returnStr.str();
@@ -220,17 +212,17 @@ bool rtl::operator<(const ReadBook& lhs, const ReadBook& rhs) {
     //sort by Book comparison then by dateRead
     //TODO: simplify this by calling Book==Book then only compare ReadBook by dateRead
     
-    tm lhstm;
-    tm rhstm;
-    time_t lhstt;
-    time_t rhstt;
-    
     if (lhs.getAuthor() < rhs.getAuthor()) { return true; }
     else if (lhs.getAuthor() > rhs.getAuthor()) { return false; }
     else {
         if (lhs.getSeries() < rhs.getSeries()) { return true; }
         else if (lhs.getSeries() > rhs.getSeries()) { return false; }
         else {
+            tm lhstm;
+            tm rhstm;
+            time_t lhstt;
+            time_t rhstt;
+            
             lhstm = lhs.getPublishDate();
             lhstt = std::mktime(&lhstm);
             rhstm = rhs.getPublishDate();

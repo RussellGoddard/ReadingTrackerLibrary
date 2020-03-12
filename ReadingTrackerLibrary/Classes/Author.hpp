@@ -15,12 +15,11 @@
 #include "ReadBook.hpp" //TODO: this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook 
 
 namespace rtl {
-
+    //TODO: change default author dateBorn to something else
     const time_t jan2038 = 2145916800;
     template <typename T>
     void sortUnique(std::vector<T>& input);
     int convertAbbrMonthToInt(std::string month); //don't like this needing to be declared here, TODO
-
 
     class Author {
     public:
@@ -46,6 +45,12 @@ namespace rtl {
         std::string name;
         struct tm dateBorn;
         std::vector<std::shared_ptr<rtl::Book>> booksWritten;
+        
+        //used for printCommandLine and printCommandLineHeaders
+        static const int cWidthAuthor = 20;
+        static const int cWidthDateBorn = 12;
+        static const int cWidthTitle = 44;
+        static const int cWidthYear = 4;
     };
 
     bool operator==(const Author& lhs, const Author& rhs);

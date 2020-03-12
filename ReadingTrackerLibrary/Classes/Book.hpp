@@ -76,6 +76,12 @@ namespace rtl {
         Genre genre;
         int pageCount;
         tm publishDate;
+        
+        //used for printCommandLine and printCommandLineHeaders
+        static const int cWidthAuthor = 20;
+        static const int cWidthTitle = 35;
+        static const int cWidthSeries = 20;
+        static const int cWidthPage = 5;
     };
 
     bool operator==(const Book& lhs, const Book& rhs);

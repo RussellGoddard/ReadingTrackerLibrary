@@ -13,15 +13,13 @@ std::string& rtl::leftTrim(std::string& input) {
   return input;
 }
 
-std::string& rtl::rightTrim(std::string& input)
-{
+std::string& rtl::rightTrim(std::string& input) {
   auto it1 = std::find_if(input.rbegin(), input.rend(), [](char ch) { return !std::isspace<char>(ch, std::locale::classic()); } );
   input.erase(it1.base(), input.end());
   return input;
 }
 
-std::string& rtl::trim(std::string& str)
-{
+std::string& rtl::trim(std::string& str) {
    return rtl::leftTrim(rtl::rightTrim(str));
 }
 
@@ -40,7 +38,6 @@ bool rtl::saveJson(std::vector<nlohmann::json> input, std::fstream& saveFile) {
 }
 
 rtl::ReadBook rtl::convertJsonToReadBook(nlohmann::json json) {
-    
     int readerId = json["readerId"].get<int>();
     std::string author = json["author"].get<std::string>();
     std::string title = json["title"].get<std::string>();
@@ -64,13 +61,10 @@ std::shared_ptr<rtl::Book> rtl::convertJsonToBookPtr(nlohmann::json json) {
     std::string genre = json["genre"].get<std::string>();
     std::string publishDate = json["publishDate"].get<std::string>();
     
-    std::shared_ptr<rtl::Book> newBook = std::make_shared<rtl::Book>(author, title, series, publisher, pageCount, genre, publishDate);
-    
-    return newBook;
+    return std::make_shared<rtl::Book>(author, title, series, publisher, pageCount, genre, publishDate);
 }
 
 std::shared_ptr<rtl::ReadBook> rtl::convertJsonToReadBookPtr(nlohmann::json json) {
-    
     int readerId = json["readerId"].get<int>();
     std::string author = json["author"].get<std::string>();
     std::string title = json["title"].get<std::string>();
@@ -82,9 +76,7 @@ std::shared_ptr<rtl::ReadBook> rtl::convertJsonToReadBookPtr(nlohmann::json json
     int rating = json["rating"].get<int>();
     std::string time = json["dateRead"].get<std::string>();
     
-    std::shared_ptr<rtl::ReadBook> newReadBook = std::make_shared<rtl::ReadBook>(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
-    
-    return newReadBook;
+    return std::make_shared<rtl::ReadBook>(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);;
 }
 
 std::shared_ptr<rtl::Author> rtl::convertJsonToAuthorPtr(nlohmann::json json) {
@@ -95,9 +87,7 @@ std::shared_ptr<rtl::Author> rtl::convertJsonToAuthorPtr(nlohmann::json json) {
         booksWritten.push_back(rtl::convertJsonToBookPtr(x));
     }
     
-    std::shared_ptr<rtl::Author> newAuthor = std::make_shared<rtl::Author>(name, dateBorn, booksWritten);
-    
-    return newAuthor;
+    return std::make_shared<rtl::Author>(name, dateBorn, booksWritten);
 }
 
 std::vector<std::shared_ptr<rtl::ReadBook>> rtl::InMemoryContainers::getMasterReadBooks() {
@@ -162,7 +152,7 @@ void rtl::InMemoryContainers::addMasterAuthors(std::shared_ptr<rtl::Author> newA
 
 void rtl::InMemoryContainers::addMasterAuthors(std::shared_ptr<rtl::Book> newBook) {
     if (newBook->getAuthor() != "") {
-        std::shared_ptr<rtl::Author> newAuthor = std::make_shared<rtl::Author>(newBook->getAuthor(), rtl::jan2038, newBook);
+        auto newAuthor = std::make_shared<rtl::Author>(newBook->getAuthor(), rtl::jan2038, newBook);
         this->authorVector.push_back(newAuthor);
         rtl::sortUnique(this->authorVector);
     }
@@ -172,7 +162,7 @@ void rtl::InMemoryContainers::addMasterAuthors(std::shared_ptr<rtl::Book> newBoo
 void rtl::InMemoryContainers::addMasterAuthors(std::vector<std::shared_ptr<rtl::Book>> newBookVector) {
     for (auto x : newBookVector) {
         if (x->getAuthor() != "") {
-            std::shared_ptr<rtl::Author> newAuthor = std::make_shared<rtl::Author>(x->getAuthor(), rtl::jan2038, newBookVector);
+            auto newAuthor = std::make_shared<rtl::Author>(x->getAuthor(), rtl::jan2038, newBookVector);
             this->authorVector.push_back(newAuthor);
         }
     }
@@ -233,7 +223,6 @@ bool sortPointers(T lhs, T rhs) {
 
 template <typename T>
 void rtl::sortUnique(std::vector<T>& input) {
-    
     std::sort(std::begin(input), std::end(input), sortPointers<T>);
     uniqueVector(input);
     
@@ -242,7 +231,6 @@ void rtl::sortUnique(std::vector<T>& input) {
 
 //TODO: investigate a way to remove for loops
 bool rtl::InMemoryContainers::saveInMemoryToFile(std::string filePath) {
-    bool successfulSave = true;
     std::vector<nlohmann::json> bookJson;
     std::vector<nlohmann::json> readBookJson;
     std::vector<nlohmann::json> authorJson;
@@ -267,6 +255,7 @@ bool rtl::InMemoryContainers::saveInMemoryToFile(std::string filePath) {
         return false;
     };
     
+    bool successfulSave = true;
     if (successfulSave) {
         saveFile << "*[*\n";
         successfulSave = rtl::saveJson(bookJson, saveFile);
@@ -288,16 +277,15 @@ bool rtl::InMemoryContainers::saveInMemoryToFile(std::string filePath) {
 }
 
 bool rtl::InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
-    bool successfulLoad = true;
-    int trackLoad = 0;
     std::fstream loadFile;
-    std::string line;
     loadFile.open(filePath, std::fstream::in);
     if(!loadFile.good()) {
         loadFile.close();
         return false;
     };
     
+    int trackLoad = 0;
+    std::string line;
     //verify that first line is "*[*"
     std::getline(loadFile, line);
     if (line != "*[*") {
@@ -337,21 +325,17 @@ bool rtl::InMemoryContainers::loadInMemoryFromFile(std::string filePath) {
         }
     }
     
+    loadFile.close();
+    
     //currently only books, readBooks, and authors supported so trackLoad should end at 3
     if (trackLoad != 3) {
-        loadFile.close();
         return false;
     }
     
-    if (successfulLoad) {
-        loadFile.close();
-    }
-    
-    return successfulLoad;
+    return true;
 }
 
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
+static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
 }
@@ -365,7 +349,6 @@ bool isDigit(char c) {
 //TODO: wikidata oclc and openlibrary oclc won't always line up but be accepted by worldcat as correct, not sure what can be done about it
 //queries the open library for info based on given OCLC or ISBN (10 or 13 digit)
 rtl::openLibraryValues rtl::queryBookByIdentifier(std::string identifier, std::string identifierNum) {
-    
     rtl::openLibraryValues newLibraryValues;
     
     //validation checks
@@ -443,7 +426,6 @@ bool queryWikiHelper(std::string curlUrl, std::string& readBuffer) {
 
 //TODO: curl query very fragile due to requiring exact capitalization figure out better way (might have to move google books)
 rtl::wikiDataValues rtl::queryBookByTitle(std::string title) {
-    
     rtl::wikiDataValues newDataValues;
     
     //validation check

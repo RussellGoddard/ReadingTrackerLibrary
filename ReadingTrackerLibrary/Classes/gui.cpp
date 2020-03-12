@@ -7,25 +7,22 @@
 
 #include "gui.hpp"
 
-using namespace rtlCommandLine;
-
 /*
     "name":"Robert Jordan",
     "dateBorn":"Oct 17 1948",
     "booksWritten":[]
 
 */
-
 rtl::Author rtlCommandLine::getNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
-    std::string name, dateBorn;
+    std::string name;
+    std::string dateBorn;
     
     outputLine(outputStream, "Input author's name");
     name = getInput(inputStream);
     outputLine(outputStream, "Input author's date of birth (leave blank if unknown)");
     dateBorn = getInput(inputStream);
-    rtl::Author newAuthor(name, dateBorn);
     
-    return newAuthor;
+    return rtl::Author(name, dateBorn);
 }
  
 /*
@@ -39,7 +36,6 @@ rtl::Author rtlCommandLine::getNewAuthor(std::istream& inputStream, std::ostream
     "pageCount" : 782
 }
 */
-
 rtl::Book rtlCommandLine::getNewBook(std::istream& inputStream, std::ostream& outputStream) {
     std::string input;
     rtl::Book newBook;
@@ -128,11 +124,9 @@ std::string rtlCommandLine::getInput(std::istream& inputStream) {
     return returnString;
 }
 
-void userInputAgain() {
-    outputLine(std::cout, "Invalid selection, please try again");
-    
-    std::cout << "\f";
-    
+void userInputAgain(std::ostream& outputStream) {
+    rtlCommandLine::outputLine(outputStream, "Invalid selection, please try again");
+    outputStream << "\f";
     return;
 }
 
@@ -140,35 +134,35 @@ void userInputAgain() {
 void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList, int readerId) {
     
     while(true) {
-        char charInput = 'p';
-        outputLine(outputStream, "Please select what you want to add");
-        outputLine(outputStream, "1: Book");
-        outputLine(outputStream, "2: Books that have been read");
-        outputLine(outputStream, "3: Authors");
-        outputLine(outputStream, "x: Return to main menu");
+        rtlCommandLine::outputLine(outputStream, "Please select what you want to add");
+        rtlCommandLine::outputLine(outputStream, "1: Book");
+        rtlCommandLine::outputLine(outputStream, "2: Books that have been read");
+        rtlCommandLine::outputLine(outputStream, "3: Authors");
+        rtlCommandLine::outputLine(outputStream, "x: Return to main menu");
         
-        std::string input = getInput(inputStream);
+        std::string input = rtlCommandLine::getInput(inputStream);
         
         if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
-            userInputAgain();
+            userInputAgain(outputStream);
             input = "";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            inputStream.clear();
+            inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
         
+        char charInput = 'p';
         charInput = input.at(0);
         
         switch(charInput) {
             //book
             case '1': {
-                rtl::Book newBook = getNewBook(inputStream, outputStream);
-                outputLine(outputStream, "Would you like to save:");
-                outputLine(outputStream, newBook.printJson() + "?");
-                outputLine(outputStream, "Y/N");
-                input = getInput(inputStream);
+                rtl::Book newBook = rtlCommandLine::getNewBook(inputStream, outputStream);
+                rtlCommandLine::outputLine(outputStream, "Would you like to save:");
+                rtlCommandLine::outputLine(outputStream, newBook.printJson() + "?");
+                rtlCommandLine::outputLine(outputStream, "Y/N");
+                input = rtlCommandLine::getInput(inputStream);
                 if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
-                    userInputAgain();
+                    userInputAgain(outputStream);
                     continue;
                 }
                 
@@ -178,12 +172,12 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
                     case 'y':
                     case 'Y': {
                         masterList.addMasterBooks(std::make_shared<rtl::Book>(newBook));
-                        outputLine(outputStream, "Book added successfully\n");
+                        rtlCommandLine::outputLine(outputStream, "Book added successfully\n");
                         break;
                     }
                     case 'n':
                     case 'N':
-                        outputLine(outputStream, "Discarding new Book\n");
+                        rtlCommandLine::outputLine(outputStream, "Discarding new Book\n");
                     default:
                         break;
                 }
@@ -191,28 +185,28 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
             }
             //readbook
             case '2': {
-                rtl::ReadBook newReadBook = getNewReadBook(inputStream, outputStream, readerId);
-                outputLine(outputStream, "Would you like to save:");
-                outputLine(outputStream, newReadBook.printJson() + "?");
-                outputLine(outputStream, "Y/N");
-                input = getInput(inputStream);
+                rtl::ReadBook newReadBook = rtlCommandLine::getNewReadBook(inputStream, outputStream, readerId);
+                rtlCommandLine::outputLine(outputStream, "Would you like to save:");
+                rtlCommandLine::outputLine(outputStream, newReadBook.printJson() + "?");
+                rtlCommandLine::outputLine(outputStream, "Y/N");
+                input = rtlCommandLine::getInput(inputStream);
                 if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
-                    userInputAgain();
+                    userInputAgain(outputStream);
                     continue;
                 }
                 
                 char charSaveInput = input.at(0);
-                
+
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
                         masterList.addMasterReadBooks(std::make_shared<rtl::ReadBook>(newReadBook));
-                        outputLine(outputStream, "Read book added successfully\n");
+                        rtlCommandLine::outputLine(outputStream, "Read book added successfully\n");
                         break;
                     }
                     case 'n':
                     case 'N':
-                        outputLine(outputStream, "Discarding new Read book\n");
+                        rtlCommandLine::outputLine(outputStream, "Discarding new Read book\n");
                     default:
                         break;
                 }
@@ -220,13 +214,13 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
             }
             //author
             case '3': {
-                rtl::Author newAuthor = getNewAuthor(inputStream, outputStream);
-                outputLine(outputStream, "Would you like to save:");
-                outputLine(outputStream, newAuthor.printJson() + "?");
-                outputLine(outputStream, "Y/N");
-                input = getInput(inputStream);
+                rtl::Author newAuthor = rtlCommandLine::getNewAuthor(inputStream, outputStream);
+                rtlCommandLine::outputLine(outputStream, "Would you like to save:");
+                rtlCommandLine::outputLine(outputStream, newAuthor.printJson() + "?");
+                rtlCommandLine::outputLine(outputStream, "Y/N");
+                input = rtlCommandLine::getInput(inputStream);
                 if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
-                    userInputAgain();
+                    userInputAgain(outputStream);
                     continue;
                 }
                 
@@ -236,12 +230,12 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
                     case 'y':
                     case 'Y': {
                         masterList.addMasterAuthors(std::make_shared<rtl::Author>(newAuthor));
-                        outputLine(outputStream, "Author added successfully\n");
+                        rtlCommandLine::outputLine(outputStream, "Author added successfully\n");
                         break;
                     }
                     case 'n':
                     case 'N':
-                        outputLine(outputStream, "Discarding new Author\n");
+                        rtlCommandLine::outputLine(outputStream, "Discarding new Author\n");
                     default:
                         break;
                 }
@@ -259,29 +253,28 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
 
 //should only be called from mainMenu so not in header
 void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList) {
-    
     std::string displayMode = "Json";
     
     while(true) {
-        char charInput = 'p';
-        outputLine(outputStream, "Please select what you want to display");
-        outputLine(outputStream, "1: Book");
-        outputLine(outputStream, "2: Books that have been read");
-        outputLine(outputStream, "3: Authors");
-        outputLine(outputStream, "9: All");
-        outputLine(outputStream, "s: Switch display mode. Currently: " + displayMode);
-        outputLine(outputStream, "x: Return to main menu");
+        rtlCommandLine::outputLine(outputStream, "Please select what you want to display");
+        rtlCommandLine::outputLine(outputStream, "1: Book");
+        rtlCommandLine::outputLine(outputStream, "2: Books that have been read");
+        rtlCommandLine::outputLine(outputStream, "3: Authors");
+        rtlCommandLine::outputLine(outputStream, "9: All");
+        rtlCommandLine::outputLine(outputStream, "s: Switch display mode. Currently: " + displayMode);
+        rtlCommandLine::outputLine(outputStream, "x: Return to main menu");
         
-        std::string input = getInput(inputStream);
+        std::string input = rtlCommandLine::getInput(inputStream);
         
         if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
-            userInputAgain();
+            userInputAgain(outputStream);
             input = "";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            inputStream.clear();
+            inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
         
+        char charInput = 'p';
         charInput = input.at(0);
         
         switch(charInput) {
@@ -289,16 +282,16 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             case '1': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, rtl::Book::printCommandLineHeaders());
+                    rtlCommandLine::outputLine(outputStream, rtl::Book::printCommandLineHeaders());
                     for (auto x : masterList.getMasterBooks()) {
-                        outputLine(outputStream, x->printCommandLine());
+                        rtlCommandLine::outputLine(outputStream, x->printCommandLine());
                     }
-                    outputLine(outputStream, ""); //blank line for seperation
+                    rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                 }
                 else {
                     for (auto x : masterList.getMasterBooks()) {
-                        outputLine(outputStream, x->printJson());
-                        outputLine(outputStream, ""); //blank line for seperation
+                        rtlCommandLine::outputLine(outputStream, x->printJson());
+                        rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                     }
                 }
                 break;
@@ -307,16 +300,16 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             case '2': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, rtl::ReadBook::printCommandLineHeaders());
+                    rtlCommandLine::outputLine(outputStream, rtl::ReadBook::printCommandLineHeaders());
                     for (auto x : masterList.getMasterReadBooks()) {
-                        outputLine(outputStream, x->printCommandLine());
+                        rtlCommandLine::outputLine(outputStream, x->printCommandLine());
                     }
-                    outputLine(outputStream, ""); //blank line for seperation
+                    rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                 }
                 else {
                     for (auto x : masterList.getMasterReadBooks()) {
-                        outputLine(outputStream, x->printJson());
-                        outputLine(outputStream, ""); //blank line for seperation
+                        rtlCommandLine::outputLine(outputStream, x->printJson());
+                        rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                     }
                 }
                 break;
@@ -325,16 +318,16 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             case '3': {
                 if (displayMode == "Simple") {
                     //column headers
-                    outputLine(outputStream, rtl::Author::printCommandLineHeaders());
+                    rtlCommandLine::outputLine(outputStream, rtl::Author::printCommandLineHeaders());
                     for (auto x : masterList.getMasterAuthors()) {
-                        outputLine(outputStream, x->printCommandLine());
+                        rtlCommandLine::outputLine(outputStream, x->printCommandLine());
                     }
-                    outputLine(outputStream, ""); //blank line for seperation
+                    rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                 }
                 else {
                     for (auto x : masterList.getMasterAuthors()) {
-                        outputLine(outputStream, x->printJson());
-                        outputLine(outputStream, ""); //blank line for seperation
+                        rtlCommandLine::outputLine(outputStream, x->printJson());
+                        rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                     }
                 }
                 break;
@@ -342,52 +335,52 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             case '9': {
                 if (displayMode == "Simple") {
                     //book
-                    outputLine(outputStream, "Books:\n");
+                    rtlCommandLine::outputLine(outputStream, "Books:\n");
                     //column headers
-                    outputLine(outputStream, rtl::Book::printCommandLineHeaders());
+                    rtlCommandLine::outputLine(outputStream, rtl::Book::printCommandLineHeaders());
                     for (auto x : masterList.getMasterBooks()) {
-                        outputLine(outputStream, x->printCommandLine());
+                        rtlCommandLine::outputLine(outputStream, x->printCommandLine());
                     }
-                    outputLine(outputStream, ""); //blank line for seperation
+                    rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                     
                     //readbook
-                    outputLine(outputStream, "Read Books:\n");
+                    rtlCommandLine::outputLine(outputStream, "Read Books:\n");
                     //column headers
-                    outputLine(outputStream, rtl::ReadBook::printCommandLineHeaders());
+                    rtlCommandLine::outputLine(outputStream, rtl::ReadBook::printCommandLineHeaders());
                     for (auto x : masterList.getMasterReadBooks()) {
-                        outputLine(outputStream, x->printCommandLine());
+                        rtlCommandLine::outputLine(outputStream, x->printCommandLine());
                     }
-                    outputLine(outputStream, ""); //blank line for seperation
+                    rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
 
                     //author
-                    outputLine(outputStream, "Authors:\n");
+                    rtlCommandLine::outputLine(outputStream, "Authors:\n");
                     //column headers
-                    outputLine(outputStream, rtl::Author::printCommandLineHeaders());
+                    rtlCommandLine::outputLine(outputStream, rtl::Author::printCommandLineHeaders());
                     for (auto x : masterList.getMasterAuthors()) {
-                        outputLine(outputStream, x->printCommandLine());
+                        rtlCommandLine::outputLine(outputStream, x->printCommandLine());
                     }
-                    outputLine(outputStream, ""); //blank line for seperation
+                    rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                 }
                 else {
                     //book
-                    outputLine(outputStream, "Books:\n");
+                    rtlCommandLine::outputLine(outputStream, "Books:\n");
                     for (auto x : masterList.getMasterBooks()) {
-                        outputLine(outputStream, x->printJson());
-                        outputLine(outputStream, ""); //blank line for seperation
+                        rtlCommandLine::outputLine(outputStream, x->printJson());
+                        rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                     }
                     
                     //readbook
-                    outputLine(outputStream, "Read Books:\n");
+                    rtlCommandLine::outputLine(outputStream, "Read Books:\n");
                     for (auto x : masterList.getMasterReadBooks()) {
-                        outputLine(outputStream, x->printJson());
-                        outputLine(outputStream, ""); //blank line for seperation
+                        rtlCommandLine::outputLine(outputStream, x->printJson());
+                        rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                     }
 
                     //author
-                    outputLine(outputStream, "Authors:\n");
+                    rtlCommandLine::outputLine(outputStream, "Authors:\n");
                     for (auto x : masterList.getMasterAuthors()) {
-                        outputLine(outputStream, x->printJson());
-                        outputLine(outputStream, ""); //blank line for seperation
+                        rtlCommandLine::outputLine(outputStream, x->printJson());
+                        rtlCommandLine::outputLine(outputStream, ""); //blank line for seperation
                     }
                 }
                 break;
@@ -413,11 +406,9 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
 }
 
 void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId) {
-    
     rtl::InMemoryContainers& masterList = rtl::InMemoryContainers::getInstance();
     
     while(true) {
-        char charInput = 'p';
         outputLine(outputStream, "Please select your option by typing the number displayed");
         outputLine(outputStream, "1: Add new object");
         outputLine(outputStream, "2: Display object");
@@ -432,13 +423,14 @@ void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStr
         std::string input = getInput(inputStream);
         
         if (rtl::trim(input).empty() || rtl::trim(input).size() > 1) {
-            userInputAgain();
+            userInputAgain(outputStream);
             input = "";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            inputStream.clear();
+            inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
         
+        char charInput = 'p';
         charInput = input.at(0);
         
         switch(charInput) {
@@ -486,11 +478,11 @@ void rtlCommandLine::mainMenu(std::istream& inputStream, std::ostream& outputStr
                 }
             }
             default:
-                userInputAgain();
+                userInputAgain(outputStream);
                 input = "";
                 charInput = 'p';
-                //std::cin.clear();
-                //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                inputStream.clear();
+                inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 continue;
         }
     }

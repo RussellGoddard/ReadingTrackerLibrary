@@ -358,8 +358,7 @@
 }
 
 - (void)testSaveAndLoadInMemoryToFile {
-    //std::string testFilePath = "./testSaveFile.txt";
-    std::string testFilePath = "/Users/Frobu/Desktop/testFileSaveTest.txt";
+    std::string testFilePath = "./testSaveFile.txt";
     
     rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
     rtl::Book testBook1;
