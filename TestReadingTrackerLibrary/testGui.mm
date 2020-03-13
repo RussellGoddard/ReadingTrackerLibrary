@@ -76,7 +76,6 @@
     rtlCommandLine::outputLine(outputSs, "test Input 23");
     
     std::string word1, word2, word3;
-    
     outputSs >> word1 >> word2 >> word3;
     
     XCTAssert(word1 == "test");

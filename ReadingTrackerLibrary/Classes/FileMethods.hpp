@@ -21,7 +21,7 @@ namespace rtl {
 
     //TODO: should these two structs be here or the queries spun into their own file
     struct wikiDataValues {
-        bool success = false;
+        bool success = true;
         std::string oclc = "";
         std::string title = "";
         std::string series = "";
@@ -31,7 +31,7 @@ namespace rtl {
     };
 
     struct openLibraryValues {
-        bool success = false;
+        bool success = true;
         std::string oclc = "";
         std::string author = "";
         std::string title = "";
