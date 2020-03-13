@@ -18,39 +18,38 @@ namespace rtl {
     //TODO: change default author dateBorn to something else
     const time_t jan2038 = 2145916800;
     template <typename T>
-    void sortUnique(std::vector<T>& input);
-    int convertAbbrMonthToInt(std::string month); //don't like this needing to be declared here, TODO
+    void SortUnique(std::vector<T>& input);
 
     class Author {
     public:
-        void setName(std::string name);
-        void setDateBorn(time_t dateBorn);
-        bool setDateBorn(std::string dateBorn);
-        void addBookWritten(std::shared_ptr<rtl::Book> book);
-        void addBookWritten(std::vector<std::shared_ptr<rtl::Book>> books);
-        std::vector<std::shared_ptr<rtl::Book>> getBooksWritten() const;
-        std::string getName() const;
-        tm getDateBorn() const;
-        time_t getDateBornTimeT();
-        std::string printDateBorn() const;
-        std::string printJson() const;
-        std::string printCommandLine() const;
+        void SetName(std::string name);
+        void SetDateBorn(time_t dateBorn);
+        bool SetDateBorn(std::string dateBorn);
+        void AddBookWritten(std::shared_ptr<rtl::Book> book);
+        void AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books);
+        std::vector<std::shared_ptr<rtl::Book>> GetBooksWritten() const;
+        std::string GetName() const;
+        tm GetDateBorn() const;
+        time_t GetDateBornTimeT();
+        std::string PrintDateBorn() const;
+        std::string PrintJson() const;
+        std::string PrintCommandLine() const;
         Author() = delete; //Author class HAS to be constructed with a name
         Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
         Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book> bookWritten);
         Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
         
-        static std::string printCommandLineHeaders();
+        static std::string PrintCommandLineHeaders();
     private:
         std::string name;
         struct tm dateBorn;
         std::vector<std::shared_ptr<rtl::Book>> booksWritten;
         
         //used for printCommandLine and printCommandLineHeaders
-        static const int cWidthAuthor = 20;
-        static const int cWidthDateBorn = 12;
-        static const int cWidthTitle = 44;
-        static const int cWidthYear = 4;
+        static const int kWidthAuthor = 20;
+        static const int kWidthDateBorn = 12;
+        static const int kWidthTitle = 44;
+        static const int kWidthYear = 4;
     };
 
     bool operator==(const Author& lhs, const Author& rhs);

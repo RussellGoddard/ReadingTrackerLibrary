@@ -7,7 +7,7 @@
 
 #include "ReadBook.hpp"
 
-void rtl::ReadBook::setDateRead(time_t time) {
+void rtl::ReadBook::SetDateRead(time_t time) {
     this->dateRead = *std::gmtime(&time);
     this->dateRead.tm_sec = 0;
     this->dateRead.tm_min = 0;
@@ -20,7 +20,7 @@ void rtl::ReadBook::setDateRead(time_t time) {
     return;
 }
 
-bool rtl::ReadBook::setDateRead(std::string time) {
+bool rtl::ReadBook::SetDateRead(std::string time) {
     try {
         auto d = boost::gregorian::from_string(time);
         this->dateRead = boost::gregorian::to_tm(d);
@@ -33,7 +33,7 @@ bool rtl::ReadBook::setDateRead(std::string time) {
 }
 
 //1-10 rating scale
-void rtl::ReadBook::setRating(int rating) {
+void rtl::ReadBook::SetRating(int rating) {
     if (rating < 1) {
         rating = 1;
     }
@@ -46,7 +46,7 @@ void rtl::ReadBook::setRating(int rating) {
 }
 
 //will result in rating being set to 0
-void rtl::ReadBook::setRating(char rating) {
+void rtl::ReadBook::SetRating(char rating) {
     int newRating = -1;
     std::stringstream sstream;
     
@@ -62,7 +62,7 @@ void rtl::ReadBook::setRating(char rating) {
 }
 
 //will attempt a stoi if it fails set rating to 0
-void rtl::ReadBook::setRating(std::string rating) {
+void rtl::ReadBook::SetRating(std::string rating) {
     try {
         int newRating = std::stoi(rating);
         //rating cannot be less than 1, if it is don't change anything
@@ -79,24 +79,24 @@ void rtl::ReadBook::setRating(std::string rating) {
     return;
 }
 
-tm rtl::ReadBook::getDateRead() const {
+tm rtl::ReadBook::GetDateRead() const {
     return this->dateRead;
 }
 
-time_t rtl::ReadBook::getDateReadAsTimeT() {
+time_t rtl::ReadBook::GetDateReadAsTimeT() {
     return std::mktime(&dateRead);
 }
 
-std::string rtl::ReadBook::printDateRead() const {
+std::string rtl::ReadBook::PrintDateRead() const {
     auto returnDate = boost::gregorian::date_from_tm(this->dateRead);
     return boost::gregorian::to_simple_string(returnDate);
 }
 
-int rtl::ReadBook::getRating() const {
+int rtl::ReadBook::GetRating() const {
     return this->rating;
 }
 
-int rtl::ReadBook::getReaderId() const {
+int rtl::ReadBook::GetReaderId() const {
     return this->readerId;
 }
 
@@ -112,68 +112,68 @@ int rtl::ReadBook::getReaderId() const {
     "dateRead" : "Sat Oct 26 18:09:27 2019"
 }
 */
-std::string rtl::ReadBook::printJson() const {
+std::string rtl::ReadBook::PrintJson() const {
     std::string returnString;
     
-    returnString = this->Book::printJson(); //get Book as a JSON object
+    returnString = this->Book::PrintJson(); //get Book as a JSON object
     returnString.pop_back(); //remove ending bracket
     
     //append ReadBook variables
-    returnString += R"(,"rating":)" + std::to_string(this->getRating()) + R"(,"dateRead":")" + this->printDateRead() + R"(","readerId":)" + std::to_string(this->getReaderId()) + R"(})";
+    returnString += R"(,"rating":)" + std::to_string(this->GetRating()) + R"(,"dateRead":")" + this->PrintDateRead() + R"(","readerId":)" + std::to_string(this->GetReaderId()) + R"(})";
     
     return returnString;
 }
 
 //Brandon Sanderson   Mistborn: The Final Empire         541   Sep 13 2019  9
-std::string rtl::ReadBook::printCommandLine() const {
+std::string rtl::ReadBook::PrintCommandLine() const {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(ReadBook::cWidthAuthor);
-    returnStr << std::left << this->getAuthor().substr(0, ReadBook::cWidthAuthor - 1);
-    returnStr.width(ReadBook::cWidthTitle);
-    returnStr << std::left << this->getTitle().substr(0, ReadBook::cWidthTitle - 1);
-    returnStr.width(ReadBook::cWidthPage);
-    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, ReadBook::cWidthPage - 1);
-    returnStr.width(ReadBook::cWidthDateRead);
-    returnStr << std::left << this->printDateRead().substr(0, ReadBook::cWidthDateRead - 1);
-    returnStr.width(ReadBook::cWidthRating);
-    returnStr << std::left << std::to_string(this->getRating()).substr(0, ReadBook::cWidthRating - 1);
+    returnStr.width(ReadBook::kWidthAuthor);
+    returnStr << std::left << this->GetAuthor().substr(0, ReadBook::kWidthAuthor - 1);
+    returnStr.width(ReadBook::kWidthTitle);
+    returnStr << std::left << this->GetTitle().substr(0, ReadBook::kWidthTitle - 1);
+    returnStr.width(ReadBook::kWidthPage);
+    returnStr << std::left << std::to_string(this->GetPageCount()).substr(0, ReadBook::kWidthPage - 1);
+    returnStr.width(ReadBook::kWidthDateRead);
+    returnStr << std::left << this->PrintDateRead().substr(0, ReadBook::kWidthDateRead - 1);
+    returnStr.width(ReadBook::kWidthRating);
+    returnStr << std::left << std::to_string(this->GetRating()).substr(0, ReadBook::kWidthRating - 1);
     
     return returnStr.str();
 }
 
 //Author              Title                              Pages Date Read    Rating
-std::string rtl::ReadBook::printCommandLineHeaders() {
+std::string rtl::ReadBook::PrintCommandLineHeaders() {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(ReadBook::cWidthAuthor);
+    returnStr.width(ReadBook::kWidthAuthor);
     returnStr << std::left << "Author";
-    returnStr.width(ReadBook::cWidthTitle);
+    returnStr.width(ReadBook::kWidthTitle);
     returnStr << std::left << "Title";
-    returnStr.width(ReadBook::cWidthPage);
+    returnStr.width(ReadBook::kWidthPage);
     returnStr << std::left << "Pages";
-    returnStr.width(ReadBook::cWidthDateRead);
+    returnStr.width(ReadBook::kWidthDateRead);
     returnStr << std::left << "Date Read";
-    returnStr.width(ReadBook::cWidthRating);
+    returnStr.width(ReadBook::kWidthRating);
     returnStr << std::left << "Rating";
     
     return returnStr.str();
 }
 
-rtl::ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
+rtl::ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book.GetAuthor(), book.GetTitle(), book.GetSeries(), book.GetPublisher(), book.GetPageCount(), book.GetGenre(), book.GetPublishDateAsTimeT()) {
     this->readerId = readerId;
-    this->setDateRead(dateRead);
-    this->setRating(rating);
+    this->SetDateRead(dateRead);
+    this->SetRating(rating);
     
     return;
 }
 
-rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : Book(book.getAuthor(), book.getTitle(), book.getSeries(), book.getPublisher(), book.getPageCount(), book.getGenre(), book.getPublishDateAsTimeT()) {
+rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : Book(book.GetAuthor(), book.GetTitle(), book.GetSeries(), book.GetPublisher(), book.GetPageCount(), book.GetGenre(), book.GetPublishDateAsTimeT()) {
     this->readerId = readerId;
-    this->setDateRead(dateRead);
-    this->setRating(rating);
+    this->SetDateRead(dateRead);
+    this->SetRating(rating);
     
     return;
 }
@@ -181,22 +181,22 @@ rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRea
 
 rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, rtl::Genre genre, time_t publishDate, int rating, time_t dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
-    this->setDateRead(dateRead);
-    this->setRating(rating);
+    this->SetDateRead(dateRead);
+    this->SetRating(rating);
     
     return;
 }
 
 rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
-    this->setDateRead(dateRead);
-    this->setRating(rating);
+    this->SetDateRead(dateRead);
+    this->SetRating(rating);
     
     return;
 }
     
 bool rtl::operator==(const ReadBook& lhs, const ReadBook& rhs) {
-    if (lhs.printJson() == rhs.printJson()) {
+    if (lhs.PrintJson() == rhs.PrintJson()) {
         return true;
     }
     
@@ -212,31 +212,31 @@ bool rtl::operator<(const ReadBook& lhs, const ReadBook& rhs) {
     //sort by Book comparison then by dateRead
     //TODO: simplify this by calling Book==Book then only compare ReadBook by dateRead
     
-    if (lhs.getAuthor() < rhs.getAuthor()) { return true; }
-    else if (lhs.getAuthor() > rhs.getAuthor()) { return false; }
+    if (lhs.GetAuthor() < rhs.GetAuthor()) { return true; }
+    else if (lhs.GetAuthor() > rhs.GetAuthor()) { return false; }
     else {
-        if (lhs.getSeries() < rhs.getSeries()) { return true; }
-        else if (lhs.getSeries() > rhs.getSeries()) { return false; }
+        if (lhs.GetSeries() < rhs.GetSeries()) { return true; }
+        else if (lhs.GetSeries() > rhs.GetSeries()) { return false; }
         else {
             tm lhstm;
             tm rhstm;
             time_t lhstt;
             time_t rhstt;
             
-            lhstm = lhs.getPublishDate();
+            lhstm = lhs.GetPublishDate();
             lhstt = std::mktime(&lhstm);
-            rhstm = rhs.getPublishDate();
+            rhstm = rhs.GetPublishDate();
             rhstt = std::mktime(&rhstm);
             
             if (lhstt < rhstt) { return true; }
             else if (lhstt > rhstt) { return false; }
             else {
-                if (lhs.getTitle() < rhs.getTitle()) { return true; }
-                else if (lhs.getTitle() > rhs.getTitle()) { return false; }
+                if (lhs.GetTitle() < rhs.GetTitle()) { return true; }
+                else if (lhs.GetTitle() > rhs.GetTitle()) { return false; }
                 else {
-                    lhstm = lhs.getDateRead();
+                    lhstm = lhs.GetDateRead();
                     lhstt = std::mktime(&lhstm);
-                    rhstm = rhs.getDateRead();
+                    rhstm = rhs.GetDateRead();
                     rhstt = std::mktime(&rhstm);
                     
                     if (lhstt < rhstt) { return true; }

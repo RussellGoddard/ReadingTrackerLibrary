@@ -7,7 +7,7 @@
 
 #include "Book.hpp"
 
-rtl::Genre rtl::convertStringToGenre(std::string genre) {
+rtl::Genre rtl::ConvertStringToGenre(std::string genre) {
     rtl::Genre returnGenre;
     
     if (genre == "detective") { returnGenre = rtl::detective; }
@@ -22,7 +22,7 @@ rtl::Genre rtl::convertStringToGenre(std::string genre) {
     return returnGenre;
 }
 
-std::string rtl::convertGenreToString(rtl::Genre genre) {
+std::string rtl::ConvertGenreToString(rtl::Genre genre) {
     std::string returnString;
     switch(genre) {
         case rtl::detective:
@@ -58,111 +58,111 @@ std::string rtl::convertGenreToString(rtl::Genre genre) {
     return returnString;
 }
 
-std::string rtl::Book::getAuthor() const {
+std::string rtl::Book::GetAuthor() const {
     return this->author;
 }
 
-std::string rtl::Book::getTitle() const {
+std::string rtl::Book::GetTitle() const {
     return this->title;
 }
 
-std::string rtl::Book::getSeries() const {
+std::string rtl::Book::GetSeries() const {
     return series;
 }
 
-int rtl::Book::getPageCount() const {
+int rtl::Book::GetPageCount() const {
     return pageCount;
 }
 
-std::string rtl::Book::getPublisher() const {
+std::string rtl::Book::GetPublisher() const {
     return this->publisher;
 }
 
-rtl::Genre rtl::Book::getGenre() const {
+rtl::Genre rtl::Book::GetGenre() const {
     return genre;
 }
 
-std::string rtl::Book::printGenre() const {
-    return convertGenreToString(this->genre);
+std::string rtl::Book::PrintGenre() const {
+    return ConvertGenreToString(this->genre);
 }
 
-std::string rtl::Book::getOclc() const {
+std::string rtl::Book::GetOclc() const {
     return this->oclc;
 }
 
-std::string rtl::Book::printJson() const {
-    std::string returnString = R"({"author":")" + this->getAuthor() + R"(","title":")" + this->getTitle() + R"(","series":")" + this->getSeries() + R"(","publisher":")" + this->getPublisher() + R"(","genre":")" + this->printGenre() + R"(","pageCount":)" + std::to_string(this->getPageCount()) + R"(,"publishDate":")" + this->printPublishDate() + R"("})";
+std::string rtl::Book::PrintJson() const {
+    std::string returnString = R"({"author":")" + this->GetAuthor() + R"(","title":")" + this->GetTitle() + R"(","series":")" + this->GetSeries() + R"(","publisher":")" + this->GetPublisher() + R"(","genre":")" + this->PrintGenre() + R"(","pageCount":)" + std::to_string(this->GetPageCount()) + R"(,"publishDate":")" + this->PrintPublishDate() + R"("})";
     return returnString;
 }
 
 //Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
-std::string rtl::Book::printCommandLine() const {
+std::string rtl::Book::PrintCommandLine() const {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(Book::cWidthAuthor);
-    returnStr << std::left << this->getAuthor().substr(0, Book::cWidthAuthor - 1);
-    returnStr.width(Book::cWidthTitle);
-    returnStr << std::left << this->getTitle().substr(0, Book::cWidthTitle - 1);
-    returnStr.width(Book::cWidthSeries);
-    returnStr << std::left << this->getSeries().substr(0, Book::cWidthSeries - 1);
-    returnStr.width(Book::cWidthPage);
-    returnStr << std::left << std::to_string(this->getPageCount()).substr(0, Book::cWidthPage);
+    returnStr.width(Book::kWidthAuthor);
+    returnStr << std::left << this->GetAuthor().substr(0, Book::kWidthAuthor - 1);
+    returnStr.width(Book::kWidthTitle);
+    returnStr << std::left << this->GetTitle().substr(0, Book::kWidthTitle - 1);
+    returnStr.width(Book::kWidthSeries);
+    returnStr << std::left << this->GetSeries().substr(0, Book::kWidthSeries - 1);
+    returnStr.width(Book::kWidthPage);
+    returnStr << std::left << std::to_string(this->GetPageCount()).substr(0, Book::kWidthPage);
     
     return returnStr.str();
 }
 
 //Author              Title                              Series              Pages
-std::string rtl::Book::printCommandLineHeaders() {
+std::string rtl::Book::PrintCommandLineHeaders() {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
-    returnStr.width(Book::cWidthAuthor);
+    returnStr.width(Book::kWidthAuthor);
     returnStr << std::left << "Author";
-    returnStr.width(Book::cWidthTitle);
+    returnStr.width(Book::kWidthTitle);
     returnStr << std::left << "Title";
-    returnStr.width(Book::cWidthSeries);
+    returnStr.width(Book::kWidthSeries);
     returnStr << std::left << "Series";
-    returnStr.width(Book::cWidthPage);
+    returnStr.width(Book::kWidthPage);
     returnStr << std::left << "Pages";
     
     return returnStr.str();
 }
 
-tm rtl::Book::getPublishDate() const {
+tm rtl::Book::GetPublishDate() const {
     return this->publishDate;
 }
 
-time_t rtl::Book::getPublishDateAsTimeT() {
+time_t rtl::Book::GetPublishDateAsTimeT() {
     return std::mktime(&this->publishDate);
 }
 
-std::string rtl::Book::printPublishDate() const {
+std::string rtl::Book::PrintPublishDate() const {
     auto returnDate = boost::gregorian::date_from_tm(this->publishDate);
     return boost::gregorian::to_simple_string(returnDate);
 }
 
-void rtl::Book::setAuthor(std::string author) {
+void rtl::Book::SetAuthor(std::string author) {
     this->author = author;
     return;
 }
 
-void rtl::Book::setTitle(std::string title) {
+void rtl::Book::SetTitle(std::string title) {
     this->title = title;
     return;
 }
 
-void rtl::Book::setSeries(std::string series) {
+void rtl::Book::SetSeries(std::string series) {
     this->series = series;
     return;
 }
 
-void rtl::Book::setPublisher(std::string publisher) {
+void rtl::Book::SetPublisher(std::string publisher) {
     this->publisher = publisher;
     return;
 }
 
-void rtl::Book::setPageCount(int pageCount) {
+void rtl::Book::SetPageCount(int pageCount) {
     //books can only have positive page counts, if it isn't mark as -1 as error
     if (pageCount <= 0) {
         pageCount = -1;
@@ -172,7 +172,7 @@ void rtl::Book::setPageCount(int pageCount) {
 }
 
 //pageCount can't be changed by character, keep whatever is in there before
-void rtl::Book::setPageCount(char pageCount) {
+void rtl::Book::SetPageCount(char pageCount) {
     int newPageCount = -1;
     std::stringstream sstream;
     
@@ -189,7 +189,7 @@ void rtl::Book::setPageCount(char pageCount) {
 }
 
 //will attempt a stoi if it fails set pageCount to -1
-void rtl::Book::setPageCount(std::string pageCount) {
+void rtl::Book::SetPageCount(std::string pageCount) {
     try {
         int newPageCount = std::stoi(pageCount);
         //pageCount cannot be less than 1, if it is don't change anything
@@ -206,17 +206,17 @@ void rtl::Book::setPageCount(std::string pageCount) {
     return;
 }
 
-void rtl::Book::setGenre(Genre genre) {
+void rtl::Book::SetGenre(Genre genre) {
     this->genre = genre;
     return;
 }
 
-void rtl::Book::setGenre(std::string genre) {
-    this->genre = convertStringToGenre(genre);
+void rtl::Book::SetGenre(std::string genre) {
+    this->genre = ConvertStringToGenre(genre);
     return;
 }
 
-void rtl::Book::setPublishDate(time_t publishDate) {
+void rtl::Book::SetPublishDate(time_t publishDate) {
     this->publishDate = *std::gmtime(&publishDate);
     this->publishDate.tm_sec = 0;
     this->publishDate.tm_min = 0;
@@ -229,7 +229,7 @@ void rtl::Book::setPublishDate(time_t publishDate) {
     return;
 }
 
-bool rtl::Book::setPublishDate(std::string publishDate) {
+bool rtl::Book::SetPublishDate(std::string publishDate) {
     try {
         auto d = boost::gregorian::from_string(publishDate);
         this->publishDate = boost::gregorian::to_tm(d);
@@ -241,49 +241,49 @@ bool rtl::Book::setPublishDate(std::string publishDate) {
     return true;
 }
 
-void rtl::Book::setOclc(std::string oclc) {
+void rtl::Book::SetOclc(std::string oclc) {
     this->oclc = oclc;
     return;
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
-    this->setAuthor(author);
-    this->setTitle(title);
-    this->setSeries(series);
-    this->setPublisher(publisher);
-    this->setPageCount(pageCount);
-    this->setGenre(genre);
-    this->setPublishDate(publishDate);
+    this->SetAuthor(author);
+    this->SetTitle(title);
+    this->SetSeries(series);
+    this->SetPublisher(publisher);
+    this->SetPageCount(pageCount);
+    this->SetGenre(genre);
+    this->SetPublishDate(publishDate);
     
     return;
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate) {
-    this->setAuthor(author);
-    this->setTitle(title);
-    this->setSeries(series);
-    this->setPublisher(publisher);
-    this->setPageCount(pageCount);
-    this->setGenre(genre);
-    this->setPublishDate(publishDate);
+    this->SetAuthor(author);
+    this->SetTitle(title);
+    this->SetSeries(series);
+    this->SetPublisher(publisher);
+    this->SetPageCount(pageCount);
+    this->SetGenre(genre);
+    this->SetPublishDate(publishDate);
     
     return;
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate) {
-    this->setAuthor(author);
-    this->setTitle(title);
-    this->setSeries(series);
-    this->setPublisher(publisher);
-    this->setPageCount(pageCount);
-    this->setGenre(convertStringToGenre(genre));
-    this->setPublishDate(publishDate);
+    this->SetAuthor(author);
+    this->SetTitle(title);
+    this->SetSeries(series);
+    this->SetPublisher(publisher);
+    this->SetPageCount(pageCount);
+    this->SetGenre(ConvertStringToGenre(genre));
+    this->SetPublishDate(publishDate);
     
     return;
 }
 
 bool rtl::operator==(const rtl::Book& lhs, const rtl::Book& rhs) {
-    if (lhs.printJson() == rhs.printJson()) {
+    if (lhs.PrintJson() == rhs.PrintJson()) {
         return true;
     }
     
@@ -298,27 +298,27 @@ bool rtl::operator<(const rtl::Book& lhs, const rtl::Book& rhs) {
     //TODO: see if this can be simplified 
     //sort by author -> series -> publish date -> title
     
-    if (lhs.getAuthor() < rhs.getAuthor()) { return true; }
-    else if (lhs.getAuthor() > rhs.getAuthor()) { return false; }
+    if (lhs.GetAuthor() < rhs.GetAuthor()) { return true; }
+    else if (lhs.GetAuthor() > rhs.GetAuthor()) { return false; }
     else {
-        if (lhs.getSeries() < rhs.getSeries()) { return true; }
-        else if (lhs.getSeries() > rhs.getSeries()) { return false; }
+        if (lhs.GetSeries() < rhs.GetSeries()) { return true; }
+        else if (lhs.GetSeries() > rhs.GetSeries()) { return false; }
         else {
             tm lhstm;
             tm rhstm;
             time_t lhstt;
             time_t rhstt;
             
-            lhstm = lhs.getPublishDate();
+            lhstm = lhs.GetPublishDate();
             lhstt = std::mktime(&lhstm);
-            rhstm = rhs.getPublishDate();
+            rhstm = rhs.GetPublishDate();
             rhstt = std::mktime(&rhstm);
             
             if (lhstt < rhstt) { return true; }
             else if (lhstt > rhstt) { return false; }
             else {
-                if (lhs.getTitle() < rhs.getTitle()) { return true; }
-                else if (lhs.getTitle() > rhs.getTitle()) { return false; }
+                if (lhs.GetTitle() < rhs.GetTitle()) { return true; }
+                else if (lhs.GetTitle() > rhs.GetTitle()) { return false; }
             }
         }
     }

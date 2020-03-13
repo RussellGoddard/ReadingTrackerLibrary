@@ -15,12 +15,12 @@
 
 namespace rtlCommandLine {
 
-    rtl::Author getNewAuthor(std::istream& inputStream, std::ostream& outputStream);
-    rtl::Book getNewBook(std::istream& inputStream, std::ostream& outputStream);
-    rtl::ReadBook getNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId);
-    void outputLine(std::ostream& outputStream, std::string output);
-    void mainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);
-    std::string getInput(std::istream& inputStream);
+    rtl::Author GetNewAuthor(std::istream& inputStream, std::ostream& outputStream);
+    rtl::Book GetNewBook(std::istream& inputStream, std::ostream& outputStream);
+    rtl::ReadBook GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId);
+    void OutputLine(std::ostream& outputStream, std::string output);
+    void MainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);
+    std::string GetInput(std::istream& inputStream);
 
 }
 

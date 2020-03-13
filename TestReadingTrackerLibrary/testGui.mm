@@ -29,10 +29,10 @@
     
     inputSs.str("testAuthor\n1998-Nov-25\n");
     
-    rtl::Author testAuthor = rtlCommandLine::getNewAuthor(inputSs, outputSs);
+    rtl::Author testAuthor = rtlCommandLine::GetNewAuthor(inputSs, outputSs);
     
-    XCTAssert(testAuthor.getName() == "testAuthor");
-    XCTAssert(testAuthor.printDateBorn() == "1998-Nov-25");
+    XCTAssert(testAuthor.GetName() == "testAuthor");
+    XCTAssert(testAuthor.PrintDateBorn() == "1998-Nov-25");
 }
 
 - (void)testGetNewBook {
@@ -40,15 +40,15 @@
     
     inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     
-    rtl::Book testBook = rtlCommandLine::getNewBook(inputSs, outputSs);
+    rtl::Book testBook = rtlCommandLine::GetNewBook(inputSs, outputSs);
     
-    XCTAssert(testBook.getAuthor() == "testAuthor");
-    XCTAssert(testBook.getTitle() == "testTitle");
-    XCTAssert(testBook.getPublisher() == "testPublisher");
-    XCTAssert(testBook.getSeries() == "testSeries");
-    XCTAssert(testBook.getGenre() == rtl::fantasy);
-    XCTAssert(testBook.printPublishDate() == "1999-Oct-01");
-    XCTAssert(testBook.getPageCount() == 123);
+    XCTAssert(testBook.GetAuthor() == "testAuthor");
+    XCTAssert(testBook.GetTitle() == "testTitle");
+    XCTAssert(testBook.GetPublisher() == "testPublisher");
+    XCTAssert(testBook.GetSeries() == "testSeries");
+    XCTAssert(testBook.GetGenre() == rtl::fantasy);
+    XCTAssert(testBook.PrintPublishDate() == "1999-Oct-01");
+    XCTAssert(testBook.GetPageCount() == 123);
 }
 
 - (void)testGetNewReadBook {
@@ -56,24 +56,24 @@
     
     inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
-    rtl::ReadBook testReadBook = rtlCommandLine::getNewReadBook(inputSs, outputSs, 123);
+    rtl::ReadBook testReadBook = rtlCommandLine::GetNewReadBook(inputSs, outputSs, 123);
     
-    XCTAssert(testReadBook.getReaderId() == 123);
-    XCTAssert(testReadBook.getAuthor() == "testAuthor");
-    XCTAssert(testReadBook.getTitle() == "testTitle");
-    XCTAssert(testReadBook.getPublisher() == "testPublisher");
-    XCTAssert(testReadBook.getSeries() == "testSeries");
-    XCTAssert(testReadBook.getGenre() == rtl::fantasy);
-    XCTAssert(testReadBook.printPublishDate() == "1999-Oct-01");
-    XCTAssert(testReadBook.getPageCount() == 123);
-    XCTAssert(testReadBook.printDateRead() == "1999-Oct-02");
-    XCTAssert(testReadBook.getRating() == 9);
+    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetAuthor() == "testAuthor");
+    XCTAssert(testReadBook.GetTitle() == "testTitle");
+    XCTAssert(testReadBook.GetPublisher() == "testPublisher");
+    XCTAssert(testReadBook.GetSeries() == "testSeries");
+    XCTAssert(testReadBook.GetGenre() == rtl::fantasy);
+    XCTAssert(testReadBook.PrintPublishDate() == "1999-Oct-01");
+    XCTAssert(testReadBook.GetPageCount() == 123);
+    XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
+    XCTAssert(testReadBook.GetRating() == 9);
 }
 
 - (void)testOutputLine {
     std::stringstream outputSs;
     
-    rtlCommandLine::outputLine(outputSs, "test Input 23");
+    rtlCommandLine::OutputLine(outputSs, "test Input 23");
     
     std::string word1, word2, word3;
     outputSs >> word1 >> word2 >> word3;

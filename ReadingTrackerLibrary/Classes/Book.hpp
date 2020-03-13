@@ -32,41 +32,41 @@ namespace rtl {
 
     enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
 
-    Genre convertStringToGenre(std::string genre);
-    std::string convertGenreToString(Genre genre);
+    Genre ConvertStringToGenre(std::string genre);
+    std::string ConvertGenreToString(Genre genre);
 
     class Book {
     public:
-        std::string getAuthor() const;
-        std::string getTitle() const;
-        std::string getSeries() const;
-        std::string getPublisher() const;
-        int getPageCount() const;
-        Genre getGenre() const;
-        std::string printGenre() const;
-        tm getPublishDate() const;
-        time_t getPublishDateAsTimeT();
-        std::string getOclc() const;
-        std::string printPublishDate() const;
-        std::string printJson() const;
-        std::string printCommandLine() const;
-        void setAuthor(std::string author);
-        void setTitle(std::string title);
-        void setSeries(std::string series);
-        void setPublisher(std::string publisher);
-        void setPageCount(int pageCount);
-        void setPageCount(char pageCount); //will result in pageCount being set to -1
-        void setPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
-        void setGenre(Genre genre);
-        void setGenre(std::string genre);
-        void setPublishDate(time_t publishDate);
-        bool setPublishDate(std::string publishDate);
-        void setOclc(std::string oclc);
+        std::string GetAuthor() const;
+        std::string GetTitle() const;
+        std::string GetSeries() const;
+        std::string GetPublisher() const;
+        int GetPageCount() const;
+        Genre GetGenre() const;
+        std::string PrintGenre() const;
+        tm GetPublishDate() const;
+        time_t GetPublishDateAsTimeT();
+        std::string GetOclc() const;
+        std::string PrintPublishDate() const;
+        std::string PrintJson() const;
+        std::string PrintCommandLine() const;
+        void SetAuthor(std::string author);
+        void SetTitle(std::string title);
+        void SetSeries(std::string series);
+        void SetPublisher(std::string publisher);
+        void SetPageCount(int pageCount);
+        void SetPageCount(char pageCount); //will result in pageCount being set to -1
+        void SetPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
+        void SetGenre(Genre genre);
+        void SetGenre(std::string genre);
+        void SetPublishDate(time_t publishDate);
+        bool SetPublishDate(std::string publishDate);
+        void SetOclc(std::string oclc);
         Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
         
-        static std::string printCommandLineHeaders();
+        static std::string PrintCommandLineHeaders();
     private:
         std::string oclc;
         std::string author;
@@ -78,10 +78,10 @@ namespace rtl {
         tm publishDate;
         
         //used for printCommandLine and printCommandLineHeaders
-        static const int cWidthAuthor = 20;
-        static const int cWidthTitle = 35;
-        static const int cWidthSeries = 20;
-        static const int cWidthPage = 5;
+        static const int kWidthAuthor = 20;
+        static const int kWidthTitle = 35;
+        static const int kWidthSeries = 20;
+        static const int kWidthPage = 5;
     };
 
     bool operator==(const Book& lhs, const Book& rhs);

@@ -21,43 +21,43 @@
 }
 
 - (void)tearDown {
-    rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::getInstance();
-    testContainer.clearAll();
+    rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
+    testContainer.ClearAll();
 }
 
 - (void)testReadBookVector {
     rtl::ReadBook testReadBook1(1);
-    testReadBook1.setAuthor("a");
-    testReadBook1.setTitle("a");
-    testReadBook1.setSeries("a");
-    testReadBook1.setPublisher("a");
-    testReadBook1.setGenre("fantasy");
-    testReadBook1.setPageCount(100);
-    testReadBook1.setPublishDate("1990-Dec-01");
-    testReadBook1.setRating(4);
-    testReadBook1.setDateRead("1993-Mar-25");
+    testReadBook1.SetAuthor("a");
+    testReadBook1.SetTitle("a");
+    testReadBook1.SetSeries("a");
+    testReadBook1.SetPublisher("a");
+    testReadBook1.SetGenre("fantasy");
+    testReadBook1.SetPageCount(100);
+    testReadBook1.SetPublishDate("1990-Dec-01");
+    testReadBook1.SetRating(4);
+    testReadBook1.SetDateRead("1993-Mar-25");
     
     rtl::ReadBook testReadBook2(1);
-    testReadBook2.setAuthor("b");
-    testReadBook2.setTitle("b");
-    testReadBook2.setSeries("b");
-    testReadBook2.setPublisher("b");
-    testReadBook2.setGenre("fantasy");
-    testReadBook2.setPageCount(100);
-    testReadBook2.setPublishDate("1990-Dec-01");
-    testReadBook2.setRating(4);
-    testReadBook2.setDateRead("1993-Mar-25");
+    testReadBook2.SetAuthor("b");
+    testReadBook2.SetTitle("b");
+    testReadBook2.SetSeries("b");
+    testReadBook2.SetPublisher("b");
+    testReadBook2.SetGenre("fantasy");
+    testReadBook2.SetPageCount(100);
+    testReadBook2.SetPublishDate("1990-Dec-01");
+    testReadBook2.SetRating(4);
+    testReadBook2.SetDateRead("1993-Mar-25");
     
     rtl::ReadBook testReadBook3(1);
-    testReadBook3.setAuthor("a");
-    testReadBook3.setTitle("a");
-    testReadBook3.setSeries("a");
-    testReadBook3.setPublisher("a");
-    testReadBook3.setGenre("fantasy");
-    testReadBook3.setPageCount(100);
-    testReadBook3.setPublishDate("1990-Dec-01");
-    testReadBook3.setRating(4);
-    testReadBook3.setDateRead("1993-Mar-25");
+    testReadBook3.SetAuthor("a");
+    testReadBook3.SetTitle("a");
+    testReadBook3.SetSeries("a");
+    testReadBook3.SetPublisher("a");
+    testReadBook3.SetGenre("fantasy");
+    testReadBook3.SetPageCount(100);
+    testReadBook3.SetPublishDate("1990-Dec-01");
+    testReadBook3.SetRating(4);
+    testReadBook3.SetDateRead("1993-Mar-25");
     
     std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = std::make_shared<rtl::ReadBook>(testReadBook1);
     std::shared_ptr<rtl::ReadBook> testPtrReadBook2 = std::make_shared<rtl::ReadBook>(testReadBook2);
@@ -67,52 +67,52 @@
     testReadBooks.push_back(testPtrReadBook2);
     testReadBooks.push_back(testPtrReadBook3);
     
-    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::GetInstance();
     
-    testContainers.addMasterReadBooks(testPtrReadBook1);
+    testContainers.AddMasterReadBooks(testPtrReadBook1);
     
-    XCTAssert(testContainers.getMasterReadBooks().size() == 1);
-    XCTAssert(testContainers.getMasterReadBooks().at(0) == testPtrReadBook1);
-    XCTAssert(testContainers.getMasterBooks().size() == 1);
-    XCTAssert(testContainers.getMasterBooks().at(0) == testPtrReadBook1);
+    XCTAssert(testContainers.GetMasterReadBooks().size() == 1);
+    XCTAssert(testContainers.GetMasterReadBooks().at(0) == testPtrReadBook1);
+    XCTAssert(testContainers.GetMasterBooks().size() == 1);
+    XCTAssert(testContainers.GetMasterBooks().at(0) == testPtrReadBook1);
     
-    testContainers.addMasterReadBooks(testReadBooks);
+    testContainers.AddMasterReadBooks(testReadBooks);
     
-    XCTAssert(testContainers.getMasterReadBooks().size() == 2);
-    XCTAssert(testContainers.getMasterReadBooks().at(0) == testPtrReadBook1);
-    XCTAssert(testContainers.getMasterReadBooks().at(1) == testPtrReadBook2);
-    XCTAssert(testContainers.getMasterBooks().size() == 2);
-    XCTAssert(testContainers.getMasterBooks().at(0) == testPtrReadBook1);
-    XCTAssert(testContainers.getMasterBooks().at(1) == testPtrReadBook2);
+    XCTAssert(testContainers.GetMasterReadBooks().size() == 2);
+    XCTAssert(testContainers.GetMasterReadBooks().at(0) == testPtrReadBook1);
+    XCTAssert(testContainers.GetMasterReadBooks().at(1) == testPtrReadBook2);
+    XCTAssert(testContainers.GetMasterBooks().size() == 2);
+    XCTAssert(testContainers.GetMasterBooks().at(0) == testPtrReadBook1);
+    XCTAssert(testContainers.GetMasterBooks().at(1) == testPtrReadBook2);
 }
 
 - (void)testBookVector {
     rtl::Book testBook1;
-    testBook1.setAuthor("testAuthor");
-    testBook1.setTitle("testTitle");
-    testBook1.setSeries("testSeries");
-    testBook1.setPublisher("testPublisher");
-    testBook1.setGenre("fantasy");
-    testBook1.setPageCount(10);
-    testBook1.setPublishDate("1990-Dec-01");
+    testBook1.SetAuthor("testAuthor");
+    testBook1.SetTitle("testTitle");
+    testBook1.SetSeries("testSeries");
+    testBook1.SetPublisher("testPublisher");
+    testBook1.SetGenre("fantasy");
+    testBook1.SetPageCount(10);
+    testBook1.SetPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
-    testBook2.setAuthor("testAuthor2");
-    testBook2.setTitle("testTitle2");
-    testBook2.setSeries("testSeries2");
-    testBook2.setPublisher("testPublisher2");
-    testBook2.setGenre("western");
-    testBook2.setPageCount(100);
-    testBook2.setPublishDate("1991-Dec-01");
+    testBook2.SetAuthor("testAuthor2");
+    testBook2.SetTitle("testTitle2");
+    testBook2.SetSeries("testSeries2");
+    testBook2.SetPublisher("testPublisher2");
+    testBook2.SetGenre("western");
+    testBook2.SetPageCount(100);
+    testBook2.SetPublishDate("1991-Dec-01");
     
     rtl::Book testBook3;
-    testBook3.setAuthor("testAuthor");
-    testBook3.setTitle("testTitle");
-    testBook3.setSeries("testSeries");
-    testBook3.setPublisher("testPublisher");
-    testBook3.setGenre("fantasy");
-    testBook3.setPageCount(10);
-    testBook3.setPublishDate("1990-Dec-01");
+    testBook3.SetAuthor("testAuthor");
+    testBook3.SetTitle("testTitle");
+    testBook3.SetSeries("testSeries");
+    testBook3.SetPublisher("testPublisher");
+    testBook3.SetGenre("fantasy");
+    testBook3.SetPageCount(10);
+    testBook3.SetPublishDate("1990-Dec-01");
     
     std::shared_ptr<rtl::Book> testPtrBook1 = std::make_shared<rtl::Book>(testBook1);
     std::shared_ptr<rtl::Book> testPtrBook2 = std::make_shared<rtl::Book>(testBook2);
@@ -122,18 +122,18 @@
     testBooks.push_back(testPtrBook2);
     testBooks.push_back(testPtrBook3);
     
-    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::GetInstance();
     
-    testContainers.addMasterBooks(testPtrBook1);
+    testContainers.AddMasterBooks(testPtrBook1);
     
-    XCTAssert(testContainers.getMasterBooks().size() == 1);
-    XCTAssert(testContainers.getMasterBooks().at(0) == testPtrBook1);
+    XCTAssert(testContainers.GetMasterBooks().size() == 1);
+    XCTAssert(testContainers.GetMasterBooks().at(0) == testPtrBook1);
     
-    testContainers.addMasterBooks(testBooks);
+    testContainers.AddMasterBooks(testBooks);
     
-    XCTAssert(testContainers.getMasterBooks().size() == 2);
-    XCTAssert(testContainers.getMasterBooks().at(0) == testPtrBook1);
-    XCTAssert(testContainers.getMasterBooks().at(1) == testPtrBook2);
+    XCTAssert(testContainers.GetMasterBooks().size() == 2);
+    XCTAssert(testContainers.GetMasterBooks().at(0) == testPtrBook1);
+    XCTAssert(testContainers.GetMasterBooks().at(1) == testPtrBook2);
 }
 
 - (void)testAuthorVector {
@@ -149,47 +149,47 @@
     testAuthors.push_back(testPtrAuthor2);
     testAuthors.push_back(testPtrAuthor3);
     
-    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::GetInstance();
     
-    testContainers.addMasterAuthors(testPtrAuthor1);
+    testContainers.AddMasterAuthors(testPtrAuthor1);
     
-    XCTAssert(testContainers.getMasterAuthors().size() == 1);
-    XCTAssert(testContainers.getMasterAuthors().at(0) == testPtrAuthor1);
+    XCTAssert(testContainers.GetMasterAuthors().size() == 1);
+    XCTAssert(testContainers.GetMasterAuthors().at(0) == testPtrAuthor1);
     
-    testContainers.addMasterAuthors(testAuthors);
+    testContainers.AddMasterAuthors(testAuthors);
     
-    XCTAssert(testContainers.getMasterAuthors().size() == 2);
-    XCTAssert(testContainers.getMasterAuthors().at(0) == testPtrAuthor1);
-    XCTAssert(testContainers.getMasterAuthors().at(1) == testPtrAuthor2);
+    XCTAssert(testContainers.GetMasterAuthors().size() == 2);
+    XCTAssert(testContainers.GetMasterAuthors().at(0) == testPtrAuthor1);
+    XCTAssert(testContainers.GetMasterAuthors().at(1) == testPtrAuthor2);
 }
 
 - (void)testAddMasterAuthorsPassedBook {
     rtl::Book testBook1;
-    testBook1.setAuthor("testAuthor1");
-    testBook1.setTitle("testTitle1");
-    testBook1.setSeries("testSeries1");
-    testBook1.setPublisher("testPublisher1");
-    testBook1.setGenre("fantasy");
-    testBook1.setPageCount(1);
-    testBook1.setPublishDate("1990-Dec-01");
+    testBook1.SetAuthor("testAuthor1");
+    testBook1.SetTitle("testTitle1");
+    testBook1.SetSeries("testSeries1");
+    testBook1.SetPublisher("testPublisher1");
+    testBook1.SetGenre("fantasy");
+    testBook1.SetPageCount(1);
+    testBook1.SetPublishDate("1990-Dec-01");
     
     rtl::Book testBook2;
-    testBook2.setAuthor("testAuthor2");
-    testBook2.setTitle("testTitle2");
-    testBook2.setSeries("testSeries2");
-    testBook2.setPublisher("testPublisher2");
-    testBook2.setGenre("western");
-    testBook2.setPageCount(20);
-    testBook2.setPublishDate("1991-Dec-01");
+    testBook2.SetAuthor("testAuthor2");
+    testBook2.SetTitle("testTitle2");
+    testBook2.SetSeries("testSeries2");
+    testBook2.SetPublisher("testPublisher2");
+    testBook2.SetGenre("western");
+    testBook2.SetPageCount(20);
+    testBook2.SetPublishDate("1991-Dec-01");
     
     rtl::Book testBook3;
-    testBook3.setAuthor("testAuthor1");
-    testBook3.setTitle("testTitle1");
-    testBook3.setSeries("testSeries1");
-    testBook3.setPublisher("testPublisher1");
-    testBook3.setGenre("fantasy");
-    testBook3.setPageCount(1);
-    testBook3.setPublishDate("1990-Dec-01");
+    testBook3.SetAuthor("testAuthor1");
+    testBook3.SetTitle("testTitle1");
+    testBook3.SetSeries("testSeries1");
+    testBook3.SetPublisher("testPublisher1");
+    testBook3.SetGenre("fantasy");
+    testBook3.SetPageCount(1);
+    testBook3.SetPublishDate("1990-Dec-01");
     
     std::shared_ptr<rtl::Book> testPtrBook1 = std::make_shared<rtl::Book>(testBook1);
     std::shared_ptr<rtl::Book> testPtrBook2 = std::make_shared<rtl::Book>(testBook2);
@@ -199,18 +199,18 @@
     testBooks.push_back(testPtrBook2);
     testBooks.push_back(testPtrBook3);
     
-    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::GetInstance();
     
-    testContainers.addMasterAuthors(testPtrBook1);
+    testContainers.AddMasterAuthors(testPtrBook1);
     
-    XCTAssert(testContainers.getMasterAuthors().size() == 1);
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getName() == "testAuthor1");
+    XCTAssert(testContainers.GetMasterAuthors().size() == 1);
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetName() == "testAuthor1");
     
-    testContainers.addMasterAuthors(testBooks);
+    testContainers.AddMasterAuthors(testBooks);
     
-    XCTAssert(testContainers.getMasterAuthors().size() == 2);
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getName() == "testAuthor1");
-    XCTAssert(testContainers.getMasterAuthors().at(1)->getName() == "testAuthor2");
+    XCTAssert(testContainers.GetMasterAuthors().size() == 2);
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetName() == "testAuthor1");
+    XCTAssert(testContainers.GetMasterAuthors().at(1)->GetName() == "testAuthor2");
 }
 
 - (void)testAuthorMergeBooksWhenSameAuthor {
@@ -226,16 +226,16 @@
     std::shared_ptr<rtl::Author> testPtrAuthor1 = std::make_shared<rtl::Author>("testAuthor", "1990-Dec-01", books1);
     std::shared_ptr<rtl::Author> testPtrAuthor2 = std::make_shared<rtl::Author>("testAuthor", "1990-Dec-01", books2);
     
-    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::GetInstance();
     
-    testContainers.addMasterAuthors(testPtrAuthor1);
-    testContainers.addMasterAuthors(testPtrAuthor2);
+    testContainers.AddMasterAuthors(testPtrAuthor1);
+    testContainers.AddMasterAuthors(testPtrAuthor2);
     
-    XCTAssert(testContainers.getMasterAuthors().size() == 1);
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().size() == 3);
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().at(0) == books1.at(0));
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().at(1) == books2.at(1));
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().at(2) == books1.at(1));
+    XCTAssert(testContainers.GetMasterAuthors().size() == 1);
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetBooksWritten().size() == 3);
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetBooksWritten().at(0) == books1.at(0));
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetBooksWritten().at(1) == books2.at(1));
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetBooksWritten().at(2) == books1.at(1));
 
 }
 
@@ -252,15 +252,15 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::Book> testPtrBook1 = rtl::convertJsonToBookPtr(jsonTest);
+    std::shared_ptr<rtl::Book> testPtrBook1 = rtl::ConvertJsonToBookPtr(jsonTest);
     
-    XCTAssert(testPtrBook1->getAuthor() == jsonTest["author"].get<std::string>());
-    XCTAssert(testPtrBook1->printGenre() == jsonTest["genre"].get<std::string>());
-    XCTAssert(testPtrBook1->getPageCount() == jsonTest["pageCount"].get<int>());
-    XCTAssert(testPtrBook1->getPublisher() == jsonTest["publisher"].get<std::string>());
-    XCTAssert(testPtrBook1->getSeries() == jsonTest["series"].get<std::string>());
-    XCTAssert(testPtrBook1->getTitle() == jsonTest["title"].get<std::string>());
-    XCTAssert(testPtrBook1->printPublishDate() == jsonTest["publishDate"].get<std::string>());
+    XCTAssert(testPtrBook1->GetAuthor() == jsonTest["author"].get<std::string>());
+    XCTAssert(testPtrBook1->PrintGenre() == jsonTest["genre"].get<std::string>());
+    XCTAssert(testPtrBook1->GetPageCount() == jsonTest["pageCount"].get<int>());
+    XCTAssert(testPtrBook1->GetPublisher() == jsonTest["publisher"].get<std::string>());
+    XCTAssert(testPtrBook1->GetSeries() == jsonTest["series"].get<std::string>());
+    XCTAssert(testPtrBook1->GetTitle() == jsonTest["title"].get<std::string>());
+    XCTAssert(testPtrBook1->PrintPublishDate() == jsonTest["publishDate"].get<std::string>());
 }
 
 - (void)testConvertJsonToReadBookPtr {
@@ -281,18 +281,18 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = rtl::convertJsonToReadBookPtr(jsonTest);
+    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = rtl::ConvertJsonToReadBookPtr(jsonTest);
     
-    XCTAssert(testPtrReadBook1->getReaderId() == jsonTest["readerId"].get<int>());
-    XCTAssert(testPtrReadBook1->getAuthor() == jsonTest["author"].get<std::string>());
-    XCTAssert(testPtrReadBook1->printGenre() == jsonTest["genre"].get<std::string>());
-    XCTAssert(testPtrReadBook1->getPageCount() == jsonTest["pageCount"].get<int>());
-    XCTAssert(testPtrReadBook1->getPublisher() == jsonTest["publisher"].get<std::string>());
-    XCTAssert(testPtrReadBook1->getSeries() == jsonTest["series"].get<std::string>());
-    XCTAssert(testPtrReadBook1->getTitle() == jsonTest["title"].get<std::string>());
-    XCTAssert(testPtrReadBook1->printPublishDate() == jsonTest["publishDate"].get<std::string>());
-    XCTAssert(testPtrReadBook1->getRating() == jsonTest["rating"].get<int>());
-    XCTAssert(testPtrReadBook1->printDateRead() == jsonTest["dateRead"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetReaderId() == jsonTest["readerId"].get<int>());
+    XCTAssert(testPtrReadBook1->GetAuthor() == jsonTest["author"].get<std::string>());
+    XCTAssert(testPtrReadBook1->PrintGenre() == jsonTest["genre"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetPageCount() == jsonTest["pageCount"].get<int>());
+    XCTAssert(testPtrReadBook1->GetPublisher() == jsonTest["publisher"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetSeries() == jsonTest["series"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetTitle() == jsonTest["title"].get<std::string>());
+    XCTAssert(testPtrReadBook1->PrintPublishDate() == jsonTest["publishDate"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetRating() == jsonTest["rating"].get<int>());
+    XCTAssert(testPtrReadBook1->PrintDateRead() == jsonTest["dateRead"].get<std::string>());
 }
 
 - (void)testConvertJsonToAuthorPtr {
@@ -320,11 +320,11 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::Author> testPtrAuthor1 = rtl::convertJsonToAuthorPtr(jsonTest);
+    std::shared_ptr<rtl::Author> testPtrAuthor1 = rtl::ConvertJsonToAuthorPtr(jsonTest);
     
-    XCTAssert(testPtrAuthor1->getName() == jsonTest["name"].get<std::string>());
-    XCTAssert(testPtrAuthor1->printDateBorn() == jsonTest["dateBorn"].get<std::string>());
-    XCTAssert(testPtrAuthor1->getBooksWritten().size() == jsonTest.at("booksWritten").size());
+    XCTAssert(testPtrAuthor1->GetName() == jsonTest["name"].get<std::string>());
+    XCTAssert(testPtrAuthor1->PrintDateBorn() == jsonTest["dateBorn"].get<std::string>());
+    XCTAssert(testPtrAuthor1->GetBooksWritten().size() == jsonTest.at("booksWritten").size());
 }
 
 - (void)testConvertJsonToReadBook {
@@ -343,43 +343,43 @@
       }
     )"_json;
     
-    rtl::ReadBook testReadBook1 = rtl::convertJsonToReadBook(jsonTest);
+    rtl::ReadBook testReadBook1 = rtl::ConvertJsonToReadBook(jsonTest);
     
-    XCTAssert(testReadBook1.getReaderId() == jsonTest["readerId"].get<int>());
-    XCTAssert(testReadBook1.getAuthor() == jsonTest["author"].get<std::string>());
-    XCTAssert(testReadBook1.printDateRead() == jsonTest["dateRead"].get<std::string>());
-    XCTAssert(testReadBook1.printGenre() == jsonTest["genre"].get<std::string>());
-    XCTAssert(testReadBook1.getPageCount() == jsonTest["pageCount"].get<int>());
-    XCTAssert(testReadBook1.getPublisher() == jsonTest["publisher"].get<std::string>());
-    XCTAssert(testReadBook1.getRating() == jsonTest["rating"].get<int>());
-    XCTAssert(testReadBook1.getSeries() == jsonTest["series"].get<std::string>());
-    XCTAssert(testReadBook1.getTitle() == jsonTest["title"].get<std::string>());
-    XCTAssert(testReadBook1.printPublishDate() == jsonTest["publishDate"].get<std::string>());
+    XCTAssert(testReadBook1.GetReaderId() == jsonTest["readerId"].get<int>());
+    XCTAssert(testReadBook1.GetAuthor() == jsonTest["author"].get<std::string>());
+    XCTAssert(testReadBook1.PrintDateRead() == jsonTest["dateRead"].get<std::string>());
+    XCTAssert(testReadBook1.PrintGenre() == jsonTest["genre"].get<std::string>());
+    XCTAssert(testReadBook1.GetPageCount() == jsonTest["pageCount"].get<int>());
+    XCTAssert(testReadBook1.GetPublisher() == jsonTest["publisher"].get<std::string>());
+    XCTAssert(testReadBook1.GetRating() == jsonTest["rating"].get<int>());
+    XCTAssert(testReadBook1.GetSeries() == jsonTest["series"].get<std::string>());
+    XCTAssert(testReadBook1.GetTitle() == jsonTest["title"].get<std::string>());
+    XCTAssert(testReadBook1.PrintPublishDate() == jsonTest["publishDate"].get<std::string>());
 }
 
 - (void)testSaveAndLoadInMemoryToFile {
     std::string testFilePath = "./testSaveFile.txt";
     
-    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::GetInstance();
     rtl::Book testBook1;
-    testBook1.setAuthor("testAuthor");
-    testBook1.setTitle("testTitle");
-    testBook1.setSeries("testSeries");
-    testBook1.setPublisher("testPublisher");
-    testBook1.setGenre("fantasy");
-    testBook1.setPageCount(10);
-    testBook1.setPublishDate("1990-Dec-01");
+    testBook1.SetAuthor("testAuthor");
+    testBook1.SetTitle("testTitle");
+    testBook1.SetSeries("testSeries");
+    testBook1.SetPublisher("testPublisher");
+    testBook1.SetGenre("fantasy");
+    testBook1.SetPageCount(10);
+    testBook1.SetPublishDate("1990-Dec-01");
     
     rtl::ReadBook testReadBook1(1);
-    testReadBook1.setAuthor("a");
-    testReadBook1.setTitle("a");
-    testReadBook1.setSeries("a");
-    testReadBook1.setPublisher("a");
-    testReadBook1.setGenre("fantasy");
-    testReadBook1.setPageCount(100);
-    testReadBook1.setPublishDate("1990-Dec-01");
-    testReadBook1.setRating(4);
-    testReadBook1.setDateRead("1993-Mar-25");
+    testReadBook1.SetAuthor("a");
+    testReadBook1.SetTitle("a");
+    testReadBook1.SetSeries("a");
+    testReadBook1.SetPublisher("a");
+    testReadBook1.SetGenre("fantasy");
+    testReadBook1.SetPageCount(100);
+    testReadBook1.SetPublishDate("1990-Dec-01");
+    testReadBook1.SetRating(4);
+    testReadBook1.SetDateRead("1993-Mar-25");
     
     std::vector<std::shared_ptr<rtl::Book>> testBookVector1;
     testBookVector1.push_back(std::make_shared<rtl::Book>(testBook1));
@@ -387,24 +387,24 @@
     
     rtl::Author testAuthor1("testAuthor", "1990-Dec-01", testBookVector1);
     
-    testContainers.addMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
-    testContainers.addMasterBooks(std::make_shared<rtl::Book>(testBook1));
-    testContainers.addMasterReadBooks(std::make_shared<rtl::ReadBook>(testReadBook1));
+    testContainers.AddMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
+    testContainers.AddMasterBooks(std::make_shared<rtl::Book>(testBook1));
+    testContainers.AddMasterReadBooks(std::make_shared<rtl::ReadBook>(testReadBook1));
     
-    testContainers.saveInMemoryToFile(testFilePath);
-    testContainers.clearAll();
-    testContainers.loadInMemoryFromFile(testFilePath);
+    testContainers.SaveInMemoryToFile(testFilePath);
+    testContainers.ClearAll();
+    testContainers.LoadInMemoryFromFile(testFilePath);
     
-    XCTAssert(testContainers.getMasterBooks().size() == 2);
-    XCTAssert(testContainers.getMasterReadBooks().size() == 1);
-    XCTAssert(testContainers.getMasterAuthors().size() == 2);
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getBooksWritten().size() == 1);
-    XCTAssert(testContainers.getMasterAuthors().at(1)->getBooksWritten().size() == 2);
-    XCTAssert(*testContainers.getMasterBooks().at(0) == testReadBook1);
-    XCTAssert(*testContainers.getMasterBooks().at(1) == testBook1);
-    XCTAssert(*testContainers.getMasterReadBooks().at(0) == testReadBook1);
-    XCTAssert(testContainers.getMasterAuthors().at(0)->getName() == "a");
-    XCTAssert(*testContainers.getMasterAuthors().at(1) == testAuthor1);
+    XCTAssert(testContainers.GetMasterBooks().size() == 2);
+    XCTAssert(testContainers.GetMasterReadBooks().size() == 1);
+    XCTAssert(testContainers.GetMasterAuthors().size() == 2);
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetBooksWritten().size() == 1);
+    XCTAssert(testContainers.GetMasterAuthors().at(1)->GetBooksWritten().size() == 2);
+    XCTAssert(*testContainers.GetMasterBooks().at(0) == testReadBook1);
+    XCTAssert(*testContainers.GetMasterBooks().at(1) == testBook1);
+    XCTAssert(*testContainers.GetMasterReadBooks().at(0) == testReadBook1);
+    XCTAssert(testContainers.GetMasterAuthors().at(0)->GetName() == "a");
+    XCTAssert(*testContainers.GetMasterAuthors().at(1) == testAuthor1);
     
     std::remove(testFilePath.c_str());
 }
@@ -422,69 +422,69 @@
     std::string test9 = "\ftest9\f";
     std::string test10 = "\rtest10           a   ";
     
-    XCTAssert(rtl::trim(test1) == "test1");
-    XCTAssert(rtl::trim(test2) == "test2");
-    XCTAssert(rtl::trim(test3) == "test3");
-    XCTAssert(rtl::trim(test4) == "test4");
-    XCTAssert(rtl::trim(test5) == "a  test5  b");
-    XCTAssert(rtl::trim(test6) == "test6");
-    XCTAssert(rtl::trim(test7) == "test7");
-    XCTAssert(rtl::trim(test8) == "test8");
-    XCTAssert(rtl::trim(test9) == "test9");
-    XCTAssert(rtl::trim(test10) == "test10           a");
+    XCTAssert(rtl::Trim(test1) == "test1");
+    XCTAssert(rtl::Trim(test2) == "test2");
+    XCTAssert(rtl::Trim(test3) == "test3");
+    XCTAssert(rtl::Trim(test4) == "test4");
+    XCTAssert(rtl::Trim(test5) == "a  test5  b");
+    XCTAssert(rtl::Trim(test6) == "test6");
+    XCTAssert(rtl::Trim(test7) == "test7");
+    XCTAssert(rtl::Trim(test8) == "test8");
+    XCTAssert(rtl::Trim(test9) == "test9");
+    XCTAssert(rtl::Trim(test10) == "test10           a");
     
 }
 
 - (void)testClearAll {
     rtl::Book testBook1;
-    testBook1.setAuthor("testAuthor");
-    testBook1.setTitle("testTitle");
-    testBook1.setSeries("testSeries");
-    testBook1.setPublisher("testPublisher");
-    testBook1.setGenre("fantasy");
-    testBook1.setPageCount(10);
-    testBook1.setPublishDate("1990-Dec-01");
+    testBook1.SetAuthor("testAuthor");
+    testBook1.SetTitle("testTitle");
+    testBook1.SetSeries("testSeries");
+    testBook1.SetPublisher("testPublisher");
+    testBook1.SetGenre("fantasy");
+    testBook1.SetPageCount(10);
+    testBook1.SetPublishDate("1990-Dec-01");
     
     rtl::ReadBook testReadBook1(1);
-    testReadBook1.setAuthor("a");
-    testReadBook1.setTitle("a");
-    testReadBook1.setSeries("a");
-    testReadBook1.setPublisher("a");
-    testReadBook1.setGenre("fantasy");
-    testReadBook1.setPageCount(100);
-    testReadBook1.setPublishDate("1990-Dec-01");
-    testReadBook1.setRating(4);
-    testReadBook1.setDateRead("1993-Mar-25");
+    testReadBook1.SetAuthor("a");
+    testReadBook1.SetTitle("a");
+    testReadBook1.SetSeries("a");
+    testReadBook1.SetPublisher("a");
+    testReadBook1.SetGenre("fantasy");
+    testReadBook1.SetPageCount(100);
+    testReadBook1.SetPublishDate("1990-Dec-01");
+    testReadBook1.SetRating(4);
+    testReadBook1.SetDateRead("1993-Mar-25");
     
     rtl::Author testAuthor1("test author", "1990-Dec-01");
     
-    rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::getInstance();
+    rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     
-    testContainer.addMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
-    testContainer.addMasterReadBooks(std::make_shared<rtl::ReadBook>(testReadBook1));
-    testContainer.addMasterBooks(std::make_shared<rtl::Book>(testBook1));
+    testContainer.AddMasterAuthors(std::make_shared<rtl::Author>(testAuthor1));
+    testContainer.AddMasterReadBooks(std::make_shared<rtl::ReadBook>(testReadBook1));
+    testContainer.AddMasterBooks(std::make_shared<rtl::Book>(testBook1));
     
-    XCTAssert(testContainer.getMasterAuthors().size() == 3);
-    XCTAssert(testContainer.getMasterBooks().size() == 2);
-    XCTAssert(testContainer.getMasterReadBooks().size() == 1);
+    XCTAssert(testContainer.GetMasterAuthors().size() == 3);
+    XCTAssert(testContainer.GetMasterBooks().size() == 2);
+    XCTAssert(testContainer.GetMasterReadBooks().size() == 1);
     
-    testContainer.clearAll();
+    testContainer.ClearAll();
     
-    XCTAssert(testContainer.getMasterAuthors().size() == 0);
-    XCTAssert(testContainer.getMasterBooks().size() == 0);
-    XCTAssert(testContainer.getMasterReadBooks().size() == 0);
+    XCTAssert(testContainer.GetMasterAuthors().size() == 0);
+    XCTAssert(testContainer.GetMasterBooks().size() == 0);
+    XCTAssert(testContainer.GetMasterReadBooks().size() == 0);
 }
 
 - (void)testQueryBookByIdentifier {
-    rtl::openLibraryValues testQuery;
+    rtl::OpenLibraryValues testQuery;
     
-    testQuery = rtl::queryBookByIdentifier("ISBN", "0812511816");
+    testQuery = rtl::QueryBookByIdentifier("ISBN", "0812511816");
     XCTAssert(testQuery.success);
     XCTAssert(testQuery.oclc == "22671036");
     XCTAssert(testQuery.title == "The eye of the world");
     XCTAssert(testQuery.author == "Robert Jordan");
     
-    testQuery = rtl::queryBookByIdentifier("oclc", "861961500");
+    testQuery = rtl::QueryBookByIdentifier("oclc", "861961500");
     XCTAssert(testQuery.success);
     XCTAssert(testQuery.oclc == "861961500");
     XCTAssert(testQuery.title == "The Girl with the Dragon Tattoo");
@@ -493,7 +493,7 @@
 
 - (void)testQueryBookByTitle {
     
-    rtl::wikiDataValues newQuery = rtl::queryBookByTitle("The Eye of the World");
+    rtl::WikiDataValues newQuery = rtl::QueryBookByTitle("The Eye of the World");
     
     XCTAssert(newQuery.success == true);
     XCTAssert(newQuery.author == "Robert Jordan");
