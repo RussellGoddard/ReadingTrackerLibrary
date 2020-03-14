@@ -20,6 +20,7 @@ namespace rtl {
     template <typename T>
     void SortUnique(std::vector<T>& input);
 
+    //TODO: add uniqueId for future DB storage
     class Author {
     public:
         void SetName(std::string name);

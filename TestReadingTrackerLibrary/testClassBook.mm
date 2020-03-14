@@ -385,13 +385,24 @@
     XCTAssert(bookWidth.PrintCommandLine() == testWidth);
 }
 
-- (void)testSetandGetOclc {
+- (void)testAddandGetOclc {
     rtl::Book testBook;
     std::string testString = "1234";
                               
-    testBook.SetOclc(testString);
+    testBook.AddOclc(testString);
     
-    XCTAssert(testBook.GetOclc() == testString);
+    XCTAssert(testBook.GetOclc().size() == 1);
+    XCTAssert(testBook.GetOclc().at(0) == testString);
+}
+
+- (void)testAddandGetIsbn {
+    rtl::Book testBook;
+    std::string testString = "1234567890";
+    
+    testBook.AddIsbn(testString);
+    
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn().at(0) == testString);
 }
 
 @end

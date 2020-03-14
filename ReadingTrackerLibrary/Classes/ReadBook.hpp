@@ -13,6 +13,7 @@
 
 namespace rtl {
 
+    //TODO: add uniqueId for future DB storage
     class ReadBook : public rtl::Book {
     public:
         void SetDateRead(time_t time);

@@ -86,8 +86,12 @@ std::string rtl::Book::PrintGenre() const {
     return ConvertGenreToString(this->genre);
 }
 
-std::string rtl::Book::GetOclc() const {
-    return this->oclc;
+std::vector<std::string> rtl::Book::GetOclc() const {
+    return this->oclcVector;
+}
+
+std::vector<std::string> rtl::Book::GetIsbn() const {
+    return this->isbnVector;
 }
 
 std::string rtl::Book::PrintJson() const {
@@ -241,8 +245,14 @@ bool rtl::Book::SetPublishDate(std::string publishDate) {
     return true;
 }
 
-void rtl::Book::SetOclc(std::string oclc) {
-    this->oclc = oclc;
+void rtl::Book::AddOclc(std::string oclc) {
+    this->oclcVector.push_back(oclc);
+    return;
+}
+
+void rtl::Book::AddIsbn(std::string isbn) {
+    //TODO: validate ISBN
+    this->isbnVector.push_back(isbn);
     return;
 }
 
