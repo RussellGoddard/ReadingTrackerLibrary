@@ -54,7 +54,7 @@ rtl::ReadBook rtl::ConvertJsonToReadBook(nlohmann::json json) {
     catch (nlohmann::json::exception& ex) {
         //TODO: log this exception, figure out better return when exception happens
         std::cout << ex.what() << std::endl;
-        return ReadBook(10000000000);
+        return ReadBook(-1);
     }
         
     
@@ -449,9 +449,8 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
         return newLibraryValues;
     }
     
-    std::remove_if(std::begin(identifierNum), std::end(identifierNum), [](const char& element) {
-        return !std::isdigit(element); //remove anything not 0-9
-    });
+    identifierNum.erase(std::remove_if(std::begin(identifierNum), std::end(identifierNum), [](char c){ return !std::isdigit(c); }), identifierNum.end()); //remove all non digits
+    
     
     if (identifierNum.empty()) {
         //TODO: log that this happened
@@ -500,6 +499,8 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
     
     //validation check
     if (rtl::Trim(title).empty()) {
+        //TODO: log error
+        newDataValues.success = false;
         return newDataValues;
     }
     
@@ -525,6 +526,13 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
     catch (nlohmann::json::exception& ex) {
         //TODO: log error
         std::cout << ex.what() << std::endl;
+        newDataValues.success = false;
+        return newDataValues;
+    }
+    
+    if (objectId == "-1") {
+        //TODO: log error
+        std::cout << "No object returned" << std::endl;
         newDataValues.success = false;
         return newDataValues;
     }

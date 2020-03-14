@@ -240,7 +240,7 @@
 }
 
 - (void)testConvertJsonToBookPtr {
-    nlohmann::json jsonTest = R"(
+    nlohmann::json jsonTestPass = R"(
       {
         "author":"Robert Jordan",
         "genre":"fantasy",
@@ -252,20 +252,34 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::Book> testPtrBook1 = rtl::ConvertJsonToBookPtr(jsonTest);
+    std::shared_ptr<rtl::Book> testPtrBook1 = rtl::ConvertJsonToBookPtr(jsonTestPass);
     
-    XCTAssert(testPtrBook1->GetAuthor() == jsonTest["author"].get<std::string>());
-    XCTAssert(testPtrBook1->PrintGenre() == jsonTest["genre"].get<std::string>());
-    XCTAssert(testPtrBook1->GetPageCount() == jsonTest["pageCount"].get<int>());
-    XCTAssert(testPtrBook1->GetPublisher() == jsonTest["publisher"].get<std::string>());
-    XCTAssert(testPtrBook1->GetSeries() == jsonTest["series"].get<std::string>());
-    XCTAssert(testPtrBook1->GetTitle() == jsonTest["title"].get<std::string>());
-    XCTAssert(testPtrBook1->PrintPublishDate() == jsonTest["publishDate"].get<std::string>());
+    XCTAssert(testPtrBook1->GetAuthor() == jsonTestPass["author"].get<std::string>());
+    XCTAssert(testPtrBook1->PrintGenre() == jsonTestPass["genre"].get<std::string>());
+    XCTAssert(testPtrBook1->GetPageCount() == jsonTestPass["pageCount"].get<int>());
+    XCTAssert(testPtrBook1->GetPublisher() == jsonTestPass["publisher"].get<std::string>());
+    XCTAssert(testPtrBook1->GetSeries() == jsonTestPass["series"].get<std::string>());
+    XCTAssert(testPtrBook1->GetTitle() == jsonTestPass["title"].get<std::string>());
+    XCTAssert(testPtrBook1->PrintPublishDate() == jsonTestPass["publishDate"].get<std::string>());
+    
+    nlohmann::json jsonTestFail = R"(
+      {
+        "a":"Robert Jordan",
+        "g":"fantasy",
+        "p":684,
+        "p":"Tor Books",
+        "s":"The Wheel of Time",
+        "t":"The Fires of Heaven",
+        "p":"1992-Sep-15"
+      }
+    )"_json;
+    
+    XCTAssert(rtl::ConvertJsonToBookPtr(jsonTestFail) == nullptr);
 }
 
 - (void)testConvertJsonToReadBookPtr {
     
-    nlohmann::json jsonTest = R"(
+    nlohmann::json jsonTestPass = R"(
       {
         "readerId":123,
         "author":"Robert Jordan",
@@ -281,22 +295,40 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = rtl::ConvertJsonToReadBookPtr(jsonTest);
+    std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = rtl::ConvertJsonToReadBookPtr(jsonTestPass);
     
-    XCTAssert(testPtrReadBook1->GetReaderId() == jsonTest["readerId"].get<int>());
-    XCTAssert(testPtrReadBook1->GetAuthor() == jsonTest["author"].get<std::string>());
-    XCTAssert(testPtrReadBook1->PrintGenre() == jsonTest["genre"].get<std::string>());
-    XCTAssert(testPtrReadBook1->GetPageCount() == jsonTest["pageCount"].get<int>());
-    XCTAssert(testPtrReadBook1->GetPublisher() == jsonTest["publisher"].get<std::string>());
-    XCTAssert(testPtrReadBook1->GetSeries() == jsonTest["series"].get<std::string>());
-    XCTAssert(testPtrReadBook1->GetTitle() == jsonTest["title"].get<std::string>());
-    XCTAssert(testPtrReadBook1->PrintPublishDate() == jsonTest["publishDate"].get<std::string>());
-    XCTAssert(testPtrReadBook1->GetRating() == jsonTest["rating"].get<int>());
-    XCTAssert(testPtrReadBook1->PrintDateRead() == jsonTest["dateRead"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetReaderId() == jsonTestPass["readerId"].get<int>());
+    XCTAssert(testPtrReadBook1->GetAuthor() == jsonTestPass["author"].get<std::string>());
+    XCTAssert(testPtrReadBook1->PrintGenre() == jsonTestPass["genre"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetPageCount() == jsonTestPass["pageCount"].get<int>());
+    XCTAssert(testPtrReadBook1->GetPublisher() == jsonTestPass["publisher"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetSeries() == jsonTestPass["series"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetTitle() == jsonTestPass["title"].get<std::string>());
+    XCTAssert(testPtrReadBook1->PrintPublishDate() == jsonTestPass["publishDate"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetRating() == jsonTestPass["rating"].get<int>());
+    XCTAssert(testPtrReadBook1->PrintDateRead() == jsonTestPass["dateRead"].get<std::string>());
+    
+    nlohmann::json jsonTestFail = R"(
+      {
+        "r":123,
+        "a":"Robert Jordan",
+        "dateRead":"2020-Jan-29",
+        "genre":"fantasy",
+        "pageCount":684,
+        "publisher":"Tor Books",
+        "series":"The Wheel of Time",
+        "title":"The Fires of Heaven",
+        "publishDate":"1992-Sep-15",
+        "rating":9,
+        "dateRead":"1993-Sep-25"
+      }
+    )"_json;
+    
+    XCTAssert(rtl::ConvertJsonToReadBookPtr(jsonTestFail) == nullptr);
 }
 
 - (void)testConvertJsonToAuthorPtr {
-    nlohmann::json jsonTest = R"(
+    nlohmann::json jsonTestPass = R"(
       {
           "name": "3rd",
           "dateBorn": "2000-Apr-01",
@@ -320,15 +352,41 @@
       }
     )"_json;
     
-    std::shared_ptr<rtl::Author> testPtrAuthor1 = rtl::ConvertJsonToAuthorPtr(jsonTest);
+    std::shared_ptr<rtl::Author> testPtrAuthor1 = rtl::ConvertJsonToAuthorPtr(jsonTestPass);
     
-    XCTAssert(testPtrAuthor1->GetName() == jsonTest["name"].get<std::string>());
-    XCTAssert(testPtrAuthor1->PrintDateBorn() == jsonTest["dateBorn"].get<std::string>());
-    XCTAssert(testPtrAuthor1->GetBooksWritten().size() == jsonTest.at("booksWritten").size());
+    XCTAssert(testPtrAuthor1->GetName() == jsonTestPass["name"].get<std::string>());
+    XCTAssert(testPtrAuthor1->PrintDateBorn() == jsonTestPass["dateBorn"].get<std::string>());
+    XCTAssert(testPtrAuthor1->GetBooksWritten().size() == jsonTestPass.at("booksWritten").size());
+
+    nlohmann::json jsonTestFail = R"(
+      {
+          "n": "3rd",
+          "dBorn": "2000-Apr-01",
+          "booksWritten": [{
+              "author": "testAuthor1",
+              "title": "testTitle1",
+              "series": "testSeries1",
+              "publisher": "testPublisher1",
+              "genre": "fantasy",
+              "pageCount": 1,
+              "publishDate": "1978-Oct-15"
+          }, {
+              "author": "testAuthor2",
+              "title": "testTitle2",
+              "series": "testSeries2",
+              "publisher": "testPublisher2",
+              "genre": "western",
+              "pageCount": 22,
+              "publishDate": "1983-Apr-25"
+          }]
+      }
+    )"_json;
+    
+    XCTAssert(rtl::ConvertJsonToAuthorPtr(jsonTestFail) == nullptr);
 }
 
 - (void)testConvertJsonToReadBook {
-    nlohmann::json jsonTest = R"(
+    nlohmann::json jsonTestPass = R"(
       {
         "readerId":456,
         "author":"Robert Jordan",
@@ -343,18 +401,35 @@
       }
     )"_json;
     
-    rtl::ReadBook testReadBook1 = rtl::ConvertJsonToReadBook(jsonTest);
+    rtl::ReadBook testReadBook1 = rtl::ConvertJsonToReadBook(jsonTestPass);
     
-    XCTAssert(testReadBook1.GetReaderId() == jsonTest["readerId"].get<int>());
-    XCTAssert(testReadBook1.GetAuthor() == jsonTest["author"].get<std::string>());
-    XCTAssert(testReadBook1.PrintDateRead() == jsonTest["dateRead"].get<std::string>());
-    XCTAssert(testReadBook1.PrintGenre() == jsonTest["genre"].get<std::string>());
-    XCTAssert(testReadBook1.GetPageCount() == jsonTest["pageCount"].get<int>());
-    XCTAssert(testReadBook1.GetPublisher() == jsonTest["publisher"].get<std::string>());
-    XCTAssert(testReadBook1.GetRating() == jsonTest["rating"].get<int>());
-    XCTAssert(testReadBook1.GetSeries() == jsonTest["series"].get<std::string>());
-    XCTAssert(testReadBook1.GetTitle() == jsonTest["title"].get<std::string>());
-    XCTAssert(testReadBook1.PrintPublishDate() == jsonTest["publishDate"].get<std::string>());
+    XCTAssert(testReadBook1.GetReaderId() == jsonTestPass["readerId"].get<int>());
+    XCTAssert(testReadBook1.GetAuthor() == jsonTestPass["author"].get<std::string>());
+    XCTAssert(testReadBook1.PrintDateRead() == jsonTestPass["dateRead"].get<std::string>());
+    XCTAssert(testReadBook1.PrintGenre() == jsonTestPass["genre"].get<std::string>());
+    XCTAssert(testReadBook1.GetPageCount() == jsonTestPass["pageCount"].get<int>());
+    XCTAssert(testReadBook1.GetPublisher() == jsonTestPass["publisher"].get<std::string>());
+    XCTAssert(testReadBook1.GetRating() == jsonTestPass["rating"].get<int>());
+    XCTAssert(testReadBook1.GetSeries() == jsonTestPass["series"].get<std::string>());
+    XCTAssert(testReadBook1.GetTitle() == jsonTestPass["title"].get<std::string>());
+    XCTAssert(testReadBook1.PrintPublishDate() == jsonTestPass["publishDate"].get<std::string>());
+    
+    nlohmann::json jsonTestFail = R"(
+      {
+        "r":456,
+        "hor":"Robert Jordan",
+        "dateRead":"2020-Jan-29",
+        "genre":"fantasy",
+        "pageCount":684,
+        "publisher":"Tor Books",
+        "rating":9,
+        "series":"The Wheel of Time",
+        "title":"The Fires of Heaven",
+        "publishDate":"1992-Sep-15"
+      }
+    )"_json;
+    
+    XCTAssert(rtl::ConvertJsonToReadBook(jsonTestFail).GetReaderId() == -1);
 }
 
 - (void)testSaveAndLoadInMemoryToFile {
@@ -478,7 +553,7 @@
 - (void)testQueryBookByIdentifier {
     rtl::OpenLibraryValues testQuery;
     
-    testQuery = rtl::QueryBookByIdentifier("ISBN", "0812511816");
+    testQuery = rtl::QueryBookByIdentifier("ISBN", "08-1251181-6");
     XCTAssert(testQuery.success);
     XCTAssert(testQuery.oclc == "22671036");
     XCTAssert(testQuery.title == "The eye of the world");
@@ -489,6 +564,12 @@
     XCTAssert(testQuery.oclc == "861961500");
     XCTAssert(testQuery.title == "The Girl with the Dragon Tattoo");
     XCTAssert(testQuery.author == "Stieg Larsson");
+    
+    XCTAssert(rtl::QueryBookByIdentifier(" ", "1234").success == false); //identifier can't be empty
+    XCTAssert(rtl::QueryBookByIdentifier("OCLC", "  ").success == false); //identifierNum can't be empty
+    XCTAssert(rtl::QueryBookByIdentifier("Babble", "1234").success == false); //identifier must be OCLC or ISBN
+    XCTAssert(rtl::QueryBookByIdentifier("ISBN", "asdf").success == false); //identifierNum must not be empty after removing all non digits
+    XCTAssert(rtl::QueryBookByIdentifier("ISBN", "123412351231234").success == false); //gibberish isbn
 }
 
 - (void)testQueryBookByTitle {
@@ -501,6 +582,15 @@
     XCTAssert(newQuery.series == "The Wheel of Time");
     XCTAssert(newQuery.title == "The Eye of the World");
     XCTAssert(newQuery.publisher == "Tor Publishing");
+    
+    newQuery = rtl::QueryBookByTitle("  "); //fails empty string check after trim
+    
+    XCTAssert(newQuery.success == false);
+    
+    newQuery = rtl::QueryBookByTitle("gibberishthatwonthaveapage"); //fails to retrieve an object
+    
+    XCTAssert(newQuery.success == false);
 }
+
 
 @end
