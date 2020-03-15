@@ -530,6 +530,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
         return newDataValues;
     }
     
+    //TODO: figure out how to test lambda belows catches without disabling this if block
     if (objectId == "-1") {
         //TODO: log error
         std::cout << "No object returned" << std::endl;
@@ -537,91 +538,123 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
         return newDataValues;
     }
         
-    try {
-        //title: P1476
-        newDataValues.title = wikiDataJson["entities"][objectId]["claims"]["P1476"].at(0)["mainsnak"]["datavalue"]["value"]["text"].get<std::string>();
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log error
-        newDataValues.success = false;
-        std::cout << ex.what() << std::endl;
-    }
-        
-    try {
-        //series: P179 -> P1476
-        std::string seriesId = wikiDataJson["entities"][objectId]["claims"]["P179"].at(0)["mainsnak"]["datavalue"]["value"]["id"].get<std::string>();
-        
-        std::string seriesCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + seriesId + "&sites=enwiki&props=claims&languages=en";
-        
-        std::string seriesBuffer = "";
-        if (queryByCurl(seriesCurl, seriesBuffer)) {
-            auto wikiDataJsonSeries = nlohmann::json::parse(seriesBuffer);
-            newDataValues.series = wikiDataJsonSeries["entities"][seriesId]["claims"]["P1476"].at(0)["mainsnak"]["datavalue"]["value"]["text"].get<std::string>();
+    auto getTitle = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+        bool success = false;
+        try {
+            //title: P1476
+            newDataValues.title = wikiDataJson.at("entities").at(objectId).at("claims").at("P1476").at(0).at("mainsnak").at("datavalue").at("value").at("text").get<std::string>();
+            success = true;
         }
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log error
-        newDataValues.success = false;
-        std::cout << ex.what() << std::endl;
-    }
-    
-    try {
-        //author: P50 -> P742
-        std::string authorId = wikiDataJson["entities"][objectId]["claims"]["P50"].at(0)["mainsnak"]["datavalue"]["value"]["id"].get<std::string>();
-        
-        std::string authorCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + authorId + "&sites=enwiki&props=claims&languages=en";
-        
-        std::string authorBuffer = "";
-        if (queryByCurl(authorCurl, authorBuffer)) {
-            auto wikiDataJsonAuthor = nlohmann::json::parse(authorBuffer);
-            newDataValues.author = wikiDataJsonAuthor["entities"][authorId]["claims"]["P742"].at(0)["mainsnak"]["datavalue"]["value"].get<std::string>();
+        catch (nlohmann::json::exception& ex) {
+            //TODO: log error
+            std::cout << ex.what() << std::endl;
         }
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log error
-        newDataValues.success = false;
-        std::cout << ex.what() << std::endl;
-    }
+        return success;
+    };
     
-    try {
-        //publisher P123 -> query aliases for english name
-        std::string publisherId = wikiDataJson["entities"][objectId]["claims"]["P123"].at(0)["mainsnak"]["datavalue"]["value"]["id"].get<std::string>();
-        
-        std::string publisherCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + publisherId + "&sites=enwiki&props=aliases&languages=en";
-        
-        std::string publisherBuffer = "";
-        if (queryByCurl(publisherCurl, publisherBuffer)) {
-            auto wikiDataJsonPublisher = nlohmann::json::parse(publisherBuffer);
-            newDataValues.publisher = wikiDataJsonPublisher["entities"][publisherId]["aliases"]["en"].at(0)["value"].get<std::string>();
+    auto getSeries = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+        bool success = false;
+        try {
+            //series: P179 -> P1476
+            std::string seriesId = wikiDataJson.at("entities").at(objectId).at("claims").at("P179").at(0).at("mainsnak").at("datavalue").at("value").at("id").get<std::string>();
+            
+            std::string seriesCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + seriesId + "&sites=enwiki&props=claims&languages=en";
+            
+            std::string seriesBuffer = "";
+            if (queryByCurl(seriesCurl, seriesBuffer)) {
+                auto wikiDataJsonSeries = nlohmann::json::parse(seriesBuffer);
+                newDataValues.series = wikiDataJsonSeries.at("entities").at(seriesId).at("claims").at("P1476").at(0).at("mainsnak").at("datavalue").at("value").at("text").get<std::string>();
+            }
+            success = true;
         }
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log error
-        newDataValues.success = false;
-        std::cout << ex.what() << std::endl;
-    }
+        catch (nlohmann::json::exception& ex) {
+            //TODO: log error
+            std::cout << ex.what() << std::endl;
+        }
+        return success;
+    };
     
-    try {
-        //oclc: P243
-        newDataValues.oclc = wikiDataJson["entities"][objectId]["claims"]["P243"].at(0)["mainsnak"]["datavalue"]["value"].get<std::string>();
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log error
-        newDataValues.success = false;
-        std::cout << ex.what() << std::endl;
-    }
+    auto getAuthor = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+        bool success = false;
+        try {
+            //author: P50 -> P742
+            std::string authorId = wikiDataJson.at("entities").at(objectId).at("claims").at("P50").at(0).at("mainsnak").at("datavalue").at("value").at("id").get<std::string>();
+            
+            std::string authorCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + authorId + "&sites=enwiki&props=claims&languages=en";
+            
+            std::string authorBuffer = "";
+            if (queryByCurl(authorCurl, authorBuffer)) {
+                auto wikiDataJsonAuthor = nlohmann::json::parse(authorBuffer);
+                newDataValues.author = wikiDataJsonAuthor.at("entities").at(authorId).at("claims").at("P742").at(0).at("mainsnak").at("datavalue").at("value").get<std::string>();
+            }
+            success = true;
+        }
+        catch (nlohmann::json::exception& ex) {
+            //TODO: log error
+            std::cout << ex.what() << std::endl;
+        }
+        return success;
+    };
     
-    try {
-        //datePublish: P577
-        //"time": "+1990-01-15T00:00:00Z",
-        newDataValues.datePublished = boost::gregorian::from_string(wikiDataJson["entities"][objectId]["claims"]["P577"].at(0)["mainsnak"]["datavalue"]["value"]["time"].get<std::string>().substr(1, 10));
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log error
-        newDataValues.success = false;
-        std::cout << ex.what() << std::endl;
-    }
+    auto getPublisher = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+        bool success = false;
+        try {
+            //publisher P123 -> query aliases for english name
+            std::string publisherId = wikiDataJson.at("entities").at(objectId).at("claims").at("P123").at(0).at("mainsnak").at("datavalue").at("value").at("id").get<std::string>();
+            
+            std::string publisherCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + publisherId + "&sites=enwiki&props=aliases&languages=en";
+            
+            std::string publisherBuffer = "";
+            if (queryByCurl(publisherCurl, publisherBuffer)) {
+                auto wikiDataJsonPublisher = nlohmann::json::parse(publisherBuffer);
+                newDataValues.publisher = wikiDataJsonPublisher.at("entities").at(publisherId).at("aliases").at("en").at(0).at("value").get<std::string>();
+            }
+            success = true;
+        }
+        catch (nlohmann::json::exception& ex) {
+            //TODO: log error
+            std::cout << ex.what() << std::endl;
+        }
+        return success;
+    };
     
+    auto getOclc = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+        bool success = false;
+        try {
+            //oclc: P243
+            newDataValues.oclc = wikiDataJson.at("entities").at(objectId).at("claims").at("P243").at(0).at("mainsnak").at("datavalue").at("value").get<std::string>();
+            success = true;
+        }
+        catch (nlohmann::json::exception& ex) {
+            //TODO: log error
+            std::cout << ex.what() << std::endl;
+        }
+        return success;
+    };
+    
+    auto getDatePublish = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+        bool success = false;
+        try {
+            //datePublish: P577
+            //"time": "+1990-01-15T00:00:00Z",
+            newDataValues.datePublished = boost::gregorian::from_string(wikiDataJson.at("entities").at(objectId).at("claims").at("P577").at(0).at("mainsnak").at("datavalue").at("value").at("time").get<std::string>().substr(1, 10));
+            success = true;
+        }
+        catch (nlohmann::json::exception& ex) {
+            //TODO: log error
+            newDataValues.success = false;
+            std::cout << ex.what() << std::endl;
+        }
+        return success;
+    };
+    
+    
+    newDataValues.success = newDataValues.success && getTitle(wikiDataJson, objectId, newDataValues);
+    newDataValues.success = newDataValues.success && getSeries(wikiDataJson, objectId, newDataValues);
+    newDataValues.success = newDataValues.success && getAuthor(wikiDataJson, objectId, newDataValues);
+    newDataValues.success = newDataValues.success && getPublisher(wikiDataJson, objectId, newDataValues);
+    newDataValues.success = newDataValues.success && getOclc(wikiDataJson, objectId, newDataValues);
+    newDataValues.success = newDataValues.success && getDatePublish(wikiDataJson, objectId, newDataValues);
     
     return newDataValues;
 }
