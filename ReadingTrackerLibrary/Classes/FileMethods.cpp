@@ -411,7 +411,7 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
     return size * nmemb;
 }
 
-bool queryByCurl(std::string curlUrl, std::string& readBuffer) {
+bool QueryByCurl(std::string curlUrl, std::string& readBuffer) {
     CURL *curl;
     CURLcode res;
     curl = curl_easy_init();
@@ -429,7 +429,6 @@ bool queryByCurl(std::string curlUrl, std::string& readBuffer) {
     return false;
 }
 
-//TODO: wikidata oclc and openlibrary oclc won't always line up but be accepted by worldcat as correct, not sure what can be done about it
 //queries the open library for info based on given OCLC or ISBN (10 or 13 digit)
 rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::string identifierNum) {
     rtl::OpenLibraryValues newLibraryValues;
@@ -463,7 +462,7 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
     
     std::string readBuffer;
     
-    if (!queryByCurl(curlUrl, readBuffer)) {
+    if (!QueryByCurl(curlUrl, readBuffer)) {
         //TODO: log that this happened
         newLibraryValues.success = false;
         return newLibraryValues;
@@ -493,7 +492,6 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
 }
 
 //TODO: curl query very fragile due to requiring exact capitalization figure out better way (might have to move google books)
-//TODO: make this a multithreaded call
 rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
     rtl::WikiDataValues newDataValues;
     
@@ -511,7 +509,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
     std::string curlUrl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&sites=enwiki&titles=" + title + "&props=descriptions%7Cclaims&languages=en";
     
     std::string readBuffer;
-    if (!queryByCurl(curlUrl, readBuffer)) {
+    if (!QueryByCurl(curlUrl, readBuffer)) {
         //TODO: log that this happened
         newDataValues.success = false;
         return newDataValues;
@@ -530,7 +528,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
         return newDataValues;
     }
     
-    //TODO: figure out how to test lambda belows catches without disabling this if block
+    //TODO: figure out how to test lambda belows try/catches without disabling this if block
     if (objectId == "-1") {
         //TODO: log error
         std::cout << "No object returned" << std::endl;
@@ -538,7 +536,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
         return newDataValues;
     }
         
-    auto getTitle = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+    std::future<bool> boolTitle = std::async([](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
         bool success = false;
         try {
             //title: P1476
@@ -550,9 +548,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::cout << ex.what() << std::endl;
         }
         return success;
-    };
+    }, wikiDataJson, objectId, std::ref(newDataValues));
     
-    auto getSeries = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+    std::future<bool> boolSeries = std::async([](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
         bool success = false;
         try {
             //series: P179 -> P1476
@@ -561,7 +559,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::string seriesCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + seriesId + "&sites=enwiki&props=claims&languages=en";
             
             std::string seriesBuffer = "";
-            if (queryByCurl(seriesCurl, seriesBuffer)) {
+            if (QueryByCurl(seriesCurl, seriesBuffer)) {
                 auto wikiDataJsonSeries = nlohmann::json::parse(seriesBuffer);
                 newDataValues.series = wikiDataJsonSeries.at("entities").at(seriesId).at("claims").at("P1476").at(0).at("mainsnak").at("datavalue").at("value").at("text").get<std::string>();
             }
@@ -572,9 +570,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::cout << ex.what() << std::endl;
         }
         return success;
-    };
+    }, wikiDataJson, objectId, std::ref(newDataValues));
     
-    auto getAuthor = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+    std::future<bool> boolAuthor = std::async([](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
         bool success = false;
         try {
             //author: P50 -> P742
@@ -583,7 +581,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::string authorCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + authorId + "&sites=enwiki&props=claims&languages=en";
             
             std::string authorBuffer = "";
-            if (queryByCurl(authorCurl, authorBuffer)) {
+            if (QueryByCurl(authorCurl, authorBuffer)) {
                 auto wikiDataJsonAuthor = nlohmann::json::parse(authorBuffer);
                 newDataValues.author = wikiDataJsonAuthor.at("entities").at(authorId).at("claims").at("P742").at(0).at("mainsnak").at("datavalue").at("value").get<std::string>();
             }
@@ -594,9 +592,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::cout << ex.what() << std::endl;
         }
         return success;
-    };
+    }, wikiDataJson, objectId, std::ref(newDataValues));
     
-    auto getPublisher = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+    std::future<bool> boolPublisher = std::async([](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
         bool success = false;
         try {
             //publisher P123 -> query aliases for english name
@@ -605,7 +603,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::string publisherCurl = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + publisherId + "&sites=enwiki&props=aliases&languages=en";
             
             std::string publisherBuffer = "";
-            if (queryByCurl(publisherCurl, publisherBuffer)) {
+            if (QueryByCurl(publisherCurl, publisherBuffer)) {
                 auto wikiDataJsonPublisher = nlohmann::json::parse(publisherBuffer);
                 newDataValues.publisher = wikiDataJsonPublisher.at("entities").at(publisherId).at("aliases").at("en").at(0).at("value").get<std::string>();
             }
@@ -616,9 +614,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::cout << ex.what() << std::endl;
         }
         return success;
-    };
+    }, wikiDataJson, objectId, std::ref(newDataValues));
     
-    auto getOclc = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+    std::future<bool> boolOclc = std::async([](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
         bool success = false;
         try {
             //oclc: P243
@@ -630,9 +628,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::cout << ex.what() << std::endl;
         }
         return success;
-    };
+    }, wikiDataJson, objectId, std::ref(newDataValues));
     
-    auto getDatePublish = [](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+    std::future<bool> boolDatePublish = std::async([](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
         bool success = false;
         try {
             //datePublish: P577
@@ -646,15 +644,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             std::cout << ex.what() << std::endl;
         }
         return success;
-    };
+    }, wikiDataJson, objectId, std::ref(newDataValues));
     
-    
-    newDataValues.success = newDataValues.success && getTitle(wikiDataJson, objectId, newDataValues);
-    newDataValues.success = newDataValues.success && getSeries(wikiDataJson, objectId, newDataValues);
-    newDataValues.success = newDataValues.success && getAuthor(wikiDataJson, objectId, newDataValues);
-    newDataValues.success = newDataValues.success && getPublisher(wikiDataJson, objectId, newDataValues);
-    newDataValues.success = newDataValues.success && getOclc(wikiDataJson, objectId, newDataValues);
-    newDataValues.success = newDataValues.success && getDatePublish(wikiDataJson, objectId, newDataValues);
+    newDataValues.success = boolTitle.get() && boolSeries.get() && boolAuthor.get() && boolPublisher.get() && boolOclc.get();
     
     return newDataValues;
 }

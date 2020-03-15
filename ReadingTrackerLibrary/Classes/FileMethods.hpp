@@ -9,6 +9,8 @@
 #define FileMethods_hpp
 
 #include <fstream>
+#include <functional>
+#include <future>
 #include <memory>
 #include <nlohmann/json.hpp>
 #include <set>
