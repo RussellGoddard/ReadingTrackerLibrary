@@ -95,6 +95,8 @@ namespace rtl {
     bool operator>(const Book& lhs, const Book& rhs);
     bool operator>=(const Book& lhs, const Book& rhs);
     bool operator<=(const Book& lhs, const Book& rhs);
+
+    std::string GenerateId(const std::string& input);
 }
 
 #endif /* Book_hpp */

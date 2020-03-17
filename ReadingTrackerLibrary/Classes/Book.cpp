@@ -347,3 +347,41 @@ bool rtl::operator<=(const rtl::Book& lhs, const rtl::Book& rhs) {
 bool rtl::operator>=(const rtl::Book& lhs, const rtl::Book& rhs) {
     return !operator<(lhs, rhs);
 }
+
+//TODO: introduce something to handle ints larger than long long (boost?)
+std::string rtl::GenerateId(const std::string& input) {
+    //input is supposed to be clean/validated before this function
+    //split string by word
+    //toupper each word
+    //convert each word to int * length of word + 13 for each word already done
+    //add each int together
+    //convert answer to hexadecimal string
+    //return string
+    
+    std::vector<std::string> items;
+    std::string token = "";
+    std::stringstream ss(input);
+    while (std::getline(ss, token, ' ')) {
+        items.push_back(std::move(token));
+    }
+    
+    unsigned long long id = 1;
+    int adder = 13;
+    for (std::string x : items) {
+        std::transform(std::begin(x), std::end(x), std::begin(x), ::toupper);
+        unsigned long long word = 0;
+        for (char y : x) {
+            word += y;
+        }
+        word *= x.size();
+        word += adder;
+        adder += 13;
+        id *= word;
+    }
+    
+    ss.str(std::string());
+    ss.clear();
+    ss << std::hex <<  id;
+    
+    return ss.str();
+}
