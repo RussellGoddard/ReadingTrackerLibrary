@@ -36,11 +36,16 @@ rtl::Author rtlCommandLine::GetNewAuthor(std::istream& inputStream, std::ostream
     "pageCount" : 782
 }
 */
+//TODO: more descriptive input messages
 rtl::Book rtlCommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream) {
-    std::string author, title, publisher, series, genre, datePublished, pageCount;
+    std::string author, isbn, oclc, title, publisher, series, genre, datePublished, pageCount;
     
     OutputLine(outputStream, "Input author");
     author = GetInput(inputStream);
+    OutputLine(outputStream, "Input ISBN");
+    isbn = GetInput(inputStream);
+    OutputLine(outputStream, "Input OCLC");
+    oclc = GetInput(inputStream);
     OutputLine(outputStream, "Input title");
     title = GetInput(inputStream);
     OutputLine(outputStream, "Input publisher");
@@ -54,7 +59,7 @@ rtl::Book rtlCommandLine::GetNewBook(std::istream& inputStream, std::ostream& ou
     OutputLine(outputStream, "Input page count");
     pageCount = GetInput(inputStream);
     
-    return rtl::Book(author, title, series, publisher, stoi(pageCount), genre, datePublished);
+    return rtl::Book(author, title, series, publisher, stoi(pageCount), genre, datePublished, isbn, oclc);
 }
 
 
@@ -71,14 +76,18 @@ rtl::Book rtlCommandLine::GetNewBook(std::istream& inputStream, std::ostream& ou
     "dateRead" : "Oct 26 2019"
 }
 */
-//TODO: validation on inputs
+//TODO: validation on inputs, better input flow
 rtl::ReadBook rtlCommandLine::GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
-    std::string author, title, publisher, series, genre, datePublished, pageCount, dateFinished, rating;
+    std::string author, title, publisher, series, genre, datePublished, pageCount, dateFinished, rating, isbn, oclc;
     
     OutputLine(outputStream, "Input author");
     author = GetInput(inputStream);
     OutputLine(outputStream, "Input title");
     title = GetInput(inputStream);
+    OutputLine(outputStream, "Input isbn");
+    isbn = GetInput(inputStream);
+    OutputLine(outputStream, "Input oclc");
+    oclc = GetInput(inputStream);
     OutputLine(outputStream, "Input publisher");
     publisher = GetInput(inputStream);
     OutputLine(outputStream, "Input series");
@@ -94,7 +103,7 @@ rtl::ReadBook rtlCommandLine::GetNewReadBook(std::istream& inputStream, std::ost
     OutputLine(outputStream, "On a scale of 1 - 10 rate the book");
     rating = GetInput(inputStream);
     
-    return rtl::ReadBook(readerId, author, title, series, publisher, stoi(pageCount), genre, datePublished, stoi(rating), dateFinished);
+    return rtl::ReadBook(readerId, rtl::Book(author, title, series, publisher, stoi(pageCount), genre, datePublished, isbn, oclc), stoi(rating), dateFinished);
 }
 
 void rtlCommandLine::OutputLine(std::ostream& outputStream, std::string output) {

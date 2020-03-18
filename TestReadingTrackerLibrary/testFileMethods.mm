@@ -230,7 +230,9 @@
         "publisher":"Tor Books",
         "series":"The Wheel of Time",
         "title":"The Fires of Heaven",
-        "publishDate":"1992-Sep-15"
+        "publishDate":"1992-Sep-15",
+        "isbn":["1234567890","1234567890abc"],
+        "oclc":["123456"]
       }
     )"_json;
     
@@ -243,6 +245,11 @@
     XCTAssert(testPtrBook1->GetSeries() == jsonTestPass["series"].get<std::string>());
     XCTAssert(testPtrBook1->GetTitle() == jsonTestPass["title"].get<std::string>());
     XCTAssert(testPtrBook1->PrintPublishDate() == jsonTestPass["publishDate"].get<std::string>());
+    XCTAssert(testPtrBook1->GetIsbn().size() == 2);
+    XCTAssert(testPtrBook1->GetIsbn().at(0) == "1234567890");
+    XCTAssert(testPtrBook1->GetIsbn().at(1) == "1234567890abc");
+    XCTAssert(testPtrBook1->GetOclc().size() == 1);
+    XCTAssert(testPtrBook1->GetOclc().at(0) == "123456");
     
     nlohmann::json jsonTestFail = R"(
       {
@@ -265,6 +272,8 @@
       {
         "readerId":123,
         "author":"Robert Jordan",
+        "isbn":[],
+        "oclc":["123456"],
         "dateRead":"2020-Jan-29",
         "genre":"fantasy",
         "pageCount":684,
@@ -289,6 +298,12 @@
     XCTAssert(testPtrReadBook1->PrintPublishDate() == jsonTestPass["publishDate"].get<std::string>());
     XCTAssert(testPtrReadBook1->GetRating() == jsonTestPass["rating"].get<int>());
     XCTAssert(testPtrReadBook1->PrintDateRead() == jsonTestPass["dateRead"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetIsbn().size() == jsonTestPass["isbn"].size());
+    XCTAssert(testPtrReadBook1->GetIsbn().size() == 0);
+    XCTAssert(testPtrReadBook1->GetOclc().size() == jsonTestPass["oclc"].size());
+    XCTAssert(testPtrReadBook1->GetOclc()[0] == jsonTestPass["oclc"][0]);
+    
+    
     
     nlohmann::json jsonTestFail = R"(
       {
@@ -315,6 +330,8 @@
           "name": "3rd",
           "dateBorn": "2000-Apr-01",
           "booksWritten": [{
+              "isbn":["1234567890"],
+              "oclc":["123456"],
               "author": "testAuthor1",
               "title": "testTitle1",
               "series": "testSeries1",
@@ -323,6 +340,8 @@
               "pageCount": 1,
               "publishDate": "1978-Oct-15"
           }, {
+              "isbn":["1234567890abc"],
+              "oclc":[],
               "author": "testAuthor2",
               "title": "testTitle2",
               "series": "testSeries2",

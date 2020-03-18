@@ -23,6 +23,7 @@
 
 }
 
+//TODO: better break up tests
 - (void)testBookGetAndSet {
     rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetSeries("testSeries");
@@ -116,13 +117,16 @@
 
 - (void)testPrintJson {
     rtl::Book testBook("testAuthor", "testTitle");
+    testBook.AddIsbn("1234567890");
+    testBook.AddIsbn("1234567890abc");
+    testBook.AddOclc("123456");
     testBook.SetSeries("testSeries");
     testBook.SetPublisher("testPublisher");
     testBook.SetGenre("fantasy");
     testBook.SetPageCount(10);
     testBook.SetPublishDate("1990-Dec-01");
     
-    std::string answer = R"({"bookId":"2ff6b24","author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
+    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","1234567890abc"],"oclc":["123456"],"author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
     XCTAssert(testBook.PrintJson() == answer);
 }
 
@@ -381,6 +385,21 @@
     XCTAssert(testBookConstructor3.GetGenre() == rtl::scienceFiction);
     XCTAssert(testBookConstructor3.PrintPublishDate() == "1995-Oct-03");
     XCTAssert(testBookConstructor3.GetBookId() == "42ded14");
+    
+    //rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn, std::string oclc)
+    rtl::Book testBookConstructor4("testAuthor4", "testTitle4", "testSeries4", "testPublisher4", 4444, "fantasy", "1969-Oct-31", std::vector<std::string>{"1234567890", "1234567890abc"}, std::vector<std::string>{"123456"});
+    XCTAssert(testBookConstructor4.GetAuthor() == "testAuthor4");
+    XCTAssert(testBookConstructor4.GetTitle() == "testTitle4");
+    XCTAssert(testBookConstructor4.GetSeries() == "testSeries4");
+    XCTAssert(testBookConstructor4.GetPublisher() == "testPublisher4");
+    XCTAssert(testBookConstructor4.GetPageCount() == 4444);
+    XCTAssert(testBookConstructor4.GetGenre() == rtl::fantasy);
+    XCTAssert(testBookConstructor4.PrintPublishDate() == "1969-Oct-31");
+    XCTAssert(testBookConstructor4.GetIsbn().size() == 2);
+    XCTAssert(testBookConstructor4.GetIsbn().at(0) == "1234567890");
+    XCTAssert(testBookConstructor4.GetIsbn().at(1) == "1234567890abc");
+    XCTAssert(testBookConstructor4.GetOclc().size() == 1);
+    XCTAssert(testBookConstructor4.GetOclc().at(0) == "123456");
 }
 
 - (void)testPrintColumnHeaders {
@@ -431,6 +450,7 @@
     std::string test5 = "robertjordan";
     std::string test6 = "Robert Jordan The Eye of the World";
     std::string test7 = "Robert Jordan The Path of Daggers";
+
     
     XCTAssert(rtl::GenerateId(test1) == "27f8e2");
     XCTAssert(rtl::GenerateId(test2) == "281d72");

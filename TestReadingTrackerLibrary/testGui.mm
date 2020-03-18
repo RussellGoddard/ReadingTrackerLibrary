@@ -38,7 +38,7 @@
 - (void)testGetNewBook {
     std::stringstream inputSs, outputSs;
     
-    inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
+    inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     
     rtl::Book testBook = rtlCommandLine::GetNewBook(inputSs, outputSs);
     
@@ -49,12 +49,16 @@
     XCTAssert(testBook.GetGenre() == rtl::fantasy);
     XCTAssert(testBook.PrintPublishDate() == "1999-Oct-01");
     XCTAssert(testBook.GetPageCount() == 123);
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn().at(0) == "1234567890");
+    XCTAssert(testBook.GetOclc().size() == 1);
+    XCTAssert(testBook.GetOclc().at(0) == "123456");
 }
 
 - (void)testGetNewReadBook {
     std::stringstream inputSs, outputSs;
     
-    inputSs.str("testAuthor\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
+    inputSs.str("testAuthor\ntestTitle\n1234567890\n123456\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
     rtl::ReadBook testReadBook = rtlCommandLine::GetNewReadBook(inputSs, outputSs, 123);
     
@@ -68,6 +72,10 @@
     XCTAssert(testReadBook.GetPageCount() == 123);
     XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
     XCTAssert(testReadBook.GetRating() == 9);
+    XCTAssert(testReadBook.GetIsbn().size() == 1);
+    XCTAssert(testReadBook.GetIsbn().at(0) == "1234567890");
+    XCTAssert(testReadBook.GetOclc().size() == 1);
+    XCTAssert(testReadBook.GetOclc().at(0) == "123456");
 }
 
 - (void)testOutputLine {

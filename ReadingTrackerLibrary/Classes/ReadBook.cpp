@@ -162,7 +162,7 @@ std::string rtl::ReadBook::PrintCommandLineHeaders() {
     return returnStr.str();
 }
 
-rtl::ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book.GetAuthor(), book.GetTitle(), book.GetSeries(), book.GetPublisher(), book.GetPageCount(), book.GetGenre(), book.GetPublishDateAsTimeT()) {
+rtl::ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
@@ -170,7 +170,7 @@ rtl::ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : 
     return;
 }
 
-rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : Book(book.GetAuthor(), book.GetTitle(), book.GetSeries(), book.GetPublisher(), book.GetPageCount(), book.GetGenre(), book.GetPublishDateAsTimeT()) {
+rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : Book(book) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);

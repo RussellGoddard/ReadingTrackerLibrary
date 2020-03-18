@@ -69,8 +69,10 @@ std::shared_ptr<rtl::Book> rtl::ConvertJsonToBookPtr(nlohmann::json json) {
         int pageCount = json["pageCount"].get<int>();
         std::string genre = json["genre"].get<std::string>();
         std::string publishDate = json["publishDate"].get<std::string>();
+        std::vector<std::string> isbnVector = json["isbn"];
+        std::vector<std::string> oclcVector = json["oclc"];
         
-        return std::make_shared<rtl::Book>(author, title, series, publisher, pageCount, genre, publishDate);
+        return std::make_shared<rtl::Book>(author, title, series, publisher, pageCount, genre, publishDate, isbnVector, oclcVector);
     }
     catch (nlohmann::json::exception& ex) {
         //TODO: log this exception, figure out better return when exception happens
@@ -90,9 +92,11 @@ std::shared_ptr<rtl::ReadBook> rtl::ConvertJsonToReadBookPtr(nlohmann::json json
         std::string genre = json["genre"].get<std::string>();
         std::string publishDate = json["publishDate"].get<std::string>();
         int rating = json["rating"].get<int>();
-        std::string time = json["dateRead"].get<std::string>();
+        std::string dateRead = json["dateRead"].get<std::string>();
+        std::vector<std::string> isbnVector = json["isbn"];
+        std::vector<std::string> oclcVector = json["oclc"];
         
-        return std::make_shared<rtl::ReadBook>(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);;
+        return std::make_shared<rtl::ReadBook>(readerId, rtl::Book(author, title, series, publisher, pageCount, genre, publishDate, isbnVector, oclcVector), rating, dateRead);;
     }
     catch (nlohmann::json::exception& ex) {
         //TODO: log this exception, figure out better return when exception happens

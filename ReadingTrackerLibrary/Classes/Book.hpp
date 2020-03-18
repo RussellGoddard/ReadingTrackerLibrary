@@ -67,7 +67,8 @@ namespace rtl {
         void AddIsbn(std::string isbn);
         Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
-        Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
+        Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn = "", std::string oclc = "");
+        Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc);
         
         static std::string PrintCommandLineHeaders();
     private:
@@ -89,6 +90,7 @@ namespace rtl {
         static const int kWidthPage = 5;
     };
 
+    
     bool operator==(const Book& lhs, const Book& rhs);
     bool operator!=(const Book& lhs, const Book& rhs);
     bool operator<(const Book& lhs, const Book& rhs);
