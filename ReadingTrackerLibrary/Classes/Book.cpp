@@ -150,16 +150,6 @@ std::string rtl::Book::PrintPublishDate() const {
     return boost::gregorian::to_simple_string(returnDate);
 }
 
-void rtl::Book::SetAuthor(std::string author) {
-    this->author = author;
-    return;
-}
-
-void rtl::Book::SetTitle(std::string title) {
-    this->title = title;
-    return;
-}
-
 void rtl::Book::SetSeries(std::string series) {
     this->series = series;
     return;
@@ -261,8 +251,8 @@ void rtl::Book::AddIsbn(std::string isbn) {
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
-    this->SetAuthor(author);
-    this->SetTitle(title);
+    this->author = author;
+    this->title = title;
     this->SetSeries(series);
     this->SetPublisher(publisher);
     this->SetPageCount(pageCount);
@@ -274,8 +264,8 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate) {
-    this->SetAuthor(author);
-    this->SetTitle(title);
+    this->author = author;
+    this->title = title;
     this->SetSeries(series);
     this->SetPublisher(publisher);
     this->SetPageCount(pageCount);
@@ -287,8 +277,8 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate) {
-    this->SetAuthor(author);
-    this->SetTitle(title);
+    this->author = author;
+    this->title = title;
     this->SetSeries(series);
     this->SetPublisher(publisher);
     this->SetPageCount(pageCount);

@@ -26,9 +26,7 @@
 }
 
 - (void)testReadBookVector {
-    rtl::ReadBook testReadBook1(1);
-    testReadBook1.SetAuthor("a");
-    testReadBook1.SetTitle("a");
+    rtl::ReadBook testReadBook1(1, "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");
@@ -37,9 +35,7 @@
     testReadBook1.SetRating(4);
     testReadBook1.SetDateRead("1993-Mar-25");
     
-    rtl::ReadBook testReadBook2(1);
-    testReadBook2.SetAuthor("b");
-    testReadBook2.SetTitle("b");
+    rtl::ReadBook testReadBook2(1, "b", "b");
     testReadBook2.SetSeries("b");
     testReadBook2.SetPublisher("b");
     testReadBook2.SetGenre("fantasy");
@@ -48,9 +44,7 @@
     testReadBook2.SetRating(4);
     testReadBook2.SetDateRead("1993-Mar-25");
     
-    rtl::ReadBook testReadBook3(1);
-    testReadBook3.SetAuthor("a");
-    testReadBook3.SetTitle("a");
+    rtl::ReadBook testReadBook3(1, "a", "a");
     testReadBook3.SetSeries("a");
     testReadBook3.SetPublisher("a");
     testReadBook3.SetGenre("fantasy");
@@ -87,27 +81,21 @@
 }
 
 - (void)testBookVector {
-    rtl::Book testBook1;
-    testBook1.SetAuthor("testAuthor");
-    testBook1.SetTitle("testTitle");
+    rtl::Book testBook1("testAuthor", "testTitle");
     testBook1.SetSeries("testSeries");
     testBook1.SetPublisher("testPublisher");
     testBook1.SetGenre("fantasy");
     testBook1.SetPageCount(10);
     testBook1.SetPublishDate("1990-Dec-01");
     
-    rtl::Book testBook2;
-    testBook2.SetAuthor("testAuthor2");
-    testBook2.SetTitle("testTitle2");
+    rtl::Book testBook2("testAuthor2", "testTitle2");
     testBook2.SetSeries("testSeries2");
     testBook2.SetPublisher("testPublisher2");
     testBook2.SetGenre("western");
     testBook2.SetPageCount(100);
     testBook2.SetPublishDate("1991-Dec-01");
     
-    rtl::Book testBook3;
-    testBook3.SetAuthor("testAuthor");
-    testBook3.SetTitle("testTitle");
+    rtl::Book testBook3("testAuthor", "testTitle");
     testBook3.SetSeries("testSeries");
     testBook3.SetPublisher("testPublisher");
     testBook3.SetGenre("fantasy");
@@ -164,27 +152,21 @@
 }
 
 - (void)testAddMasterAuthorsPassedBook {
-    rtl::Book testBook1;
-    testBook1.SetAuthor("testAuthor1");
-    testBook1.SetTitle("testTitle1");
+    rtl::Book testBook1("testAuthor1", "testTitle1");
     testBook1.SetSeries("testSeries1");
     testBook1.SetPublisher("testPublisher1");
     testBook1.SetGenre("fantasy");
     testBook1.SetPageCount(1);
     testBook1.SetPublishDate("1990-Dec-01");
     
-    rtl::Book testBook2;
-    testBook2.SetAuthor("testAuthor2");
-    testBook2.SetTitle("testTitle2");
+    rtl::Book testBook2("testAuthor2", "testTitle2");
     testBook2.SetSeries("testSeries2");
     testBook2.SetPublisher("testPublisher2");
     testBook2.SetGenre("western");
     testBook2.SetPageCount(20);
     testBook2.SetPublishDate("1991-Dec-01");
     
-    rtl::Book testBook3;
-    testBook3.SetAuthor("testAuthor1");
-    testBook3.SetTitle("testTitle1");
+    rtl::Book testBook3("testAuthor1", "testTitle1");
     testBook3.SetSeries("testSeries1");
     testBook3.SetPublisher("testPublisher1");
     testBook3.SetGenre("fantasy");
@@ -436,18 +418,14 @@
     std::string testFilePath = "./testSaveFile.txt";
     
     rtl::InMemoryContainers& testContainers = rtl::InMemoryContainers::GetInstance();
-    rtl::Book testBook1;
-    testBook1.SetAuthor("testAuthor");
-    testBook1.SetTitle("testTitle");
+    rtl::Book testBook1("testAuthor", "testTitle");
     testBook1.SetSeries("testSeries");
     testBook1.SetPublisher("testPublisher");
     testBook1.SetGenre("fantasy");
     testBook1.SetPageCount(10);
     testBook1.SetPublishDate("1990-Dec-01");
     
-    rtl::ReadBook testReadBook1(1);
-    testReadBook1.SetAuthor("a");
-    testReadBook1.SetTitle("a");
+    rtl::ReadBook testReadBook1(1, "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");
@@ -511,18 +489,14 @@
 }
 
 - (void)testClearAll {
-    rtl::Book testBook1;
-    testBook1.SetAuthor("testAuthor");
-    testBook1.SetTitle("testTitle");
+    rtl::Book testBook1("testAuthor", "testTitle");
     testBook1.SetSeries("testSeries");
     testBook1.SetPublisher("testPublisher");
     testBook1.SetGenre("fantasy");
     testBook1.SetPageCount(10);
     testBook1.SetPublishDate("1990-Dec-01");
     
-    rtl::ReadBook testReadBook1(1);
-    testReadBook1.SetAuthor("a");
-    testReadBook1.SetTitle("a");
+    rtl::ReadBook testReadBook1(1, "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");

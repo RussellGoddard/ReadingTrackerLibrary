@@ -54,7 +54,7 @@ rtl::ReadBook rtl::ConvertJsonToReadBook(nlohmann::json json) {
     catch (nlohmann::json::exception& ex) {
         //TODO: log this exception, figure out better return when exception happens
         std::cout << ex.what() << std::endl;
-        return ReadBook(-1);
+        return ReadBook(-1, "", "");
     }
         
     

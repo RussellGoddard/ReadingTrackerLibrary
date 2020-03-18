@@ -230,7 +230,7 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(testAuthor1.PrintJson() == R"({"name":"a","dateBorn":"1990-Dec-01","booksWritten":[]})");
     XCTAssert(testAuthor2.PrintJson() == R"({"name":"b","dateBorn":"2001-Nov-12","booksWritten":[]})");
-    XCTAssert(testAuthor3.PrintJson() == R"({"name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"author":"testAuthor1","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"author":"testAuthor2","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
+    XCTAssert(testAuthor3.PrintJson() == R"({"name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"bookId":"42890d8","author":"testAuthor1","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"bookId":"42b3e88","author":"testAuthor2","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
 }
 
 - (void)testAuthorConstructors {

@@ -37,32 +37,24 @@ rtl::Author rtlCommandLine::GetNewAuthor(std::istream& inputStream, std::ostream
 }
 */
 rtl::Book rtlCommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream) {
-    std::string input;
-    rtl::Book newBook;
+    std::string author, title, publisher, series, genre, datePublished, pageCount;
     
     OutputLine(outputStream, "Input author");
-    input = GetInput(inputStream);
-    newBook.SetAuthor(input);
+    author = GetInput(inputStream);
     OutputLine(outputStream, "Input title");
-    input = GetInput(inputStream);
-    newBook.SetTitle(input);
+    title = GetInput(inputStream);
     OutputLine(outputStream, "Input publisher");
-    input = GetInput(inputStream);
-    newBook.SetPublisher(input);
+    publisher = GetInput(inputStream);
     OutputLine(outputStream, "Input series");
-    input = GetInput(inputStream);
-    newBook.SetSeries(input);
+    series = GetInput(inputStream);
     OutputLine(outputStream, "Input genre");
-    input = GetInput(inputStream);
-    newBook.SetGenre(input);
+    genre = GetInput(inputStream);
     OutputLine(outputStream, "Input date published");
-    input = GetInput(inputStream);
-    newBook.SetPublishDate(input);
+    datePublished = GetInput(inputStream);
     OutputLine(outputStream, "Input page count");
-    input = GetInput(inputStream);
-    newBook.SetPageCount(stoi(input));
+    pageCount = GetInput(inputStream);
     
-    return newBook;
+    return rtl::Book(author, title, series, publisher, stoi(pageCount), genre, datePublished);
 }
 
 
@@ -79,39 +71,30 @@ rtl::Book rtlCommandLine::GetNewBook(std::istream& inputStream, std::ostream& ou
     "dateRead" : "Oct 26 2019"
 }
 */
+//TODO: validation on inputs
 rtl::ReadBook rtlCommandLine::GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
-    std::string input;
-    rtl::ReadBook newReadBook(readerId);
+    std::string author, title, publisher, series, genre, datePublished, pageCount, dateFinished, rating;
     
     OutputLine(outputStream, "Input author");
-    input = GetInput(inputStream);
-    newReadBook.SetAuthor(input);
+    author = GetInput(inputStream);
     OutputLine(outputStream, "Input title");
-    input = GetInput(inputStream);
-    newReadBook.SetTitle(input);
+    title = GetInput(inputStream);
     OutputLine(outputStream, "Input publisher");
-    input = GetInput(inputStream);
-    newReadBook.SetPublisher(input);
+    publisher = GetInput(inputStream);
     OutputLine(outputStream, "Input series");
-    input = GetInput(inputStream);
-    newReadBook.SetSeries(input);
+    series = GetInput(inputStream);
     OutputLine(outputStream, "Input genre");
-    input = GetInput(inputStream);
-    newReadBook.SetGenre(input);
+    genre = GetInput(inputStream);
     OutputLine(outputStream, "Input date published");
-    input = GetInput(inputStream);
-    newReadBook.SetPublishDate(input);
+    datePublished = GetInput(inputStream);
     OutputLine(outputStream, "Input page count");
-    input = GetInput(inputStream);
-    newReadBook.SetPageCount(stoi(input));
+    pageCount = GetInput(inputStream);
     OutputLine(outputStream, "Input date you finished reading");
-    input = GetInput(inputStream);
-    newReadBook.SetDateRead(input);
+    dateFinished = GetInput(inputStream);
     OutputLine(outputStream, "On a scale of 1 - 10 rate the book");
-    input = GetInput(inputStream);
-    newReadBook.SetRating(stoi(input));
+    rating = GetInput(inputStream);
     
-    return newReadBook;
+    return rtl::ReadBook(readerId, author, title, series, publisher, stoi(pageCount), genre, datePublished, stoi(rating), dateFinished);
 }
 
 void rtlCommandLine::OutputLine(std::ostream& outputStream, std::string output) {
