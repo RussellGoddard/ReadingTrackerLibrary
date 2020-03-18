@@ -94,8 +94,12 @@ std::vector<std::string> rtl::Book::GetIsbn() const {
     return this->isbnVector;
 }
 
+std::string rtl::Book::GetBookId() const {
+    return this->bookId;
+}
+
 std::string rtl::Book::PrintJson() const {
-    std::string returnString = R"({"author":")" + this->GetAuthor() + R"(","title":")" + this->GetTitle() + R"(","series":")" + this->GetSeries() + R"(","publisher":")" + this->GetPublisher() + R"(","genre":")" + this->PrintGenre() + R"(","pageCount":)" + std::to_string(this->GetPageCount()) + R"(,"publishDate":")" + this->PrintPublishDate() + R"("})";
+    std::string returnString = R"({"bookId":")" + this->GetBookId() + R"(","author":")" + this->GetAuthor() + R"(","title":")" + this->GetTitle() + R"(","series":")" + this->GetSeries() + R"(","publisher":")" + this->GetPublisher() + R"(","genre":")" + this->PrintGenre() + R"(","pageCount":)" + std::to_string(this->GetPageCount()) + R"(,"publishDate":")" + this->PrintPublishDate() + R"("})";
     return returnString;
 }
 
@@ -264,6 +268,7 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     this->SetPageCount(pageCount);
     this->SetGenre(genre);
     this->SetPublishDate(publishDate);
+    this->bookId = rtl::GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
     
     return;
 }
@@ -276,6 +281,7 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     this->SetPageCount(pageCount);
     this->SetGenre(genre);
     this->SetPublishDate(publishDate);
+    this->bookId = rtl::GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
     
     return;
 }
@@ -288,6 +294,7 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     this->SetPageCount(pageCount);
     this->SetGenre(ConvertStringToGenre(genre));
     this->SetPublishDate(publishDate);
+    this->bookId = rtl::GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
     
     return;
 }

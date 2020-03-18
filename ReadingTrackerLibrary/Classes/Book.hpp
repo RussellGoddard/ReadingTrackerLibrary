@@ -50,11 +50,10 @@ namespace rtl {
         time_t GetPublishDateAsTimeT();
         std::vector<std::string> GetOclc() const;
         std::vector<std::string> GetIsbn() const;
+        std::string GetBookId() const;
         std::string PrintPublishDate() const;
         std::string PrintJson() const;
         std::string PrintCommandLine() const;
-        void SetAuthor(std::string author);
-        void SetTitle(std::string title);
         void SetSeries(std::string series);
         void SetPublisher(std::string publisher);
         void SetPageCount(int pageCount);
@@ -66,12 +65,13 @@ namespace rtl {
         bool SetPublishDate(std::string publishDate);
         void AddOclc(std::string oclc);
         void AddIsbn(std::string isbn);
-        Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
+        Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
         
         static std::string PrintCommandLineHeaders();
     private:
+        std::string bookId;
         std::vector<std::string> isbnVector;
         std::vector<std::string> oclcVector;
         std::string author;

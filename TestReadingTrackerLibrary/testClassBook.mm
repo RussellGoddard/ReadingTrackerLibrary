@@ -24,9 +24,7 @@
 }
 
 - (void)testBookGetAndSet {
-    rtl::Book testBook;
-    testBook.SetAuthor("testAuthor");
-    testBook.SetTitle("testTitle");
+    rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetSeries("testSeries");
     testBook.SetPublisher("testPublisher");
     testBook.SetGenre("fantasy");
@@ -42,7 +40,7 @@
 }
 
 - (void)testSetPublishedDateString {
-    rtl::Book testBook;
+    rtl::Book testBook("testAuthor", "testTitle");
     XCTAssert(testBook.SetPublishDate("2008 1 01"));
     XCTAssert(testBook.PrintPublishDate() == "2008-Jan-01");
     XCTAssert(testBook.SetPublishDate("2001-Feb-28"));
@@ -84,7 +82,7 @@
 }
 
 - (void)testSetPublishDateTimeT {
-    rtl::Book testBook;
+    rtl::Book testBook("testAuthor", "testTitle");
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
     testBook.SetPublishDate(testTimeInitial);
     XCTAssert(testTimeInitial == testBook.GetPublishDateAsTimeT());
@@ -94,7 +92,7 @@
 }
 
 - (void)testSetPageCount {
-    rtl::Book testBook;
+    rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetPageCount(-10);
     XCTAssert(-1 == testBook.GetPageCount());
     testBook.SetPageCount('1');
@@ -110,28 +108,26 @@
 }
 
 - (void)testGetGenre {
-    rtl::Book testBook;
+    rtl::Book testBook("testAuthor", "testTitle");
     rtl::Genre newGenre = rtl::western;
     testBook.SetGenre(newGenre);
     XCTAssert(newGenre == testBook.GetGenre());
 }
 
 - (void)testPrintJson {
-    rtl::Book testBook;
-    testBook.SetAuthor("testAuthor");
-    testBook.SetTitle("testTitle");
+    rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetSeries("testSeries");
     testBook.SetPublisher("testPublisher");
     testBook.SetGenre("fantasy");
     testBook.SetPageCount(10);
     testBook.SetPublishDate("1990-Dec-01");
     
-    std::string answer = R"({"author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
-    XCTAssert(answer == testBook.PrintJson());
+    std::string answer = R"({"bookId":"2ff6b24","author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
+    XCTAssert(testBook.PrintJson() == answer);
 }
 
 - (void)testPrintGenre {
-    rtl::Book testBook;
+    rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetGenre("detective");
     XCTAssert(testBook.PrintGenre() == "detective");
     testBook.SetGenre("dystopia");
@@ -155,18 +151,14 @@
 }
 
 - (void)testBookEquals {
-    rtl::Book testBook;
-    testBook.SetAuthor("testAuthor");
-    testBook.SetTitle("testTitle");
+    rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetSeries("testSeries");
     testBook.SetPublisher("testPublisher");
     testBook.SetGenre("fantasy");
     testBook.SetPageCount(10);
     testBook.SetPublishDate("1990-Dec-01");
     
-    rtl::Book testBook2;
-    testBook2.SetAuthor("testAuthor");
-    testBook2.SetTitle("testTitle");
+    rtl::Book testBook2("testAuthor", "testTitle");
     testBook2.SetSeries("testSeries");
     testBook2.SetPublisher("testPublisher");
     testBook2.SetGenre("fantasy");
@@ -177,18 +169,14 @@
 }
 
 - (void)testBookNotEquals {
-    rtl::Book testBook;
-    testBook.SetAuthor("testAuthor");
-    testBook.SetTitle("testTitle");
+    rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetSeries("testSeries");
     testBook.SetPublisher("testPublisher");
     testBook.SetGenre("fantasy");
     testBook.SetPageCount(10);
     testBook.SetPublishDate("1990-Dec-01");
     
-    rtl::Book testBook2;
-    testBook2.SetAuthor("testAuthor2");
-    testBook2.SetTitle("testTitle2");
+    rtl::Book testBook2("testAuthor2", "testTitle2");
     testBook2.SetSeries("testSeries2");
     testBook2.SetPublisher("testPublisher2");
     testBook2.SetGenre("western");
@@ -199,18 +187,14 @@
 }
 
 - (void)testBookLessThan {
-    rtl::Book testBook;
-    testBook.SetAuthor("a");
-    testBook.SetTitle("a");
+    rtl::Book testBook("a", "a");
     testBook.SetSeries("a");
     testBook.SetPublisher("a");
     testBook.SetGenre("fantasy");
     testBook.SetPageCount(100);
     testBook.SetPublishDate("1990-Dec-01");
     
-    rtl::Book testBook2;
-    testBook2.SetAuthor("b");
-    testBook2.SetTitle("b");
+    rtl::Book testBook2("b", "b");
     testBook2.SetSeries("b");
     testBook2.SetPublisher("a");
     testBook2.SetGenre("fantasy");
@@ -346,23 +330,36 @@
     rtl::Book testBook;
     //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
     rtl::Book testBookConstructor("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtl::romance, 1199163600);
-    XCTAssert("testAuthor" == testBookConstructor.GetAuthor());
-    XCTAssert("testTitle" == testBookConstructor.GetTitle());
-    XCTAssert("testSeries" == testBookConstructor.GetSeries());
-    XCTAssert("testPublisher" == testBookConstructor.GetPublisher());
-    XCTAssert(1111 == testBookConstructor.GetPageCount());
-    XCTAssert(rtl::romance == testBookConstructor.GetGenre());
-    XCTAssert(1199163600 == testBookConstructor.GetPublishDateAsTimeT());
+    XCTAssert(testBookConstructor.GetAuthor() == "testAuthor");
+    XCTAssert(testBookConstructor.GetTitle() == "testTitle");
+    XCTAssert(testBookConstructor.GetSeries() == "testSeries");
+    XCTAssert(testBookConstructor.GetPublisher() == "testPublisher");
+    XCTAssert(testBookConstructor.GetPageCount() == 1111);
+    XCTAssert(testBookConstructor.GetGenre() == rtl::romance);
+    XCTAssert(testBookConstructor.GetPublishDateAsTimeT() == 1199163600);
+    XCTAssert(testBookConstructor.GetBookId() == "2ff6b24");
     
     //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
     rtl::Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, "thriller", "1991-Nov-16");
-    XCTAssert("testAuthor2" == testBookConstructor2.GetAuthor());
-    XCTAssert("testTitle2" == testBookConstructor2.GetTitle());
-    XCTAssert("testSeries2" == testBookConstructor2.GetSeries());
-    XCTAssert("testPublisher2" == testBookConstructor2.GetPublisher());
-    XCTAssert(2222 == testBookConstructor2.GetPageCount());
-    XCTAssert(rtl::thriller == testBookConstructor2.GetGenre());
-    XCTAssert("1991-Nov-16" == testBookConstructor2.PrintPublishDate());
+    XCTAssert(testBookConstructor2.GetAuthor() == "testAuthor2");
+    XCTAssert(testBookConstructor2.GetTitle() == "testTitle2");
+    XCTAssert(testBookConstructor2.GetSeries() == "testSeries2");
+    XCTAssert(testBookConstructor2.GetPublisher() == "testPublisher2");
+    XCTAssert(testBookConstructor2.GetPageCount() == 2222);
+    XCTAssert(testBookConstructor2.GetGenre() == rtl::thriller);
+    XCTAssert(testBookConstructor2.PrintPublishDate() == "1991-Nov-16");
+    XCTAssert(testBookConstructor2.GetBookId() == "42b3e88");
+    
+    //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
+    rtl::Book testBookConstructor3("testAuthor3", "testTitle3", "testSeries3", "testPublisher3", 333, rtl::scienceFiction, "1995-Oct-03");
+    XCTAssert(testBookConstructor3.GetAuthor() == "testAuthor3");
+    XCTAssert(testBookConstructor3.GetTitle() == "testTitle3");
+    XCTAssert(testBookConstructor3.GetSeries() == "testSeries3");
+    XCTAssert(testBookConstructor3.GetPublisher() == "testPublisher3");
+    XCTAssert(testBookConstructor3.GetPageCount() == 333);
+    XCTAssert(testBookConstructor3.GetGenre() == rtl::scienceFiction);
+    XCTAssert(testBookConstructor3.PrintPublishDate() == "1995-Oct-03");
+    XCTAssert(testBookConstructor3.GetBookId() == "42ded14");
 }
 
 - (void)testPrintColumnHeaders {
