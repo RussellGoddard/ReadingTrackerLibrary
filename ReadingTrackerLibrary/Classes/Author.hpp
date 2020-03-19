@@ -17,8 +17,6 @@
 namespace rtl {
     //TODO: change default author dateBorn to something else
     const time_t jan2038 = 2145916800;
-    template <typename T>
-    void SortUnique(std::vector<T>& input);
 
     //TODO: add uniqueId for future DB storage
     class Author {
@@ -59,6 +57,26 @@ namespace rtl {
     bool operator>(const Author& lhs, const Author& rhs);
     bool operator>=(const Author& lhs, const Author& rhs);
     bool operator<=(const Author& lhs, const Author& rhs);
+
+    //template specialization so that when authors are the same the booksWritten vector is combined before duplicate author removed
+    template <>
+    inline void uniqueVector(std::vector<std::shared_ptr<rtl::Author>>& input) {
+        int index = 1;
+        
+        while (index < input.size()) {
+            if (*input.at(index - 1) == *input.at(index)) {
+                //if authors are the same combine unique books
+                input.at(index - 1)->AddBookWritten(input.at(index)->GetBooksWritten());
+                
+                input.erase(std::begin(input) + index);
+            }
+            else {
+                ++index;
+            }
+        }
+        
+        return;
+    }
 
 }
 

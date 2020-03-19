@@ -29,7 +29,7 @@
     
     inputSs.str("testAuthor\n1998-Nov-25\n");
     
-    rtl::Author testAuthor = rtlCommandLine::GetNewAuthor(inputSs, outputSs);
+    rtl::Author testAuthor = rtl::CommandLine::GetNewAuthor(inputSs, outputSs);
     
     XCTAssert(testAuthor.GetName() == "testAuthor");
     XCTAssert(testAuthor.PrintDateBorn() == "1998-Nov-25");
@@ -40,7 +40,7 @@
     
     inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     
-    rtl::Book testBook = rtlCommandLine::GetNewBook(inputSs, outputSs);
+    rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs);
     
     XCTAssert(testBook.GetAuthor() == "testAuthor");
     XCTAssert(testBook.GetTitle() == "testTitle");
@@ -60,7 +60,7 @@
     
     inputSs.str("testAuthor\ntestTitle\n1234567890\n123456\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
-    rtl::ReadBook testReadBook = rtlCommandLine::GetNewReadBook(inputSs, outputSs, 123);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123);
     
     XCTAssert(testReadBook.GetReaderId() == 123);
     XCTAssert(testReadBook.GetAuthor() == "testAuthor");
@@ -81,14 +81,36 @@
 - (void)testOutputLine {
     std::stringstream outputSs;
     
-    rtlCommandLine::OutputLine(outputSs, "test Input 23");
+    rtl::CommandLine::OutputLine(outputSs, "test Input 23");
     
-    std::string word1, word2, word3;
-    outputSs >> word1 >> word2 >> word3;
+    char word[256];
+    outputSs.getline(word, 256);
+    XCTAssert(std::string(word) == "test Input 23");
+    outputSs.getline(word, 256);
+    XCTAssert(outputSs.eof());
+}
+
+- (void)testOutputLineVector {
+    std::stringstream outputSs;
+    std::vector<std::string> input {"the", "Rain", "in", "Sp Ain", "t h     e", "p   "};
     
-    XCTAssert(word1 == "test");
-    XCTAssert(word2 == "Input");
-    XCTAssert(word3 == "23");
+    rtl::CommandLine::OutputLine(outputSs, input);
+    
+    char word[64];
+    outputSs.getline(word, 64);
+    XCTAssert(std::string(word) == "the");
+    outputSs.getline(word, 64);
+    XCTAssert(std::string(word) == "Rain");
+    outputSs.getline(word, 64);
+    XCTAssert(std::string(word) == "in");
+    outputSs.getline(word, 64);
+    XCTAssert(std::string(word) == "Sp Ain");
+    outputSs.getline(word, 64);
+    XCTAssert(std::string(word) == "t h     e");
+    outputSs.getline(word, 64);
+    XCTAssert(std::string(word) == "p   ");
+    outputSs.getline(word, 64);
+    XCTAssert(outputSs.eof());
 }
 
 @end

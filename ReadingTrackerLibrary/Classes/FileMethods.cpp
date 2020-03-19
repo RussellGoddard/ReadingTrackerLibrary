@@ -7,22 +7,6 @@
 
 #include "FileMethods.hpp"
 
-std::string& rtl::LeftTrim(std::string& input) {
-  auto it2 =  std::find_if(input.begin(), input.end(), [](char ch){ return !std::isspace<char>(ch, std::locale::classic()); } );
-  input.erase(input.begin(), it2);
-  return input;
-}
-
-std::string& rtl::RightTrim(std::string& input) {
-  auto it1 = std::find_if(input.rbegin(), input.rend(), [](char ch) { return !std::isspace<char>(ch, std::locale::classic()); } );
-  input.erase(it1.base(), input.end());
-  return input;
-}
-
-std::string& rtl::Trim(std::string& str) {
-   return rtl::LeftTrim(rtl::RightTrim(str));
-}
-
 bool rtl::SaveJson(std::vector<nlohmann::json> input, std::fstream& saveFile) {
     //check if file exists/is locked by another process
     if(!saveFile.good()) {
@@ -195,6 +179,7 @@ void rtl::InMemoryContainers::AddMasterAuthors(std::shared_ptr<rtl::Book> newBoo
 void rtl::InMemoryContainers::AddMasterAuthors(std::vector<std::shared_ptr<rtl::Book>> newBookVector) {
     for (auto x : newBookVector) {
         if (x->GetAuthor() != "") {
+            //TODO: retrieve author birth date
             auto newAuthor = std::make_shared<rtl::Author>(x->GetAuthor(), rtl::jan2038, newBookVector);
             this->authorVector.push_back(newAuthor);
         }
@@ -207,57 +192,6 @@ void rtl::InMemoryContainers::ClearAll() {
     this->readBookVector.clear();
     this->authorVector.clear();
     this->bookVector.clear();
-    
-    return;
-}
-
-//TODO: this whole thing will probably look stupid to me in 6 months 
-//had issue with std::unique not actually removing items even with custom comparator
-//forced to make my own
-template <typename T>
-void uniqueVector(std::vector<T>& input) {
-    int index = 1;
-    
-    while (index < input.size()) {
-        if (*input.at(index - 1) == *input.at(index)) {
-            input.erase(std::begin(input) + index);
-        }
-        else {
-            ++index;
-        }
-    }
-    
-    return;
-}
-
-template <>
-void uniqueVector(std::vector<std::shared_ptr<rtl::Author>>& input) {
-    int index = 1;
-    
-    while (index < input.size()) {
-        if (*input.at(index - 1) == *input.at(index)) {
-            //if authors are the same combine unique books
-            input.at(index - 1)->AddBookWritten(input.at(index)->GetBooksWritten());
-            
-            input.erase(std::begin(input) + index);
-        }
-        else {
-            ++index;
-        }
-    }
-    
-    return;
-}
-
-template <typename T>
-bool sortPointers(T lhs, T rhs) {
-    return *lhs < *rhs;
-}
-
-template <typename T>
-void rtl::SortUnique(std::vector<T>& input) {
-    std::sort(std::begin(input), std::end(input), sortPointers<T>);
-    uniqueVector(input);
     
     return;
 }

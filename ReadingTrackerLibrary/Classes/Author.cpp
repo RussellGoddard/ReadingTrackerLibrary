@@ -235,4 +235,3 @@ bool rtl::operator<=(const Author& lhs, const Author& rhs) {
     return !operator>(lhs, rhs);
 }
 
-

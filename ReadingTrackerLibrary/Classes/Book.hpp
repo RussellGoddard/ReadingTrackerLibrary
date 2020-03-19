@@ -14,6 +14,7 @@
 #include <exception>
 #include <sstream>
 #include <string>
+#include "HelperFunctions.hpp"
 
 //below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost
 // save diagnostic state
@@ -90,15 +91,12 @@ namespace rtl {
         static const int kWidthPage = 5;
     };
 
-    
     bool operator==(const Book& lhs, const Book& rhs);
     bool operator!=(const Book& lhs, const Book& rhs);
     bool operator<(const Book& lhs, const Book& rhs);
     bool operator>(const Book& lhs, const Book& rhs);
     bool operator>=(const Book& lhs, const Book& rhs);
     bool operator<=(const Book& lhs, const Book& rhs);
-
-    std::string GenerateId(const std::string& input);
 }
 
 #endif /* Book_hpp */

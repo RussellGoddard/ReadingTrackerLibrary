@@ -25,6 +25,11 @@
 		DE989E8323F4F94700D3C424 /* testGui.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE989E8223F4F94700D3C424 /* testGui.mm */; };
 		DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762D2414672500425941 /* libboost_date_time-mt.a */; };
 		DEBC76352414B45F00425941 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762F2414A69F00425941 /* libcurl.a */; };
+		DEEAC61E2423BC4C00D970C9 /* StandardOutput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */; };
+		DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */; };
+		DEEAC6222423C57000D970C9 /* HelperFunctions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */; };
+		DEEAC625242415BC00D970C9 /* SortUnique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC623242415BC00D970C9 /* SortUnique.cpp */; };
+		DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC624242415BC00D970C9 /* SortUnique.hpp */; };
 		DEF9CCA72377B30A00B5089A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504C82374EB8600FF97A4 /* main.cpp */; };
 		DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 /* End PBXBuildFile section */
@@ -84,6 +89,11 @@
 		DEBC762F2414A69F00425941 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../usr/local/Cellar/curl/7.69.0/lib/libcurl.a; sourceTree = "<group>"; };
 		DEBC76312414A9A300425941 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		DEBC76332414AA1000425941 /* libcurlpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurlpp.a; path = ../../../../usr/local/Cellar/curlpp/0.8.1/lib/libcurlpp.a; sourceTree = "<group>"; };
+		DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StandardOutput.hpp; sourceTree = "<group>"; };
+		DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelperFunctions.cpp; sourceTree = "<group>"; };
+		DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelperFunctions.hpp; sourceTree = "<group>"; };
+		DEEAC623242415BC00D970C9 /* SortUnique.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SortUnique.cpp; sourceTree = "<group>"; };
+		DEEAC624242415BC00D970C9 /* SortUnique.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SortUnique.hpp; sourceTree = "<group>"; };
 		DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReadingTrackerCommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -148,6 +158,7 @@
 		DE9504E02374EFD100FF97A4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DEEAC62724241B2400D970C9 /* Helper */,
 				DE9504CF2374EF2200FF97A4 /* Author.cpp */,
 				DE9504D42374EF2200FF97A4 /* Author.hpp */,
 				DE9504D02374EF2200FF97A4 /* Book.cpp */,
@@ -158,6 +169,7 @@
 				DE9504D32374EF2200FF97A4 /* gui.hpp */,
 				DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */,
 				DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */,
+				DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -173,6 +185,17 @@
 				DE989E8223F4F94700D3C424 /* testGui.mm */,
 			);
 			path = TestReadingTrackerLibrary;
+			sourceTree = "<group>";
+		};
+		DEEAC62724241B2400D970C9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */,
+				DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */,
+				DEEAC623242415BC00D970C9 /* SortUnique.cpp */,
+				DEEAC624242415BC00D970C9 /* SortUnique.hpp */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		DEF9CCA12377B30200B5089A /* ReadingTrackerCommandLine */ = {
@@ -203,6 +226,9 @@
 			files = (
 				DE9504DE2374EF2200FF97A4 /* Author.hpp in Headers */,
 				DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */,
+				DEEAC6222423C57000D970C9 /* HelperFunctions.hpp in Headers */,
+				DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */,
+				DEEAC61E2423BC4C00D970C9 /* StandardOutput.hpp in Headers */,
 				DE9504DB2374EF2200FF97A4 /* FileMethods.hpp in Headers */,
 				DE9504DD2374EF2200FF97A4 /* gui.hpp in Headers */,
 				DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */,
@@ -324,6 +350,8 @@
 				DE9504D92374EF2200FF97A4 /* Author.cpp in Sources */,
 				DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */,
 				DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */,
+				DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */,
+				DEEAC625242415BC00D970C9 /* SortUnique.cpp in Sources */,
 				DE9504DC2374EF2200FF97A4 /* FileMethods.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

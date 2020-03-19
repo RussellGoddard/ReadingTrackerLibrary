@@ -8,6 +8,7 @@
 #ifndef FileMethods_hpp
 #define FileMethods_hpp
 
+#include <curl/curl.h>
 #include <fstream>
 #include <functional>
 #include <future>
@@ -15,7 +16,8 @@
 #include <nlohmann/json.hpp>
 #include <set>
 #include "Author.hpp"
-#include <curl/curl.h>
+#include "HelperFunctions.hpp"
+
 
 //TODO: #include "ReadBook.hpp" see Author.hpp includes
 
@@ -81,17 +83,13 @@ namespace rtl {
 
     rtl::OpenLibraryValues QueryBookByIdentifier(std::string identifier, std::string identifierNum);
     rtl::WikiDataValues QueryBookByTitle(std::string title);
-    template <typename T>
-    void SortUnique(std::vector<T>& input); //TODO: this shouldn't be declared here but everytime I try to move it to a util header I break everything
     bool SaveJson(std::vector<nlohmann::json> input, std::fstream& filePath);
     std::vector<std::shared_ptr<rtl::ReadBook>> LoadReadingList(std::string filePath);
     rtl::ReadBook ConvertJsonToReadBook(nlohmann::json json);
     std::shared_ptr<rtl::Book> ConvertJsonToBookPtr(nlohmann::json json);
     std::shared_ptr<rtl::ReadBook> ConvertJsonToReadBookPtr(nlohmann::json json);
     std::shared_ptr<rtl::Author> ConvertJsonToAuthorPtr(nlohmann::json json);
-    std::string& RightTrim(std::string& input);
-    std::string& LeftTrim(std::string& input);
-    std::string& Trim(std::string& input);
+
 
 }
 
