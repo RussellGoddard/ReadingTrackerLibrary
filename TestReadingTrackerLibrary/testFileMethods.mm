@@ -481,32 +481,6 @@
     std::remove(testFilePath.c_str());
 }
 
-- (void)testTrim {
-    
-    std::string test1 = "test1";
-    std::string test2 = "   test2";
-    std::string test3 = "test3   ";
-    std::string test4 = "   test4   ";
-    std::string test5 = " a  test5  b";
-    std::string test6 = "\ttest6";
-    std::string test7 = "test7 \n";
-    std::string test8 = "  \v  test8    ";
-    std::string test9 = "\ftest9\f";
-    std::string test10 = "\rtest10           a   ";
-    
-    XCTAssert(rtl::Trim(test1) == "test1");
-    XCTAssert(rtl::Trim(test2) == "test2");
-    XCTAssert(rtl::Trim(test3) == "test3");
-    XCTAssert(rtl::Trim(test4) == "test4");
-    XCTAssert(rtl::Trim(test5) == "a  test5  b");
-    XCTAssert(rtl::Trim(test6) == "test6");
-    XCTAssert(rtl::Trim(test7) == "test7");
-    XCTAssert(rtl::Trim(test8) == "test8");
-    XCTAssert(rtl::Trim(test9) == "test9");
-    XCTAssert(rtl::Trim(test10) == "test10           a");
-    
-}
-
 - (void)testClearAll {
     rtl::Book testBook1("testAuthor", "testTitle");
     testBook1.SetSeries("testSeries");

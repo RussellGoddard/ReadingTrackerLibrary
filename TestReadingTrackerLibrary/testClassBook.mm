@@ -442,23 +442,5 @@
     XCTAssert(testBook.GetIsbn().at(0) == testString);
 }
 
-- (void)testGenerateId {
-    std::string test1 = "test input";
-    std::string test2 = "input test";
-    std::string test3 = "Robert Jordan";
-    std::string test4 = "robert jordan";
-    std::string test5 = "robertjordan";
-    std::string test6 = "Robert Jordan The Eye of the World";
-    std::string test7 = "Robert Jordan The Path of Daggers";
-
-    
-    XCTAssert(rtl::GenerateId(test1) == "27f8e2");
-    XCTAssert(rtl::GenerateId(test2) == "281d72");
-    XCTAssert(rtl::GenerateId(test3) == "72d2ce");
-    XCTAssert(rtl::GenerateId(test4) == "72d2ce");
-    XCTAssert(rtl::GenerateId(test5) == "2a9d");
-    XCTAssert(rtl::GenerateId(test6) == "b0cf3cbc95a4b81c");
-    XCTAssert(rtl::GenerateId(test7) == "7bc75959ace9d2a0");
-}
 
 @end

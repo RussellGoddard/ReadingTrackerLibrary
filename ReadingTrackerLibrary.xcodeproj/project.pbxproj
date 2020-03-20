@@ -28,8 +28,8 @@
 		DEEAC61E2423BC4C00D970C9 /* StandardOutput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */; };
 		DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */; };
 		DEEAC6222423C57000D970C9 /* HelperFunctions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */; };
-		DEEAC625242415BC00D970C9 /* SortUnique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC623242415BC00D970C9 /* SortUnique.cpp */; };
 		DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC624242415BC00D970C9 /* SortUnique.hpp */; };
+		DEEAC62B2425337A00D970C9 /* testHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC62A2425337A00D970C9 /* testHelper.mm */; };
 		DEF9CCA72377B30A00B5089A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504C82374EB8600FF97A4 /* main.cpp */; };
 		DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 /* End PBXBuildFile section */
@@ -92,8 +92,8 @@
 		DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StandardOutput.hpp; sourceTree = "<group>"; };
 		DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelperFunctions.cpp; sourceTree = "<group>"; };
 		DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelperFunctions.hpp; sourceTree = "<group>"; };
-		DEEAC623242415BC00D970C9 /* SortUnique.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SortUnique.cpp; sourceTree = "<group>"; };
 		DEEAC624242415BC00D970C9 /* SortUnique.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SortUnique.hpp; sourceTree = "<group>"; };
+		DEEAC62A2425337A00D970C9 /* testHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testHelper.mm; sourceTree = "<group>"; };
 		DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReadingTrackerCommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -177,6 +177,7 @@
 		DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				DEEAC62A2425337A00D970C9 /* testHelper.mm */,
 				DE7AC029238B73DB00292006 /* testFileMethods.mm */,
 				DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */,
 				DE5FC261237CDD7400346E3E /* testClassReadbook.mm */,
@@ -192,7 +193,6 @@
 			children = (
 				DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */,
 				DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */,
-				DEEAC623242415BC00D970C9 /* SortUnique.cpp */,
 				DEEAC624242415BC00D970C9 /* SortUnique.hpp */,
 			);
 			path = Helper;
@@ -351,7 +351,6 @@
 				DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */,
 				DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */,
 				DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */,
-				DEEAC625242415BC00D970C9 /* SortUnique.cpp in Sources */,
 				DE9504DC2374EF2200FF97A4 /* FileMethods.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */,
+				DEEAC62B2425337A00D970C9 /* testHelper.mm in Sources */,
 				DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */,
 				DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */,
 				DE989E8323F4F94700D3C424 /* testGui.mm in Sources */,
@@ -431,7 +431,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -486,7 +486,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;

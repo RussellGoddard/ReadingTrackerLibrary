@@ -25,11 +25,11 @@ std::string rtl::GenerateId(const std::string& input) {
         items.push_back(std::move(token));
     }
     
-    unsigned long long id = 1;
+    boost::multiprecision::cpp_int id = 1;
     int adder = 13;
     for (std::string x : items) {
         std::transform(std::begin(x), std::end(x), std::begin(x), ::toupper);
-        unsigned long long word = 0;
+        boost::multiprecision::cpp_int word = 0;
         for (char y : x) {
             word += y;
         }
