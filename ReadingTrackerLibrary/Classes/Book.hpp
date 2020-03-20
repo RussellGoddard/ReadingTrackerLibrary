@@ -51,6 +51,7 @@ namespace rtl {
         time_t GetPublishDateAsTimeT();
         std::vector<std::string> GetOclc() const;
         std::vector<std::string> GetIsbn() const;
+        std::string GetAuthorId() const;
         std::string GetBookId() const;
         std::string PrintPublishDate() const;
         std::string PrintJson() const;
@@ -73,6 +74,7 @@ namespace rtl {
         
         static std::string PrintCommandLineHeaders();
     private:
+        std::string authorId;
         std::string bookId;
         std::vector<std::string> isbnVector;
         std::vector<std::string> oclcVector;

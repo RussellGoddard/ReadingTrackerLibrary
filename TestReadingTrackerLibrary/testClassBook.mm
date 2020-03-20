@@ -126,7 +126,7 @@
     testBook.SetPageCount(10);
     testBook.SetPublishDate("1990-Dec-01");
     
-    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","1234567890abc"],"oclc":["123456"],"author":"testAuthor","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
+    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","1234567890abc"],"oclc":["123456"],"author":"testAuthor","authorId":"1ecb","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
     XCTAssert(testBook.PrintJson() == answer);
 }
 
@@ -363,6 +363,7 @@
     XCTAssert(testBookConstructor.GetGenre() == rtl::romance);
     XCTAssert(testBookConstructor.GetPublishDateAsTimeT() == 1199163600);
     XCTAssert(testBookConstructor.GetBookId() == "2ff6b24");
+    XCTAssert(testBookConstructor.GetAuthorId() == "1ecb");
     
     //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate);
     rtl::Book testBookConstructor2("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 2222, "thriller", "1991-Nov-16");
@@ -374,6 +375,7 @@
     XCTAssert(testBookConstructor2.GetGenre() == rtl::thriller);
     XCTAssert(testBookConstructor2.PrintPublishDate() == "1991-Nov-16");
     XCTAssert(testBookConstructor2.GetBookId() == "42b3e88");
+    XCTAssert(testBookConstructor2.GetAuthorId() == "2404");
     
     //Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
     rtl::Book testBookConstructor3("testAuthor3", "testTitle3", "testSeries3", "testPublisher3", 333, rtl::scienceFiction, "1995-Oct-03");
@@ -385,6 +387,7 @@
     XCTAssert(testBookConstructor3.GetGenre() == rtl::scienceFiction);
     XCTAssert(testBookConstructor3.PrintPublishDate() == "1995-Oct-03");
     XCTAssert(testBookConstructor3.GetBookId() == "42ded14");
+    XCTAssert(testBookConstructor3.GetAuthorId() == "240f");
     
     //rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn, std::string oclc)
     rtl::Book testBookConstructor4("testAuthor4", "testTitle4", "testSeries4", "testPublisher4", 4444, "fantasy", "1969-Oct-31", std::vector<std::string>{"1234567890", "1234567890abc"}, std::vector<std::string>{"123456"});
@@ -400,6 +403,7 @@
     XCTAssert(testBookConstructor4.GetIsbn().at(1) == "1234567890abc");
     XCTAssert(testBookConstructor4.GetOclc().size() == 1);
     XCTAssert(testBookConstructor4.GetOclc().at(0) == "123456");
+    XCTAssert(testBookConstructor4.GetAuthorId() == "241a");
 }
 
 - (void)testPrintColumnHeaders {

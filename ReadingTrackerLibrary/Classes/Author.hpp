@@ -26,6 +26,7 @@ namespace rtl {
         bool SetDateBorn(std::string dateBorn);
         void AddBookWritten(std::shared_ptr<rtl::Book> book);
         void AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books);
+        std::string GetAuthorId() const;
         std::vector<std::shared_ptr<rtl::Book>> GetBooksWritten() const;
         std::string GetName() const;
         tm GetDateBorn() const;
@@ -40,6 +41,7 @@ namespace rtl {
         
         static std::string PrintCommandLineHeaders();
     private:
+        std::string authorId;
         std::string name;
         struct tm dateBorn;
         std::vector<std::shared_ptr<rtl::Book>> booksWritten;

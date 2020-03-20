@@ -97,6 +97,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor1.GetName() == "testAuthor1");
     XCTAssert(testAuthor1.GetDateBornTimeT() == 660027600);
     XCTAssert(testAuthor1.GetBooksWritten().size() == 0);
+    XCTAssert(testAuthor1.GetAuthorId() == "23f9");
     
     //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
     rtl::Author testAuthor2("testAuthor2", "1990-Dec-01", bookCollection);
@@ -106,6 +107,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor2.GetBooksWritten().size() == 2);
     XCTAssert(testAuthor2.GetBooksWritten().at(0) == testBook2);
     XCTAssert(testAuthor2.GetBooksWritten().at(1) == testBook1);
+    XCTAssert(testAuthor2.GetAuthorId() == "2404");
     
     //Author::Author(std::string name, time_t dateBorn, std::shared_ptr<Book> bookWritten)
     rtl::Author testAuthor3("testAuthor3", 660027600, testBook1);
@@ -113,6 +115,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor3.GetDateBornTimeT() == 660027600);
     XCTAssert(testAuthor3.GetBooksWritten().size() == 1);
     XCTAssert(testAuthor3.GetBooksWritten().at(0) == testBook1);
+    XCTAssert(testAuthor3.GetAuthorId() == "240f");
 }
 
 - (void)testEquals {
@@ -220,17 +223,17 @@ std::shared_ptr<rtl::Book> testBook2;
 }
 
 - (void)testAuthorPrintJson {
-    std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("testAuthor1", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::fantasy, "1992-Nov-11");
-    std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::western, "2020-Nov-11");
+    std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("3rd", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::fantasy, "1992-Nov-11");
+    std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("3rd", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::western, "2020-Nov-11");
     rtl::Author testAuthor1("a", "1990-Dec-01");
     rtl::Author testAuthor2("b", "2001-Nov-12");
     rtl::Author testAuthor3("3rd", "2000-Apr-01");
     testAuthor3.AddBookWritten(testBook1);
     testAuthor3.AddBookWritten(testBook2);
     
-    XCTAssert(testAuthor1.PrintJson() == R"({"name":"a","dateBorn":"1990-Dec-01","booksWritten":[]})");
-    XCTAssert(testAuthor2.PrintJson() == R"({"name":"b","dateBorn":"2001-Nov-12","booksWritten":[]})");
-    XCTAssert(testAuthor3.PrintJson() == R"({"name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"bookId":"42890d8","isbn":[],"oclc":[],"author":"testAuthor1","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"bookId":"42b3e88","isbn":[],"oclc":[],"author":"testAuthor2","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
+    XCTAssert(testAuthor1.PrintJson() == R"({"authorId":"4e","name":"a","dateBorn":"1990-Dec-01","booksWritten":[]})");
+    XCTAssert(testAuthor2.PrintJson() == R"({"authorId":"4f","name":"b","dateBorn":"2001-Nov-12","booksWritten":[]})");
+    XCTAssert(testAuthor3.PrintJson() == R"({"authorId":"268","name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"bookId":"4735c0","isbn":[],"oclc":[],"author":"3rd","authorId":"268","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"bookId":"474dd0","isbn":[],"oclc":[],"author":"3rd","authorId":"268","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
 }
 
 - (void)testAuthorConstructors {

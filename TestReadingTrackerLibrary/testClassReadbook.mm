@@ -346,7 +346,7 @@ int testReaderId = 1;
     testReadBook1.SetDateRead("1993-Mar-25");
     testReadBook1.SetRating(4);
     
-    std::string jsonString = R"({"bookId":"1bba","isbn":[],"oclc":[],"author":"a","title":"a","series":"a","publisher":"a","genre":"fantasy","pageCount":100,"publishDate":"1990-Dec-01","rating":4,"dateRead":"1993-Mar-25","readerId":1})";
+    std::string jsonString = R"({"bookId":"1bba","isbn":[],"oclc":[],"author":"a","authorId":"4e","title":"a","series":"a","publisher":"a","genre":"fantasy","pageCount":100,"publishDate":"1990-Dec-01","rating":4,"dateRead":"1993-Mar-25","readerId":1})";
     
     XCTAssert(testReadBook1.PrintJson() == jsonString);
 }

@@ -49,8 +49,12 @@ void rtl::Author::AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books) 
     return;
 }
 
+std::string rtl::Author::GetAuthorId() const {
+    return this->authorId;
+}
+
 std::string rtl::Author::GetName() const {
-    return name;
+    return this->name;
 }
 
 tm rtl::Author::GetDateBorn() const {
@@ -72,7 +76,7 @@ std::vector<std::shared_ptr<rtl::Book>> rtl::Author::GetBooksWritten() const {
 
 std::string rtl::Author::PrintJson() const {
     std::string returnString;
-    returnString = R"({"name":")" + this->GetName() + R"(","dateBorn":")" + this->PrintDateBorn() + R"(","booksWritten":[)";
+    returnString = R"({"authorId":")" + this->GetAuthorId() + R"(","name":")" + this->GetName() + R"(","dateBorn":")" + this->PrintDateBorn() + R"(","booksWritten":[)";
     for (std::shared_ptr<rtl::Book> x : this->GetBooksWritten()) {
         returnString += x->PrintJson();
         returnString += ',';
@@ -139,18 +143,21 @@ rtl::Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_p
     this->SetName(name);
     this->SetDateBorn(dateBorn);
     this->AddBookWritten(booksWritten);
+    this->authorId = GenerateId(name);
 }
 
 rtl::Author::Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten) {
     this->SetName(name);
     this->SetDateBorn(dateBorn);
     this->AddBookWritten(booksWritten);
+    this->authorId = GenerateId(name);
 }
 
 rtl::Author::Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book> bookWritten) {
     this->SetName(name);
     this->SetDateBorn(dateBorn);
     this->AddBookWritten(bookWritten);
+    this->authorId = GenerateId(name);
 }
 
 bool rtl::operator==(const Author& lhs, const Author& rhs) {
