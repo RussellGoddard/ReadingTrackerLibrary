@@ -222,19 +222,6 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor2 >= testAuthor1);
 }
 
-- (void)testAuthorPrintJson {
-    std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("3rd", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::fantasy, "1992-Nov-11");
-    std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("3rd", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::western, "2020-Nov-11");
-    rtl::Author testAuthor1("a", "1990-Dec-01");
-    rtl::Author testAuthor2("b", "2001-Nov-12");
-    rtl::Author testAuthor3("3rd", "2000-Apr-01");
-    testAuthor3.AddBookWritten(testBook1);
-    testAuthor3.AddBookWritten(testBook2);
-    
-    XCTAssert(testAuthor1.PrintJson() == R"({"authorId":"4e","name":"a","dateBorn":"1990-Dec-01","booksWritten":[]})");
-    XCTAssert(testAuthor2.PrintJson() == R"({"authorId":"4f","name":"b","dateBorn":"2001-Nov-12","booksWritten":[]})");
-    XCTAssert(testAuthor3.PrintJson() == R"({"authorId":"268","name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"bookId":"4735c0","isbn":[],"oclc":[],"author":"3rd","authorId":"268","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"bookId":"474dd0","isbn":[],"oclc":[],"author":"3rd","authorId":"268","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
-}
 
 - (void)testAuthorConstructors {
     //Author(std::string name, time_t dateBorn = std::time(&jan2038), std::vector<std::shared_ptr<Book>> booksWritten = {});
@@ -270,40 +257,6 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor5.GetBooksWritten().size() == 2);
     XCTAssert(testAuthor5.GetBooksWritten().at(0) == testBook2);
     XCTAssert(testAuthor5.GetBooksWritten().at(1) == testBook1);
-}
-
-- (void)testPrintColumnHeaders {
-    std::string testStr = "Author              Date Born   Books Written                               Year";
-    
-    XCTAssert(rtl::Author::PrintCommandLineHeaders() == testStr);
-}
-
-- (void)testPrintCommandLine {
-    std::string testMist = "Brandon Sanderson   1975-Dec-19 Mistborn: The Final Empire                  2006\n                                Mistborn: The Well of Ascension             2007\n                                Mistborn: The Hero of Ages                  2008";
-    std::string testGirl = "Stieg Larsson       1964-Aug-15 The Girl with the Dragon Tattoo             2005";
-    std::string testWidth = "Robert Jordan123456 1948-Oct-17 The Eye of the World12345678901234567890123 1990";
-    
-    rtl::Book bookMist1("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17");
-    rtl::Book bookMist2("Brandon Sanderson", "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 541, "fantasy", "2007-Jul-17");
-    rtl::Book bookMist3("Brandon Sanderson", "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 541, "fantasy", "2008-Jul-17");
-    rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01");
-    rtl::Book bookWidth("Robert Jordan1234567", "The Eye of the World1234567890123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15");
-    
-    std::vector<std::shared_ptr<rtl::Book>> mistbornVector;
-    mistbornVector.push_back(std::make_shared<rtl::Book>(bookMist1));
-    mistbornVector.push_back(std::make_shared<rtl::Book>(bookMist2));
-    mistbornVector.push_back(std::make_shared<rtl::Book>(bookMist3));
-    
-    rtl::Author authorMist("Brandon Sanderson", "1975-Dec-19", mistbornVector);
-    rtl::Author authorGirl("Stieg Larsson", "1964-Aug-15");
-    authorGirl.AddBookWritten(std::make_shared<rtl::Book>(bookGirl));
-    rtl::Author authorWidth("Robert Jordan1234567");
-    authorWidth.SetDateBorn("1948-Oct-17");
-    authorWidth.AddBookWritten(std::make_shared<rtl::Book>(bookWidth));
-    
-    XCTAssert(authorMist.PrintCommandLine() == testMist);
-    XCTAssert(authorGirl.PrintCommandLine() == testGirl);
-    XCTAssert(authorWidth.PrintCommandLine() == testWidth);
 }
 
 @end

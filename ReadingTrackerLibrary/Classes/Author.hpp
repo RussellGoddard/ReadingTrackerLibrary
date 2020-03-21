@@ -32,25 +32,15 @@ namespace rtl {
         tm GetDateBorn() const;
         time_t GetDateBornTimeT();
         std::string PrintDateBorn() const;
-        std::string PrintJson() const;
-        std::string PrintCommandLine() const;
         Author() = delete; //Author class HAS to be constructed with a name
         Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
         Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book> bookWritten);
         Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
-        
-        static std::string PrintCommandLineHeaders();
     private:
         std::string authorId;
         std::string name;
         struct tm dateBorn;
         std::vector<std::shared_ptr<rtl::Book>> booksWritten;
-        
-        //used for printCommandLine and printCommandLineHeaders
-        static const int kWidthAuthor = 20;
-        static const int kWidthDateBorn = 12;
-        static const int kWidthTitle = 44;
-        static const int kWidthYear = 4;
     };
 
     bool operator==(const Author& lhs, const Author& rhs);

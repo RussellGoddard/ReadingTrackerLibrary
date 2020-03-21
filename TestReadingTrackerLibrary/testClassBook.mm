@@ -115,21 +115,6 @@
     XCTAssert(newGenre == testBook.GetGenre());
 }
 
-- (void)testPrintJson {
-    rtl::Book testBook("testAuthor", "testTitle");
-    testBook.AddIsbn("1234567890");
-    testBook.AddIsbn("1234567890abc");
-    testBook.AddOclc("123456");
-    testBook.SetSeries("testSeries");
-    testBook.SetPublisher("testPublisher");
-    testBook.SetGenre("fantasy");
-    testBook.SetPageCount(10);
-    testBook.SetPublishDate("1990-Dec-01");
-    
-    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","1234567890abc"],"oclc":["123456"],"author":"testAuthor","authorId":"1ecb","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
-    XCTAssert(testBook.PrintJson() == answer);
-}
-
 - (void)testPrintGenre {
     rtl::Book testBook("testAuthor", "testTitle");
     testBook.SetGenre("detective");
@@ -404,26 +389,6 @@
     XCTAssert(testBookConstructor4.GetOclc().size() == 1);
     XCTAssert(testBookConstructor4.GetOclc().at(0) == "123456");
     XCTAssert(testBookConstructor4.GetAuthorId() == "241a");
-}
-
-- (void)testPrintColumnHeaders {
-    std::string testStr = "Author              Title                              Series              Pages";
-    
-    XCTAssert(rtl::Book::PrintCommandLineHeaders() == testStr);
-}
-
-- (void)testPrintCommandLine {
-    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541  ";
-    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    Millennium          480  ";
-    std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 The Wheel of Time12 70212";
-    
-    rtl::Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17");
-    rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01");
-    rtl::Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15");
-    
-    XCTAssert(bookMist.PrintCommandLine() == testMist);
-    XCTAssert(bookGirl.PrintCommandLine() == testGirl);
-    XCTAssert(bookWidth.PrintCommandLine() == testWidth);
 }
 
 - (void)testAddandGetOclc {

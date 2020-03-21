@@ -102,72 +102,6 @@ std::string rtl::Book::GetBookId() const {
     return this->bookId;
 }
 
-std::string rtl::Book::PrintJson() const {
-    std::string returnString = R"({"bookId":")" + this->GetBookId();
-    returnString += R"(","isbn":[)";
-    for (int i = 0; i < this->isbnVector.size(); ++i) {
-        returnString += R"(")";
-        returnString += isbnVector.at(i);
-        returnString += R"(")";
-        if (i < this->isbnVector.size() - 1) {
-            returnString += R"(,)";
-        }
-    }
-    returnString += R"(],"oclc":[)";
-    for (int i = 0; i < this->oclcVector.size(); ++i) {
-        returnString += R"(")";
-        returnString += oclcVector.at(i);
-        returnString += R"(")";
-        if (i < this->oclcVector.size() - 1) {
-            returnString += R"(,)";
-        }
-    }
-    returnString += R"(],"author":")" + this->GetAuthor();
-    returnString += R"(","authorId":")" + this->GetAuthorId();
-    returnString += R"(","title":")" + this->GetTitle();
-    returnString += R"(","series":")" + this->GetSeries();
-    returnString += R"(","publisher":")" + this->GetPublisher();
-    returnString += R"(","genre":")" + this->PrintGenre();
-    returnString += R"(","pageCount":)" + std::to_string(this->GetPageCount());
-    returnString += R"(,"publishDate":")" + this->PrintPublishDate();
-    returnString += R"("})";
-    return returnString;
-}
-
-//Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
-std::string rtl::Book::PrintCommandLine() const {
-    std::stringstream returnStr;
-    returnStr.fill(' ');
-    
-    returnStr.width(Book::kWidthAuthor);
-    returnStr << std::left << this->GetAuthor().substr(0, Book::kWidthAuthor - 1);
-    returnStr.width(Book::kWidthTitle);
-    returnStr << std::left << this->GetTitle().substr(0, Book::kWidthTitle - 1);
-    returnStr.width(Book::kWidthSeries);
-    returnStr << std::left << this->GetSeries().substr(0, Book::kWidthSeries - 1);
-    returnStr.width(Book::kWidthPage);
-    returnStr << std::left << std::to_string(this->GetPageCount()).substr(0, Book::kWidthPage);
-    
-    return returnStr.str();
-}
-
-//Author              Title                              Series              Pages
-std::string rtl::Book::PrintCommandLineHeaders() {
-    std::stringstream returnStr;
-    returnStr.fill(' ');
-    
-    returnStr.width(Book::kWidthAuthor);
-    returnStr << std::left << "Author";
-    returnStr.width(Book::kWidthTitle);
-    returnStr << std::left << "Title";
-    returnStr.width(Book::kWidthSeries);
-    returnStr << std::left << "Series";
-    returnStr.width(Book::kWidthPage);
-    returnStr << std::left << "Pages";
-    
-    return returnStr.str();
-}
-
 tm rtl::Book::GetPublishDate() const {
     return this->publishDate;
 }
@@ -336,11 +270,19 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
 }
 
 bool rtl::operator==(const rtl::Book& lhs, const rtl::Book& rhs) {
-    if (lhs.PrintJson() == rhs.PrintJson()) {
-        return true;
-    }
+    if (!(lhs.GetAuthorId() == rhs.GetAuthorId())) { return false; }
+    if (!(lhs.GetBookId() == rhs.GetBookId())) { return false; }
+    if (!(lhs.GetIsbn() == rhs.GetIsbn())) { return false; }
+    if (!(lhs.GetOclc() == rhs.GetOclc())) { return false; }
+    if (!(lhs.GetAuthor() == rhs.GetAuthor())) { return false; }
+    if (!(lhs.GetTitle() == rhs.GetTitle())) { return false; }
+    if (!(lhs.GetPublisher() == rhs.GetPublisher())) { return false; }
+    if (!(lhs.GetSeries() == rhs.GetSeries())) { return false; }
+    if (!(lhs.GetGenre() == rhs.GetGenre())) { return false; }
+    if (!(lhs.GetPageCount() == rhs.GetPageCount())) { return false; }
+    if (!(lhs.PrintPublishDate() == rhs.PrintPublishDate())) { return false; }
     
-    return false;
+    return true;
 }
 
 bool rtl::operator!=(const rtl::Book& lhs, const rtl::Book& rhs) {

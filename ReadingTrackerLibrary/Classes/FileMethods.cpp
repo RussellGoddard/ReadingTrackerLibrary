@@ -7,104 +7,16 @@
 
 #include "FileMethods.hpp"
 
-bool rtl::SaveJson(std::vector<nlohmann::json> input, std::fstream& saveFile) {
+bool rtl::InMemoryContainers::SaveJson(std::string input, std::fstream& saveFile) {
     //check if file exists/is locked by another process
     if(!saveFile.good()) {
         saveFile.close();
         return false;
     };
     
-    for (auto x : input) {
-        saveFile << x << std::endl;
-    }
+    saveFile << input << std::endl;
     
     return true;
-}
-
-rtl::ReadBook rtl::ConvertJsonToReadBook(nlohmann::json json) {
-    try {
-        int readerId = json["readerId"].get<int>();
-        std::string author = json["author"].get<std::string>();
-        std::string title = json["title"].get<std::string>();
-        std::string series = json["series"].get<std::string>();
-        std::string publisher = json["publisher"].get<std::string>();
-        int pageCount = json["pageCount"].get<int>();
-        std::string genre = json["genre"].get<std::string>();
-        std::string publishDate = json["publishDate"].get<std::string>();
-        int rating = json["rating"].get<int>();
-        std::string time = json["dateRead"].get<std::string>();
-        return rtl::ReadBook(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
-        return ReadBook(-1, "", "");
-    }
-        
-    
-}
-
-std::shared_ptr<rtl::Book> rtl::ConvertJsonToBookPtr(nlohmann::json json) {
-    try {
-        std::string author = json["author"].get<std::string>();
-        std::string title = json["title"].get<std::string>();
-        std::string series = json["series"].get<std::string>();
-        std::string publisher = json["publisher"].get<std::string>();
-        int pageCount = json["pageCount"].get<int>();
-        std::string genre = json["genre"].get<std::string>();
-        std::string publishDate = json["publishDate"].get<std::string>();
-        std::vector<std::string> isbnVector = json["isbn"];
-        std::vector<std::string> oclcVector = json["oclc"];
-        
-        return std::make_shared<rtl::Book>(author, title, series, publisher, pageCount, genre, publishDate, isbnVector, oclcVector);
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
-        return nullptr;
-    }
-}
-
-std::shared_ptr<rtl::ReadBook> rtl::ConvertJsonToReadBookPtr(nlohmann::json json) {
-    try {
-        int readerId = json["readerId"].get<int>();
-        std::string author = json["author"].get<std::string>();
-        std::string title = json["title"].get<std::string>();
-        std::string series = json["series"].get<std::string>();
-        std::string publisher = json["publisher"].get<std::string>();
-        int pageCount = json["pageCount"].get<int>();
-        std::string genre = json["genre"].get<std::string>();
-        std::string publishDate = json["publishDate"].get<std::string>();
-        int rating = json["rating"].get<int>();
-        std::string dateRead = json["dateRead"].get<std::string>();
-        std::vector<std::string> isbnVector = json["isbn"];
-        std::vector<std::string> oclcVector = json["oclc"];
-        
-        return std::make_shared<rtl::ReadBook>(readerId, rtl::Book(author, title, series, publisher, pageCount, genre, publishDate, isbnVector, oclcVector), rating, dateRead);;
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
-        return nullptr;
-    }
-}
-
-std::shared_ptr<rtl::Author> rtl::ConvertJsonToAuthorPtr(nlohmann::json json) {
-    try {
-        std::string name = json["name"].get<std::string>();
-        std::string dateBorn = json["dateBorn"].get<std::string>();
-        std::vector<std::shared_ptr<rtl::Book>> booksWritten;
-        for (auto x : json.at("booksWritten")) {
-            booksWritten.push_back(rtl::ConvertJsonToBookPtr(x));
-        }
-        
-        return std::make_shared<rtl::Author>(name, dateBorn, booksWritten);
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
-        return nullptr;
-    }
 }
 
 std::vector<std::shared_ptr<rtl::ReadBook>> rtl::InMemoryContainers::GetMasterReadBooks() {
@@ -196,45 +108,7 @@ void rtl::InMemoryContainers::ClearAll() {
     return;
 }
 
-//TODO: investigate a way to remove for loops
 bool rtl::InMemoryContainers::SaveInMemoryToFile(std::string filePath) {
-    std::vector<nlohmann::json> bookJson;
-    std::vector<nlohmann::json> readBookJson;
-    std::vector<nlohmann::json> authorJson;
-    
-    try {
-        for (auto x : this->GetMasterBooks()) {
-            bookJson.push_back(nlohmann::json::parse(x->PrintJson()));
-        }
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: Log this exception
-        std::cout << "error parsing masterBooks" << std::endl;
-        std::cout << ex.what() << std::endl;
-    }
-    
-    try {
-        for (auto x : this->GetMasterReadBooks()) {
-            readBookJson.push_back(nlohmann::json::parse(x->PrintJson()));
-        }
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: Log this exception
-        std::cout << "error parsing masterReadBooks" << std::endl;
-        std::cout << ex.what() << std::endl;
-    }
-      
-    try {
-        for (auto x : this->GetMasterAuthors()) {
-            authorJson.push_back(nlohmann::json::parse(x->PrintJson()));
-        }
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: Log this exception
-        std::cout << "error parsing masterAuthors" << std::endl;
-        std::cout << ex.what() << std::endl;
-    }
-    
     
     std::fstream saveFile;
     saveFile.open(filePath, std::fstream::out);
@@ -246,15 +120,30 @@ bool rtl::InMemoryContainers::SaveInMemoryToFile(std::string filePath) {
     bool successfulSave = true;
     if (successfulSave) {
         saveFile << "*[*\n";
-        successfulSave = rtl::SaveJson(bookJson, saveFile);
+        for (auto x : this->GetMasterBooks()) {
+            if(!this->SaveJson(rtl::PrintJson(x), saveFile)) {
+                //if any SaveJson fails stop trying
+                break;
+            }
+        }
     }
     if (successfulSave) {
         saveFile << "*]*\n*[*\n";
-        successfulSave = rtl::SaveJson(readBookJson, saveFile);
+        for (auto x : this->GetMasterReadBooks()) {
+            if(!this->SaveJson(rtl::PrintJson(x), saveFile)) {
+                //if any SaveJson fails stop trying
+                break;
+            }
+        }
     }
     if (successfulSave) {
         saveFile << "*]*\n*[*\n";
-        successfulSave = rtl::SaveJson(authorJson, saveFile);
+        for (auto x : this->GetMasterAuthors()) {
+            if(!this->SaveJson(rtl::PrintJson(x), saveFile)) {
+                //if any SaveJson fails stop trying
+                break;
+            }
+        }
     }
     if (successfulSave) {
         saveFile << "*]*";

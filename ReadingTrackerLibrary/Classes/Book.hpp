@@ -8,7 +8,6 @@
 #ifndef Book_hpp
 #define Book_hpp
 
-
 #include <ios>
 #include <ctime>
 #include <exception>
@@ -54,8 +53,6 @@ namespace rtl {
         std::string GetAuthorId() const;
         std::string GetBookId() const;
         std::string PrintPublishDate() const;
-        std::string PrintJson() const;
-        std::string PrintCommandLine() const;
         void SetSeries(std::string series);
         void SetPublisher(std::string publisher);
         void SetPageCount(int pageCount);
@@ -71,8 +68,6 @@ namespace rtl {
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn = "", std::string oclc = "");
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc);
-        
-        static std::string PrintCommandLineHeaders();
     private:
         std::string authorId;
         std::string bookId;
@@ -85,12 +80,6 @@ namespace rtl {
         Genre genre;
         int pageCount;
         tm publishDate;
-        
-        //used for printCommandLine and printCommandLineHeaders
-        static const int kWidthAuthor = 20;
-        static const int kWidthTitle = 35;
-        static const int kWidthSeries = 20;
-        static const int kWidthPage = 5;
     };
 
     bool operator==(const Book& lhs, const Book& rhs);

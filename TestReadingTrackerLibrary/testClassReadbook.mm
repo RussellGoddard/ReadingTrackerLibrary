@@ -336,21 +336,6 @@ int testReaderId = 1;
     XCTAssert(testReadBook4 >= testReadBook1);
 }
 
-- (void)testPrintJson {
-    rtl::ReadBook testReadBook1(testReaderId, "a", "a");
-    testReadBook1.SetSeries("a");
-    testReadBook1.SetPublisher("a");
-    testReadBook1.SetGenre("fantasy");
-    testReadBook1.SetPageCount(100);
-    testReadBook1.SetPublishDate("1990-Dec-01");
-    testReadBook1.SetDateRead("1993-Mar-25");
-    testReadBook1.SetRating(4);
-    
-    std::string jsonString = R"({"bookId":"1bba","isbn":[],"oclc":[],"author":"a","authorId":"4e","title":"a","series":"a","publisher":"a","genre":"fantasy","pageCount":100,"publishDate":"1990-Dec-01","rating":4,"dateRead":"1993-Mar-25","readerId":1})";
-    
-    XCTAssert(testReadBook1.PrintJson() == jsonString);
-}
-
 - (void)testConstructors {
     
     rtl::Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::fantasy, 1199163600);
@@ -407,24 +392,5 @@ int testReaderId = 1;
     XCTAssert(testConstructor4.GetBookId() == "4309c7c");
 }
 
-- (void)testPrintColumnHeaders {
-    std::string testStr = "Author              Title                              Pages Date Read    Rating";
-    
-    XCTAssert(rtl::ReadBook::PrintCommandLineHeaders() == testStr);
-}
-
-- (void)testPrintCommandLine {
-    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire         541   2019-Sep-13  9     ";
-    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    480   2019-Nov-19  9     ";
-    std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 70212 2019-Oct-27  8     ";
-
-    rtl::ReadBook bookMist(123, "Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", 9, "2019-Sep-13");
-    rtl::ReadBook bookGirl(123, "Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01", 9, "2019-Nov-19");
-    rtl::ReadBook bookWidth(123, "Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15", 8, "2019-Oct-27");
-    
-    XCTAssert(bookMist.PrintCommandLine() == testMist);
-    XCTAssert(bookGirl.PrintCommandLine() == testGirl);
-    XCTAssert(bookWidth.PrintCommandLine() == testWidth);
-}
 
 @end

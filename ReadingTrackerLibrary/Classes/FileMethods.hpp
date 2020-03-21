@@ -13,10 +13,11 @@
 #include <functional>
 #include <future>
 #include <memory>
-#include <nlohmann/json.hpp>
 #include <set>
+#include <utility>
 #include "Author.hpp"
 #include "HelperFunctions.hpp"
+#include "JsonFunctions.hpp"
 
 
 //TODO: #include "ReadBook.hpp" see Author.hpp includes
@@ -67,6 +68,8 @@ namespace rtl {
         }
         
     private:
+        bool SaveJson(std::string input, std::fstream& filePath);
+        
         //only for adding books when vector addMasterReadBooks is called
         void AddMasterBooks(std::vector<std::shared_ptr<rtl::ReadBook>> newReadBookVector);
         
@@ -83,14 +86,7 @@ namespace rtl {
 
     rtl::OpenLibraryValues QueryBookByIdentifier(std::string identifier, std::string identifierNum);
     rtl::WikiDataValues QueryBookByTitle(std::string title);
-    bool SaveJson(std::vector<nlohmann::json> input, std::fstream& filePath);
     std::vector<std::shared_ptr<rtl::ReadBook>> LoadReadingList(std::string filePath);
-    rtl::ReadBook ConvertJsonToReadBook(nlohmann::json json);
-    std::shared_ptr<rtl::Book> ConvertJsonToBookPtr(nlohmann::json json);
-    std::shared_ptr<rtl::ReadBook> ConvertJsonToReadBookPtr(nlohmann::json json);
-    std::shared_ptr<rtl::Author> ConvertJsonToAuthorPtr(nlohmann::json json);
-
-
 }
 
 #endif /* FileMethods_hpp */

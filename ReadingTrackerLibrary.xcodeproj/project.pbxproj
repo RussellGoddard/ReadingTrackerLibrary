@@ -25,11 +25,16 @@
 		DE989E8323F4F94700D3C424 /* testGui.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE989E8223F4F94700D3C424 /* testGui.mm */; };
 		DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762D2414672500425941 /* libboost_date_time-mt.a */; };
 		DEBC76352414B45F00425941 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762F2414A69F00425941 /* libcurl.a */; };
-		DEEAC61E2423BC4C00D970C9 /* StandardOutput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */; };
 		DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */; };
 		DEEAC6222423C57000D970C9 /* HelperFunctions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */; };
 		DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC624242415BC00D970C9 /* SortUnique.hpp */; };
 		DEEAC62B2425337A00D970C9 /* testHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC62A2425337A00D970C9 /* testHelper.mm */; };
+		DEEAC62E2425D07300D970C9 /* CommandLineHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC62C2425D07300D970C9 /* CommandLineHelper.cpp */; };
+		DEEAC62F2425D07300D970C9 /* CommandLineHelper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC62D2425D07300D970C9 /* CommandLineHelper.hpp */; };
+		DEEAC6312426A54500D970C9 /* testCommandLineHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC6302426A54500D970C9 /* testCommandLineHelper.mm */; };
+		DEEAC6342426A76500D970C9 /* JsonFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC6322426A76500D970C9 /* JsonFunctions.cpp */; };
+		DEEAC6352426A76500D970C9 /* JsonFunctions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC6332426A76500D970C9 /* JsonFunctions.hpp */; };
+		DEEAC6372426ADF600D970C9 /* testJsonHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC6362426ADF600D970C9 /* testJsonHelper.mm */; };
 		DEF9CCA72377B30A00B5089A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504C82374EB8600FF97A4 /* main.cpp */; };
 		DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 /* End PBXBuildFile section */
@@ -89,11 +94,16 @@
 		DEBC762F2414A69F00425941 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../usr/local/Cellar/curl/7.69.0/lib/libcurl.a; sourceTree = "<group>"; };
 		DEBC76312414A9A300425941 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		DEBC76332414AA1000425941 /* libcurlpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurlpp.a; path = ../../../../usr/local/Cellar/curlpp/0.8.1/lib/libcurlpp.a; sourceTree = "<group>"; };
-		DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StandardOutput.hpp; sourceTree = "<group>"; };
 		DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelperFunctions.cpp; sourceTree = "<group>"; };
 		DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelperFunctions.hpp; sourceTree = "<group>"; };
 		DEEAC624242415BC00D970C9 /* SortUnique.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SortUnique.hpp; sourceTree = "<group>"; };
 		DEEAC62A2425337A00D970C9 /* testHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testHelper.mm; sourceTree = "<group>"; };
+		DEEAC62C2425D07300D970C9 /* CommandLineHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommandLineHelper.cpp; sourceTree = "<group>"; };
+		DEEAC62D2425D07300D970C9 /* CommandLineHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandLineHelper.hpp; sourceTree = "<group>"; };
+		DEEAC6302426A54500D970C9 /* testCommandLineHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testCommandLineHelper.mm; sourceTree = "<group>"; };
+		DEEAC6322426A76500D970C9 /* JsonFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JsonFunctions.cpp; sourceTree = "<group>"; };
+		DEEAC6332426A76500D970C9 /* JsonFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = JsonFunctions.hpp; sourceTree = "<group>"; };
+		DEEAC6362426ADF600D970C9 /* testJsonHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testJsonHelper.mm; sourceTree = "<group>"; };
 		DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReadingTrackerCommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,7 +179,6 @@
 				DE9504D32374EF2200FF97A4 /* gui.hpp */,
 				DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */,
 				DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */,
-				DEEAC61C2423BC4C00D970C9 /* StandardOutput.hpp */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -177,6 +186,8 @@
 		DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				DEEAC6362426ADF600D970C9 /* testJsonHelper.mm */,
+				DEEAC6302426A54500D970C9 /* testCommandLineHelper.mm */,
 				DEEAC62A2425337A00D970C9 /* testHelper.mm */,
 				DE7AC029238B73DB00292006 /* testFileMethods.mm */,
 				DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */,
@@ -194,6 +205,10 @@
 				DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */,
 				DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */,
 				DEEAC624242415BC00D970C9 /* SortUnique.hpp */,
+				DEEAC62C2425D07300D970C9 /* CommandLineHelper.cpp */,
+				DEEAC62D2425D07300D970C9 /* CommandLineHelper.hpp */,
+				DEEAC6322426A76500D970C9 /* JsonFunctions.cpp */,
+				DEEAC6332426A76500D970C9 /* JsonFunctions.hpp */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -226,9 +241,10 @@
 			files = (
 				DE9504DE2374EF2200FF97A4 /* Author.hpp in Headers */,
 				DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */,
+				DEEAC62F2425D07300D970C9 /* CommandLineHelper.hpp in Headers */,
 				DEEAC6222423C57000D970C9 /* HelperFunctions.hpp in Headers */,
+				DEEAC6352426A76500D970C9 /* JsonFunctions.hpp in Headers */,
 				DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */,
-				DEEAC61E2423BC4C00D970C9 /* StandardOutput.hpp in Headers */,
 				DE9504DB2374EF2200FF97A4 /* FileMethods.hpp in Headers */,
 				DE9504DD2374EF2200FF97A4 /* gui.hpp in Headers */,
 				DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */,
@@ -351,6 +367,8 @@
 				DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */,
 				DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */,
 				DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */,
+				DEEAC6342426A76500D970C9 /* JsonFunctions.cpp in Sources */,
+				DEEAC62E2425D07300D970C9 /* CommandLineHelper.cpp in Sources */,
 				DE9504DC2374EF2200FF97A4 /* FileMethods.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,10 +377,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEEAC6312426A54500D970C9 /* testCommandLineHelper.mm in Sources */,
 				DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */,
 				DEEAC62B2425337A00D970C9 /* testHelper.mm in Sources */,
 				DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */,
 				DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */,
+				DEEAC6372426ADF600D970C9 /* testJsonHelper.mm in Sources */,
 				DE989E8323F4F94700D3C424 /* testGui.mm in Sources */,
 				DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */,
 			);
@@ -393,7 +413,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -439,7 +459,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -454,7 +474,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -494,7 +514,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";

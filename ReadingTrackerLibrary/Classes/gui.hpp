@@ -12,17 +12,18 @@
 #include <limits>
 #include <sstream>
 #include "FileMethods.hpp"
+#include "CommandLineHelper.hpp"
 
-namespace rtl {
-    namespace CommandLine {
-        rtl::Author GetNewAuthor(std::istream& inputStream, std::ostream& outputStream);
-        rtl::Book GetNewBook(std::istream& inputStream, std::ostream& outputStream);
-        rtl::ReadBook GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId);
-        void OutputLine(std::ostream& outputStream, std::string output);
-        void OutputLine(std::ostream& outputStream, std::vector<std::string> output);
-        void MainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);
-        std::string GetInput(std::istream& inputStream);
-    }
+namespace rtl::CommandLine {
+   
+    rtl::Author GetNewAuthor(std::istream& inputStream, std::ostream& outputStream);
+    rtl::Book GetNewBook(std::istream& inputStream, std::ostream& outputStream);
+    rtl::ReadBook GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId);
+    void OutputLine(std::ostream& outputStream, std::string output);
+    void OutputLine(std::ostream& outputStream, std::vector<std::string> output);
+    void MainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);
+    std::string GetInput(std::istream& inputStream);
+    
 }
 
 #endif /* gui_hpp */

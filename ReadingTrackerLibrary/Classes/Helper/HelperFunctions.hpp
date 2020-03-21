@@ -31,12 +31,10 @@
 
 
 namespace rtl {
-
     std::string GenerateId(const std::string& input);
     std::string& RightTrim(std::string& input);
     std::string& LeftTrim(std::string& input);
     std::string& Trim(std::string& input);
-
 }
 
 #endif /* HelperFunctions_hpp */
