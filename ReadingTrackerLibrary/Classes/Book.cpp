@@ -159,7 +159,17 @@ void rtl::Book::AddOclc(std::string oclc) {
 }
 
 void rtl::Book::AddIsbn(std::string isbn) {
-    //TODO: validate ISBN
+    //TODO: more validation ISBN
+    auto isbnEnd = std::remove_if(std::begin(isbn), std::end(isbn), [&](auto x){
+        return (x == '-');
+    });
+    isbn.erase(isbnEnd, isbn.end());
+    for (auto x : isbn) {
+        if (!std::isdigit(x)) {
+            //TODO: log this
+            return;
+        }
+    }
     this->isbnVector.push_back(isbn);
     return;
 }

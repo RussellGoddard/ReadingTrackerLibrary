@@ -79,10 +79,10 @@
     XCTAssert(testBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewBookByIdentifier {
+- (void)testGetNewBookByIdentifierInvalidIdentifier {
     std::stringstream inputSs, outputSs;
     
-    inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
+    inputSs.str("OCLC\n21341234123412341234\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 1);
     
     XCTAssert(testBook.GetAuthor() == "testAuthor");
@@ -98,10 +98,48 @@
     XCTAssert(testBook.GetOclc().at(0) == "123456");
 }
 
+- (void)testGetNewBookByIdentifier {
+    std::stringstream inputSs, outputSs;
+    
+    inputSs.str("ISBN\n0312850093\n");
+    rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 1);
+    
+    XCTAssert(testBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testBook.GetTitle() == "The Eye of the World");
+    XCTAssert(testBook.GetPublisher() == "Tor Publishing");
+    XCTAssert(testBook.GetSeries() == "The Wheel of Time");
+    XCTAssert(testBook.GetGenre() == rtl::Genre::genreNotSet);
+    XCTAssert(testBook.PrintPublishDate() == "1990-Jan-15");
+    XCTAssert(testBook.GetPageCount() == -1);
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn().at(0) == "9780765324887");
+    XCTAssert(testBook.GetOclc().size() == 1);
+    XCTAssert(testBook.GetOclc().at(0) == "19723327");
+}
+
 - (void)testGetNewBookByTitle {
     std::stringstream inputSs, outputSs;
     
-    inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
+    inputSs.str("The Eye of the World");
+    rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 2);
+    
+    XCTAssert(testBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testBook.GetTitle() == "The Eye of the World");
+    XCTAssert(testBook.GetPublisher() == "Tor Publishing");
+    XCTAssert(testBook.GetSeries() == "The Wheel of Time");
+    XCTAssert(testBook.GetGenre() == rtl::Genre::genreNotSet);
+    XCTAssert(testBook.PrintPublishDate() == "1990-Jan-15");
+    XCTAssert(testBook.GetPageCount() == -1);
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn().at(0) == "9780765324887");
+    XCTAssert(testBook.GetOclc().size() == 1);
+    XCTAssert(testBook.GetOclc().at(0) == "19723327");
+}
+
+- (void)testGetNewBookByTitleInvalidTitle {
+    std::stringstream inputSs, outputSs;
+    
+    inputSs.str("gibberishtitle\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 2);
     
     XCTAssert(testBook.GetAuthor() == "testAuthor");
@@ -161,9 +199,9 @@
     XCTAssert(testReadBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewReadBookByIdentifier {
+- (void)testGetNewReadBookByIdentifierInvalid {
     std::stringstream inputSs, outputSs;
-    inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
+    inputSs.str("ISBN\n12341234213412341234\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 1);
     
@@ -183,9 +221,31 @@
     XCTAssert(testReadBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewReadBookByTitle {
+- (void)testGetNewReadBookByIdentifier {
     std::stringstream inputSs, outputSs;
-    inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
+    inputSs.str("ISBN\n0312850093\n1999-Oct-02\n9\n");
+    
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 1);
+    
+    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
+    XCTAssert(testReadBook.GetRating() == 9);
+    XCTAssert(testReadBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testReadBook.GetTitle() == "The Eye of the World");
+    XCTAssert(testReadBook.GetPublisher() == "Tor Publishing");
+    XCTAssert(testReadBook.GetSeries() == "The Wheel of Time");
+    XCTAssert(testReadBook.GetGenre() == rtl::Genre::genreNotSet);
+    XCTAssert(testReadBook.PrintPublishDate() == "1990-Jan-15");
+    XCTAssert(testReadBook.GetPageCount() == -1);
+    XCTAssert(testReadBook.GetIsbn().size() == 1);
+    XCTAssert(testReadBook.GetIsbn().at(0) == "9780765324887");
+    XCTAssert(testReadBook.GetOclc().size() == 1);
+    XCTAssert(testReadBook.GetOclc().at(0) == "19723327");
+}
+
+- (void)testGetNewReadBookByTitleInvalidTitle {
+    std::stringstream inputSs, outputSs;
+    inputSs.str("gibberishtitle\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
     
@@ -203,6 +263,28 @@
     XCTAssert(testReadBook.GetIsbn().at(0) == "1234567890");
     XCTAssert(testReadBook.GetOclc().size() == 1);
     XCTAssert(testReadBook.GetOclc().at(0) == "123456");
+}
+
+- (void)testGetNewReadBookByTitle {
+    std::stringstream inputSs, outputSs;
+    inputSs.str("The Eye of the World\n1999-Oct-02\n9\n");
+    
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
+    
+    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
+    XCTAssert(testReadBook.GetRating() == 9);
+    XCTAssert(testReadBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testReadBook.GetTitle() == "The Eye of the World");
+    XCTAssert(testReadBook.GetPublisher() == "Tor Publishing");
+    XCTAssert(testReadBook.GetSeries() == "The Wheel of Time");
+    XCTAssert(testReadBook.GetGenre() == rtl::Genre::genreNotSet);
+    XCTAssert(testReadBook.PrintPublishDate() == "1990-Jan-15");
+    XCTAssert(testReadBook.GetPageCount() == -1);
+    XCTAssert(testReadBook.GetIsbn().size() == 1);
+    XCTAssert(testReadBook.GetIsbn().at(0) == "9780765324887");
+    XCTAssert(testReadBook.GetOclc().size() == 1);
+    XCTAssert(testReadBook.GetOclc().at(0) == "19723327");
 }
 
 //TODO: logging when this happens

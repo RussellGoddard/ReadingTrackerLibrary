@@ -23,10 +23,10 @@
 //TODO: #include "ReadBook.hpp" see Author.hpp includes
 
 namespace rtl {
-
     //TODO: should these two structs be here or the queries spun into their own file
     struct WikiDataValues {
         bool success = true;
+        std::string isbn = "";
         std::string oclc = "";
         std::string title = "";
         std::string series = "";
@@ -37,7 +37,10 @@ namespace rtl {
 
     struct OpenLibraryValues {
         bool success = true;
-        std::string oclc = "";
+        //TODO: support vectors for isbn and oclc
+        //TODO: page number
+        //std::string isbn = "";
+        //std::string oclc = "";
         std::string author = "";
         std::string title = "";
     };

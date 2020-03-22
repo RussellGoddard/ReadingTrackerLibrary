@@ -60,7 +60,15 @@ rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostre
 */
 
 rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode) {
-    std::string author, isbn, oclc, title, publisher, series, genre, datePublished, pageCount;
+    std::string author = "";
+    std::string isbn = "";
+    std::string oclc = "";
+    std::string title = "";
+    std::string publisher = "";
+    std::string series = "";
+    std::string genre = "genre not set";
+    std::string datePublished = "";
+    std::string pageCount = "-1";
     
     switch(inputMode) {
         //manual
@@ -88,15 +96,55 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
         }
         //by identifier (ISBN or OCLC)
         case 1: {
-            //TODO: implement this
-            std::cout << "not yet implemented, calling manual entry" << std::endl;
-            return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
+            //TODO: better implement openlibrary query
+            
+            OutputLine(outputStream, "Query openlibrary by? (input 'OCLC' or 'ISBN'");
+            std::string identifier = GetInput(inputStream);
+            OutputLine(outputStream, "Enter identifier number:");
+            std::string identifierNum = GetInput(inputStream);
+            OutputLine(outputStream, "Querying openlibrary for page titled: " + identifier + ":" + identifierNum);
+            rtl::OpenLibraryValues openLibraryValues = rtl::QueryBookByIdentifier(identifier, identifierNum);
+            if (!openLibraryValues.success) {
+                OutputLine(outputStream, "Query failed, calling manual entry");
+                return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
+            }
+            
+            rtl::WikiDataValues wikiDataValues = rtl::QueryBookByTitle(openLibraryValues.title);
+            if (!wikiDataValues.success) {
+                OutputLine(outputStream, "Query failed, calling manual entry");
+                return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
+            }
+            
+            author = wikiDataValues.author;
+            title = wikiDataValues.title;
+            series = wikiDataValues.series;
+            publisher = wikiDataValues.publisher;
+            datePublished = boost::gregorian::to_simple_string(wikiDataValues.datePublished);
+            isbn = wikiDataValues.isbn;
+            oclc = wikiDataValues.oclc;
+            break;
         }
         //by title
         case 2: {
-            //TODO: implement this
-            std::cout << "not yet implemented, calling manual entry" << std::endl;
-            return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
+            OutputLine(outputStream, "Input title, title should match the page title on wikidata.org, case sensitive");
+            std::string query = GetInput(inputStream);
+            OutputLine(outputStream, "Querying wikidata for page titled: " + query);
+            
+            rtl::WikiDataValues wikiDataValues = rtl::QueryBookByTitle(query);
+            if (!wikiDataValues.success) {
+                OutputLine(outputStream, "Query failed, calling manual entry");
+                return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
+            }
+            author = wikiDataValues.author;
+            title = wikiDataValues.title;
+            series = wikiDataValues.series;
+            publisher = wikiDataValues.publisher;
+            datePublished = boost::gregorian::to_simple_string(wikiDataValues.datePublished);
+            isbn = wikiDataValues.isbn;
+            oclc = wikiDataValues.oclc;
+            
+            OutputLine(outputStream, "Query success");
+            break;
         }
         default:
             //TODO: log this, should never hit default

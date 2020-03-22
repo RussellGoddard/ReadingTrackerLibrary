@@ -266,7 +266,7 @@
 - (void)testPrintJsonBook {
     rtl::Book testBook("testAuthor", "testTitle");
     testBook.AddIsbn("1234567890");
-    testBook.AddIsbn("1234567890abc");
+    testBook.AddIsbn("123-45678-90-12");
     testBook.AddOclc("123456");
     testBook.SetSeries("testSeries");
     testBook.SetPublisher("testPublisher");
@@ -274,7 +274,7 @@
     testBook.SetPageCount(10);
     testBook.SetPublishDate("1990-Dec-01");
     
-    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","1234567890abc"],"oclc":["123456"],"author":"testAuthor","authorId":"1ecb","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
+    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","123456789012"],"oclc":["123456"],"author":"testAuthor","authorId":"1ecb","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
     XCTAssert(rtl::PrintJson(std::make_shared<rtl::Book>(testBook)) == answer);
 }
 

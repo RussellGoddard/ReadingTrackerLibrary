@@ -297,9 +297,6 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
         
     try {
         nlohmann::json openLibJson = nlohmann::json::parse(readBuffer);
-    
-        //oclc
-        newLibraryValues.oclc = openLibJson[combinedIdentifier]["identifiers"]["oclc"].at(0).get<std::string>();
         
         //author
         //TODO: figure out multiple authors
@@ -473,7 +470,21 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));
     
-    newDataValues.success = boolTitle.get() && boolSeries.get() && boolAuthor.get() && boolPublisher.get() && boolOclc.get();
+    std::future<bool> boolIsbn = std::async([](const nlohmann::json& wikiDataJson, const std::string& objectId, WikiDataValues& newDataValues) {
+        bool success = false;
+        try {
+            //isbn: P212
+            newDataValues.isbn = wikiDataJson.at("entities").at(objectId).at("claims").at("P212").at(0).at("mainsnak").at("datavalue").at("value").get<std::string>();
+            success = true;
+        }
+        catch (nlohmann::json::exception& ex) {
+            //TODO: log error
+            std::cout << ex.what() << std::endl;
+        }
+        return success;
+    }, wikiDataJson, objectId, std::ref(newDataValues));
+    
+    newDataValues.success = boolTitle.get() && boolSeries.get() && boolAuthor.get() && boolPublisher.get() && boolOclc.get() && boolIsbn.get();
     
     return newDataValues;
 }

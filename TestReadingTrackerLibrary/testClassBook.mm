@@ -410,11 +410,22 @@
 - (void)testAddandGetIsbn {
     rtl::Book testBook("testAuthor", "testTitle");
     std::string testString = "1234567890";
+    std::string testString2 = "123-4567-890-12";
+    std::string answerString2 = "123456789012";
     
     testBook.AddIsbn(testString);
     
     XCTAssert(testBook.GetIsbn().size() == 1);
     XCTAssert(testBook.GetIsbn().at(0) == testString);
+    
+    testBook.AddIsbn("asdgbadf213");
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn().at(0) == testString);
+    
+    testBook.AddIsbn(testString2);
+    XCTAssert(testBook.GetIsbn().size() == 2);
+    XCTAssert(testBook.GetIsbn().at(0) == testString);
+    XCTAssert(testBook.GetIsbn().at(1) == answerString2);
 }
 
 
