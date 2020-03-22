@@ -86,7 +86,6 @@ namespace rtl {
 
     rtl::OpenLibraryValues QueryBookByIdentifier(std::string identifier, std::string identifierNum);
     rtl::WikiDataValues QueryBookByTitle(std::string title);
-    std::vector<std::shared_ptr<rtl::ReadBook>> LoadReadingList(std::string filePath);
 }
 
 #endif /* FileMethods_hpp */

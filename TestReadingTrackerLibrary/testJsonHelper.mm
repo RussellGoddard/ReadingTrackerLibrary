@@ -250,8 +250,8 @@
 
 
 - (void)testPrintJsonAuthor {
-    std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("3rd", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::fantasy, "1992-Nov-11");
-    std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("3rd", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::western, "2020-Nov-11");
+    std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("3rd", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::Genre::fantasy, "1992-Nov-11");
+    std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("3rd", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::Genre::western, "2020-Nov-11");
     rtl::Author testAuthor1("a", "1990-Dec-01");
     rtl::Author testAuthor2("b", "2001-Nov-12");
     rtl::Author testAuthor3("3rd", "2000-Apr-01");

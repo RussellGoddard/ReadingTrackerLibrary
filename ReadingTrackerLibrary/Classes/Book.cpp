@@ -7,57 +7,6 @@
 
 #include "Book.hpp"
 
-rtl::Genre rtl::ConvertStringToGenre(std::string genre) {
-    rtl::Genre returnGenre;
-    
-    if (genre == "detective") { returnGenre = rtl::detective; }
-    else if (genre == "dystopia") { returnGenre = rtl::dystopia; }
-    else if (genre == "fantasy") { returnGenre = rtl::fantasy; }
-    else if (genre == "mystery") { returnGenre = rtl::mystery; }
-    else if (genre == "romance") { returnGenre = rtl::romance; }
-    else if (genre == "science fiction" || genre == "sci fi") { returnGenre = rtl::scienceFiction; }
-    else if (genre == "thriller") { returnGenre = rtl::thriller; }
-    else if (genre == "western") { returnGenre = rtl::western; }
-    else { returnGenre = rtl::genreNotSet; }
-    return returnGenre;
-}
-
-std::string rtl::ConvertGenreToString(rtl::Genre genre) {
-    std::string returnString;
-    switch(genre) {
-        case rtl::detective:
-            returnString = "detective";
-            break;
-        case rtl::dystopia:
-            returnString = "dystopia";
-            break;
-        case rtl::fantasy:
-            returnString = "fantasy";
-            break;
-        case rtl::mystery:
-            returnString = "mystery";
-            break;
-        case rtl::romance:
-            returnString = "romance";
-            break;
-        case rtl::scienceFiction:
-            returnString = "science fiction";
-            break;
-        case rtl::thriller:
-            returnString = "thriller";
-            break;
-        case rtl::western:
-            returnString = "western";
-            break;
-        case rtl::genreNotSet: //fall through to default
-        default:
-            returnString = "genre not set";
-            break;
-    }
-    
-    return returnString;
-}
-
 std::string rtl::Book::GetAuthor() const {
     return this->author;
 }

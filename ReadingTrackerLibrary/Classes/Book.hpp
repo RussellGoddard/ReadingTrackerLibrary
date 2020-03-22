@@ -30,13 +30,6 @@
 
 namespace rtl {
 
-    enum Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western };
-
-    Genre ConvertStringToGenre(std::string genre);
-    std::string ConvertGenreToString(Genre genre);
-    
-    //TODO: expand OCLC and ISBN support
-    //TODO: add uniqueId for future DB storage
     class Book {
     public:
         std::string GetAuthor() const;
@@ -64,7 +57,7 @@ namespace rtl {
         bool SetPublishDate(std::string publishDate);
         void AddOclc(std::string oclc);
         void AddIsbn(std::string isbn);
-        Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
+        Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0));
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn = "", std::string oclc = "");
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc);

@@ -31,6 +31,11 @@
 
 
 namespace rtl {
+    enum class Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western, nonFiction, technical };
+
+    Genre ConvertStringToGenre(std::string genre);
+    std::string ConvertGenreToString(Genre genre);
+
     std::string GenerateId(const std::string& input);
     std::string& RightTrim(std::string& input);
     std::string& LeftTrim(std::string& input);

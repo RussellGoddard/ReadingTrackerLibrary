@@ -16,9 +16,9 @@
 
 namespace rtl::CommandLine {
    
-    rtl::Author GetNewAuthor(std::istream& inputStream, std::ostream& outputStream);
-    rtl::Book GetNewBook(std::istream& inputStream, std::ostream& outputStream);
-    rtl::ReadBook GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId);
+    rtl::Author GetNewAuthor(std::istream& inputStream, std::ostream& outputStream, int inputMode);
+    rtl::Book GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode);
+    rtl::ReadBook GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId, int inputMode);
     void OutputLine(std::ostream& outputStream, std::string output);
     void OutputLine(std::ostream& outputStream, std::vector<std::string> output);
     void MainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);

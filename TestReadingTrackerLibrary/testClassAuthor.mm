@@ -68,7 +68,7 @@ std::shared_ptr<rtl::Book> testBook2;
 
 - (void)testAddBook {    
     rtl::Author newAuthor("testAuthor");
-    std::shared_ptr<rtl::Book> testBook = std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::fantasy, "Nov-11-1992");
+    std::shared_ptr<rtl::Book> testBook = std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::Genre::fantasy, "Nov-11-1992");
     
     XCTAssert(newAuthor.GetBooksWritten().empty());
     

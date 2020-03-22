@@ -13,14 +13,36 @@
     "booksWritten":[]
 
 */
-rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostream& outputStream) {
-    std::string name;
-    std::string dateBorn;
+rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostream& outputStream, int inputMode) {
+    std::string name = "";
+    std::string dateBorn = "";
     
-    OutputLine(outputStream, "Input author's name");
-    name = GetInput(inputStream);
-    OutputLine(outputStream, "Input author's date of birth (leave blank if unknown)");
-    dateBorn = GetInput(inputStream);
+    switch(inputMode) {
+        //manual
+        case 0: {
+            OutputLine(outputStream, "Input author's name");
+            name = GetInput(inputStream);
+            OutputLine(outputStream, "Input author's date of birth (leave blank if unknown)");
+            dateBorn = GetInput(inputStream);
+            break;
+        }
+        //by identifier
+        case 1: {
+            //TODO: implement this
+            std::cout << "not yet implemented, calling manual entry" << std::endl;
+            return rtl::CommandLine::GetNewAuthor(inputStream, outputStream, 0);
+        }
+        //by title
+        case 2: {
+            //TODO: implement this
+            std::cout << "not yet implemented, calling manual entry" << std::endl;
+            return rtl::CommandLine::GetNewAuthor(inputStream, outputStream, 0);
+        }
+        default: {
+            //TODO: log this, should never hit default
+            break;
+        }
+    }
     
     return rtl::Author(name, dateBorn);
 }
@@ -36,28 +58,50 @@ rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostre
     "pageCount" : 782
 }
 */
-//TODO: more descriptive input messages
-rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream) {
+
+rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode) {
     std::string author, isbn, oclc, title, publisher, series, genre, datePublished, pageCount;
     
-    OutputLine(outputStream, "Input author");
-    author = GetInput(inputStream);
-    OutputLine(outputStream, "Input ISBN");
-    isbn = GetInput(inputStream);
-    OutputLine(outputStream, "Input OCLC");
-    oclc = GetInput(inputStream);
-    OutputLine(outputStream, "Input title");
-    title = GetInput(inputStream);
-    OutputLine(outputStream, "Input publisher");
-    publisher = GetInput(inputStream);
-    OutputLine(outputStream, "Input series");
-    series = GetInput(inputStream);
-    OutputLine(outputStream, "Input genre");
-    genre = GetInput(inputStream);
-    OutputLine(outputStream, "Input date published");
-    datePublished = GetInput(inputStream);
-    OutputLine(outputStream, "Input page count");
-    pageCount = GetInput(inputStream);
+    switch(inputMode) {
+        //manual
+        case 0: {
+            //TODO: more descriptive input messages
+            OutputLine(outputStream, "Input author");
+            author = GetInput(inputStream);
+            OutputLine(outputStream, "Input ISBN");
+            isbn = GetInput(inputStream);
+            OutputLine(outputStream, "Input OCLC");
+            oclc = GetInput(inputStream);
+            OutputLine(outputStream, "Input title");
+            title = GetInput(inputStream);
+            OutputLine(outputStream, "Input publisher");
+            publisher = GetInput(inputStream);
+            OutputLine(outputStream, "Input series");
+            series = GetInput(inputStream);
+            OutputLine(outputStream, "Input genre");
+            genre = GetInput(inputStream);
+            OutputLine(outputStream, "Input date published");
+            datePublished = GetInput(inputStream);
+            OutputLine(outputStream, "Input page count");
+            pageCount = GetInput(inputStream);
+            break;
+        }
+        //by identifier (ISBN or OCLC)
+        case 1: {
+            //TODO: implement this
+            std::cout << "not yet implemented, calling manual entry" << std::endl;
+            return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
+        }
+        //by title
+        case 2: {
+            //TODO: implement this
+            std::cout << "not yet implemented, calling manual entry" << std::endl;
+            return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
+        }
+        default:
+            //TODO: log this, should never hit default
+            break;
+    }
     
     return rtl::Book(author, title, series, publisher, stoi(pageCount), genre, datePublished, isbn, oclc);
 }
@@ -76,34 +120,17 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
     "dateRead" : "Oct 26 2019"
 }
 */
-//TODO: validation on inputs, better input flow
-rtl::ReadBook rtl::CommandLine::GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId) {
-    std::string author, title, publisher, series, genre, datePublished, pageCount, dateFinished, rating, isbn, oclc;
+//TODO: validation on inputs
+rtl::ReadBook rtl::CommandLine::GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId, int inputMode) {
     
-    OutputLine(outputStream, "Input author");
-    author = GetInput(inputStream);
-    OutputLine(outputStream, "Input title");
-    title = GetInput(inputStream);
-    OutputLine(outputStream, "Input isbn");
-    isbn = GetInput(inputStream);
-    OutputLine(outputStream, "Input oclc");
-    oclc = GetInput(inputStream);
-    OutputLine(outputStream, "Input publisher");
-    publisher = GetInput(inputStream);
-    OutputLine(outputStream, "Input series");
-    series = GetInput(inputStream);
-    OutputLine(outputStream, "Input genre");
-    genre = GetInput(inputStream);
-    OutputLine(outputStream, "Input date published");
-    datePublished = GetInput(inputStream);
-    OutputLine(outputStream, "Input page count");
-    pageCount = GetInput(inputStream);
+    rtl::Book newBook = rtl::CommandLine::GetNewBook(inputStream, outputStream, inputMode);
+
     OutputLine(outputStream, "Input date you finished reading");
-    dateFinished = GetInput(inputStream);
+    std::string dateFinished = GetInput(inputStream);
     OutputLine(outputStream, "On a scale of 1 - 10 rate the book");
-    rating = GetInput(inputStream);
+    std::string rating = GetInput(inputStream);
     
-    return rtl::ReadBook(readerId, rtl::Book(author, title, series, publisher, stoi(pageCount), genre, datePublished, isbn, oclc), stoi(rating), dateFinished);
+    return rtl::ReadBook(readerId, newBook, stoi(rating), dateFinished);
 }
 
 void rtl::CommandLine::OutputLine(std::ostream& outputStream, std::string output) {
@@ -134,12 +161,16 @@ void userInputAgain(std::ostream& outputStream) {
 //TODO: should only be called from mainMenu so not in header, do all the options need to share so much code not abstracted away (too much copy/paste)
 void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList, int readerId) {
     
+    std::vector<std::string> inputModes {"manual", "by identifier (isbn/oclc)", "by title" };
+    int currentMode = 0;
+    
     while(true) {
         rtl::CommandLine::OutputLine(outputStream, std::vector<std::string>
         {   "Please select what you want to add",
             "1: Book",
-            "2: Books that have been read",
+            "2: Books that you have read",
             "3: Authors",
+            "c: Change input method. Currently: " + inputModes[currentMode],
             "x: Return to main menu"
         });
         std::string input = rtl::CommandLine::GetInput(inputStream);
@@ -158,7 +189,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
         switch(charInput) {
             //book
             case '1': {
-                auto newBook = std::make_shared<rtl::Book>(rtl::CommandLine::GetNewBook(inputStream, outputStream));
+                auto newBook = std::make_shared<rtl::Book>(rtl::CommandLine::GetNewBook(inputStream, outputStream, currentMode));
                 rtl::CommandLine::OutputLine(outputStream, "Would you like to save:");
                 rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(newBook) + "?");
                 rtl::CommandLine::OutputLine(outputStream, "Y/N");
@@ -187,7 +218,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
             }
             //readbook
             case '2': {
-                auto newReadBook = std::make_shared<rtl::ReadBook>(rtl::CommandLine::GetNewReadBook(inputStream, outputStream, readerId));
+                auto newReadBook = std::make_shared<rtl::ReadBook>(rtl::CommandLine::GetNewReadBook(inputStream, outputStream, readerId, currentMode));
                 rtl::CommandLine::OutputLine(outputStream, "Would you like to save:");
                 rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(newReadBook) + "?");
                 rtl::CommandLine::OutputLine(outputStream, "Y/N");
@@ -216,7 +247,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
             }
             //author
             case '3': {
-                auto newAuthor = std::make_shared<rtl::Author>(rtl::CommandLine::GetNewAuthor(inputStream, outputStream));
+                auto newAuthor = std::make_shared<rtl::Author>(rtl::CommandLine::GetNewAuthor(inputStream, outputStream, currentMode));
                 rtl::CommandLine::OutputLine(outputStream, "Would you like to save:");
                 rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(newAuthor) + "?");
                 rtl::CommandLine::OutputLine(outputStream, "Y/N");
@@ -242,6 +273,15 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
                         break;
                 }
                 break;
+                    
+            }
+            case 'C':
+            case 'c': {
+                ++currentMode;
+                if (currentMode >= inputModes.size()) {
+                    currentMode = 0;
+                }
+                break;
             }
             case 'X':
             case 'x': {
@@ -255,7 +295,8 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
 
 //should only be called from mainMenu so not in header
 void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList) {
-    std::string displayMode = "Json";
+    std::vector<std::string> displayModes {"Json", "Simple"};
+    int currentMode = 0;
     
     while(true) {
         rtl::CommandLine::OutputLine(outputStream, std::vector<std::string>
@@ -264,7 +305,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             "2: Books that have been read",
             "3: Authors",
             "9: All",
-            "s: Switch display mode. Currently: " + displayMode,
+            "c: Change display mode. Currently: " + displayModes[currentMode],
             "x: Return to main menu"
         });
         std::string input = rtl::CommandLine::GetInput(inputStream);
@@ -283,7 +324,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
         switch(charInput) {
             //book
             case '1': {
-                if (displayMode == "Simple") {
+                if (displayModes[currentMode] == "Simple") {
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintBookCommandLineHeaders());
                     for (auto x : masterList.GetMasterBooks()) {
@@ -301,7 +342,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             }
             //readbook
             case '2': {
-                if (displayMode == "Simple") {
+                if (displayModes[currentMode] == "Simple") {
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintReadBookCommandLineHeaders());
                     for (auto x : masterList.GetMasterReadBooks()) {
@@ -319,7 +360,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             }
             //author
             case '3': {
-                if (displayMode == "Simple") {
+                if (displayModes[currentMode] == "Simple") {
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintAuthorCommandLineHeaders());
                     for (auto x : masterList.GetMasterAuthors()) {
@@ -336,7 +377,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                 break;
             }
             case '9': {
-                if (displayMode == "Simple") {
+                if (displayModes[currentMode] == "Simple") {
                     //book
                     rtl::CommandLine::OutputLine(outputStream, "Books:\n");
                     //column headers
@@ -388,13 +429,12 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                 }
                 break;
             }
-            case 'S':
-            case 's': {
-                if (displayMode == "Json") {
-                    displayMode = "Simple";
-                }
-                else if (displayMode == "Simple") {
-                    displayMode = "Json";
+            case 'C':
+            case 'c': {
+                //move to the next available mode
+                ++currentMode;
+                if (currentMode >= displayModes.size()) {
+                    currentMode = 0;
                 }
                 break;
             }
