@@ -31,7 +31,7 @@ Brandon Sanderson   Dec 19 1975 Mistborn: The Final Empire                  2006
                                 Mistborn: The Hero of Ages                  2008
  */
 template <>
-std::string rtl::CommandLine::PrintCommandLine(const std::shared_ptr<rtl::Author> input) {
+std::string rtl::CommandLine::PrintCommandLineSimple(const std::shared_ptr<rtl::Author> input) {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
@@ -59,6 +59,29 @@ std::string rtl::CommandLine::PrintCommandLine(const std::shared_ptr<rtl::Author
     return returnStr.str();
 }
 
+template<> std::string rtl::CommandLine::PrintCommandLineDetailed(const std::shared_ptr<rtl::Author> input) {
+    /*
+     std::string authorId;
+     std::string name;
+     struct tm dateBorn;
+     std::vector<std::shared_ptr<rtl::Book>> booksWritten;
+     */
+    
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr << std::left;
+    returnStr << std::setw(15) << "Name: " << std::setw(65) << input->GetName().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "AuthorId: " << std::setw(65) << input->GetAuthorId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Date Born: " << std::setw(65) << input->PrintDateBorn().substr(0, 65) << std::endl;
+    returnStr << std::setw(80) << "Books Written:" << std::endl;
+    for (auto x : input->GetBooksWritten()) {
+        returnStr << rtl::CommandLine::PrintCommandLineDetailed(x);
+    }
+    
+    return returnStr.str();
+}
+
 //Author              Title                              Series              Pages
 std::string rtl::CommandLine::PrintBookCommandLineHeaders() {
     std::stringstream returnStr;
@@ -78,7 +101,7 @@ std::string rtl::CommandLine::PrintBookCommandLineHeaders() {
 
 //Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
 template <>
-std::string rtl::CommandLine::PrintCommandLine(const std::shared_ptr<rtl::Book> input) {
+std::string rtl::CommandLine::PrintCommandLineSimple(const std::shared_ptr<rtl::Book> input) {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
@@ -90,6 +113,57 @@ std::string rtl::CommandLine::PrintCommandLine(const std::shared_ptr<rtl::Book> 
     returnStr << std::left << input->GetSeries().substr(0, kBookWidthSeries - 1);
     returnStr.width(kBookWidthPage);
     returnStr << std::left << std::to_string(input->GetPageCount()).substr(0, kBookWidthPage);
+    
+    return returnStr.str();
+}
+
+template<> std::string rtl::CommandLine::PrintCommandLineDetailed(const std::shared_ptr<rtl::Book> input) {
+    /*
+    std::string title;
+    std::string bookId;
+    std::string author;
+    std::string authorId;
+    std::string series;
+    Genre genre;
+    int pageCount;
+    std::string publisher;
+    tm publishDate;
+    std::vector<std::string> isbnVector;
+    std::vector<std::string> oclcVector;
+     */
+    
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr << std::left;
+    returnStr << std::setw(15) << "Title: " << std::setw(65) << input->GetTitle().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "BookId: " << std::setw(65) << input->GetBookId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Author Name: " << std::setw(65) << input->GetAuthor().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "AuthorId: " << std::setw(65) << input->GetAuthorId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Series: " << std::setw(65) << input->GetSeries().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Genre: " << std::setw(65) << input->PrintGenre().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Page Count: " << std::setw(65) << std::to_string(input->GetPageCount()).substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Publisher: " << std::setw(65) << input->GetPublisher().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Publish Date: " << std::setw(65) << input->PrintPublishDate().substr(0, 65) << std::endl;
+    
+    returnStr << std::setw(15) << "ISBN: ";
+    std::string seperator = "";
+    std::string isbnString = "";
+    for (auto x : input->GetIsbn()) {
+        isbnString += seperator + x;
+        seperator = ", ";
+    }
+    returnStr << std::setw(65) << isbnString.substr(0, 65) << std::endl;
+    seperator = "";
+    
+    returnStr << std::setw(15) << "OCLC: ";
+    std::string oclcString = "";
+    for (auto x : input->GetOclc()) {
+        oclcString += seperator + x;
+        seperator = ", ";
+    }
+    returnStr << std::setw(65) << oclcString.substr(0, 65) << std::endl;
+    seperator = "";
     
     return returnStr.str();
 }
@@ -116,7 +190,7 @@ std::string rtl::CommandLine::PrintReadBookCommandLineHeaders() {
 
 //Brandon Sanderson   Mistborn: The Final Empire         541   Sep 13 2019  9
 template <>
-std::string rtl::CommandLine::PrintCommandLine(const std::shared_ptr<rtl::ReadBook> input) {
+std::string rtl::CommandLine::PrintCommandLineSimple(const std::shared_ptr<rtl::ReadBook> input) {
     std::stringstream returnStr;
     returnStr.fill(' ');
     
@@ -130,6 +204,37 @@ std::string rtl::CommandLine::PrintCommandLine(const std::shared_ptr<rtl::ReadBo
     returnStr << std::left << input->PrintDateRead().substr(0, kReadBookWidthDateRead - 1);
     returnStr.width(kReadBookWidthRating);
     returnStr << std::left << std::to_string(input->GetRating()).substr(0, kReadBookWidthRating - 1);
+    
+    return returnStr.str();
+}
+
+template<> std::string rtl::CommandLine::PrintCommandLineDetailed(const std::shared_ptr<rtl::ReadBook> input)
+{
+    /*
+     std::string readerId
+     std::string rating
+     tm dateRead
+     std::string title;
+     std::string bookId;
+     std::string author;
+     std::string authorId;
+     std::string series;
+     Genre genre;
+     int pageCount;
+     std::string publisher;
+     tm publishDate;
+     std::vector<std::string> isbnVector;
+     std::vector<std::string> oclcVector;
+     */
+    
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr << std::left;
+    returnStr << rtl::CommandLine::PrintCommandLineDetailed(static_cast<std::shared_ptr<rtl::Book>>(input));
+    returnStr << std::setw(15) << "ReaderId: " << std::setw(65) << input->GetReaderId() << std::endl;
+    returnStr << std::setw(15) << "Rating: " << std::setw(65) << input->GetRating() << std::endl;
+    returnStr << std::setw(15) << "Date Read: " << std::setw(65) << input->PrintDateRead() << std::endl;
     
     return returnStr.str();
 }

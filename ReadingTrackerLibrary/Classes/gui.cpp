@@ -376,7 +376,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintBookCommandLineHeaders());
                     for (auto x : masterList.GetMasterBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLine(x));
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
                     }
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 }
@@ -394,7 +394,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintReadBookCommandLineHeaders());
                     for (auto x : masterList.GetMasterReadBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLine(x));
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
                     }
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 }
@@ -412,7 +412,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintAuthorCommandLineHeaders());
                     for (auto x : masterList.GetMasterAuthors()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLine(x));
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
                     }
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 }
@@ -431,7 +431,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintBookCommandLineHeaders());
                     for (auto x : masterList.GetMasterBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLine(x));
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
                     }
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                     
@@ -440,7 +440,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintReadBookCommandLineHeaders());
                     for (auto x : masterList.GetMasterReadBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLine(x));
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
                     }
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
 
@@ -449,7 +449,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     //column headers
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintAuthorCommandLineHeaders());
                     for (auto x : masterList.GetMasterAuthors()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLine(x));
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
                     }
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 }

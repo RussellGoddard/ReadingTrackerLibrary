@@ -21,10 +21,16 @@ namespace rtl::CommandLine {
     std::string PrintBookCommandLineHeaders();
     std::string PrintReadBookCommandLineHeaders();
     template <typename T>
-    std::string PrintCommandLine(const std::shared_ptr<T> input);
-    template<> std::string PrintCommandLine(const std::shared_ptr<rtl::Author> input);
-    template<> std::string PrintCommandLine(const std::shared_ptr<rtl::Book> input);
-    template<> std::string PrintCommandLine(const std::shared_ptr<rtl::ReadBook> input);
+    std::string PrintCommandLineSimple(const std::shared_ptr<T> input);
+    template<> std::string PrintCommandLineSimple(const std::shared_ptr<rtl::Author> input);
+    template<> std::string PrintCommandLineSimple(const std::shared_ptr<rtl::Book> input);
+    template<> std::string PrintCommandLineSimple(const std::shared_ptr<rtl::ReadBook> input);
+    
+    template <typename T>
+    std::string PrintCommandLineDetailed(const std::shared_ptr<T> input);
+    template<> std::string PrintCommandLineDetailed(const std::shared_ptr<rtl::Author> input);
+    template<> std::string PrintCommandLineDetailed(const std::shared_ptr<rtl::Book> input);
+    template<> std::string PrintCommandLineDetailed(const std::shared_ptr<rtl::ReadBook> input);
     
     namespace {
             //used for printCommandLine and printCommandLineHeaders AUTHOR
