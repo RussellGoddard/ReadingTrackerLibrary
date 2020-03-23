@@ -343,7 +343,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
 
 //should only be called from mainMenu so not in header
 void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList) {
-    std::vector<std::string> displayModes {"Json", "Simple"};
+    std::vector<std::string> displayModes {"Json", "Simple", "Detailed"};
     int currentMode = 0;
     
     while(true) {
@@ -369,57 +369,106 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
         char charInput = 'p';
         charInput = input.at(0);
         
+        //TODO: has to be a better way to do this menu navigation
         switch(charInput) {
             //book
             case '1': {
-                if (displayModes[currentMode] == "Simple") {
-                    //column headers
-                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintBookCommandLineHeaders());
-                    for (auto x : masterList.GetMasterBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
+                switch(currentMode) {
+                    //json
+                    case 0: {
+                        for (auto x : masterList.GetMasterBooks()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(x));
+                            rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        }
+                        break;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
-                }
-                else {
-                    for (auto x : masterList.GetMasterBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(x));
+                    //simple
+                    case 1: {
+                        //column headers
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintBookCommandLineHeaders());
+                        for (auto x : masterList.GetMasterBooks()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
+                        }
                         rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        break;
+                    }
+                    //detailed
+                    case 2: {
+                        //column headers
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintBookCommandLineHeaders());
+                        for (auto x : masterList.GetMasterBooks()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineDetailed(x));
+                        }
+                        rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        break;
                     }
                 }
                 break;
             }
             //readbook
             case '2': {
-                if (displayModes[currentMode] == "Simple") {
-                    //column headers
-                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintReadBookCommandLineHeaders());
-                    for (auto x : masterList.GetMasterReadBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
+                switch(currentMode) {
+                    //json
+                    case 0: {
+                        for (auto x : masterList.GetMasterReadBooks()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(x));
+                            rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        }
+                        break;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
-                }
-                else {
-                    for (auto x : masterList.GetMasterReadBooks()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(x));
+                    //simple
+                    case 1: {
+                        //column headers
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintReadBookCommandLineHeaders());
+                        for (auto x : masterList.GetMasterReadBooks()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
+                        }
                         rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        break;
+                    }
+                    //detailed
+                    case 2: {
+                        //column headers
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintReadBookCommandLineHeaders());
+                        for (auto x : masterList.GetMasterReadBooks()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineDetailed(x));
+                        }
+                        rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        break;
                     }
                 }
                 break;
             }
             //author
             case '3': {
-                if (displayModes[currentMode] == "Simple") {
-                    //column headers
-                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintAuthorCommandLineHeaders());
-                    for (auto x : masterList.GetMasterAuthors()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
+                switch(currentMode) {
+                    //json
+                    case 0: {
+                        for (auto x : masterList.GetMasterAuthors()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(x));
+                            rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        }
+                        break;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
-                }
-                else {
-                    for (auto x : masterList.GetMasterAuthors()) {
-                        rtl::CommandLine::OutputLine(outputStream, rtl::PrintJson(x));
+                    //simple
+                    case 1: {
+                        //column headers
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintAuthorCommandLineHeaders());
+                        for (auto x : masterList.GetMasterAuthors()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineSimple(x));
+                        }
                         rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        break;
+                    }
+                    //detailed
+                    case 2: {
+                        //column headers
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintAuthorCommandLineHeaders());
+                        for (auto x : masterList.GetMasterAuthors()) {
+                            rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintCommandLineDetailed(x));
+                        }
+                        rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                        break;
                     }
                 }
                 break;
