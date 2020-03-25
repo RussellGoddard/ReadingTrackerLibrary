@@ -429,24 +429,24 @@
 }
 
 - (void)testPrintColumnHeader {
-    std::string testStr = "Author              Title                              Series              Pages";
+    std::string testStr = "Author              Title                            Series             Pages";
     rtl::Book testBook("testAuthor", "testTitle");
     
-    XCTAssert(testBook.PrintCommandLineHeader() == testStr);
+    XCTAssert(testBook.PrintHeader() == testStr);
 }
 
 - (void)testPrintCommandLineSimpleBook {
-    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541  ";
-    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    Millennium          480  ";
-    std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 The Wheel of Time12 70212";
+    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire       Mistborn           541  ";
+    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo  Millennium         480  ";
+    std::string testWidth = "Robert Jordan123456 The Eye of the World123456789012 The Wheel of Time1 70212";
     
     rtl::Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17");
     rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01");
     rtl::Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15");
     
-    XCTAssert(bookMist.PrintCommandLineSimple() == testMist);
-    XCTAssert(bookGirl.PrintCommandLineSimple() == testGirl);
-    XCTAssert(bookWidth.PrintCommandLineSimple() == testWidth);
+    XCTAssert(bookMist.PrintSimple() == testMist);
+    XCTAssert(bookGirl.PrintSimple() == testGirl);
+    XCTAssert(bookWidth.PrintSimple() == testWidth);
 }
 
 - (void)testPrintCommandLineDetailedBook {
@@ -458,9 +458,9 @@
     rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01", std::vector<std::string> {"9781847242532"}, std::vector<std::string> {"186764078"});
     rtl::Book bookWidth("Robert Jordan123456789012345678901234567890123456789012345678901234567890", "The Eye of the World12345678901234567890123456789012345678901234567890", "The Wheel of Time12345678901234567890123456789012345678901234567890", "Tor Books123456789012345678901234567890123456789012345678901234567890", 70212, "fantasy", "1990-Jan-15", std::vector<std::string> {"19723327", "1234567890", "1234567890", "1234567890", "1234567890", "1234567890"}, std::vector<std::string> {"0312850093", "1234567890", "1234567890", "1234567890", "1234567890", "1234567890"});
     
-    XCTAssert(bookMist.PrintCommandLineDetailed() == testMist);
-    XCTAssert(bookGirl.PrintCommandLineDetailed() == testGirl);
-    XCTAssert(bookWidth.PrintCommandLineDetailed() == testWidth);
+    XCTAssert(bookMist.PrintDetailed() == testMist);
+    XCTAssert(bookGirl.PrintDetailed() == testGirl);
+    XCTAssert(bookWidth.PrintDetailed() == testWidth);
 }
 
 - (void)testPrintJson {

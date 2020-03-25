@@ -113,7 +113,7 @@ std::string rtl::ReadBook::PrintJson() const {
     
 }
 
-std::string rtl::ReadBook::PrintCommandLineSimple() const {
+std::string rtl::ReadBook::PrintSimple() const {
     //Brandon Sanderson   Mistborn: The Final Empire         541   Sep 13 2019  9
     std::stringstream returnStr;
     returnStr.fill(' ');
@@ -132,7 +132,7 @@ std::string rtl::ReadBook::PrintCommandLineSimple() const {
     return returnStr.str();
 }
 
-std::string rtl::ReadBook::PrintCommandLineDetailed() const {
+std::string rtl::ReadBook::PrintDetailed() const {
     /*
      std::string readerId
      std::string rating
@@ -154,7 +154,7 @@ std::string rtl::ReadBook::PrintCommandLineDetailed() const {
     returnStr.fill(' ');
     
     returnStr << std::left;
-    returnStr << this->Book::PrintCommandLineDetailed();
+    returnStr << this->Book::PrintDetailed();
     returnStr << std::setw(15) << "ReaderId: " << std::setw(65) << this->GetReaderId() << std::endl;
     returnStr << std::setw(15) << "Rating: " << std::setw(65) << this->GetRating() << std::endl;
     returnStr << std::setw(15) << "Date Read: " << std::setw(65) << this->PrintDateRead() << std::endl;
@@ -162,7 +162,7 @@ std::string rtl::ReadBook::PrintCommandLineDetailed() const {
     return returnStr.str();
 }
 
-std::string rtl::ReadBook::PrintCommandLineHeader() const {
+std::string rtl::ReadBook::PrintHeader() const {
     //Author              Title                              Pages Date Read    Rating
     std::stringstream returnStr;
     returnStr.fill(' ');
@@ -176,7 +176,7 @@ std::string rtl::ReadBook::PrintCommandLineHeader() const {
     returnStr.width(kWidthDateRead);
     returnStr << std::left << "Date Read";
     returnStr.width(kWidthRating);
-    returnStr << std::left << "Rating";
+    returnStr << std::left << "Rate";
     
     return returnStr.str();
 }

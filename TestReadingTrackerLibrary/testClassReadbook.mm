@@ -393,25 +393,25 @@ int testReaderId = 1;
 }
 
 - (void)testPrintColumnHeader {
-    std::string testStr = "Author              Title                              Pages Date Read    Rating";
+    std::string testStr = "Author              Title                             Pages Date Read    Rate";
     
     rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     
-    XCTAssert(testReadBook.PrintCommandLineHeader() == testStr);
+    XCTAssert(testReadBook.PrintHeader() == testStr);
 }
 
 - (void)testPrintCommandLineSimpleReadBook {
-    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire         541   2019-Sep-13  9     ";
-    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    480   2019-Nov-19  9     ";
-    std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 70212 2019-Oct-27  8     ";
+    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire        541   2019-Sep-13  9   ";
+    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo   480   2019-Nov-19  9   ";
+    std::string testWidth = "Robert Jordan123456 The Eye of the World1234567890123 70212 2019-Oct-27  8   ";
 
     rtl::ReadBook bookMist(123, "Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", 9, "2019-Sep-13");
     rtl::ReadBook bookGirl(123, "Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01", 9, "2019-Nov-19");
     rtl::ReadBook bookWidth(123, "Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15", 8, "2019-Oct-27");
     
-    XCTAssert(bookMist.PrintCommandLineSimple() == testMist);
-    XCTAssert(bookGirl.PrintCommandLineSimple() == testGirl);
-    XCTAssert(bookWidth.PrintCommandLineSimple() == testWidth);
+    XCTAssert(bookMist.PrintSimple() == testMist);
+    XCTAssert(bookGirl.PrintSimple() == testGirl);
+    XCTAssert(bookWidth.PrintSimple() == testWidth);
 }
 
 - (void)testPrintCommandLineDetailedReadBook {
@@ -427,9 +427,9 @@ int testReaderId = 1;
     rtl::ReadBook readBookGirl(123, bookGirl, 9, "2019-Nov-19");
     rtl::ReadBook readBookWidth(123, bookWidth, 8, "2019-Oct-27");
     
-    XCTAssert(readBookMist.PrintCommandLineDetailed() == testMist);
-    XCTAssert(readBookGirl.PrintCommandLineDetailed() == testGirl);
-    XCTAssert(readBookWidth.PrintCommandLineDetailed() == testWidth);
+    XCTAssert(readBookMist.PrintDetailed() == testMist);
+    XCTAssert(readBookGirl.PrintDetailed() == testGirl);
+    XCTAssert(readBookWidth.PrintDetailed() == testWidth);
 }
 
 - (void)testPrintJson {

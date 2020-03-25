@@ -30,9 +30,9 @@ namespace rtl {
     class StandardOutput {
     public:
         virtual std::string PrintJson() const = 0;
-        virtual std::string PrintCommandLineSimple() const = 0;
-        virtual std::string PrintCommandLineDetailed() const = 0;
-        virtual std::string PrintCommandLineHeader() const = 0; //TODO: this really should be static
+        virtual std::string PrintSimple() const = 0;
+        virtual std::string PrintDetailed() const = 0;
+        virtual std::string PrintHeader() const = 0; //TODO: this really should be static
         
         static std::string GenerateId(const std::string& input) {
             //input is supposed to be clean/validated before this function

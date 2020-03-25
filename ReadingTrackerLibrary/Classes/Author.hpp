@@ -34,9 +34,9 @@ namespace rtl {
         std::string PrintDateBorn() const;
         
         std::string PrintJson() const override;
-        std::string PrintCommandLineSimple() const override;
-        std::string PrintCommandLineDetailed() const override;
-        std::string PrintCommandLineHeader() const override;
+        std::string PrintSimple() const override;
+        std::string PrintDetailed() const override;
+        std::string PrintHeader() const override;
         
         Author() = delete; //Author class HAS to be constructed with a name
         Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
@@ -48,10 +48,10 @@ namespace rtl {
         struct tm dateBorn;
         std::vector<std::shared_ptr<rtl::Book>> booksWritten;
         
-        //used for printCommandLineSimple and printCommandLineHeader
+        //used for printCommandLineSimple and printCommandLineHeader, 77 characters total
         const int kWidthAuthor = 20;
         const int kWidthDateBorn = 12;
-        const int kWidthTitle = 44;
+        const int kWidthTitle = 41;
         const int kWidthYear = 4;
     };
 

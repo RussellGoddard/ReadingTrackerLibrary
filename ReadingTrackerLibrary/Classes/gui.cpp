@@ -96,7 +96,7 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
         }
         //by identifier (ISBN or OCLC)
         case 1: {
-            //TODO: better implement openlibrary query
+            //TODO: make better use of data in openlibrary
             
             OutputLine(outputStream, "Query openlibrary by? (input 'OCLC' or 'ISBN'");
             std::string identifier = GetInput(inputStream);
@@ -442,7 +442,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                 bool printHeader = true;
                 for (auto x : outputVector) {
                     if (printHeader) {
-                        rtl::CommandLine::OutputLine(outputStream, x->PrintCommandLineHeader());
+                        rtl::CommandLine::OutputLine(outputStream, x->PrintHeader());
                         printHeader = false;
                     }
                     else if (x == nullptr) {
@@ -450,7 +450,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                         printHeader = true;
                         continue;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, x->PrintCommandLineSimple());
+                    rtl::CommandLine::OutputLine(outputStream, x->PrintSimple());
                 }
                 rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;
@@ -462,7 +462,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                         //no headers for detailed
                         continue;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, x->PrintCommandLineDetailed());
+                    rtl::CommandLine::OutputLine(outputStream, x->PrintDetailed());
                 }
                 rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;

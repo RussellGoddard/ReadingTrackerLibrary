@@ -89,7 +89,7 @@ std::string rtl::Author::PrintJson() const {
     return returnString;
 }
 
-std::string rtl::Author::PrintCommandLineSimple() const {
+std::string rtl::Author::PrintSimple() const {
     /*
     Brandon Sanderson   Dec 19 1975 Mistborn: The Final Empire                  2006
                                     Mistborn: The Well of Ascension             2007
@@ -122,7 +122,7 @@ std::string rtl::Author::PrintCommandLineSimple() const {
     return returnStr.str();
 }
 
-std::string rtl::Author::PrintCommandLineDetailed() const {
+std::string rtl::Author::PrintDetailed() const {
     /*
      std::string authorId;
      std::string name;
@@ -139,13 +139,13 @@ std::string rtl::Author::PrintCommandLineDetailed() const {
     returnStr << std::setw(15) << "Date Born: " << std::setw(65) << this->PrintDateBorn().substr(0, 65) << std::endl;
     returnStr << std::setw(80) << "Books Written:" << std::endl;
     for (auto x : this->GetBooksWritten()) {
-        returnStr << x->PrintCommandLineDetailed();
+        returnStr << x->PrintDetailed();
     }
     
     return returnStr.str();
 }
 
-std::string rtl::Author::PrintCommandLineHeader() const {
+std::string rtl::Author::PrintHeader() const {
     //Author              Date Born   Books Written                               Year
     std::stringstream returnStr;
     returnStr.fill(' ');

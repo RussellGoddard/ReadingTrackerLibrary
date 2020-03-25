@@ -61,9 +61,9 @@ namespace rtl {
         void AddIsbn(std::string isbn);
         
         std::string PrintJson() const override;
-        std::string PrintCommandLineSimple() const override;
-        std::string PrintCommandLineDetailed() const override;
-        std::string PrintCommandLineHeader() const override;
+        std::string PrintSimple() const override;
+        std::string PrintDetailed() const override;
+        std::string PrintHeader() const override;
         
         Book() = delete; //Book class HAS to be constructed with a title and author
         Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0));
@@ -84,10 +84,10 @@ namespace rtl {
         int pageCount;
         tm publishDate;
         
-        //used for printCommandLineSimple and printCommandLineHeaders
+        //used for printCommandLineSimple and printCommandLineHeaders, 77 characters total
         const int kWidthAuthor = 20;
-        const int kWidthTitle = 35;
-        const int kWidthSeries = 20;
+        const int kWidthTitle = 33;
+        const int kWidthSeries = 19;
         const int kWidthPage = 5;
     };
 

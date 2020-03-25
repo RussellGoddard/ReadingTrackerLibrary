@@ -211,7 +211,7 @@ std::string rtl::Book::PrintJson() const {
     
 }
 
-std::string rtl::Book::PrintCommandLineSimple() const {
+std::string rtl::Book::PrintSimple() const {
     //Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
     std::stringstream returnStr;
     returnStr.fill(' ');
@@ -228,7 +228,7 @@ std::string rtl::Book::PrintCommandLineSimple() const {
     return returnStr.str();
 }
 
-std::string rtl::Book::PrintCommandLineDetailed() const {
+std::string rtl::Book::PrintDetailed() const {
     /*
     std::string title;
     std::string bookId;
@@ -279,7 +279,7 @@ std::string rtl::Book::PrintCommandLineDetailed() const {
     return returnStr.str();
 }
 
-std::string rtl::Book::PrintCommandLineHeader() const {
+std::string rtl::Book::PrintHeader() const {
     //Author              Title                              Series              Pages
     std::stringstream returnStr;
     returnStr.fill(' ');

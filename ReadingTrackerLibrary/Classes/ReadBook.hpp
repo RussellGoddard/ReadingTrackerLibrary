@@ -27,9 +27,9 @@ namespace rtl {
         int GetReaderId() const;
         
         std::string PrintJson() const override;
-        std::string PrintCommandLineSimple() const override;
-        std::string PrintCommandLineDetailed() const override;
-        std::string PrintCommandLineHeader() const override;
+        std::string PrintSimple() const override;
+        std::string PrintDetailed() const override;
+        std::string PrintHeader() const override;
         
         ReadBook() = delete; //ReadBook class HAS to be constructed with a readerId, book author and book title
         ReadBook(int readerId, Book book, int rating, time_t dateRead);
@@ -41,12 +41,12 @@ namespace rtl {
         tm dateRead;
         int rating;
         
-        //used for printCommandLineSimple and printCommandLineHeaders
+        //used for printCommandLineSimple and printCommandLineHeaders, 77 characters total
         const int kWidthAuthor = 20;
-        const int kWidthTitle = 35;
+        const int kWidthTitle = 34;
         const int kWidthPage = 6;
         const int kWidthDateRead = 13;
-        const int kWidthRating = 6;
+        const int kWidthRating = 4;
     };
 
     bool operator==(const ReadBook& lhs, const ReadBook& rhs);

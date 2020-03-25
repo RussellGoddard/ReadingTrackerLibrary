@@ -260,15 +260,15 @@ std::shared_ptr<rtl::Book> testBook2;
 }
 
 - (void)testPrintAuthorColumnHeaders {
-    std::string testStr = "Author              Date Born   Books Written                               Year";
+    std::string testStr = "Author              Date Born   Books Written                            Year";
     rtl::Author testAuthor("testAuthor");
-    XCTAssert(testAuthor.PrintCommandLineHeader() == testStr);
+    XCTAssert(testAuthor.PrintHeader() == testStr);
 }
 
 - (void)testPrintCommandLineSimpleAuthor {
-    std::string testMist = "Brandon Sanderson   1975-Dec-19 Mistborn: The Final Empire                  2006\n                                Mistborn: The Well of Ascension             2007\n                                Mistborn: The Hero of Ages                  2008";
-    std::string testGirl = "Stieg Larsson       1964-Aug-15 The Girl with the Dragon Tattoo             2005";
-    std::string testWidth = "Robert Jordan123456 1948-Oct-17 The Eye of the World12345678901234567890123 1990";
+    std::string testMist = "Brandon Sanderson   1975-Dec-19 Mistborn: The Final Empire               2006\n                                Mistborn: The Well of Ascension          2007\n                                Mistborn: The Hero of Ages               2008";
+    std::string testGirl = "Stieg Larsson       1964-Aug-15 The Girl with the Dragon Tattoo          2005";
+    std::string testWidth = "Robert Jordan123456 1948-Oct-17 The Eye of the World12345678901234567890 1990";
     
     rtl::Book bookMist1("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17");
     rtl::Book bookMist2("Brandon Sanderson", "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 541, "fantasy", "2007-Jul-17");
@@ -288,9 +288,9 @@ std::shared_ptr<rtl::Book> testBook2;
     authorWidth.SetDateBorn("1948-Oct-17");
     authorWidth.AddBookWritten(std::make_shared<rtl::Book>(bookWidth));
     
-    XCTAssert(authorMist.PrintCommandLineSimple() == testMist);
-    XCTAssert(authorGirl.PrintCommandLineSimple() == testGirl);
-    XCTAssert(authorWidth.PrintCommandLineSimple() == testWidth);
+    XCTAssert(authorMist.PrintSimple() == testMist);
+    XCTAssert(authorGirl.PrintSimple() == testGirl);
+    XCTAssert(authorWidth.PrintSimple() == testWidth);
 }
 
 - (void)testPrintCommandLineDetailedAuthor {
@@ -317,9 +317,9 @@ std::shared_ptr<rtl::Book> testBook2;
     authorWidth.SetDateBorn("1948-Oct-17");
     authorWidth.AddBookWritten(std::make_shared<rtl::Book>(bookWidth));
     
-    XCTAssert(authorMist.PrintCommandLineDetailed() == testMist);
-    XCTAssert(authorGirl.PrintCommandLineDetailed() == testGirl);
-    XCTAssert(authorWidth.PrintCommandLineDetailed() == testWidth);
+    XCTAssert(authorMist.PrintDetailed() == testMist);
+    XCTAssert(authorGirl.PrintDetailed() == testGirl);
+    XCTAssert(authorWidth.PrintDetailed() == testWidth);
 }
 
 - (void)testPrintJson {
