@@ -100,20 +100,97 @@ int rtl::ReadBook::GetReaderId() const {
     return this->readerId;
 }
 
+std::string rtl::ReadBook::PrintJson() const {
+    std::string returnString;
+    
+    returnString = this->Book::PrintJson();
+    returnString.pop_back(); //remove ending bracket
+    
+    //append ReadBook variables
+    returnString += R"(,"rating":)" + std::to_string(this->GetRating()) + R"(,"dateRead":")" + this->PrintDateRead() + R"(","readerId":)" + std::to_string(this->GetReaderId()) + R"(})";
+    
+    return returnString;
+    
+}
+
+std::string rtl::ReadBook::PrintCommandLineSimple() const {
+    //Brandon Sanderson   Mistborn: The Final Empire         541   Sep 13 2019  9
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(kWidthAuthor);
+    returnStr << std::left << this->GetAuthor().substr(0, kWidthAuthor - 1);
+    returnStr.width(kWidthTitle);
+    returnStr << std::left << this->GetTitle().substr(0, kWidthTitle - 1);
+    returnStr.width(kWidthPage);
+    returnStr << std::left << std::to_string(this->GetPageCount()).substr(0, kWidthPage - 1);
+    returnStr.width(kWidthDateRead);
+    returnStr << std::left << this->PrintDateRead().substr(0, kWidthDateRead - 1);
+    returnStr.width(kWidthRating);
+    returnStr << std::left << std::to_string(this->GetRating()).substr(0, kWidthRating - 1);
+    
+    return returnStr.str();
+}
+
+std::string rtl::ReadBook::PrintCommandLineDetailed() const {
+    /*
+     std::string readerId
+     std::string rating
+     tm dateRead
+     std::string title;
+     std::string bookId;
+     std::string author;
+     std::string authorId;
+     std::string series;
+     Genre genre;
+     int pageCount;
+     std::string publisher;
+     tm publishDate;
+     std::vector<std::string> isbnVector;
+     std::vector<std::string> oclcVector;
+     */
+    
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr << std::left;
+    returnStr << this->Book::PrintCommandLineDetailed();
+    returnStr << std::setw(15) << "ReaderId: " << std::setw(65) << this->GetReaderId() << std::endl;
+    returnStr << std::setw(15) << "Rating: " << std::setw(65) << this->GetRating() << std::endl;
+    returnStr << std::setw(15) << "Date Read: " << std::setw(65) << this->PrintDateRead() << std::endl;
+    
+    return returnStr.str();
+}
+
+std::string rtl::ReadBook::PrintCommandLineHeader() const {
+    //Author              Title                              Pages Date Read    Rating
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(kWidthAuthor);
+    returnStr << std::left << "Author";
+    returnStr.width(kWidthTitle);
+    returnStr << std::left << "Title";
+    returnStr.width(kWidthPage);
+    returnStr << std::left << "Pages";
+    returnStr.width(kWidthDateRead);
+    returnStr << std::left << "Date Read";
+    returnStr.width(kWidthRating);
+    returnStr << std::left << "Rating";
+    
+    return returnStr.str();
+}
+
 rtl::ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
-    
-    return;
 }
 
 rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : Book(book) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
-    
-    return;
 }
 
 
@@ -121,16 +198,12 @@ rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
-    
-    return;
 }
 
 rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
-    
-    return;
 }
     
 bool rtl::operator==(const ReadBook& lhs, const ReadBook& rhs) {

@@ -428,5 +428,54 @@
     XCTAssert(testBook.GetIsbn().at(1) == answerString2);
 }
 
+- (void)testPrintColumnHeader {
+    std::string testStr = "Author              Title                              Series              Pages";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.PrintCommandLineHeader() == testStr);
+}
+
+- (void)testPrintCommandLineSimpleBook {
+    std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541  ";
+    std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo    Millennium          480  ";
+    std::string testWidth = "Robert Jordan123456 The Eye of the World12345678901234 The Wheel of Time12 70212";
+    
+    rtl::Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17");
+    rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01");
+    rtl::Book bookWidth("Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15");
+    
+    XCTAssert(bookMist.PrintCommandLineSimple() == testMist);
+    XCTAssert(bookGirl.PrintCommandLineSimple() == testGirl);
+    XCTAssert(bookWidth.PrintCommandLineSimple() == testWidth);
+}
+
+- (void)testPrintCommandLineDetailedBook {
+    std::string testMist = "Title:         Mistborn: The Final Empire                                       \nBookId:        1c5fdaf7109aa47ef2                                               \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2006-Jul-17                                                      \nISBN:          9780765311788                                                    \nOCLC:          62342185                                                         \n";
+    std::string testGirl = "Title:         The Girl with the Dragon Tattoo                                  \nBookId:        2c844f9a4aac31a8848f80                                           \nAuthor Name:   Stieg Larsson                                                    \nAuthorId:      7052c8                                                           \nSeries:        Millennium                                                       \nGenre:         thriller                                                         \nPage Count:    480                                                              \nPublisher:     Norstedts Förlag                                                \nPublish Date:  2005-Aug-01                                                      \nISBN:          9781847242532                                                    \nOCLC:          186764078                                                        \n";
+    std::string testWidth = "Title:         The Eye of the World123456789012345678901234567890123456789012345\nBookId:        cfcbb4cef513c9c904bf8                                            \nAuthor Name:   Robert Jordan1234567890123456789012345678901234567890123456789012\nAuthorId:      2766def2                                                         \nSeries:        The Wheel of Time123456789012345678901234567890123456789012345678\nGenre:         fantasy                                                          \nPage Count:    70212                                                            \nPublisher:     Tor Books12345678901234567890123456789012345678901234567890123456\nPublish Date:  1990-Jan-15                                                      \nISBN:          19723327, 1234567890, 1234567890, 1234567890, 1234567890, 1234567\nOCLC:          0312850093, 1234567890, 1234567890, 1234567890, 1234567890, 12345\n";
+    
+    rtl::Book bookMist("Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", std::vector<std::string> {"9780765311788"}, std::vector<std::string> {"62342185"});
+    rtl::Book bookGirl("Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01", std::vector<std::string> {"9781847242532"}, std::vector<std::string> {"186764078"});
+    rtl::Book bookWidth("Robert Jordan123456789012345678901234567890123456789012345678901234567890", "The Eye of the World12345678901234567890123456789012345678901234567890", "The Wheel of Time12345678901234567890123456789012345678901234567890", "Tor Books123456789012345678901234567890123456789012345678901234567890", 70212, "fantasy", "1990-Jan-15", std::vector<std::string> {"19723327", "1234567890", "1234567890", "1234567890", "1234567890", "1234567890"}, std::vector<std::string> {"0312850093", "1234567890", "1234567890", "1234567890", "1234567890", "1234567890"});
+    
+    XCTAssert(bookMist.PrintCommandLineDetailed() == testMist);
+    XCTAssert(bookGirl.PrintCommandLineDetailed() == testGirl);
+    XCTAssert(bookWidth.PrintCommandLineDetailed() == testWidth);
+}
+
+- (void)testPrintJson {
+    rtl::Book testBook("testAuthor", "testTitle");
+    testBook.AddIsbn("1234567890");
+    testBook.AddIsbn("123-45678-90-12");
+    testBook.AddOclc("123456");
+    testBook.SetSeries("testSeries");
+    testBook.SetPublisher("testPublisher");
+    testBook.SetGenre("fantasy");
+    testBook.SetPageCount(10);
+    testBook.SetPublishDate("1990-Dec-01");
+    
+    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","123456789012"],"oclc":["123456"],"author":"testAuthor","authorId":"1ecb","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
+    XCTAssert(testBook.PrintJson() == answer);
+}
 
 @end

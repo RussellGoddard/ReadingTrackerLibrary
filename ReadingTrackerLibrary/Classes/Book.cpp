@@ -174,6 +174,128 @@ void rtl::Book::AddIsbn(std::string isbn) {
     return;
 }
 
+std::string rtl::Book::PrintJson() const {
+    std::string returnString = R"({"bookId":")" + this->GetBookId();
+    
+    returnString += R"(","isbn":[)";
+    std::vector<std::string> isbnVector = this->GetIsbn();
+    for (int i = 0; i < isbnVector.size(); ++i) {
+        returnString += R"(")";
+        returnString += isbnVector.at(i);
+        returnString += R"(")";
+        if (i < isbnVector.size() - 1) {
+            returnString += R"(,)";
+        }
+    }
+    
+    returnString += R"(],"oclc":[)";
+    std::vector<std::string> oclcVector = this->GetOclc();
+    for (int i = 0; i < oclcVector.size(); ++i) {
+        returnString += R"(")";
+        returnString += oclcVector.at(i);
+        returnString += R"(")";
+        if (i < oclcVector.size() - 1) {
+            returnString += R"(,)";
+        }
+    }
+    returnString += R"(],"author":")" + this->GetAuthor();
+    returnString += R"(","authorId":")" + this->GetAuthorId();
+    returnString += R"(","title":")" + this->GetTitle();
+    returnString += R"(","series":")" + this->GetSeries();
+    returnString += R"(","publisher":")" + this->GetPublisher();
+    returnString += R"(","genre":")" + this->PrintGenre();
+    returnString += R"(","pageCount":)" + std::to_string(this->GetPageCount());
+    returnString += R"(,"publishDate":")" + this->PrintPublishDate();
+    returnString += R"("})";
+    return returnString;
+    
+}
+
+std::string rtl::Book::PrintCommandLineSimple() const {
+    //Brandon Sanderson   Mistborn: The Final Empire         Mistborn            541
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(kWidthAuthor);
+    returnStr << std::left << this->GetAuthor().substr(0, kWidthAuthor - 1);
+    returnStr.width(kWidthTitle);
+    returnStr << std::left << this->GetTitle().substr(0, kWidthTitle - 1);
+    returnStr.width(kWidthSeries);
+    returnStr << std::left << this->GetSeries().substr(0, kWidthSeries - 1);
+    returnStr.width(kWidthPage);
+    returnStr << std::left << std::to_string(this->GetPageCount()).substr(0, kWidthPage);
+    
+    return returnStr.str();
+}
+
+std::string rtl::Book::PrintCommandLineDetailed() const {
+    /*
+    std::string title;
+    std::string bookId;
+    std::string author;
+    std::string authorId;
+    std::string series;
+    Genre genre;
+    int pageCount;
+    std::string publisher;
+    tm publishDate;
+    std::vector<std::string> isbnVector;
+    std::vector<std::string> oclcVector;
+     */
+    
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr << std::left;
+    returnStr << std::setw(15) << "Title: " << std::setw(65) << this->GetTitle().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "BookId: " << std::setw(65) << this->GetBookId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Author Name: " << std::setw(65) << this->GetAuthor().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "AuthorId: " << std::setw(65) << this->GetAuthorId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Series: " << std::setw(65) << this->GetSeries().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Genre: " << std::setw(65) << this->PrintGenre().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Page Count: " << std::setw(65) << std::to_string(this->GetPageCount()).substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Publisher: " << std::setw(65) << this->GetPublisher().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Publish Date: " << std::setw(65) << this->PrintPublishDate().substr(0, 65) << std::endl;
+    
+    returnStr << std::setw(15) << "ISBN: ";
+    std::string seperator = "";
+    std::string isbnString = "";
+    for (auto x : this->GetIsbn()) {
+        isbnString += seperator + x;
+        seperator = ", ";
+    }
+    returnStr << std::setw(65) << isbnString.substr(0, 65) << std::endl;
+    seperator = "";
+    
+    returnStr << std::setw(15) << "OCLC: ";
+    std::string oclcString = "";
+    for (auto x : this->GetOclc()) {
+        oclcString += seperator + x;
+        seperator = ", ";
+    }
+    returnStr << std::setw(65) << oclcString.substr(0, 65) << std::endl;
+    seperator = "";
+    
+    return returnStr.str();
+}
+
+std::string rtl::Book::PrintCommandLineHeader() const {
+    //Author              Title                              Series              Pages
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(kWidthAuthor);
+    returnStr << std::left << "Author";
+    returnStr.width(kWidthTitle);
+    returnStr << std::left << "Title";
+    returnStr.width(kWidthSeries);
+    returnStr << std::left << "Series";
+    returnStr.width(kWidthPage);
+    returnStr << std::left << "Pages";
+    
+    return returnStr.str();
+}
+
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
     this->author = author;
     this->title = title;
@@ -182,8 +304,8 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     this->SetPageCount(pageCount);
     this->SetGenre(genre);
     this->SetPublishDate(publishDate);
-    this->authorId = rtl::GenerateId(this->GetAuthor());
-    this->bookId = rtl::GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
+    this->authorId = this->GenerateId(this->GetAuthor());
+    this->bookId = this->GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
     
     return;
 }
@@ -196,8 +318,8 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     this->SetPageCount(pageCount);
     this->SetGenre(genre);
     this->SetPublishDate(publishDate);
-    this->authorId = rtl::GenerateId(this->GetAuthor());
-    this->bookId = rtl::GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
+    this->authorId = this->GenerateId(this->GetAuthor());
+    this->bookId = this->GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn, std::string oclc) {
@@ -210,8 +332,8 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     this->SetPublishDate(publishDate);
     this->AddIsbn(isbn);
     this->AddOclc(oclc);
-    this->authorId = rtl::GenerateId(this->GetAuthor());
-    this->bookId = rtl::GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
+    this->authorId = this->GenerateId(this->GetAuthor());
+    this->bookId = this->GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc) {
@@ -224,8 +346,8 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     this->SetPublishDate(publishDate);
     this->isbnVector = isbn;
     this->oclcVector = oclc;
-    this->authorId = rtl::GenerateId(this->GetAuthor());
-    this->bookId = rtl::GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
+    this->authorId = this->GenerateId(this->GetAuthor());
+    this->bookId = this->GenerateId(this->GetAuthor() + ' ' + this->GetTitle());
 }
 
 bool rtl::operator==(const rtl::Book& lhs, const rtl::Book& rhs) {
@@ -291,4 +413,5 @@ bool rtl::operator<=(const rtl::Book& lhs, const rtl::Book& rhs) {
 bool rtl::operator>=(const rtl::Book& lhs, const rtl::Book& rhs) {
     return !operator<(lhs, rhs);
 }
+
 

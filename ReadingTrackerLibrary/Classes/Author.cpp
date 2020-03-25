@@ -74,6 +74,94 @@ std::vector<std::shared_ptr<rtl::Book>> rtl::Author::GetBooksWritten() const {
     return this->booksWritten;
 }
 
+std::string rtl::Author::PrintJson() const {
+    std::string returnString;
+    returnString = R"({"authorId":")" + this->GetAuthorId() + R"(","name":")" + this->GetName() + R"(","dateBorn":")" + this->PrintDateBorn() + R"(","booksWritten":[)";
+    for (std::shared_ptr<rtl::Book> x : this->GetBooksWritten()) {
+        returnString += x->PrintJson();
+        returnString += ',';
+    }
+    if (returnString.back() == ',') {
+        returnString.pop_back();
+    }
+    returnString += R"(]})";
+    
+    return returnString;
+}
+
+std::string rtl::Author::PrintCommandLineSimple() const {
+    /*
+    Brandon Sanderson   Dec 19 1975 Mistborn: The Final Empire                  2006
+                                    Mistborn: The Well of Ascension             2007
+                                    Mistborn: The Hero of Ages                  2008
+     */
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(kWidthAuthor);
+    returnStr << std::left << this->GetName().substr(0, kWidthAuthor - 1);
+    returnStr.width(kWidthDateBorn);
+    returnStr << std::left << this->PrintDateBorn().substr(0, kWidthDateBorn - 1);
+    if (!this->GetBooksWritten().empty()) {
+        std::vector<std::shared_ptr<rtl::Book>> booksWritten = this->GetBooksWritten();
+        returnStr.width(kWidthTitle);
+        returnStr << std::left << booksWritten.at(0)->GetTitle().substr(0, kWidthTitle - 1);
+        returnStr.width(kWidthYear);
+        returnStr << std::left << booksWritten.at(0)->PrintPublishDate().substr(0, 4);
+        for (int i = 1; i < booksWritten.size(); ++i) {
+            returnStr << std::endl;
+            returnStr.width(kWidthAuthor + kWidthDateBorn);
+            returnStr << std::left << " ";
+            returnStr.width(kWidthTitle);
+            returnStr << std::left << booksWritten.at(i)->GetTitle().substr(0, kWidthTitle - 1);
+            returnStr.width(kWidthYear);
+            returnStr << std::left << booksWritten.at(i)->PrintPublishDate().substr(0, 4);
+        }
+    }
+    
+    return returnStr.str();
+}
+
+std::string rtl::Author::PrintCommandLineDetailed() const {
+    /*
+     std::string authorId;
+     std::string name;
+     struct tm dateBorn;
+     std::vector<std::shared_ptr<rtl::Book>> booksWritten;
+     */
+    
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr << std::left;
+    returnStr << std::setw(15) << "Name: " << std::setw(65) << this->GetName().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "AuthorId: " << std::setw(65) << this->GetAuthorId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << "Date Born: " << std::setw(65) << this->PrintDateBorn().substr(0, 65) << std::endl;
+    returnStr << std::setw(80) << "Books Written:" << std::endl;
+    for (auto x : this->GetBooksWritten()) {
+        returnStr << x->PrintCommandLineDetailed();
+    }
+    
+    return returnStr.str();
+}
+
+std::string rtl::Author::PrintCommandLineHeader() const {
+    //Author              Date Born   Books Written                               Year
+    std::stringstream returnStr;
+    returnStr.fill(' ');
+    
+    returnStr.width(kWidthAuthor);
+    returnStr << std::left << "Author";
+    returnStr.width(kWidthDateBorn);
+    returnStr << std::left << "Date Born";
+    returnStr.width(kWidthTitle);
+    returnStr << std::left << "Books Written";
+    returnStr.width(kWidthYear);
+    returnStr << std::left << "Year";
+
+    return returnStr.str();
+}
+
 rtl::Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten) {
     this->SetName(name);
     this->SetDateBorn(dateBorn);

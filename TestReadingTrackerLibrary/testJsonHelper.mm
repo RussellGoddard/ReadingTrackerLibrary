@@ -233,49 +233,4 @@
     XCTAssert(rtl::ConvertJsonToReadBook(jsonTestFail).GetReaderId() == -1);
 }
 
-- (void)testPrintJsonReadBook {
-    rtl::ReadBook testReadBook1(1, "a", "a");
-    testReadBook1.SetSeries("a");
-    testReadBook1.SetPublisher("a");
-    testReadBook1.SetGenre("fantasy");
-    testReadBook1.SetPageCount(100);
-    testReadBook1.SetPublishDate("1990-Dec-01");
-    testReadBook1.SetDateRead("1993-Mar-25");
-    testReadBook1.SetRating(4);
-    
-    std::string jsonString = R"({"bookId":"1bba","isbn":[],"oclc":[],"author":"a","authorId":"4e","title":"a","series":"a","publisher":"a","genre":"fantasy","pageCount":100,"publishDate":"1990-Dec-01","rating":4,"dateRead":"1993-Mar-25","readerId":1})";
-    
-    XCTAssert(rtl::PrintJson(std::make_shared<rtl::ReadBook>(testReadBook1)) == jsonString);
-}
-
-
-- (void)testPrintJsonAuthor {
-    std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("3rd", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::Genre::fantasy, "1992-Nov-11");
-    std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("3rd", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::Genre::western, "2020-Nov-11");
-    rtl::Author testAuthor1("a", "1990-Dec-01");
-    rtl::Author testAuthor2("b", "2001-Nov-12");
-    rtl::Author testAuthor3("3rd", "2000-Apr-01");
-    testAuthor3.AddBookWritten(testBook1);
-    testAuthor3.AddBookWritten(testBook2);
-    
-    XCTAssert(rtl::PrintJson(std::make_shared<rtl::Author>(testAuthor1)) == R"({"authorId":"4e","name":"a","dateBorn":"1990-Dec-01","booksWritten":[]})");
-    XCTAssert(rtl::PrintJson(std::make_shared<rtl::Author>(testAuthor2)) == R"({"authorId":"4f","name":"b","dateBorn":"2001-Nov-12","booksWritten":[]})");
-    XCTAssert(rtl::PrintJson(std::make_shared<rtl::Author>(testAuthor3)) == R"({"authorId":"268","name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"bookId":"4735c0","isbn":[],"oclc":[],"author":"3rd","authorId":"268","title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"bookId":"474dd0","isbn":[],"oclc":[],"author":"3rd","authorId":"268","title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
-}
-
-- (void)testPrintJsonBook {
-    rtl::Book testBook("testAuthor", "testTitle");
-    testBook.AddIsbn("1234567890");
-    testBook.AddIsbn("123-45678-90-12");
-    testBook.AddOclc("123456");
-    testBook.SetSeries("testSeries");
-    testBook.SetPublisher("testPublisher");
-    testBook.SetGenre("fantasy");
-    testBook.SetPageCount(10);
-    testBook.SetPublishDate("1990-Dec-01");
-    
-    std::string answer = R"({"bookId":"2ff6b24","isbn":["1234567890","123456789012"],"oclc":["123456"],"author":"testAuthor","authorId":"1ecb","title":"testTitle","series":"testSeries","publisher":"testPublisher","genre":"fantasy","pageCount":10,"publishDate":"1990-Dec-01"})";
-    XCTAssert(rtl::PrintJson(std::make_shared<rtl::Book>(testBook)) == answer);
-}
-
 @end

@@ -25,6 +25,13 @@ namespace rtl {
         std::string PrintDateRead() const;
         int GetRating() const;
         int GetReaderId() const;
+        
+        std::string PrintJson() const override;
+        std::string PrintCommandLineSimple() const override;
+        std::string PrintCommandLineDetailed() const override;
+        std::string PrintCommandLineHeader() const override;
+        
+        ReadBook() = delete; //ReadBook class HAS to be constructed with a readerId, book author and book title
         ReadBook(int readerId, Book book, int rating, time_t dateRead);
         ReadBook(int readerId, Book book, int rating, std::string dateRead);
         ReadBook(int readerId, std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, rtl::Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0), int rating = 0, time_t dateRead = std::time(0));
@@ -33,6 +40,13 @@ namespace rtl {
         int readerId;
         tm dateRead;
         int rating;
+        
+        //used for printCommandLineSimple and printCommandLineHeaders
+        const int kWidthAuthor = 20;
+        const int kWidthTitle = 35;
+        const int kWidthPage = 6;
+        const int kWidthDateRead = 13;
+        const int kWidthRating = 6;
     };
 
     bool operator==(const ReadBook& lhs, const ReadBook& rhs);

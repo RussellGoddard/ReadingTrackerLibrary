@@ -121,7 +121,7 @@ bool rtl::InMemoryContainers::SaveInMemoryToFile(std::string filePath) {
     if (successfulSave) {
         saveFile << "*[*\n";
         for (auto x : this->GetMasterBooks()) {
-            if(!this->SaveJson(rtl::PrintJson(x), saveFile)) {
+            if(!this->SaveJson(x->PrintJson(), saveFile)) {
                 //if any SaveJson fails stop trying
                 break;
             }
@@ -130,7 +130,7 @@ bool rtl::InMemoryContainers::SaveInMemoryToFile(std::string filePath) {
     if (successfulSave) {
         saveFile << "*]*\n*[*\n";
         for (auto x : this->GetMasterReadBooks()) {
-            if(!this->SaveJson(rtl::PrintJson(x), saveFile)) {
+            if(!this->SaveJson(x->PrintJson(), saveFile)) {
                 //if any SaveJson fails stop trying
                 break;
             }
@@ -139,7 +139,7 @@ bool rtl::InMemoryContainers::SaveInMemoryToFile(std::string filePath) {
     if (successfulSave) {
         saveFile << "*]*\n*[*\n";
         for (auto x : this->GetMasterAuthors()) {
-            if(!this->SaveJson(rtl::PrintJson(x), saveFile)) {
+            if(!this->SaveJson(x->PrintJson(), saveFile)) {
                 //if any SaveJson fails stop trying
                 break;
             }

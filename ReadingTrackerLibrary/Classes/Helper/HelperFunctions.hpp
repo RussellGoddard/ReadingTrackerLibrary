@@ -9,26 +9,11 @@
 #ifndef HelperFunctions_hpp
 #define HelperFunctions_hpp
 
-
 #include <ios>
 #include <string>
 #include <sstream>
 #include <vector>
 #include "SortUnique.hpp"
-
-//below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost
-// save diagnostic state
-#pragma GCC diagnostic push
-
-// turn off the specific warning
-#pragma GCC diagnostic ignored "-Wcomma"
-#pragma GCC diagnostic ignored "-Wdocumentation"
-
-#include <boost/multiprecision/cpp_int.hpp>
-
-// turn the warnings back on
-#pragma GCC diagnostic pop
-
 
 namespace rtl {
     enum class Genre { genreNotSet, detective, dystopia, fantasy, mystery, romance, scienceFiction, thriller, western, nonFiction, technical };
@@ -36,7 +21,6 @@ namespace rtl {
     Genre ConvertStringToGenre(std::string genre);
     std::string ConvertGenreToString(Genre genre);
 
-    std::string GenerateId(const std::string& input);
     std::string& RightTrim(std::string& input);
     std::string& LeftTrim(std::string& input);
     std::string& Trim(std::string& input);

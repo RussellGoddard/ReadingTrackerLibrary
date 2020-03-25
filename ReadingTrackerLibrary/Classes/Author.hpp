@@ -19,7 +19,7 @@ namespace rtl {
     const time_t jan2038 = 2145916800;
 
     //TODO: add uniqueId for future DB storage
-    class Author {
+    class Author : public StandardOutput {
     public:
         void SetName(std::string name);
         void SetDateBorn(time_t dateBorn);
@@ -32,6 +32,12 @@ namespace rtl {
         tm GetDateBorn() const;
         time_t GetDateBornTimeT();
         std::string PrintDateBorn() const;
+        
+        std::string PrintJson() const override;
+        std::string PrintCommandLineSimple() const override;
+        std::string PrintCommandLineDetailed() const override;
+        std::string PrintCommandLineHeader() const override;
+        
         Author() = delete; //Author class HAS to be constructed with a name
         Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
         Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book> bookWritten);
@@ -41,6 +47,12 @@ namespace rtl {
         std::string name;
         struct tm dateBorn;
         std::vector<std::shared_ptr<rtl::Book>> booksWritten;
+        
+        //used for printCommandLineSimple and printCommandLineHeader
+        const int kWidthAuthor = 20;
+        const int kWidthDateBorn = 12;
+        const int kWidthTitle = 44;
+        const int kWidthYear = 4;
     };
 
     bool operator==(const Author& lhs, const Author& rhs);

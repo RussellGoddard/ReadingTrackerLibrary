@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include "HelperFunctions.hpp"
+#include "StandardOutput.hpp"
 
 //below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost
 // save diagnostic state
@@ -30,7 +31,8 @@
 
 namespace rtl {
 
-    class Book {
+    
+    class Book : public StandardOutput {
     public:
         std::string GetAuthor() const;
         std::string GetTitle() const;
@@ -57,10 +59,18 @@ namespace rtl {
         bool SetPublishDate(std::string publishDate);
         void AddOclc(std::string oclc);
         void AddIsbn(std::string isbn);
+        
+        std::string PrintJson() const override;
+        std::string PrintCommandLineSimple() const override;
+        std::string PrintCommandLineDetailed() const override;
+        std::string PrintCommandLineHeader() const override;
+        
+        Book() = delete; //Book class HAS to be constructed with a title and author
         Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0));
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn = "", std::string oclc = "");
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc);
+        
     private:
         std::string authorId;
         std::string bookId;
@@ -73,6 +83,12 @@ namespace rtl {
         Genre genre;
         int pageCount;
         tm publishDate;
+        
+        //used for printCommandLineSimple and printCommandLineHeaders
+        const int kWidthAuthor = 20;
+        const int kWidthTitle = 35;
+        const int kWidthSeries = 20;
+        const int kWidthPage = 5;
     };
 
     bool operator==(const Book& lhs, const Book& rhs);
