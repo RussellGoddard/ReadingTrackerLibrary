@@ -226,7 +226,6 @@ std::shared_ptr<rtl::Book> testBook2;
 - (void)testAuthorConstructors {
     //Author(std::string name, time_t dateBorn = std::time(&jan2038), std::vector<std::shared_ptr<Book>> booksWritten = {});
     //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
-    
     rtl::Author testAuthor("testName");
     XCTAssert(testAuthor.GetName() == "testName");
     XCTAssert(testAuthor.PrintDateBorn() == "2038-Jan-01");
