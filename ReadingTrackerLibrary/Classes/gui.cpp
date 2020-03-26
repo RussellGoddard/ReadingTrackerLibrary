@@ -441,16 +441,18 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                 //simple
                 bool printHeader = true;
                 for (auto x : outputVector) {
-                    if (printHeader) {
-                        rtl::CommandLine::OutputLine(outputStream, x->PrintHeader());
-                        printHeader = false;
-                    }
-                    else if (x == nullptr) {
+                    if (x == nullptr) {
                         //nullptr is the delim between objects, print next objects commandlineheader
                         printHeader = true;
                         continue;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, x->PrintSimple());
+                    else if (printHeader) {
+                        rtl::CommandLine::OutputLine(outputStream, x->PrintHeader());
+                        printHeader = false;
+                    }
+                    else {
+                        rtl::CommandLine::OutputLine(outputStream, x->PrintSimple());
+                    }
                 }
                 rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;
