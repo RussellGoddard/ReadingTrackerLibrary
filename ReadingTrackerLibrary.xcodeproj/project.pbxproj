@@ -33,6 +33,9 @@
 		DEEAC6342426A76500D970C9 /* JsonFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC6322426A76500D970C9 /* JsonFunctions.cpp */; };
 		DEEAC6352426A76500D970C9 /* JsonFunctions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC6332426A76500D970C9 /* JsonFunctions.hpp */; };
 		DEEAC6372426ADF600D970C9 /* testJsonHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC6362426ADF600D970C9 /* testJsonHelper.mm */; };
+		DEF48776242CE37B000D1A2B /* CommandLineHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEF48774242CE37B000D1A2B /* CommandLineHelpers.cpp */; };
+		DEF48777242CE37B000D1A2B /* CommandLineHelpers.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEF48775242CE37B000D1A2B /* CommandLineHelpers.hpp */; };
+		DEF48779242CE5BE000D1A2B /* testCommandLineHelpers.mm in Sources */ = {isa = PBXBuildFile; fileRef = DEF48778242CE5BE000D1A2B /* testCommandLineHelpers.mm */; };
 		DEF9CCA72377B30A00B5089A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504C82374EB8600FF97A4 /* main.cpp */; };
 		DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 /* End PBXBuildFile section */
@@ -100,6 +103,9 @@
 		DEEAC6322426A76500D970C9 /* JsonFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JsonFunctions.cpp; sourceTree = "<group>"; };
 		DEEAC6332426A76500D970C9 /* JsonFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = JsonFunctions.hpp; sourceTree = "<group>"; };
 		DEEAC6362426ADF600D970C9 /* testJsonHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testJsonHelper.mm; sourceTree = "<group>"; };
+		DEF48774242CE37B000D1A2B /* CommandLineHelpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommandLineHelpers.cpp; sourceTree = "<group>"; };
+		DEF48775242CE37B000D1A2B /* CommandLineHelpers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandLineHelpers.hpp; sourceTree = "<group>"; };
+		DEF48778242CE5BE000D1A2B /* testCommandLineHelpers.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testCommandLineHelpers.mm; sourceTree = "<group>"; };
 		DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReadingTrackerCommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -183,6 +189,7 @@
 		DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				DEF48778242CE5BE000D1A2B /* testCommandLineHelpers.mm */,
 				DEEAC6362426ADF600D970C9 /* testJsonHelper.mm */,
 				DEEAC62A2425337A00D970C9 /* testHelperFunctions.mm */,
 				DE7AC029238B73DB00292006 /* testFileMethods.mm */,
@@ -203,6 +210,8 @@
 				DEEAC624242415BC00D970C9 /* SortUnique.hpp */,
 				DEEAC6322426A76500D970C9 /* JsonFunctions.cpp */,
 				DEEAC6332426A76500D970C9 /* JsonFunctions.hpp */,
+				DEF48774242CE37B000D1A2B /* CommandLineHelpers.cpp */,
+				DEF48775242CE37B000D1A2B /* CommandLineHelpers.hpp */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -239,6 +248,7 @@
 				DEEAC6222423C57000D970C9 /* HelperFunctions.hpp in Headers */,
 				DEEAC6352426A76500D970C9 /* JsonFunctions.hpp in Headers */,
 				DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */,
+				DEF48777242CE37B000D1A2B /* CommandLineHelpers.hpp in Headers */,
 				DE9504DB2374EF2200FF97A4 /* FileMethods.hpp in Headers */,
 				DE9504DD2374EF2200FF97A4 /* gui.hpp in Headers */,
 				DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */,
@@ -357,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9504DA2374EF2200FF97A4 /* Book.cpp in Sources */,
+				DEF48776242CE37B000D1A2B /* CommandLineHelpers.cpp in Sources */,
 				DE9504D92374EF2200FF97A4 /* Author.cpp in Sources */,
 				DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */,
 				DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */,
@@ -375,6 +386,7 @@
 				DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */,
 				DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */,
 				DEEAC6372426ADF600D970C9 /* testJsonHelper.mm in Sources */,
+				DEF48779242CE5BE000D1A2B /* testCommandLineHelpers.mm in Sources */,
 				DE989E8323F4F94700D3C424 /* testGui.mm in Sources */,
 				DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */,
 			);

@@ -344,7 +344,7 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
 //should only be called from mainMenu so not in header
 void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList) {
     std::vector<std::string> displayModes {"Json", "Simple", "Detailed"};
-    int currentMode = 0;
+    int currentDisplay = 0;
     
     while(true) {
         rtl::CommandLine::OutputLine(outputStream, std::vector<std::string>
@@ -353,7 +353,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             "2: Books that have been read",
             "3: Authors",
             "9: All",
-            "c: Change display mode. Currently: " + displayModes[currentMode],
+            "c: Change display mode. Currently: " + displayModes[currentDisplay],
             "x: Return to main menu"
         });
         std::string input = rtl::CommandLine::GetInput(inputStream);
@@ -406,10 +406,10 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
             }
             case 'C':
             case 'c': {
-                //move to the next available mode
-                ++currentMode;
-                if (currentMode >= displayModes.size()) {
-                    currentMode = 0;
+                //move to the next available display mode
+                ++currentDisplay;
+                if (currentDisplay >= displayModes.size()) {
+                    currentDisplay = 0;
                 }
                 continue;
             }
@@ -423,17 +423,63 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                 continue;
             }
         }
-
-        switch(currentMode) {
+        
+        switch(currentDisplay) {
             case 0: {
                 //json
-                for (auto x : outputVector) {
-                    if (x == nullptr) {
+                int i = 0;
+                for (; i < outputVector.size(); ++i) {
+                    if (outputVector[i] == nullptr) {
                         //nothing needs to be done to seperate types when printing json
                         continue;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, x->PrintJson());
+                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintNumberSelector(i % 10) + outputVector[i]->PrintJson());
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                    
+                    //display 10 items at a time
+                    if (i % 10 == 9) {
+                        rtl::CommandLine::OutputLine(outputStream, "To select an item input the number in front, else press enter to continue");
+                        std::string itemSelection = rtl::CommandLine::GetInput(inputStream);
+                        int selectionInput;
+                        try {
+                            selectionInput = stoi(itemSelection);
+                            if (selectionInput < 0 || selectionInput > 9) {
+                                selectionInput = -1;
+                            }
+                            else {
+                                rtl::CommandLine::OutputLine(outputStream, outputVector[i - (9 - selectionInput)]->PrintDetailed());
+                            }
+                        }
+                        catch (std::exception& ex) {
+                            //TODO: log this
+                            std::cout << ex.what() << std::endl;
+                            selectionInput = -1;
+                        }
+                    }
+                }
+                
+                rtl::CommandLine::OutputLine(outputStream, "To select an item input the number in front, else press enter to continue");
+                std::string itemSelection = rtl::CommandLine::GetInput(inputStream);
+                int selectionInput;
+                int maxRange = i % 10;
+                try {
+                    selectionInput = stoi(itemSelection);
+                    if (selectionInput < 0 || selectionInput > maxRange) {
+                        selectionInput = -1;
+                    }
+                    else {
+                        rtl::CommandLine::OutputLine(outputStream, outputVector[i - (maxRange - selectionInput)]->PrintDetailed());
+                        rtl::CommandLine::OutputLine(outputStream, "To update record enter 'update' else press enter");
+                        std::string updateRecord = rtl::CommandLine::GetInput(inputStream);
+                        if (updateRecord == "update") {
+                            
+                        }
+                    }
+                }
+                catch (std::exception& ex) {
+                    //TODO: log this
+                    std::cout << ex.what() << std::endl;
+                    selectionInput = -1;
                 }
                 break;
             }
@@ -444,6 +490,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     if (x == nullptr) {
                         //nullptr is the delim between objects, print next objects commandlineheader
                         printHeader = true;
+                        rtl::CommandLine::OutputLine(outputStream, "");
                         continue;
                     }
                     else if (printHeader) {
@@ -529,7 +576,7 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                 rtl::CommandLine::OutputLine(outputStream, "Input file path to load file");
                 input = rtl::CommandLine::GetInput(inputStream);
                 //shortcut to macOS desktop TODO: dedicated save space than desktop
-                if(input == "desktop") {
+                if (input == "desktop") {
                     input = std::getenv("HOME");
                     input += "/Desktop/testFile.txt";
                 }

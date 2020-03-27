@@ -140,6 +140,7 @@ std::string rtl::Author::PrintDetailed() const {
     returnStr << std::setw(80) << "Books Written:" << std::endl;
     for (auto x : this->GetBooksWritten()) {
         returnStr << x->PrintDetailed();
+        returnStr << std::endl;
     }
     
     return returnStr.str();
