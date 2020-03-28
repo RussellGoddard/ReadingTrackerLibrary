@@ -100,6 +100,14 @@ int rtl::ReadBook::GetReaderId() const {
     return this->readerId;
 }
 
+rtl::SetsPtr rtl::ReadBook::GetUpdateFunction(std::string input) {
+    //TODO: implement this
+    SetsPtr returnPtr = nullptr;
+    
+    
+    return returnPtr;
+}
+
 std::string rtl::ReadBook::PrintJson() const {
     std::string returnString;
     

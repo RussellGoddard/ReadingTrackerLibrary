@@ -26,6 +26,7 @@ namespace rtl {
         int GetRating() const;
         int GetReaderId() const;
         
+        SetsPtr GetUpdateFunction(std::string input) override;
         std::string PrintJson() const override;
         std::string PrintSimple() const override;
         std::string PrintDetailed() const override;

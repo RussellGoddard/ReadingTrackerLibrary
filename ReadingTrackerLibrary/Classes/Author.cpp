@@ -7,12 +7,14 @@
 
 #include "Author.hpp"
 
-void rtl::Author::SetName(std::string name) {
+bool rtl::Author::SetName(std::string name) {
+    //TODO: validation
     this->name = name;
-    return;
+    return true;
 }
 
-void rtl::Author::SetDateBorn(time_t dateBorn) {
+bool rtl::Author::SetDateBorn(time_t dateBorn) {
+    //TODO: validation?
     this->dateBorn = *std::gmtime(&dateBorn);
     this->dateBorn.tm_sec = 0;
     this->dateBorn.tm_min = 0;
@@ -22,7 +24,7 @@ void rtl::Author::SetDateBorn(time_t dateBorn) {
     this->dateBorn.tm_gmtoff = 0;
     this->dateBorn.tm_zone = nullptr;
     
-    return;
+    return true;
 }
 
 bool rtl::Author::SetDateBorn(std::string dateBorn) {
@@ -37,16 +39,18 @@ bool rtl::Author::SetDateBorn(std::string dateBorn) {
     return true;
 }
 
-void rtl::Author::AddBookWritten(std::shared_ptr<rtl::Book> book) {
+bool rtl::Author::AddBookWritten(std::shared_ptr<rtl::Book> book) {
+    //TODO: add false path
     this->booksWritten.push_back(book);
     rtl::SortUnique(this->booksWritten);
-    return;
+    return true;
 }
 
-void rtl::Author::AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books) {
+bool rtl::Author::AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books) {
+    //TODO: false path
     this->booksWritten.insert(std::end(this->booksWritten), std::begin(books), std::end(books));
     rtl::SortUnique(this->booksWritten);
-    return;
+    return true;
 }
 
 std::string rtl::Author::GetAuthorId() const {
@@ -72,6 +76,20 @@ std::string rtl::Author::PrintDateBorn() const {
 
 std::vector<std::shared_ptr<rtl::Book>> rtl::Author::GetBooksWritten() const {
     return this->booksWritten;
+}
+
+
+
+rtl::SetsPtr rtl::Author::GetUpdateFunction(std::string input) {
+    //TODO: is there a better way than a reinterpret_cast??? makes me nervous
+    SetsPtr returnPtr = nullptr;
+    if (input == "author") { returnPtr = reinterpret_cast<rtl::SetsPtr>(&rtl::Author::SetName); }
+    else if (input == "dateBorn") {
+        returnPtr = reinterpret_cast<rtl::SetsPtr>(&rtl::Author::SetName);
+    }
+    else { returnPtr = nullptr; }
+    
+    return returnPtr;
 }
 
 std::string rtl::Author::PrintJson() const {

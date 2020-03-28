@@ -27,8 +27,12 @@
 
 namespace rtl {
 
+class StandardOutput;
+
+    typedef  bool (rtl::StandardOutput::*SetsPtr)(std::string);
     class StandardOutput {
     public:
+        virtual SetsPtr GetUpdateFunction(std::string input) = 0;
         virtual std::string PrintJson() const = 0;
         virtual std::string PrintSimple() const = 0;
         virtual std::string PrintDetailed() const = 0;

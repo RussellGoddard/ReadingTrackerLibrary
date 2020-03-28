@@ -469,10 +469,16 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     }
                     else {
                         rtl::CommandLine::OutputLine(outputStream, outputVector[i - (maxRange - selectionInput)]->PrintDetailed());
-                        rtl::CommandLine::OutputLine(outputStream, "To update record enter 'update' else press enter");
+                        rtl::CommandLine::OutputLine(outputStream, "Enter the name of the record you would like to update, else press enter");
                         std::string updateRecord = rtl::CommandLine::GetInput(inputStream);
-                        if (updateRecord == "update") {
-                            
+                        rtl::SetsPtr testPtr = outputVector[i - (maxRange - selectionInput)]->GetUpdateFunction(updateRecord);
+                        rtl::CommandLine::OutputLine(outputStream, "Enter the updated field:");
+                        std::string newRecord = rtl::CommandLine::GetInput(inputStream);
+                        if (std::invoke(testPtr, outputVector[i - (maxRange - selectionInput)], newRecord)) {
+                            rtl::CommandLine::OutputLine(outputStream, "Update Success");
+                        }
+                        else {
+                            rtl::CommandLine::OutputLine(outputStream, "Update Failed");
                         }
                     }
                 }

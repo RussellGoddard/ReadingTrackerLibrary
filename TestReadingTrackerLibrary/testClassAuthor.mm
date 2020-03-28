@@ -34,14 +34,14 @@ std::shared_ptr<rtl::Book> testBook2;
 - (void)testSetName {
     rtl::Author testAuthor("testAuthor");
     XCTAssert(testAuthor.GetName() == "testAuthor");
-    testAuthor.SetName("pickle");
+    XCTAssert(testAuthor.SetName("pickle"));
     XCTAssert(testAuthor.GetName() == "pickle");
 }
 
 - (void)testSetDateBorn {
     rtl::Author testAuthor("testAuthor");
     time_t testValue = 1573862400;
-    testAuthor.SetDateBorn(testValue);
+    XCTAssert(testAuthor.SetDateBorn(testValue));
     tm initialTm = *std::gmtime(&testValue);
     tm testTm = testAuthor.GetDateBorn();
     
@@ -72,7 +72,7 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(newAuthor.GetBooksWritten().empty());
     
-    newAuthor.AddBookWritten(testBook);
+    XCTAssert(newAuthor.AddBookWritten(testBook));
     
     XCTAssert(newAuthor.GetBooksWritten().size() == 1);
     XCTAssert(newAuthor.GetBooksWritten().at(0) == testBook);
@@ -83,7 +83,7 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(newAuthor.GetBooksWritten().empty());
     
-    newAuthor.AddBookWritten(bookCollection);
+    XCTAssert(newAuthor.AddBookWritten(bookCollection));
     
     XCTAssert(newAuthor.GetBooksWritten().size() == 2);
     XCTAssert(newAuthor.GetBooksWritten().at(0) == testBook2);

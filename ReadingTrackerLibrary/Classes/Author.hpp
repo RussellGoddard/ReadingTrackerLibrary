@@ -15,17 +15,19 @@
 #include "ReadBook.hpp" //TODO: this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook 
 
 namespace rtl {
+
+    
     //TODO: change default author dateBorn to something else
     const time_t jan2038 = 2145916800;
 
     //TODO: add uniqueId for future DB storage
     class Author : public StandardOutput {
     public:
-        void SetName(std::string name);
-        void SetDateBorn(time_t dateBorn);
+        bool SetName(std::string name);
+        bool SetDateBorn(time_t dateBorn);
         bool SetDateBorn(std::string dateBorn);
-        void AddBookWritten(std::shared_ptr<rtl::Book> book);
-        void AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books);
+        bool AddBookWritten(std::shared_ptr<rtl::Book> book);
+        bool AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books);
         std::string GetAuthorId() const;
         std::vector<std::shared_ptr<rtl::Book>> GetBooksWritten() const;
         std::string GetName() const;
@@ -33,6 +35,7 @@ namespace rtl {
         time_t GetDateBornTimeT();
         std::string PrintDateBorn() const;
         
+        rtl::SetsPtr GetUpdateFunction(std::string input) override;
         std::string PrintJson() const override;
         std::string PrintSimple() const override;
         std::string PrintDetailed() const override;
@@ -54,6 +57,8 @@ namespace rtl {
         const int kWidthTitle = 41;
         const int kWidthYear = 4;
     };
+
+    
 
     bool operator==(const Author& lhs, const Author& rhs);
     bool operator!=(const Author& lhs, const Author& rhs);

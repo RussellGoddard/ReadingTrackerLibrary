@@ -174,6 +174,13 @@ void rtl::Book::AddIsbn(std::string isbn) {
     return;
 }
 
+rtl::SetsPtr rtl::Book::GetUpdateFunction(std::string input) {
+    //TODO: implement this
+    SetsPtr returnPtr = nullptr;
+    
+    return returnPtr;
+}
+
 std::string rtl::Book::PrintJson() const {
     std::string returnString = R"({"bookId":")" + this->GetBookId();
     
