@@ -181,24 +181,6 @@ rtl::ReadBook rtl::CommandLine::GetNewReadBook(std::istream& inputStream, std::o
     return rtl::ReadBook(readerId, newBook, stoi(rating), dateFinished);
 }
 
-void rtl::CommandLine::OutputLine(std::ostream& outputStream, std::string output) {
-    outputStream << output << std::endl;
-    return;
-}
-
-void rtl::CommandLine::OutputLine(std::ostream& outputStream, std::vector<std::string> output) {
-    for (std::string x : output) {
-        outputStream << x << std::endl;
-    }
-    return;
-}
-
-std::string rtl::CommandLine::GetInput(std::istream& inputStream) {
-    std::string returnString;
-    std::getline(inputStream, returnString);
-    return returnString;
-}
-
 //resets istream, ostream, and input
 void userInputAgain(std::istream& inputStream, std::ostream& outputStream, std::string& input) {
     rtl::CommandLine::OutputLine(outputStream, "Invalid selection, please try again");
@@ -206,6 +188,45 @@ void userInputAgain(std::istream& inputStream, std::ostream& outputStream, std::
     input = "";
     inputStream.clear();
     inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return;
+}
+
+void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& outputStream, int currentIndex, int maxRange, const std::vector<std::shared_ptr<rtl::StandardOutput>>& outputVector) {
+    rtl::CommandLine::OutputLine(outputStream, "To select an item input the number in front, else press enter to continue");
+    std::string itemSelection = rtl::CommandLine::GetInput(inputStream);
+    int selectionInput;
+    
+    try {
+        selectionInput = stoi(itemSelection);
+        if (selectionInput < 0 || selectionInput > maxRange) {
+            selectionInput = -1;
+        }
+        else {
+            rtl::CommandLine::OutputLine(outputStream, outputVector[currentIndex - (maxRange - selectionInput)]->PrintDetailed());
+            rtl::CommandLine::OutputLine(outputStream, "Enter the name of the record you would like to update, else press enter");
+            std::string updateRecord = rtl::CommandLine::GetInput(inputStream);
+            rtl::SetsPtr testPtr = outputVector[currentIndex - (maxRange - selectionInput)]->GetUpdateFunction(updateRecord);
+            if (testPtr == nullptr) {
+                rtl::CommandLine::OutputLine(outputStream, "Field not entered correctly");
+            }
+            else {
+                rtl::CommandLine::OutputLine(outputStream, "Enter the updated field:");
+                std::string newRecord = rtl::CommandLine::GetInput(inputStream);
+                if (std::invoke(testPtr, outputVector[currentIndex - (maxRange - selectionInput)], newRecord)) {
+                    rtl::CommandLine::OutputLine(outputStream, "Update Success");
+                }
+                else {
+                    rtl::CommandLine::OutputLine(outputStream, "Update Failed");
+                }
+            }
+        }
+    }
+    catch (std::exception& ex) {
+        //TODO: log this
+        std::cout << ex.what() << std::endl;
+        selectionInput = -1;
+    }
+    
     return;
 }
 
@@ -436,88 +457,52 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                     rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintNumberSelector(i % 10) + outputVector[i]->PrintJson());
                     rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                     
-                    //display 10 items at a time
+                    //display 10 items at a timee
                     if (i % 10 == 9) {
-                        rtl::CommandLine::OutputLine(outputStream, "To select an item input the number in front, else press enter to continue");
-                        std::string itemSelection = rtl::CommandLine::GetInput(inputStream);
-                        int selectionInput;
-                        try {
-                            selectionInput = stoi(itemSelection);
-                            if (selectionInput < 0 || selectionInput > 9) {
-                                selectionInput = -1;
-                            }
-                            else {
-                                rtl::CommandLine::OutputLine(outputStream, outputVector[i - (9 - selectionInput)]->PrintDetailed());
-                            }
-                        }
-                        catch (std::exception& ex) {
-                            //TODO: log this
-                            std::cout << ex.what() << std::endl;
-                            selectionInput = -1;
-                        }
+                        rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, 9, outputVector);
                     }
                 }
                 
-                rtl::CommandLine::OutputLine(outputStream, "To select an item input the number in front, else press enter to continue");
-                std::string itemSelection = rtl::CommandLine::GetInput(inputStream);
-                int selectionInput;
                 int maxRange = i % 10;
-                try {
-                    selectionInput = stoi(itemSelection);
-                    if (selectionInput < 0 || selectionInput > maxRange) {
-                        selectionInput = -1;
-                    }
-                    else {
-                        rtl::CommandLine::OutputLine(outputStream, outputVector[i - (maxRange - selectionInput)]->PrintDetailed());
-                        rtl::CommandLine::OutputLine(outputStream, "Enter the name of the record you would like to update, else press enter");
-                        std::string updateRecord = rtl::CommandLine::GetInput(inputStream);
-                        rtl::SetsPtr testPtr = outputVector[i - (maxRange - selectionInput)]->GetUpdateFunction(updateRecord);
-                        rtl::CommandLine::OutputLine(outputStream, "Enter the updated field:");
-                        std::string newRecord = rtl::CommandLine::GetInput(inputStream);
-                        if (std::invoke(testPtr, outputVector[i - (maxRange - selectionInput)], newRecord)) {
-                            rtl::CommandLine::OutputLine(outputStream, "Update Success");
-                        }
-                        else {
-                            rtl::CommandLine::OutputLine(outputStream, "Update Failed");
-                        }
-                    }
-                }
-                catch (std::exception& ex) {
-                    //TODO: log this
-                    std::cout << ex.what() << std::endl;
-                    selectionInput = -1;
-                }
+                rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, maxRange, outputVector);
                 break;
             }
             case 1: {
                 //simple
                 bool printHeader = true;
-                for (auto x : outputVector) {
-                    if (x == nullptr) {
+                int i = 0;
+                for (; i < outputVector.size(); ++i) {
+                    if (outputVector[i] == nullptr) {
                         //nullptr is the delim between objects, print next objects commandlineheader
                         printHeader = true;
                         rtl::CommandLine::OutputLine(outputStream, "");
                         continue;
                     }
-                    else if (printHeader) {
-                        rtl::CommandLine::OutputLine(outputStream, x->PrintHeader());
+                    if (printHeader) {
+                        rtl::CommandLine::OutputLine(outputStream, outputVector[i]->PrintHeader());
                         printHeader = false;
                     }
-                    else {
-                        rtl::CommandLine::OutputLine(outputStream, x->PrintSimple());
+                    rtl::CommandLine::OutputLine(outputStream, outputVector[i]->PrintSimple());
+                    
+                    //display 10 items at a timee
+                    if (i % 10 == 9) {
+                        rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, 9, outputVector);
                     }
                 }
+                int maxRange = i % 10;
+                rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, maxRange, outputVector);
                 rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;
             }
             case 2: {
                 //detailed
-                for (auto x : outputVector) {
-                    if (x == nullptr) {
+                int i = 0;
+                for (; i < outputVector.size(); ++i) {
+                    if (outputVector[i] == nullptr) {
                         //no headers for detailed
                         continue;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, x->PrintDetailed());
+                    rtl::CommandLine::OutputLine(outputStream, outputVector[i]->PrintDetailed());
                 }
                 rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;

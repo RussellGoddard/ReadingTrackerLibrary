@@ -56,6 +56,10 @@ namespace rtl {
         const int kWidthDateBorn = 12;
         const int kWidthTitle = 41;
         const int kWidthYear = 4;
+        const std::string kAuthor = "Author";
+        const std::string kDateBorn = "Date Born";
+        const std::string kAuthorId = "AuthorId";
+        const std::string kBooksWritten = "Books Written";
     };
 
     

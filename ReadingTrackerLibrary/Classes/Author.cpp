@@ -82,9 +82,10 @@ std::vector<std::shared_ptr<rtl::Book>> rtl::Author::GetBooksWritten() const {
 
 rtl::SetsPtr rtl::Author::GetUpdateFunction(std::string input) {
     //TODO: is there a better way than a reinterpret_cast??? makes me nervous
+    //TODO: make case insensitive
     SetsPtr returnPtr = nullptr;
-    if (input == "author") { returnPtr = reinterpret_cast<rtl::SetsPtr>(&rtl::Author::SetName); }
-    else if (input == "dateBorn") {
+    if (input == this->kAuthor) { returnPtr = reinterpret_cast<rtl::SetsPtr>(&rtl::Author::SetName); }
+    else if (input == this->kDateBorn) {
         returnPtr = reinterpret_cast<rtl::SetsPtr>(&rtl::Author::SetName);
     }
     else { returnPtr = nullptr; }
@@ -152,10 +153,10 @@ std::string rtl::Author::PrintDetailed() const {
     returnStr.fill(' ');
     
     returnStr << std::left;
-    returnStr << std::setw(15) << "Name: " << std::setw(65) << this->GetName().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "AuthorId: " << std::setw(65) << this->GetAuthorId().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "Date Born: " << std::setw(65) << this->PrintDateBorn().substr(0, 65) << std::endl;
-    returnStr << std::setw(80) << "Books Written:" << std::endl;
+    returnStr << std::setw(15) << this->kAuthor + ": " << std::setw(65) << this->GetName().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kAuthorId + ": " << std::setw(65) << this->GetAuthorId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kDateBorn + ": " << std::setw(65) << this->PrintDateBorn().substr(0, 65) << std::endl;
+    returnStr << std::setw(80) << this->kBooksWritten + ": " << std::endl;
     for (auto x : this->GetBooksWritten()) {
         returnStr << x->PrintDetailed();
         returnStr << std::endl;

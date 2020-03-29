@@ -11,6 +11,7 @@
 #include <iostream>
 #include <limits>
 #include <sstream>
+#include <vector>
 #include "FileMethods.hpp"
 #include "CommandLineHelpers.hpp"
 
@@ -19,10 +20,8 @@ namespace rtl::CommandLine {
     rtl::Author GetNewAuthor(std::istream& inputStream, std::ostream& outputStream, int inputMode);
     rtl::Book GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode);
     rtl::ReadBook GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId, int inputMode);
-    void OutputLine(std::ostream& outputStream, std::string output);
-    void OutputLine(std::ostream& outputStream, std::vector<std::string> output);
+    void UpdateRecord(std::istream& inputStream, std::ostream& outputStream, int currentIndex, int maxRange, const std::vector<std::shared_ptr<rtl::StandardOutput>>& outputVector);
     void MainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);
-    std::string GetInput(std::istream& inputStream);
     
 }
 
