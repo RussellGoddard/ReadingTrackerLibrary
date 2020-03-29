@@ -18,7 +18,6 @@
 int testReaderId = 1;
 
 - (void)setUp {
-    
 }
 
 - (void)tearDown {
@@ -27,10 +26,10 @@ int testReaderId = 1;
 - (void)testSetReadDateTimeT {
     rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
-    testReadBook.SetDateRead(testTimeInitial);
+    XCTAssert(testReadBook.SetDateRead(testTimeInitial));
     XCTAssert(testTimeInitial == testReadBook.GetDateReadAsTimeT());
     time_t testTime = 1199165003; //Tuesday, January 1, 2008 12:23:23 AM GMT -5
-    testReadBook.SetPublishDate(testTime);
+    XCTAssert(testReadBook.SetPublishDate(testTime));
     XCTAssert(testTimeInitial == testReadBook.GetDateReadAsTimeT());
 }
 
@@ -78,23 +77,23 @@ int testReaderId = 1;
 
 - (void)testSetRating {
     rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
-    testRating.SetRating(-1);
+    XCTAssert(testRating.SetRating(-1));
     XCTAssert(1 == testRating.GetRating());
-    testRating.SetRating(1);
+    XCTAssert(testRating.SetRating(1));
     XCTAssert(1 == testRating.GetRating());
-    testRating.SetRating(10);
+    XCTAssert(testRating.SetRating(10));
     XCTAssert(10 == testRating.GetRating());
-    testRating.SetRating(11);
+    XCTAssert(testRating.SetRating(11));
     XCTAssert(10 == testRating.GetRating());
-    testRating.SetRating('9');
+    XCTAssert(testRating.SetRating('9'));
     XCTAssert(9 == testRating.GetRating());
-    testRating.SetRating('a');
+    XCTAssert(!testRating.SetRating('a'));
     XCTAssert(9 == testRating.GetRating());
-    testRating.SetRating("2");
+    XCTAssert(testRating.SetRating("2"));
     XCTAssert(2 == testRating.GetRating());
-    testRating.SetRating("z4");
+    XCTAssert(!testRating.SetRating("z4"));
     XCTAssert(2 == testRating.GetRating());
-    testRating.SetRating("-20");
+    XCTAssert(!testRating.SetRating("-20"));
     XCTAssert(2 == testRating.GetRating());
 }
 
@@ -124,16 +123,16 @@ int testReaderId = 1;
     rtl::ReadBook testReadBook3(testReaderId, "authorA", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
     XCTAssert(testReadBook1 < testReadBook2);
     
-    testReadBook3.SetSeries("seriesA");
+    XCTAssert(testReadBook3.SetSeries("seriesA"));
     XCTAssert(testReadBook1 < testReadBook3);
     
-    testReadBook3.SetPublishDate("1990-Dec-01");
+    XCTAssert(testReadBook3.SetPublishDate("1990-Dec-01"));
     XCTAssert(testReadBook1 < testReadBook3);
     
     rtl::ReadBook testReadBook4(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 110, "western", "1990-Dec-01", 5, "1993-Mar-26");
     XCTAssert(testReadBook1 < testReadBook4);
     
-    testReadBook4.SetDateRead("1993-Mar-25");
+    XCTAssert(testReadBook4.SetDateRead("1993-Mar-25"));
     XCTAssert(!(testReadBook4 < testReadBook1));
 }
 
@@ -146,16 +145,16 @@ int testReaderId = 1;
     rtl::ReadBook testReadBook3(testReaderId, "authorA", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
     XCTAssert(testReadBook1 <= testReadBook3);
     
-    testReadBook3.SetSeries("seriesA");
+    XCTAssert(testReadBook3.SetSeries("seriesA"));
     XCTAssert(testReadBook1 <= testReadBook3);
     
-    testReadBook3.SetPublishDate("1990-Dec-01");
+    XCTAssert(testReadBook3.SetPublishDate("1990-Dec-01"));
     XCTAssert(testReadBook1 <= testReadBook3);
     
     rtl::ReadBook testReadBook4(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 110, "western", "1990-Dec-01", 5, "1993-Mar-26");
     XCTAssert(testReadBook1 <= testReadBook4);
     
-    testReadBook4.SetDateRead("1993-Mar-25");
+    XCTAssert(testReadBook4.SetDateRead("1993-Mar-25"));
     XCTAssert(testReadBook4 <= testReadBook1);
 }
 
@@ -168,16 +167,16 @@ int testReaderId = 1;
     rtl::ReadBook testReadBook3(testReaderId, "authorA", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
     XCTAssert(testReadBook3 > testReadBook1);
     
-    testReadBook3.SetSeries("seriesA");
+    XCTAssert(testReadBook3.SetSeries("seriesA"));
     XCTAssert(testReadBook3 > testReadBook1);
     
-    testReadBook3.SetPublishDate("1990-Dec-01");
+    XCTAssert(testReadBook3.SetPublishDate("1990-Dec-01"));
     XCTAssert(testReadBook3 > testReadBook1);
     
     rtl::ReadBook testReadBook4(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 110, "western", "1990-Dec-01", 5, "1993-Mar-26");
     XCTAssert(testReadBook4 > testReadBook1);
     
-    testReadBook4.SetDateRead("1993-Mar-25");
+    XCTAssert(testReadBook4.SetDateRead("1993-Mar-25"));
     XCTAssert(!(testReadBook1 > testReadBook4));
 }
 

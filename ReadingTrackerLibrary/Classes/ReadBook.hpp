@@ -15,11 +15,11 @@ namespace rtl {
 
     class ReadBook : public rtl::Book {
     public:
-        void SetDateRead(time_t time);
+        bool SetDateRead(time_t time);
         bool SetDateRead(std::string time);
-        void SetRating(int rating);
-        void SetRating(char pageCount); //will result in rating being set to 0
-        void SetRating(std::string pageCount); //will attempt a stoi if it fails set rating to 0
+        bool SetRating(int rating);
+        bool SetRating(char pageCount); //will result in rating being set to 0
+        bool SetRating(std::string pageCount); //will attempt a stoi if it fails set rating to 0
         tm GetDateRead() const;
         time_t GetDateReadAsTimeT();
         std::string PrintDateRead() const;

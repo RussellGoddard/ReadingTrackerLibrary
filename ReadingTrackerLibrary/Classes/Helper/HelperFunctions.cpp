@@ -56,3 +56,21 @@ std::string& rtl::RightTrim(std::string& input) {
 std::string& rtl::Trim(std::string& str) {
    return rtl::LeftTrim(rtl::RightTrim(str));
 }
+
+std::vector<std::string> rtl::splitString(const std::string& input, const std::string& delim) {
+    std::vector<std::string> returnVector;
+    std::size_t current = 0;
+    std::size_t previous = 0;
+    
+    current = input.find_first_of(delim);
+    
+    while (current != input.npos) {
+        returnVector.push_back(input.substr(previous, current - previous));
+        previous = current + 1;
+        current = input.find_first_of(delim, previous);
+    }
+    returnVector.push_back(input.substr(previous, current - previous));
+    
+    return returnVector;
+}
+

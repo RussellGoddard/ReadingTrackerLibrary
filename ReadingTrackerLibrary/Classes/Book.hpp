@@ -48,17 +48,18 @@ namespace rtl {
         std::string GetAuthorId() const;
         std::string GetBookId() const;
         std::string PrintPublishDate() const;
-        void SetSeries(std::string series);
-        void SetPublisher(std::string publisher);
-        void SetPageCount(int pageCount);
-        void SetPageCount(char pageCount); //will result in pageCount being set to -1
-        void SetPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
-        void SetGenre(Genre genre);
-        void SetGenre(std::string genre);
-        void SetPublishDate(time_t publishDate);
+        
+        bool SetSeries(std::string series);
+        bool SetPublisher(std::string publisher);
+        bool SetPageCount(int pageCount);
+        bool SetPageCount(char pageCount); //will result in pageCount being set to -1
+        bool SetPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
+        bool SetGenre(Genre genre);
+        bool SetGenre(std::string genre);
+        bool SetPublishDate(time_t publishDate);
         bool SetPublishDate(std::string publishDate);
-        void AddOclc(std::string oclc);
-        void AddIsbn(std::string isbn);
+        bool AddOclc(std::string oclc);
+        bool AddIsbn(std::string isbn);
         
         SetsPtr GetUpdateFunction(std::string input) override;
         std::string PrintJson() const override;
@@ -90,6 +91,18 @@ namespace rtl {
         const int kWidthTitle = 33;
         const int kWidthSeries = 19;
         const int kWidthPage = 5;
+        
+        const std::string kAuthor = "Author Name";
+        const std::string kAuthorId = "AuthorId";
+        const std::string kTitle = "Title";
+        const std::string kBookId = "BookId";
+        const std::string kSeries = "Series";
+        const std::string kGenre = "Genre";
+        const std::string kPageCount = "Page Count";
+        const std::string kPublisher = "Publisher";
+        const std::string kPublishDate = "Publish Date";
+        const std::string kIsbn = "ISBN";
+        const std::string kOclc = "OCLC";
     };
 
     bool operator==(const Book& lhs, const Book& rhs);

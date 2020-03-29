@@ -20,7 +20,7 @@ namespace rtl::CommandLine {
     rtl::Author GetNewAuthor(std::istream& inputStream, std::ostream& outputStream, int inputMode);
     rtl::Book GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode);
     rtl::ReadBook GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId, int inputMode);
-    void UpdateRecord(std::istream& inputStream, std::ostream& outputStream, int currentIndex, int maxRange, const std::vector<std::shared_ptr<rtl::StandardOutput>>& outputVector);
+    void UpdateRecord(std::istream& inputStream, std::ostream& outputStream, int maxRange, std::vector<std::shared_ptr<rtl::StandardOutput>>::iterator it);
     void MainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId);
     
 }

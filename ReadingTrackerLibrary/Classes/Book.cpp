@@ -64,27 +64,30 @@ std::string rtl::Book::PrintPublishDate() const {
     return boost::gregorian::to_simple_string(returnDate);
 }
 
-void rtl::Book::SetSeries(std::string series) {
+//TODO: validation
+bool rtl::Book::SetSeries(std::string series) {
     this->series = series;
-    return;
+    return true;
 }
 
-void rtl::Book::SetPublisher(std::string publisher) {
+//TODO: validation
+bool rtl::Book::SetPublisher(std::string publisher) {
     this->publisher = publisher;
-    return;
+    return true;
 }
 
-void rtl::Book::SetPageCount(int pageCount) {
+//TODO: validation
+bool rtl::Book::SetPageCount(int pageCount) {
     //books can only have positive page counts, if it isn't mark as -1 as error
     if (pageCount <= 0) {
         pageCount = -1;
     }
     this->pageCount = pageCount;
-    return;
+    return true;
 }
 
 //pageCount can't be changed by character, keep whatever is in there before
-void rtl::Book::SetPageCount(char pageCount) {
+bool rtl::Book::SetPageCount(char pageCount) {
     int newPageCount = -1;
     std::stringstream sstream;
     
@@ -93,42 +96,45 @@ void rtl::Book::SetPageCount(char pageCount) {
     
     //if newPageCount == 0 then failed to convert to an integer or the pageCount passed was zero which is invalid
     if (newPageCount <= 0) {
-        return;
+        return false;
     }
     this->pageCount = newPageCount;
     
-    return;
+    return true;
 }
 
 //will attempt a stoi if it fails set pageCount to -1
-void rtl::Book::SetPageCount(std::string pageCount) {
+bool rtl::Book::SetPageCount(std::string pageCount) {
     try {
         int newPageCount = std::stoi(pageCount);
         //pageCount cannot be less than 1, if it is don't change anything
         if (newPageCount <= 0) {
-            return;
+            return false;
         }
         
         this->pageCount = newPageCount;
     } catch (std::invalid_argument) {
         //TODO: Log error
-        //keep pageCount what it was
+        return false;
     }
     
-    return;
+    return true;
 }
 
-void rtl::Book::SetGenre(Genre genre) {
+//TODO: validation
+bool rtl::Book::SetGenre(Genre genre) {
     this->genre = genre;
-    return;
+    return true;
 }
 
-void rtl::Book::SetGenre(std::string genre) {
+//TODO: validation
+bool rtl::Book::SetGenre(std::string genre) {
     this->genre = ConvertStringToGenre(genre);
-    return;
+    return true;
 }
 
-void rtl::Book::SetPublishDate(time_t publishDate) {
+//TODO: validation, is this needed?
+bool rtl::Book::SetPublishDate(time_t publishDate) {
     this->publishDate = *std::gmtime(&publishDate);
     this->publishDate.tm_sec = 0;
     this->publishDate.tm_min = 0;
@@ -138,7 +144,7 @@ void rtl::Book::SetPublishDate(time_t publishDate) {
     this->publishDate.tm_gmtoff = 0;
     this->publishDate.tm_zone = nullptr;
     
-    return;
+    return true;
 }
 
 bool rtl::Book::SetPublishDate(std::string publishDate) {
@@ -153,32 +159,41 @@ bool rtl::Book::SetPublishDate(std::string publishDate) {
     return true;
 }
 
-void rtl::Book::AddOclc(std::string oclc) {
+//TODO: validation
+bool rtl::Book::AddOclc(std::string oclc) {
     this->oclcVector.push_back(oclc);
-    return;
+    return true;
 }
 
-void rtl::Book::AddIsbn(std::string isbn) {
-    //TODO: more validation ISBN
-    auto isbnEnd = std::remove_if(std::begin(isbn), std::end(isbn), [&](auto x){
-        return (x == '-');
-    });
+//TODO: better validation of ISBN
+bool rtl::Book::AddIsbn(std::string isbn) {
+    auto isbnEnd = std::remove_if(std::begin(isbn), std::end(isbn), [&](auto x){ return (x == '-'); });
     isbn.erase(isbnEnd, isbn.end());
     for (auto x : isbn) {
         if (!std::isdigit(x)) {
             //TODO: log this
-            return;
+            return false;
         }
     }
     this->isbnVector.push_back(isbn);
-    return;
+    return true;
 }
 
 rtl::SetsPtr rtl::Book::GetUpdateFunction(std::string input) {
-    //TODO: implement this
-    SetsPtr returnPtr = nullptr;
-    
-    return returnPtr;
+    //TODO: make case insensitive
+    //TODO: prompt user to make new book if they want to change author or title
+    if (input == this->kAuthor) { return nullptr; }
+    else if (input == this->kAuthorId) { return nullptr; }
+    else if (input == this->title) { return nullptr; }
+    else if (input == this->kBookId) { return nullptr; }
+    else if (input == this->kSeries) { return static_cast<rtl::SetsPtr>(&rtl::Book::SetSeries); }
+    else if (input == this->kGenre) { return static_cast<rtl::SetsPtr>(&rtl::Book::SetGenre); }
+    else if (input == this->kPageCount) { return static_cast<rtl::SetsPtr>(&rtl::Book::SetPageCount); }
+    else if (input == this->kPublisher) { return static_cast<rtl::SetsPtr>(&rtl::Book::SetPublisher); }
+    else if (input == this->kPublishDate) { return static_cast<rtl::SetsPtr>(&rtl::Book::SetPublishDate); }
+    else if (input == this->kIsbn) { return static_cast<rtl::SetsPtr>(&rtl::Book::AddIsbn); }
+    else if (input == this->kOclc) { return static_cast<rtl::SetsPtr>(&rtl::Book::AddOclc); }
+    else { return nullptr; }
 }
 
 std::string rtl::Book::PrintJson() const {
@@ -254,17 +269,17 @@ std::string rtl::Book::PrintDetailed() const {
     returnStr.fill(' ');
     
     returnStr << std::left;
-    returnStr << std::setw(15) << "Title: " << std::setw(65) << this->GetTitle().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "BookId: " << std::setw(65) << this->GetBookId().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "Author Name: " << std::setw(65) << this->GetAuthor().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "AuthorId: " << std::setw(65) << this->GetAuthorId().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "Series: " << std::setw(65) << this->GetSeries().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "Genre: " << std::setw(65) << this->PrintGenre().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "Page Count: " << std::setw(65) << std::to_string(this->GetPageCount()).substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "Publisher: " << std::setw(65) << this->GetPublisher().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << "Publish Date: " << std::setw(65) << this->PrintPublishDate().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kTitle + ": " << std::setw(65) << this->GetTitle().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kBookId + ": " << std::setw(65) << this->GetBookId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kAuthor + ": " << std::setw(65) << this->GetAuthor().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kAuthorId + ": " << std::setw(65) << this->GetAuthorId().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kSeries + ": " << std::setw(65) << this->GetSeries().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kGenre + ": " << std::setw(65) << this->PrintGenre().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kPageCount + ": " << std::setw(65) << std::to_string(this->GetPageCount()).substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kPublisher + ": " << std::setw(65) << this->GetPublisher().substr(0, 65) << std::endl;
+    returnStr << std::setw(15) << this->kPublishDate + ": " << std::setw(65) << this->PrintPublishDate().substr(0, 65) << std::endl;
     
-    returnStr << std::setw(15) << "ISBN: ";
+    returnStr << std::setw(15) << this->kIsbn + ": ";
     std::string seperator = "";
     std::string isbnString = "";
     for (auto x : this->GetIsbn()) {
@@ -274,7 +289,7 @@ std::string rtl::Book::PrintDetailed() const {
     returnStr << std::setw(65) << isbnString.substr(0, 65) << std::endl;
     seperator = "";
     
-    returnStr << std::setw(15) << "OCLC: ";
+    returnStr << std::setw(15) << this->kOclc + ": ";
     std::string oclcString = "";
     for (auto x : this->GetOclc()) {
         oclcString += seperator + x;

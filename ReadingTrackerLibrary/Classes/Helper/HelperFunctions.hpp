@@ -24,6 +24,7 @@ namespace rtl {
     std::string& RightTrim(std::string& input);
     std::string& LeftTrim(std::string& input);
     std::string& Trim(std::string& input);
+    std::vector<std::string> splitString(const std::string& input, const std::string& delim);
 }
 
 #endif /* HelperFunctions_hpp */

@@ -7,7 +7,8 @@
 
 #include "ReadBook.hpp"
 
-void rtl::ReadBook::SetDateRead(time_t time) {
+//TODO: validation, is this needed
+bool rtl::ReadBook::SetDateRead(time_t time) {
     this->dateRead = *std::gmtime(&time);
     this->dateRead.tm_sec = 0;
     this->dateRead.tm_min = 0;
@@ -17,7 +18,7 @@ void rtl::ReadBook::SetDateRead(time_t time) {
     this->dateRead.tm_gmtoff = 0;
     this->dateRead.tm_zone = nullptr;
     
-    return;
+    return true;
 }
 
 bool rtl::ReadBook::SetDateRead(std::string time) {
@@ -33,7 +34,7 @@ bool rtl::ReadBook::SetDateRead(std::string time) {
 }
 
 //1-10 rating scale
-void rtl::ReadBook::SetRating(int rating) {
+bool rtl::ReadBook::SetRating(int rating) {
     if (rating < 1) {
         rating = 1;
     }
@@ -42,11 +43,11 @@ void rtl::ReadBook::SetRating(int rating) {
     }
     this->rating = rating;
     
-    return;
+    return true;
 }
 
 //will result in rating being set to 0
-void rtl::ReadBook::SetRating(char rating) {
+bool rtl::ReadBook::SetRating(char rating) {
     int newRating = -1;
     std::stringstream sstream;
     
@@ -56,27 +57,28 @@ void rtl::ReadBook::SetRating(char rating) {
     //if rating == 0 then failed to convert to an integer or the rating passed was zero which is invalid
     if (newRating >= 1 && newRating <= 10) {
         this->rating = newRating;
+        return true;
     }
     
-    return;
+    return false;
 }
 
 //will attempt a stoi if it fails set rating to 0
-void rtl::ReadBook::SetRating(std::string rating) {
+bool rtl::ReadBook::SetRating(std::string rating) {
     try {
         int newRating = std::stoi(rating);
         //rating cannot be less than 1, if it is don't change anything
         if (newRating <= 0) {
-            return;
+            return false;
         }
         
         this->rating = newRating;
     } catch (std::invalid_argument) {
         //TODO: log error
-        //keep rating what it was
+        return false;
     }
     
-    return;
+    return true;
 }
 
 tm rtl::ReadBook::GetDateRead() const {

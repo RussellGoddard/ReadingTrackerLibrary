@@ -191,7 +191,7 @@ void userInputAgain(std::istream& inputStream, std::ostream& outputStream, std::
     return;
 }
 
-void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& outputStream, int currentIndex, int maxRange, const std::vector<std::shared_ptr<rtl::StandardOutput>>& outputVector) {
+void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& outputStream, int maxRange, std::vector<std::shared_ptr<rtl::StandardOutput>>::iterator it) {
     rtl::CommandLine::OutputLine(outputStream, "To select an item input the number in front, else press enter to continue");
     std::string itemSelection = rtl::CommandLine::GetInput(inputStream);
     int selectionInput;
@@ -202,17 +202,18 @@ void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& out
             selectionInput = -1;
         }
         else {
-            rtl::CommandLine::OutputLine(outputStream, outputVector[currentIndex - (maxRange - selectionInput)]->PrintDetailed());
+            std::advance(it, -(maxRange - selectionInput));
+            rtl::CommandLine::OutputLine(outputStream, (*it)->PrintDetailed());
             rtl::CommandLine::OutputLine(outputStream, "Enter the name of the record you would like to update, else press enter");
             std::string updateRecord = rtl::CommandLine::GetInput(inputStream);
-            rtl::SetsPtr testPtr = outputVector[currentIndex - (maxRange - selectionInput)]->GetUpdateFunction(updateRecord);
+            rtl::SetsPtr testPtr = (*it)->GetUpdateFunction(updateRecord);
             if (testPtr == nullptr) {
-                rtl::CommandLine::OutputLine(outputStream, "Field not entered correctly");
+                rtl::CommandLine::OutputLine(outputStream, "Field not entered correctly or field not allowed to be changed");
             }
             else {
                 rtl::CommandLine::OutputLine(outputStream, "Enter the updated field:");
                 std::string newRecord = rtl::CommandLine::GetInput(inputStream);
-                if (std::invoke(testPtr, outputVector[currentIndex - (maxRange - selectionInput)], newRecord)) {
+                if (std::invoke(testPtr, *it, newRecord)) {
                     rtl::CommandLine::OutputLine(outputStream, "Update Success");
                 }
                 else {
@@ -259,9 +260,8 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
             //book
             case '1': {
                 auto newBook = std::make_shared<rtl::Book>(rtl::CommandLine::GetNewBook(inputStream, outputStream, currentMode));
-                rtl::CommandLine::OutputLine(outputStream, "Would you like to save:");
                 rtl::CommandLine::OutputLine(outputStream, newBook->PrintJson() + "?");
-                rtl::CommandLine::OutputLine(outputStream, "Y/N");
+                rtl::CommandLine::OutputLine(outputStream, "Would you like to save (Y/N): ");
                 input = rtl::CommandLine::GetInput(inputStream);
                 if (rtl::Trim(input).empty() || rtl::Trim(input).size() > 1) {
                     userInputAgain(inputStream, outputStream, input);
@@ -269,7 +269,6 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
                 }
                 
                 char charSaveInput = input.at(0);
-                
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
@@ -288,9 +287,8 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
             //readbook
             case '2': {
                 auto newReadBook = std::make_shared<rtl::ReadBook>(rtl::CommandLine::GetNewReadBook(inputStream, outputStream, readerId, currentMode));
-                rtl::CommandLine::OutputLine(outputStream, "Would you like to save:");
                 rtl::CommandLine::OutputLine(outputStream, newReadBook->PrintJson() + "?");
-                rtl::CommandLine::OutputLine(outputStream, "Y/N");
+                rtl::CommandLine::OutputLine(outputStream, "Would you like to save (Y/N): ");
                 input = rtl::CommandLine::GetInput(inputStream);
                 if (rtl::Trim(input).empty() || rtl::Trim(input).size() > 1) {
                     userInputAgain(inputStream, outputStream, input);
@@ -298,7 +296,6 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
                 }
                 
                 char charSaveInput = input.at(0);
-
                 switch(charSaveInput) {
                     case 'y':
                     case 'Y': {
@@ -317,9 +314,8 @@ void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemor
             //author
             case '3': {
                 auto newAuthor = std::make_shared<rtl::Author>(rtl::CommandLine::GetNewAuthor(inputStream, outputStream, currentMode));
-                rtl::CommandLine::OutputLine(outputStream, "Would you like to save:");
                 rtl::CommandLine::OutputLine(outputStream, newAuthor->PrintJson() + "?");
-                rtl::CommandLine::OutputLine(outputStream, "Y/N");
+                rtl::CommandLine::OutputLine(outputStream, "Would you like to save (Y/N): ");
                 input = rtl::CommandLine::GetInput(inputStream);
                 if (rtl::Trim(input).empty() || rtl::Trim(input).size() > 1) {
                     userInputAgain(inputStream, outputStream, input);
@@ -448,62 +444,80 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
         switch(currentDisplay) {
             case 0: {
                 //json
-                int i = 0;
-                for (; i < outputVector.size(); ++i) {
-                    if (outputVector[i] == nullptr) {
+                int count = 0;
+                auto it = std::begin(outputVector);
+                while (it != std::end(outputVector)) {
+                    if (*it == nullptr) {
                         //nothing needs to be done to seperate types when printing json
+                        ++it;
                         continue;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintNumberSelector(i % 10) + outputVector[i]->PrintJson());
-                    rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
+                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintNumberSelector(count % 10) + (*it)->PrintJson());
                     
                     //display 10 items at a timee
-                    if (i % 10 == 9) {
-                        rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, 9, outputVector);
+                    if (count % 10 == 9) {
+                        rtl::CommandLine::UpdateRecord(inputStream, outputStream, count, it);
                     }
+                    ++it;
+                    count = (count + 1) % 10;
                 }
-                
-                int maxRange = i % 10;
-                rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, maxRange, outputVector);
+                int maxRange = count % 10;
+                rtl::CommandLine::UpdateRecord(inputStream, outputStream, maxRange, it);
+                rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;
             }
             case 1: {
                 //simple
                 bool printHeader = true;
-                int i = 0;
-                for (; i < outputVector.size(); ++i) {
-                    if (outputVector[i] == nullptr) {
+                int count = 0;
+                auto it = std::begin(outputVector);
+                while (it != std::end(outputVector)) {
+                    if (*it == nullptr) {
                         //nullptr is the delim between objects, print next objects commandlineheader
                         printHeader = true;
                         rtl::CommandLine::OutputLine(outputStream, "");
+                        ++it;
                         continue;
                     }
                     if (printHeader) {
-                        rtl::CommandLine::OutputLine(outputStream, outputVector[i]->PrintHeader());
+                        rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintHeaderNumber() + (*it)->PrintHeader());
                         printHeader = false;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, outputVector[i]->PrintSimple());
+                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintNumberSelector(count % 10) + (*it)->PrintSimple());
                     
                     //display 10 items at a timee
-                    if (i % 10 == 9) {
-                        rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, 9, outputVector);
+                    if (count % 10 == 9) {
+                        rtl::CommandLine::UpdateRecord(inputStream, outputStream, count, it);
                     }
+                    ++it;
+                    count = (count + 1) % 10;
                 }
-                int maxRange = i % 10;
-                rtl::CommandLine::UpdateRecord(inputStream, outputStream, i, maxRange, outputVector);
+                int maxRange = count % 10;
+                rtl::CommandLine::UpdateRecord(inputStream, outputStream, maxRange, it);
                 rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;
             }
             case 2: {
                 //detailed
-                int i = 0;
-                for (; i < outputVector.size(); ++i) {
-                    if (outputVector[i] == nullptr) {
-                        //no headers for detailed
+                int count = 0;
+                auto it = std::begin(outputVector);
+                while (it != std::end(outputVector)) {
+                    if (*it == nullptr) {
+                        //nothing needs to be done to seperate types when printing json
+                        ++it;
                         continue;
                     }
-                    rtl::CommandLine::OutputLine(outputStream, outputVector[i]->PrintDetailed());
+                    rtl::CommandLine::OutputLine(outputStream, rtl::CommandLine::PrintNumberSelector(count % 10) + (*it)->PrintDetailed());
+                    
+                    //display 10 items at a timee
+                    if (count % 10 == 9) {
+                        rtl::CommandLine::UpdateRecord(inputStream, outputStream, count, it);
+                    }
+                    ++it;
+                    count = (count + 1) % 10;
                 }
+                int maxRange = count % 10;
+                rtl::CommandLine::UpdateRecord(inputStream, outputStream, maxRange, it);
                 rtl::CommandLine::OutputLine(outputStream, ""); //blank line for seperation
                 break;
             }

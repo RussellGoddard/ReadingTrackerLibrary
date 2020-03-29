@@ -81,16 +81,13 @@ std::vector<std::shared_ptr<rtl::Book>> rtl::Author::GetBooksWritten() const {
 
 
 rtl::SetsPtr rtl::Author::GetUpdateFunction(std::string input) {
-    //TODO: is there a better way than a reinterpret_cast??? makes me nervous
     //TODO: make case insensitive
-    SetsPtr returnPtr = nullptr;
-    if (input == this->kAuthor) { returnPtr = reinterpret_cast<rtl::SetsPtr>(&rtl::Author::SetName); }
-    else if (input == this->kDateBorn) {
-        returnPtr = reinterpret_cast<rtl::SetsPtr>(&rtl::Author::SetName);
-    }
-    else { returnPtr = nullptr; }
-    
-    return returnPtr;
+    //TODO: message about not changing authorId, about adding books written
+    if (input == this->kAuthor) { return static_cast<rtl::SetsPtr>(&rtl::Author::SetName); }
+    else if (input == this->kAuthorId) { return nullptr; }
+    else if (input == this->kDateBorn) { return static_cast<rtl::SetsPtr>(&rtl::Author::SetDateBorn); }
+    else if (input == this->kBooksWritten) { return nullptr; }
+    else { return nullptr; }
 }
 
 std::string rtl::Author::PrintJson() const {
@@ -129,7 +126,7 @@ std::string rtl::Author::PrintSimple() const {
         returnStr << std::left << booksWritten.at(0)->PrintPublishDate().substr(0, 4);
         for (int i = 1; i < booksWritten.size(); ++i) {
             returnStr << std::endl;
-            returnStr.width(kWidthAuthor + kWidthDateBorn);
+            returnStr.width(kWidthAuthor + kWidthDateBorn + 3);
             returnStr << std::left << " ";
             returnStr.width(kWidthTitle);
             returnStr << std::left << booksWritten.at(i)->GetTitle().substr(0, kWidthTitle - 1);
@@ -225,24 +222,6 @@ bool rtl::operator==(const Author& lhs, const Author& rhs) {
 
 bool rtl::operator!=(const Author& lhs, const Author& rhs) {
     return !operator==(lhs, rhs);
-}
-
-//TODO: this shouldn't be in author
-std::vector<std::string> splitString(const std::string& input, const std::string& delim) {
-    std::vector<std::string> returnVector;
-    std::size_t current = 0;
-    std::size_t previous = 0;
-    
-    current = input.find_first_of(delim);
-    
-    while (current != input.npos) {
-        returnVector.push_back(input.substr(previous, current - previous));
-        previous = current + 1;
-        current = input.find_first_of(delim, previous);
-    }
-    returnVector.push_back(input.substr(previous, current - previous));
-    
-    return returnVector;
 }
 
 //sort by last word in name then by birthdate

@@ -12,6 +12,7 @@
 #include <ctime>
 #include <string>
 #include <vector>
+#include "HelperFunctions.hpp"
 #include "ReadBook.hpp" //TODO: this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook 
 
 namespace rtl {
@@ -61,8 +62,6 @@ namespace rtl {
         const std::string kAuthorId = "AuthorId";
         const std::string kBooksWritten = "Books Written";
     };
-
-    
 
     bool operator==(const Author& lhs, const Author& rhs);
     bool operator!=(const Author& lhs, const Author& rhs);
