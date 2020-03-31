@@ -76,11 +76,10 @@ bool rtl::Book::SetPublisher(std::string publisher) {
     return true;
 }
 
-//TODO: validation
 bool rtl::Book::SetPageCount(int pageCount) {
     //books can only have positive page counts, if it isn't mark as -1 as error
     if (pageCount <= 0) {
-        pageCount = -1;
+        return false;
     }
     this->pageCount = pageCount;
     return true;
@@ -127,13 +126,18 @@ bool rtl::Book::SetGenre(Genre genre) {
     return true;
 }
 
-//TODO: validation
 bool rtl::Book::SetGenre(std::string genre) {
-    this->genre = ConvertStringToGenre(genre);
+    rtl::Genre newGenre = ConvertStringToGenre(genre);
+    
+    if (newGenre == rtl::Genre::genreNotSet) {
+        return false;
+    }
+    
+    this->genre = newGenre;
     return true;
 }
 
-//TODO: validation, is this needed?
+//TODO: get rid of time_t, replace with struct tm
 bool rtl::Book::SetPublishDate(time_t publishDate) {
     this->publishDate = *std::gmtime(&publishDate);
     this->publishDate.tm_sec = 0;

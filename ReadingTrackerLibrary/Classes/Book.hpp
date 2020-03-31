@@ -52,8 +52,8 @@ namespace rtl {
         bool SetSeries(std::string series);
         bool SetPublisher(std::string publisher);
         bool SetPageCount(int pageCount);
-        bool SetPageCount(char pageCount); //will result in pageCount being set to -1
-        bool SetPageCount(std::string pageCount); //will attempt a stoi if it fails set pageCount to -1
+        bool SetPageCount(char pageCount);
+        bool SetPageCount(std::string pageCount);
         bool SetGenre(Genre genre);
         bool SetGenre(std::string genre);
         bool SetPublishDate(time_t publishDate);
@@ -74,16 +74,16 @@ namespace rtl {
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc);
         
     private:
-        std::string authorId;
-        std::string bookId;
+        std::string authorId = "";
+        std::string bookId = "";
         std::vector<std::string> isbnVector;
         std::vector<std::string> oclcVector;
-        std::string author;
-        std::string title;
-        std::string publisher;
-        std::string series;
-        Genre genre;
-        int pageCount;
+        std::string author = "";
+        std::string title = "";
+        std::string publisher = "";
+        std::string series = "";
+        Genre genre = rtl::Genre::genreNotSet;
+        int pageCount = -1; //default value is -1
         tm publishDate;
         
         //used for printCommandLineSimple and printCommandLineHeaders, 77 characters total
