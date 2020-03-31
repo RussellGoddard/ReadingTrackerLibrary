@@ -21,7 +21,6 @@ namespace rtl {
     //TODO: change default author dateBorn to something else
     const time_t jan2038 = 2145916800;
 
-    //TODO: add uniqueId for future DB storage
     class Author : public StandardOutput {
     public:
         bool SetName(std::string name);

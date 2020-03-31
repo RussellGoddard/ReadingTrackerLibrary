@@ -232,7 +232,6 @@ bool rtl::operator!=(const ReadBook& lhs, const ReadBook& rhs) {
 bool rtl::operator<(const ReadBook& lhs, const ReadBook& rhs) {
     //TODO: see if this can be simplified
     //sort by Book comparison then by dateRead
-    //TODO: simplify this by calling Book==Book then only compare ReadBook by dateRead
     
     if (lhs.GetAuthor() < rhs.GetAuthor()) { return true; }
     else if (lhs.GetAuthor() > rhs.GetAuthor()) { return false; }

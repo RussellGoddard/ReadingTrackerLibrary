@@ -194,9 +194,13 @@ void userInputAgain(std::istream& inputStream, std::ostream& outputStream, std::
 void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& outputStream, int maxRange, std::vector<std::shared_ptr<rtl::StandardOutput>>::iterator it) {
     rtl::CommandLine::OutputLine(outputStream, "To select an item input the number in front, else press enter to continue");
     std::string itemSelection = rtl::CommandLine::GetInput(inputStream);
+    rtl::Trim(itemSelection);
     int selectionInput;
     
     try {
+        if (itemSelection == "") {
+            return;
+        }
         selectionInput = stoi(itemSelection);
         if (selectionInput < 0 || selectionInput > maxRange) {
             selectionInput = -1;
@@ -566,7 +570,10 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                 break;
             }
             case '7': {
-                rtl::CommandLine::OutputLine(outputStream, "Input file path for save file");
+                rtl::CommandLine::OutputLine(outputStream, std::vector<std::string> {
+                    "Input file path for save file or enter shortcut below:",
+                    "desktop: (shortcut to macOS user desktop)"
+                });
                 input = rtl::CommandLine::GetInput(inputStream);
                 //shortcut to macOS desktop TODO: dedicated save space than desktop
                 if(input == "desktop") {
@@ -578,7 +585,10 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                 break;
             }
             case '8': {
-                rtl::CommandLine::OutputLine(outputStream, "Input file path to load file");
+                rtl::CommandLine::OutputLine(outputStream, std::vector<std::string> {
+                    "Input file path to load file or enter shortcut below:",
+                    "desktop: (shortcut to macOS user desktop)"
+                });
                 input = rtl::CommandLine::GetInput(inputStream);
                 //shortcut to macOS desktop TODO: dedicated save space than desktop
                 if (input == "desktop") {

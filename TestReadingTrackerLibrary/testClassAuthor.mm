@@ -265,7 +265,7 @@ std::shared_ptr<rtl::Book> testBook2;
 }
 
 - (void)testPrintCommandLineSimpleAuthor {
-    std::string testMist = "Brandon Sanderson   1975-Dec-19 Mistborn: The Final Empire               2006\n                                Mistborn: The Well of Ascension          2007\n                                Mistborn: The Hero of Ages               2008";
+    std::string testMist = "Brandon Sanderson   1975-Dec-19 Mistborn: The Final Empire               2006\n                                   Mistborn: The Well of Ascension          2007\n                                   Mistborn: The Hero of Ages               2008";
     std::string testGirl = "Stieg Larsson       1964-Aug-15 The Girl with the Dragon Tattoo          2005";
     std::string testWidth = "Robert Jordan123456 1948-Oct-17 The Eye of the World12345678901234567890 1990";
     
