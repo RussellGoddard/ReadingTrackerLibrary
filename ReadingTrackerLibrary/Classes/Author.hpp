@@ -43,7 +43,6 @@ namespace rtl {
         
         Author() = delete; //Author class HAS to be constructed with a name
         Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
-        Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book> bookWritten);
         Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
     private:
         std::string authorId;

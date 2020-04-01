@@ -359,14 +359,14 @@
     XCTAssert(testBook.GetIsbn().at(1) == answerString2);
 }
 
-- (void)test_PrintColumnHeader {
+- (void)test_PrintHeader {
     std::string testStr = "Author              Title                            Series             Pages";
     rtl::Book testBook("testAuthor", "testTitle");
     
     XCTAssert(testBook.PrintHeader() == testStr);
 }
 
-- (void)test_PrintCommandLineSimple {
+- (void)test_PrintSimple {
     std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire       Mistborn           541  ";
     std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo  Millennium         480  ";
     std::string testWidth = "Robert Jordan123456 The Eye of the World123456789012 The Wheel of Time1 70212";
@@ -380,7 +380,7 @@
     XCTAssert(bookWidth.PrintSimple() == testWidth);
 }
 
-- (void)test_PrintCommandLineDetailed {
+- (void)test_PrintDetailed {
     std::string testMist = "Title:         Mistborn: The Final Empire                                       \nBookId:        1c5fdaf7109aa47ef2                                               \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2006-Jul-17                                                      \nISBN:          9780765311788                                                    \nOCLC:          62342185                                                         \n";
     std::string testGirl = "Title:         The Girl with the Dragon Tattoo                                  \nBookId:        2c844f9a4aac31a8848f80                                           \nAuthor Name:   Stieg Larsson                                                    \nAuthorId:      7052c8                                                           \nSeries:        Millennium                                                       \nGenre:         thriller                                                         \nPage Count:    480                                                              \nPublisher:     Norstedts Förlag                                                \nPublish Date:  2005-Aug-01                                                      \nISBN:          9781847242532                                                    \nOCLC:          186764078                                                        \n";
     std::string testWidth = "Title:         The Eye of the World123456789012345678901234567890123456789012345\nBookId:        cfcbb4cef513c9c904bf8                                            \nAuthor Name:   Robert Jordan1234567890123456789012345678901234567890123456789012\nAuthorId:      2766def2                                                         \nSeries:        The Wheel of Time123456789012345678901234567890123456789012345678\nGenre:         fantasy                                                          \nPage Count:    70212                                                            \nPublisher:     Tor Books12345678901234567890123456789012345678901234567890123456\nPublish Date:  1990-Jan-15                                                      \nISBN:          19723327, 1234567890, 1234567890, 1234567890, 1234567890, 1234567\nOCLC:          0312850093, 1234567890, 1234567890, 1234567890, 1234567890, 12345\n";

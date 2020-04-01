@@ -81,7 +81,7 @@ void rtl::InMemoryContainers::AddMasterAuthors(std::shared_ptr<rtl::Author> newA
 
 void rtl::InMemoryContainers::AddMasterAuthors(std::shared_ptr<rtl::Book> newBook) {
     if (newBook->GetAuthor() != "") {
-        auto newAuthor = std::make_shared<rtl::Author>(newBook->GetAuthor(), rtl::jan2038, newBook);
+        auto newAuthor = std::make_shared<rtl::Author>(newBook->GetAuthor(), rtl::jan2038, std::vector<std::shared_ptr<rtl::Book>>{newBook});
         this->authorVector.push_back(newAuthor);
         rtl::SortUnique(this->authorVector);
     }

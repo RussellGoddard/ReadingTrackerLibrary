@@ -193,13 +193,6 @@ rtl::Author::Author(std::string name, std::string dateBorn, std::vector<std::sha
     this->authorId = GenerateId(name);
 }
 
-rtl::Author::Author(std::string name, time_t dateBorn, std::shared_ptr<rtl::Book> bookWritten) {
-    this->SetName(name);
-    this->SetDateBorn(dateBorn);
-    this->AddBookWritten(bookWritten);
-    this->authorId = GenerateId(name);
-}
-
 bool rtl::operator==(const Author& lhs, const Author& rhs) {
     
     /* TODO: add way to combine authors even if birthdate is missing/inccorrect somehow, disabled birthdate compare so that it is feasible that authors get combined appropriately

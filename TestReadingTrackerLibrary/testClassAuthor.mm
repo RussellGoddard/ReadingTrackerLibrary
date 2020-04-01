@@ -31,14 +31,14 @@ std::shared_ptr<rtl::Book> testBook2;
     bookCollection.clear();
 }
 
-- (void)testSetName {
+- (void)test_SetName_ReturnPassedString {
     rtl::Author testAuthor("testAuthor");
     XCTAssert(testAuthor.GetName() == "testAuthor");
     XCTAssert(testAuthor.SetName("pickle"));
     XCTAssert(testAuthor.GetName() == "pickle");
 }
 
-- (void)testSetDateBorn {
+- (void)test_SetDateBornTimeT_ReturnTimeT {
     rtl::Author testAuthor("testAuthor");
     time_t testValue = 1573862400;
     XCTAssert(testAuthor.SetDateBorn(testValue));
@@ -47,26 +47,22 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(std::mktime(&initialTm) == std::mktime(&testTm));
     XCTAssert(testAuthor.GetDateBornTimeT() == 1573880400);
-    XCTAssert(testAuthor.PrintDateBorn() == "2019-Nov-16");
-    
+}
+
+- (void)test_setDateBornString_ReturnString {
+    rtl::Author testAuthor("testAuthor");
     XCTAssert(testAuthor.SetDateBorn("1990-Dec-08"));
     XCTAssert(testAuthor.PrintDateBorn() == "1990-Dec-08");
-    
-    XCTAssert(testAuthor.SetDateBorn("1890-Dec-01"));
-    XCTAssert(testAuthor.PrintDateBorn() == "1890-Dec-01");
-    
-    XCTAssert(testAuthor.SetDateBorn("1990-Dec-01"));
-    XCTAssert(testAuthor.GetDateBornTimeT() == 660027600);
-    XCTAssert(testAuthor.PrintDateBorn() == "1990-Dec-01");
-    
+}
+
+- (void)test_setDateBornInvalid_ReturnFalse {
+    rtl::Author testAuthor("testAuthor");
     XCTAssert(!testAuthor.SetDateBorn("Dec-ab-2000"));
     XCTAssert(!testAuthor.SetDateBorn("invalid string"));
     XCTAssert(!testAuthor.SetDateBorn("AAA 01 3453"));
-    
-    
 }
 
-- (void)testAddBook {    
+- (void)test_AddBook {
     rtl::Author newAuthor("testAuthor");
     std::shared_ptr<rtl::Book> testBook = std::make_shared<rtl::Book>("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::Genre::fantasy, "Nov-11-1992");
     
@@ -78,7 +74,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(newAuthor.GetBooksWritten().at(0) == testBook);
 }
 
-- (void)testAddBooks {
+- (void)test_AddVectorOfBooks {
     rtl::Author newAuthor("testAuthors");
     
     XCTAssert(newAuthor.GetBooksWritten().empty());
@@ -90,15 +86,16 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(newAuthor.GetBooksWritten().at(1) == testBook1);
 }
 
-- (void)testAuthorConstructor {
-    
+- (void)test_AuthorConstructorDefault {
     //Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
     rtl::Author testAuthor1("testAuthor1", 660027600);
     XCTAssert(testAuthor1.GetName() == "testAuthor1");
     XCTAssert(testAuthor1.GetDateBornTimeT() == 660027600);
     XCTAssert(testAuthor1.GetBooksWritten().size() == 0);
     XCTAssert(testAuthor1.GetAuthorId() == "23f9");
-    
+}
+
+- (void)test_AuthorConstructor2 {
     //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
     rtl::Author testAuthor2("testAuthor2", "1990-Dec-01", bookCollection);
     XCTAssert(testAuthor2.GetName() == "testAuthor2");
@@ -108,31 +105,23 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor2.GetBooksWritten().at(0) == testBook2);
     XCTAssert(testAuthor2.GetBooksWritten().at(1) == testBook1);
     XCTAssert(testAuthor2.GetAuthorId() == "2404");
-    
-    //Author::Author(std::string name, time_t dateBorn, std::shared_ptr<Book> bookWritten)
-    rtl::Author testAuthor3("testAuthor3", 660027600, testBook1);
-    XCTAssert(testAuthor3.GetName() == "testAuthor3");
-    XCTAssert(testAuthor3.GetDateBornTimeT() == 660027600);
-    XCTAssert(testAuthor3.GetBooksWritten().size() == 1);
-    XCTAssert(testAuthor3.GetBooksWritten().at(0) == testBook1);
-    XCTAssert(testAuthor3.GetAuthorId() == "240f");
 }
 
-- (void)testEquals {
+- (void)test_OperatorEquals {
     rtl::Author testAuthor1("testAuthor1", "1990-Dec-01");
     rtl::Author testAuthor2("testAuthor1", "1990-Dec-01");
     
     XCTAssert(testAuthor1 == testAuthor2);
 }
 
-- (void)testNotEquals {
+- (void)test_OperatorNotEquals {
     rtl::Author testAuthor1("testAuthor1", "1990-Dec-01");
     rtl::Author testAuthor2("testAuthor2", "1990-Dec-01");
     
     XCTAssert(testAuthor1 != testAuthor2);
 }
 
-- (void)testLessThan {
+- (void)test_OperatorLessThan {
     rtl::Author testAuthor1("a", "1990-Dec-01");
     rtl::Author testAuthor2("b", "1990-Dec-01");
     
@@ -153,7 +142,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor2 < testAuthor1);
 }
 
-- (void)testLessThanEquals {
+- (void)test_OperatorLessThanEquals {
     rtl::Author testAuthor1("a", "1990-Dec-01");
     rtl::Author testAuthor2("b", "1990-Dec-01");
     
@@ -177,7 +166,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor1 <= testAuthor2);
 }
 
-- (void)testGreaterThan {
+- (void)test_OperatorGreaterThan {
     rtl::Author testAuthor1("a", "1990-Dec-01");
     rtl::Author testAuthor2("b", "1990-Dec-01");
     
@@ -198,7 +187,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor1 > testAuthor2);
 }
 
-- (void)testGreaterThanEquals {
+- (void)test_OperatorGreaterThanEquals {
     rtl::Author testAuthor1("a", "1990-Dec-01");
     rtl::Author testAuthor2("b", "1990-Dec-01");
     
@@ -222,49 +211,13 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor2 >= testAuthor1);
 }
 
-
-- (void)testAuthorConstructors {
-    //Author(std::string name, time_t dateBorn = std::time(&jan2038), std::vector<std::shared_ptr<Book>> booksWritten = {});
-    //Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
-    rtl::Author testAuthor("testName");
-    XCTAssert(testAuthor.GetName() == "testName");
-    XCTAssert(testAuthor.PrintDateBorn() == "2038-Jan-01");
-    XCTAssert(testAuthor.GetBooksWritten().size() == 0);
-    
-    rtl::Author testAuthor2("testName2", "1990-Dec-01");
-    XCTAssert(testAuthor2.GetName() == "testName2");
-    XCTAssert(testAuthor2.PrintDateBorn() == "1990-Dec-01");
-    XCTAssert(testAuthor2.GetBooksWritten().size() == 0);
-    
-    rtl::Author testAuthor3("testName3", "1975-Jun-02", bookCollection);
-    XCTAssert(testAuthor3.GetName() == "testName3");
-    XCTAssert(testAuthor3.PrintDateBorn() == "1975-Jun-02");
-    XCTAssert(testAuthor3.GetBooksWritten().size() == bookCollection.size());
-    XCTAssert(testAuthor3.GetBooksWritten().size() == 2);
-    XCTAssert(testAuthor3.GetBooksWritten().at(0) == testBook2);
-    XCTAssert(testAuthor3.GetBooksWritten().at(1) == testBook1);
-    
-    rtl::Author testAuthor4("testName4", "1984-Aug-27");
-    XCTAssert(testAuthor4.GetName() == "testName4");
-    XCTAssert(testAuthor4.PrintDateBorn() == "1984-Aug-27");
-    XCTAssert(testAuthor4.GetBooksWritten().size() == 0);
-    
-    rtl::Author testAuthor5("testName5", "2001-Feb-21", bookCollection);
-    XCTAssert(testAuthor5.GetName() == "testName5");
-    XCTAssert(testAuthor5.PrintDateBorn() == "2001-Feb-21");
-    XCTAssert(testAuthor5.GetBooksWritten().size() == bookCollection.size());
-    XCTAssert(testAuthor5.GetBooksWritten().size() == 2);
-    XCTAssert(testAuthor5.GetBooksWritten().at(0) == testBook2);
-    XCTAssert(testAuthor5.GetBooksWritten().at(1) == testBook1);
-}
-
-- (void)testPrintAuthorColumnHeaders {
+- (void)test_PrintHeader {
     std::string testStr = "Author              Date Born   Books Written                            Year";
     rtl::Author testAuthor("testAuthor");
     XCTAssert(testAuthor.PrintHeader() == testStr);
 }
 
-- (void)testPrintCommandLineSimpleAuthor {
+- (void)test_PrintSimple {
     std::string testMist = "Brandon Sanderson   1975-Dec-19 Mistborn: The Final Empire               2006\n                                   Mistborn: The Well of Ascension          2007\n                                   Mistborn: The Hero of Ages               2008";
     std::string testGirl = "Stieg Larsson       1964-Aug-15 The Girl with the Dragon Tattoo          2005";
     std::string testWidth = "Robert Jordan123456 1948-Oct-17 The Eye of the World12345678901234567890 1990";
@@ -292,7 +245,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(authorWidth.PrintSimple() == testWidth);
 }
 
-- (void)testPrintCommandLineDetailedAuthor {
+- (void)test_PrintDetailed {
     std::string testMist = "Author:        Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nDate Born:     1975-Dec-19                                                      \nBooks Written:                                                                  \nTitle:         Mistborn: The Final Empire                                       \nBookId:        1c5fdaf7109aa47ef2                                               \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2006-Jul-17                                                      \nISBN:          9780765311788                                                    \nOCLC:          62342185                                                         \n\nTitle:         Mistborn: The Well of Ascension                                  \nBookId:        3ffc6bac06439747e1b0                                             \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2007-Jul-17                                                      \nISBN:                                                                           \nOCLC:                                                                           \n\nTitle:         Mistborn: The Hero of Ages                                       \nBookId:        ca903ec590e706e8318                                              \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2008-Jul-17                                                      \nISBN:                                                                           \nOCLC:                                                                           \n\n";
     std::string testGirl = "Author:        Stieg Larsson                                                    \nAuthorId:      7052c8                                                           \nDate Born:     1964-Aug-15                                                      \nBooks Written:                                                                  \nTitle:         The Girl with the Dragon Tattoo                                  \nBookId:        2c844f9a4aac31a8848f80                                           \nAuthor Name:   Stieg Larsson                                                    \nAuthorId:      7052c8                                                           \nSeries:        Millennium                                                       \nGenre:         thriller                                                         \nPage Count:    480                                                              \nPublisher:     Norstedts Förlag                                                \nPublish Date:  2005-Aug-01                                                      \nISBN:          9781847242532                                                    \nOCLC:          186764078                                                        \n\n";
     std::string testWidth = "Author:        Robert Jordan1234567890123456789012345678901234567890123456789012\nAuthorId:      2766def2                                                         \nDate Born:     1948-Oct-17                                                      \nBooks Written:                                                                  \nTitle:         The Eye of the World123456789012345678901234567890123456789012345\nBookId:        cfcbb4cef513c9c904bf8                                            \nAuthor Name:   Robert Jordan1234567890123456789012345678901234567890123456789012\nAuthorId:      2766def2                                                         \nSeries:        The Wheel of Time123456789012345678901234567890123456789012345678\nGenre:         fantasy                                                          \nPage Count:    70212                                                            \nPublisher:     Tor Books12345678901234567890123456789012345678901234567890123456\nPublish Date:  1990-Jan-15                                                      \nISBN:          19723327, 1234567890, 1234567890, 1234567890, 1234567890, 1234567\nOCLC:          0312850093, 1234567890, 1234567890, 1234567890, 1234567890, 12345\n\n";
@@ -324,7 +277,7 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(authorWidth.PrintDetailed() == testWidth);
 }
 
-- (void)testPrintJson {
+- (void)test_PrintJson {
     std::shared_ptr<rtl::Book> testBook1 = std::make_shared<rtl::Book>("3rd", "testTitle1", "testSeries1", "testPublisher1", 1, rtl::Genre::fantasy, "1992-Nov-11");
     std::shared_ptr<rtl::Book> testBook2 = std::make_shared<rtl::Book>("3rd", "testTitle2", "testSeries2", "testPublisher2", 22, rtl::Genre::western, "2020-Nov-11");
     rtl::Author testAuthor1("a", "1990-Dec-01");
