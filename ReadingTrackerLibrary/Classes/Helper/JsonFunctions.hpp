@@ -14,7 +14,6 @@
 #include "Author.hpp"
 
 namespace rtl {
-    rtl::ReadBook ConvertJsonToReadBook(nlohmann::json json);
     std::shared_ptr<rtl::Book> ConvertJsonToBookPtr(nlohmann::json json);
     std::shared_ptr<rtl::ReadBook> ConvertJsonToReadBookPtr(nlohmann::json json);
     std::shared_ptr<rtl::Author> ConvertJsonToAuthorPtr(nlohmann::json json);

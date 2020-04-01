@@ -8,29 +8,6 @@
 
 #include "JsonFunctions.hpp"
 
-rtl::ReadBook rtl::ConvertJsonToReadBook(nlohmann::json json) {
-    try {
-        int readerId = json["readerId"].get<int>();
-        std::string author = json["author"].get<std::string>();
-        std::string title = json["title"].get<std::string>();
-        std::string series = json["series"].get<std::string>();
-        std::string publisher = json["publisher"].get<std::string>();
-        int pageCount = json["pageCount"].get<int>();
-        std::string genre = json["genre"].get<std::string>();
-        std::string publishDate = json["publishDate"].get<std::string>();
-        int rating = json["rating"].get<int>();
-        std::string time = json["dateRead"].get<std::string>();
-        return rtl::ReadBook(readerId, author, title, series, publisher, pageCount, genre, publishDate, rating, time);
-    }
-    catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
-        return ReadBook(-1, "", "");
-    }
-        
-    
-}
-
 std::shared_ptr<rtl::Book> rtl::ConvertJsonToBookPtr(nlohmann::json json) {
     try {
         std::string author = json["author"].get<std::string>();
