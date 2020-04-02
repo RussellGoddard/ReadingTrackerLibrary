@@ -21,11 +21,11 @@
 - (void)tearDown {
 }
 
-- (void)testPrintHeaderNumber {
+- (void)test_PrintHeaderNumber {
     XCTAssert(rtl::CommandLine::PrintHeaderNumber() == "#: ");
 }
 
-- (void)testPrintNumberSelector {
+- (void)test_PrintNumberSelector_PassInt_ReturnIntPlusString {
     XCTAssert(rtl::CommandLine::PrintNumberSelector(3) == "3: ");
 }
 
