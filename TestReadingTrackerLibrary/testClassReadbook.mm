@@ -23,83 +23,108 @@ int testReaderId = 1;
 - (void)tearDown {
 }
 
-- (void)testSetReadDateTimeT {
+- (void)test_SetDateRead_PassTimeT_GetPassedTimeT {
     rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
     XCTAssert(testReadBook.SetDateRead(testTimeInitial));
     XCTAssert(testTimeInitial == testReadBook.GetDateReadAsTimeT());
-    time_t testTime = 1199165003; //Tuesday, January 1, 2008 12:23:23 AM GMT -5
-    XCTAssert(testReadBook.SetPublishDate(testTime));
-    XCTAssert(testTimeInitial == testReadBook.GetDateReadAsTimeT());
 }
 
-- (void)testSetReadDateString {
+- (void)test_SetReadDate_PassStringSpaceDelim_PrintPassedDate {
     rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     XCTAssert(testReadBook.SetDateRead("2008 1 01"));
     XCTAssert(testReadBook.PrintDateRead() == "2008-Jan-01");
+}
+
+- (void)test_SetReadDate_PassStringHyphenDelim_PrintPassedDate {
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     XCTAssert(testReadBook.SetDateRead("2001-Feb-28"));
     XCTAssert(testReadBook.PrintDateRead() == "2001-Feb-28");
+}
+
+- (void)test_SetReadDate_PassLeapYearFeb29_PrintPassedDate {
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     XCTAssert(testReadBook.SetDateRead("2008-Feb-29"));
     XCTAssert(testReadBook.PrintDateRead() == "2008-Feb-29");
-    XCTAssert(testReadBook.SetDateRead("2017-Mar-13"));
-    XCTAssert(testReadBook.PrintDateRead() == "2017-Mar-13");
-    XCTAssert(testReadBook.SetDateRead("1950-April-02"));
-    XCTAssert(testReadBook.PrintDateRead() == "1950-Apr-02");
-    XCTAssert(testReadBook.SetDateRead("2010-May-31"));
-    XCTAssert(testReadBook.PrintDateRead() == "2010-May-31");
-    XCTAssert(testReadBook.SetDateRead("1910-Jun-22"));
-    XCTAssert(testReadBook.PrintDateRead() == "1910-Jun-22");
-    XCTAssert(testReadBook.SetDateRead("2020-07-30"));
-    XCTAssert(testReadBook.PrintDateRead() == "2020-Jul-30");
-    XCTAssert(testReadBook.SetDateRead("2000/Aug/13"));
-    XCTAssert(testReadBook.PrintDateRead() == "2000-Aug-13");
-    XCTAssert(testReadBook.SetDateRead("2013-9-28"));
-    XCTAssert(testReadBook.PrintDateRead() == "2013-Sep-28");
-    XCTAssert(testReadBook.SetDateRead("2002-Oct-31"));
-    XCTAssert(testReadBook.PrintDateRead() == "2002-Oct-31");
-    XCTAssert(testReadBook.SetDateRead("1990-Nov-15"));
-    XCTAssert(testReadBook.PrintDateRead() == "1990-Nov-15");
-    XCTAssert(testReadBook.SetDateRead("1999-Dec-25"));
-    XCTAssert(testReadBook.PrintDateRead() == "1999-Dec-25");
+}
+
+- (void)test_SetReadDate_PassDateBefore1900_PrintPassedDate {
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     XCTAssert(testReadBook.SetDateRead("1890-Dec-01"));
     XCTAssert(testReadBook.PrintDateRead() == "1890-Dec-01");
-    
+}
+
+- (void)test_SetReadDate_PassInvalidFormatDate_ReturnFalse {
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     XCTAssert(!testReadBook.SetDateRead("Dec-ab-1980"));
+}
+
+- (void)test_SetReadDate_PassEmptyString_ReturnFalse {
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     XCTAssert(!testReadBook.SetDateRead(""));
-    XCTAssert(!testReadBook.SetDateRead("too short"));
-    XCTAssert(!testReadBook.SetDateRead("really long invalid string"));
-    XCTAssert(!testReadBook.SetDateRead("1990-Not-13"));
-    XCTAssert(!testReadBook.SetDateRead("AAA-01-asdf"));
-    XCTAssert(!testReadBook.SetDateRead("2001/Feb/29"));
-    XCTAssert(!testReadBook.SetDateRead("AAA 01 1980"));
-    XCTAssert(!testReadBook.SetDateRead("Dec-01-1980"));
 }
 
-- (void)testSetRating {
+- (void)test_SetReadDate_PassNotLeapYearFeb29_ReturnFalse {
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
+    XCTAssert(!testReadBook.SetDateRead("2001-Feb-29"));
+}
+
+- (void)test_SetRating_PassIntLessThanZero_ReturnFalse {
     rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
-    XCTAssert(testRating.SetRating(-1));
-    XCTAssert(1 == testRating.GetRating());
+    XCTAssert(!testRating.SetRating(-1));
+}
+
+- (void)test_SetRating_PassInt1_GetInt1 {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
     XCTAssert(testRating.SetRating(1));
-    XCTAssert(1 == testRating.GetRating());
+    XCTAssert(testRating.GetRating() == 1);
+}
+
+- (void)test_SetRating_PassInt10_GetInt10 {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
     XCTAssert(testRating.SetRating(10));
-    XCTAssert(10 == testRating.GetRating());
-    XCTAssert(testRating.SetRating(11));
-    XCTAssert(10 == testRating.GetRating());
+    XCTAssert(testRating.GetRating() == 10);
+}
+
+- (void)test_SetRating_PassValueGreaterThan10_ReturnFalse {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
+    XCTAssert(!testRating.SetRating(11));
+}
+
+- (void)test_SetRating_PassChar9_GetInt9 {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
     XCTAssert(testRating.SetRating('9'));
-    XCTAssert(9 == testRating.GetRating());
+    XCTAssert(testRating.GetRating() == 9);
+}
+
+- (void)test_SetRating_PassInvalidChar_ReturnFalse {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
     XCTAssert(!testRating.SetRating('a'));
-    XCTAssert(9 == testRating.GetRating());
+}
+
+- (void)test_SetRating_PassString2_GetInt2 {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");\
     XCTAssert(testRating.SetRating("2"));
-    XCTAssert(2 == testRating.GetRating());
+    XCTAssert(testRating.GetRating() == 2);
+}
+
+- (void)test_SetRating_PassInvalidString_ReturnFalse {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
     XCTAssert(!testRating.SetRating("z4"));
-    XCTAssert(2 == testRating.GetRating());
+}
+
+- (void)test_SetRating_PassStringLessThanOne_ReturnFalse {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
     XCTAssert(!testRating.SetRating("-20"));
-    XCTAssert(2 == testRating.GetRating());
+}
+
+- (void)test_SetRating_PassStringGreaterThanTen_ReturnFalse {
+    rtl::ReadBook testRating(testReaderId, "testAuthor", "testTitle");
+    XCTAssert(!testRating.SetRating("12"));
 }
 
 
-- (void)testReadBookEquals {
-    //ReadBook(int readerId, std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, rtl::Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0), int rating = 0, time_t dateRead = std::time(0));
+- (void)test_ReadBookOperatorEquals_ReturnTrue {
     rtl::ReadBook testReadBook1(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 100, "fantasy", "1990-Dec-01", 4, "1993-Mar-25");
     
     rtl::ReadBook testReadBook2(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 100, "fantasy", "1990-Dec-01", 4, "1993-Mar-25");
@@ -107,14 +132,14 @@ int testReaderId = 1;
     XCTAssert(testReadBook1 == testReadBook2);
 }
 
-- (void)testReadBookNotEquals {
+- (void)test_ReadBookOperatorNotEquals_ReturnTrue {
     rtl::ReadBook testReadBook1(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 100, "fantasy", "1990-Dec-01", 4, "1993-Mar-25");
     
     rtl::ReadBook testReadBook2(testReaderId, "authorB", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
     XCTAssert(testReadBook1 != testReadBook2);
 }
 
-- (void)testReadBookLessThan {
+- (void)test_ReadBookOperatorLessThan_ReturnTrue {
     rtl::ReadBook testReadBook1(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 100, "fantasy", "1990-Dec-01", 4, "1993-Mar-25");
     
     rtl::ReadBook testReadBook2(testReaderId, "authorB", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
@@ -136,7 +161,7 @@ int testReaderId = 1;
     XCTAssert(!(testReadBook4 < testReadBook1));
 }
 
-- (void)testReadBookLessEqualsThan {
+- (void)test_ReadBookOperatorLessThanEquals_ReturnTrue {
     rtl::ReadBook testReadBook1(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 100, "fantasy", "1990-Dec-01", 4, "1993-Mar-25");
     
     rtl::ReadBook testReadBook2(testReaderId, "authorB", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
@@ -158,7 +183,7 @@ int testReaderId = 1;
     XCTAssert(testReadBook4 <= testReadBook1);
 }
 
-- (void)testReadBookGreaterThan {
+- (void)test_ReadBookOperatorGreaterThan_ReturnTrue {
     rtl::ReadBook testReadBook1(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 100, "fantasy", "1990-Dec-01", 4, "1993-Mar-25");
     
     rtl::ReadBook testReadBook2(testReaderId, "authorB", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
@@ -180,7 +205,7 @@ int testReaderId = 1;
     XCTAssert(!(testReadBook1 > testReadBook4));
 }
 
-- (void)testReadBookGreaterEqualsThan {
+- (void)test_ReadBookOperatorGreaterThanEquals_ReturnTrue {
     rtl::ReadBook testReadBook1(testReaderId, "authorA", "titleA", "seriesA", "publisherA", 100, "fantasy", "1990-Dec-01", 4, "1993-Mar-25");
     
     rtl::ReadBook testReadBook2(testReaderId, "authorB", "titleB", "seriesB", "publisherA", 100, "fantasy", "1991-Dec-01", 5, "1993-Mar-26");
@@ -202,7 +227,7 @@ int testReaderId = 1;
     XCTAssert(testReadBook4 >= testReadBook1);
 }
 
-- (void)testConstructors {
+- (void)test_Constructor1 {
     rtl::Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::Genre::fantasy, 1199163600);
     rtl::ReadBook testConstructor(2147483647, newBook, 9, 1199163600);
     XCTAssert(testConstructor.GetReaderId() == 2147483647);
@@ -216,8 +241,10 @@ int testReaderId = 1;
     XCTAssert(testConstructor.GetRating() == 9);
     XCTAssert(testConstructor.GetDateReadAsTimeT() == 1199163600);
     XCTAssert(testConstructor.GetBookId() == "2ff6b24");
-    
-    //ReadBook(Book book, int rating, std::string dateRead);
+}
+
+- (void)test_Constructor2 {
+    rtl::Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::Genre::fantasy, 1199163600);
     rtl::ReadBook testConstructor3(456, newBook, 1, "1913-Feb-11");
     XCTAssert(testConstructor3.GetAuthor() == "testAuthor");
     XCTAssert(testConstructor3.GetTitle() == "testTitle");
@@ -229,8 +256,9 @@ int testReaderId = 1;
     XCTAssert(testConstructor3.GetRating() == 1);
     XCTAssert(testConstructor3.PrintDateRead() == "1913-Feb-11" );
     XCTAssert(testConstructor3.GetBookId() == "2ff6b24");
-    
-    //ReadBook(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, int rating = 0, time_t time = std::time(0));
+}
+
+- (void)test_ConstructorDefault {
     rtl::ReadBook testConstructor2(789, "testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 222, rtl::Genre::western, 1199181600, 8, 1199181600);
     XCTAssert(testConstructor2.GetAuthor() == "testAuthor2");
     XCTAssert(testConstructor2.GetTitle() == "testTitle2");
@@ -242,8 +270,9 @@ int testReaderId = 1;
     XCTAssert(testConstructor2.GetRating() == 8);
     XCTAssert(testConstructor2.GetDateReadAsTimeT() == 1199163600);
     XCTAssert(testConstructor2.GetBookId() == "42b3e88");
-    
-    //ReadBook::ReadBook(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead)
+}
+
+- (void)test_Constructor4 {
     rtl::ReadBook testConstructor4(-1234567890, "testAuthor4", "testTitle4", "testSeries4", "testPublisher4", 444, "mystery", "1972-Aug-13", 4, "2019-Nov-14");
     XCTAssert(testConstructor4.GetAuthor() == "testAuthor4");
     XCTAssert(testConstructor4.GetTitle() == "testTitle4");
@@ -257,7 +286,7 @@ int testReaderId = 1;
     XCTAssert(testConstructor4.GetBookId() == "4309c7c");
 }
 
-- (void)testPrintColumnHeader {
+- (void)test_PrintHeader {
     std::string testStr = "Author              Title                             Pages Date Read    Rate";
     
     rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
@@ -265,7 +294,7 @@ int testReaderId = 1;
     XCTAssert(testReadBook.PrintHeader() == testStr);
 }
 
-- (void)testPrintCommandLineSimpleReadBook {
+- (void)test_PrintSimple {
     std::string testMist = "Brandon Sanderson   Mistborn: The Final Empire        541   2019-Sep-13  9   ";
     std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo   480   2019-Nov-19  9   ";
     std::string testWidth = "Robert Jordan123456 The Eye of the World1234567890123 70212 2019-Oct-27  8   ";
@@ -279,7 +308,7 @@ int testReaderId = 1;
     XCTAssert(bookWidth.PrintSimple() == testWidth);
 }
 
-- (void)testPrintCommandLineDetailedReadBook {
+- (void)test_PrintDetailed {
     std::string testMist = "Title:         Mistborn: The Final Empire                                       \nBookId:        1c5fdaf7109aa47ef2                                               \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2006-Jul-17                                                      \nISBN:          9780765311788                                                    \nOCLC:          62342185                                                         \nReaderId:      123                                                              \nRating:        9                                                                \nDate Read:     2019-Sep-13                                                      \n";
     std::string testGirl = "Title:         The Girl with the Dragon Tattoo                                  \nBookId:        2c844f9a4aac31a8848f80                                           \nAuthor Name:   Stieg Larsson                                                    \nAuthorId:      7052c8                                                           \nSeries:        Millennium                                                       \nGenre:         thriller                                                         \nPage Count:    480                                                              \nPublisher:     Norstedts Förlag                                                \nPublish Date:  2005-Aug-01                                                      \nISBN:          9781847242532                                                    \nOCLC:          186764078                                                        \nReaderId:      123                                                              \nRating:        9                                                                \nDate Read:     2019-Nov-19                                                      \n";
     std::string testWidth = "Title:         The Eye of the World123456789012345678901234567890123456789012345\nBookId:        cfcbb4cef513c9c904bf8                                            \nAuthor Name:   Robert Jordan1234567890123456789012345678901234567890123456789012\nAuthorId:      2766def2                                                         \nSeries:        The Wheel of Time123456789012345678901234567890123456789012345678\nGenre:         fantasy                                                          \nPage Count:    70212                                                            \nPublisher:     Tor Books12345678901234567890123456789012345678901234567890123456\nPublish Date:  1990-Jan-15                                                      \nISBN:          19723327, 1234567890, 1234567890, 1234567890, 1234567890, 1234567\nOCLC:          0312850093, 1234567890, 1234567890, 1234567890, 1234567890, 12345\nReaderId:      123                                                              \nRating:        8                                                                \nDate Read:     2019-Oct-27                                                      \n";
@@ -297,7 +326,7 @@ int testReaderId = 1;
     XCTAssert(readBookWidth.PrintDetailed() == testWidth);
 }
 
-- (void)testPrintJson {
+- (void)test_PrintJson {
     rtl::ReadBook testReadBook1(1, "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");

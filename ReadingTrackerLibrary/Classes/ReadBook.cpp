@@ -35,11 +35,8 @@ bool rtl::ReadBook::SetDateRead(std::string time) {
 
 //1-10 rating scale
 bool rtl::ReadBook::SetRating(int rating) {
-    if (rating < 1) {
-        rating = 1;
-    }
-    else if (rating > 10) {
-        rating = 10;
+    if (rating < 1 || rating > 10) {
+        return false;
     }
     this->rating = rating;
     
@@ -67,8 +64,8 @@ bool rtl::ReadBook::SetRating(char rating) {
 bool rtl::ReadBook::SetRating(std::string rating) {
     try {
         int newRating = std::stoi(rating);
-        //rating cannot be less than 1, if it is don't change anything
-        if (newRating <= 0) {
+        //rating cannot be less than 1 or greater than 10, if it is don't change anything
+        if (newRating < 1 || newRating > 10) {
             return false;
         }
         

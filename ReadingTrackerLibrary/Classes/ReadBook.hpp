@@ -40,7 +40,7 @@ namespace rtl {
     private:
         int readerId;
         tm dateRead;
-        int rating;
+        int rating = -1;
         
         //used for printCommandLineSimple and printCommandLineHeaders, 77 characters total
         const int kWidthAuthor = 20;
