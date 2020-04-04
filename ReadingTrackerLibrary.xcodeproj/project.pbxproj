@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */; };
 		DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE5FC261237CDD7400346E3E /* testClassReadbook.mm */; };
+		DE7132BD243912AF004145F8 /* Logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7132BC243912AF004145F8 /* Logger.hpp */; };
+		DE7132BF243912AF004145F8 /* LoggerPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7132BE243912AF004145F8 /* LoggerPriv.hpp */; };
+		DE7132C1243912AF004145F8 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE7132C0243912AF004145F8 /* Logger.cpp */; };
+		DE7132D2243948A8004145F8 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
+		DE7132E424394B61004145F8 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132DF24394B27004145F8 /* libboost_thread-mt.dylib */; };
+		DE7132E524394E0B004145F8 /* libboost_log_setup-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */; };
 		DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE7AC029238B73DB00292006 /* testFileMethods.mm */; };
 		DE7C1678242A390700CFD799 /* StandardOutput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7C1676242A390700CFD799 /* StandardOutput.hpp */; };
 		DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */; };
@@ -74,6 +80,22 @@
 /* Begin PBXFileReference section */
 		DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassAuthor.mm; sourceTree = "<group>"; };
 		DE5FC261237CDD7400346E3E /* testClassReadbook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassReadbook.mm; sourceTree = "<group>"; };
+		DE7132BA243912AE004145F8 /* libLogger.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libLogger.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE7132BC243912AF004145F8 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
+		DE7132BE243912AF004145F8 /* LoggerPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoggerPriv.hpp; sourceTree = "<group>"; };
+		DE7132C0243912AF004145F8 /* Logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		DE7132C5243944B0004145F8 /* libboost_log_setup.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_log_setup.a; path = ../../../../usr/local/lib/libboost_log_setup.a; sourceTree = "<group>"; };
+		DE7132C824394856004145F8 /* libboost_log-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_log-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_log-mt.a"; sourceTree = "<group>"; };
+		DE7132C924394856004145F8 /* libboost_log_setup-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_log_setup-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_log_setup-mt.a"; sourceTree = "<group>"; };
+		DE7132CA24394856004145F8 /* libboost_log-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_log-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_log-mt.dylib"; sourceTree = "<group>"; };
+		DE7132CB24394856004145F8 /* libboost_log_setup.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_log_setup.dylib; path = ../../../../usr/local/lib/libboost_log_setup.dylib; sourceTree = "<group>"; };
+		DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_log_setup-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_log_setup-mt.dylib"; sourceTree = "<group>"; };
+		DE7132D824394A3A004145F8 /* libboost_log.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_log.dylib; path = ../../../../usr/local/lib/libboost_log.dylib; sourceTree = "<group>"; };
+		DE7132D924394A3B004145F8 /* libboost_log.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_log.a; path = ../../../../usr/local/lib/libboost_log.a; sourceTree = "<group>"; };
+		DE7132DC24394B27004145F8 /* libboost_thread-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_thread-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_thread-mt.a"; sourceTree = "<group>"; };
+		DE7132DD24394B27004145F8 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = ../../../../usr/local/lib/libboost_thread.a; sourceTree = "<group>"; };
+		DE7132DE24394B27004145F8 /* libboost_thread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_thread.dylib; path = ../../../../usr/local/lib/libboost_thread.dylib; sourceTree = "<group>"; };
+		DE7132DF24394B27004145F8 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_thread-mt.dylib"; sourceTree = "<group>"; };
 		DE7AC029238B73DB00292006 /* testFileMethods.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testFileMethods.mm; sourceTree = "<group>"; };
 		DE7C1676242A390700CFD799 /* StandardOutput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StandardOutput.hpp; sourceTree = "<group>"; };
 		DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libReadingTrackerLibrary.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +132,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DE7132B8243912AE004145F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE7132E424394B61004145F8 /* libboost_thread-mt.dylib in Frameworks */,
+				DE7132E524394E0B004145F8 /* libboost_log_setup-mt.dylib in Frameworks */,
+				DE7132D2243948A8004145F8 /* libboost_log-mt.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE9504A02374EAE300FF97A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -138,12 +170,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE7132BB243912AE004145F8 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				DE7132BC243912AF004145F8 /* Logger.hpp */,
+				DE7132BE243912AF004145F8 /* LoggerPriv.hpp */,
+				DE7132C0243912AF004145F8 /* Logger.cpp */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		DE9504992374EAE300FF97A4 = {
 			isa = PBXGroup;
 			children = (
 				DE9504A42374EAE300FF97A4 /* ReadingTrackerLibrary */,
 				DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */,
 				DEF9CCA12377B30200B5089A /* ReadingTrackerCommandLine */,
+				DE7132BB243912AE004145F8 /* Logger */,
 				DE9504A32374EAE300FF97A4 /* Products */,
 				DEF9CCA82377B44A00B5089A /* Frameworks */,
 			);
@@ -155,6 +198,7 @@
 				DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */,
 				DE9505012374F5B100FF97A4 /* TestReadingTrackerLibrary.xctest */,
 				DEF9CCA02377B30200B5089A /* ReadingTrackerCommandLine */,
+				DE7132BA243912AE004145F8 /* libLogger.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,6 +271,18 @@
 		DEF9CCA82377B44A00B5089A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE7132DC24394B27004145F8 /* libboost_thread-mt.a */,
+				DE7132DF24394B27004145F8 /* libboost_thread-mt.dylib */,
+				DE7132DD24394B27004145F8 /* libboost_thread.a */,
+				DE7132DE24394B27004145F8 /* libboost_thread.dylib */,
+				DE7132D924394A3B004145F8 /* libboost_log.a */,
+				DE7132D824394A3A004145F8 /* libboost_log.dylib */,
+				DE7132C924394856004145F8 /* libboost_log_setup-mt.a */,
+				DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */,
+				DE7132CB24394856004145F8 /* libboost_log_setup.dylib */,
+				DE7132C824394856004145F8 /* libboost_log-mt.a */,
+				DE7132CA24394856004145F8 /* libboost_log-mt.dylib */,
+				DE7132C5243944B0004145F8 /* libboost_log_setup.a */,
 				DEBC76332414AA1000425941 /* libcurlpp.a */,
 				DEBC76312414A9A300425941 /* libcurl.tbd */,
 				DEBC762F2414A69F00425941 /* libcurl.a */,
@@ -238,6 +294,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		DE7132B6243912AE004145F8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE7132BD243912AF004145F8 /* Logger.hpp in Headers */,
+				DE7132BF243912AF004145F8 /* LoggerPriv.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE95049E2374EAE300FF97A4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +323,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		DE7132B9243912AE004145F8 /* Logger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE7132C2243912AF004145F8 /* Build configuration list for PBXNativeTarget "Logger" */;
+			buildPhases = (
+				DE7132B6243912AE004145F8 /* Headers */,
+				DE7132B7243912AE004145F8 /* Sources */,
+				DE7132B8243912AE004145F8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Logger;
+			productName = Logger;
+			productReference = DE7132BA243912AE004145F8 /* libLogger.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		DE9504A12374EAE300FF97A4 /* ReadingTrackerLibrary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE9504AD2374EAE300FF97A4 /* Build configuration list for PBXNativeTarget "ReadingTrackerLibrary" */;
@@ -320,6 +402,9 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Russell Goddard";
 				TargetAttributes = {
+					DE7132B9243912AE004145F8 = {
+						CreatedOnToolsVersion = 11.4;
+					};
 					DE9504A12374EAE300FF97A4 = {
 						CreatedOnToolsVersion = 11.2;
 					};
@@ -347,6 +432,7 @@
 				DE9504A12374EAE300FF97A4 /* ReadingTrackerLibrary */,
 				DE9505002374F5B100FF97A4 /* TestReadingTrackerLibrary */,
 				DEF9CC9F2377B30200B5089A /* ReadingTrackerCommandLine */,
+				DE7132B9243912AE004145F8 /* Logger */,
 			);
 		};
 /* End PBXProject section */
@@ -362,6 +448,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DE7132B7243912AE004145F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE7132C1243912AF004145F8 /* Logger.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE95049F2374EAE300FF97A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,6 +505,58 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		DE7132C3243912AF004145F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.72.0/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DBOOST_LOG_DYN_LINK",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DE7132C4243912AF004145F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.72.0/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DBOOST_LOG_DYN_LINK",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		DE9504AB2374EAE300FF97A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -629,6 +775,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DE7132C2243912AF004145F8 /* Build configuration list for PBXNativeTarget "Logger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE7132C3243912AF004145F8 /* Debug */,
+				DE7132C4243912AF004145F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DE95049D2374EAE300FF97A4 /* Build configuration list for PBXProject "ReadingTrackerLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

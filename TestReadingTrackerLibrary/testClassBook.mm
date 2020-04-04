@@ -16,14 +16,10 @@
 @implementation testClassBook
 
 - (void)setUp {
-
 }
 
 - (void)tearDown {
-
 }
-
-//TODO: better break up tests
 
 - (void)test_GetAuthor_ReturnInitializedAuthor {
     std::string author = "testAuthor";
