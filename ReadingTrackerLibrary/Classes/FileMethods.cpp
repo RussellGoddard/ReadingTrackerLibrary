@@ -185,9 +185,9 @@ bool rtl::InMemoryContainers::LoadInMemoryFromFile(std::string filePath) {
                         this->AddMasterBooks(rtl::ConvertJsonToBookPtr(nlohmann::json::parse(line)));
                     }
                     catch (nlohmann::json::exception& ex) {
-                        //TODO: Log this exception
-                        std::cout << "error parsing masterBooks" << std::endl;
-                        std::cout << ex.what() << std::endl;
+                        std::string exceptionMessage = ex.what();
+                        exceptionMessage += " exception attempting CovertJsonToBookPtr on: " + line;
+                        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
                     }
                     break;
                 }
@@ -197,9 +197,9 @@ bool rtl::InMemoryContainers::LoadInMemoryFromFile(std::string filePath) {
                         this->AddMasterReadBooks(rtl::ConvertJsonToReadBookPtr(nlohmann::json::parse(line)));
                     }
                     catch (nlohmann::json::exception& ex) {
-                        //TODO: Log this exception
-                        std::cout << "error parsing masterReadBooks" << std::endl;
-                        std::cout << ex.what() << std::endl;
+                        std::string exceptionMessage = ex.what();
+                        exceptionMessage += " exception attempting CovertJsonToReadBookPtr on: " + line;
+                        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
                     }
                     break;
                 }
@@ -209,9 +209,9 @@ bool rtl::InMemoryContainers::LoadInMemoryFromFile(std::string filePath) {
                         this->AddMasterAuthors(rtl::ConvertJsonToAuthorPtr(nlohmann::json::parse(line)));
                     }
                     catch (nlohmann::json::exception& ex) {
-                        //TODO: Log this exception
-                        std::cout << "error parsing masterAuthors" << std::endl;
-                        std::cout << ex.what() << std::endl;
+                        std::string exceptionMessage = ex.what();
+                        exceptionMessage += " exception attempting CovertJsonToAuthorPtr on: " + line;
+                        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
                     }
                     break;
                 }
@@ -261,8 +261,11 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
     rtl::OpenLibraryValues newLibraryValues;
     
     //validation checks
+    //remove all nondigits from indentifierNum
+    identifierNum.erase(std::remove_if(std::begin(identifierNum), std::end(identifierNum), [](char c){ return !std::isdigit(c); }), identifierNum.end());
+    
     if (rtl::Trim(identifier).empty() || rtl::Trim(identifierNum).empty()) {
-        //TODO: log the error
+        BOOST_LOG_TRIVIAL(error) << "identifier and identifierNum cannot be empty";
         newLibraryValues.success = false;
         return newLibraryValues;
     }
@@ -270,16 +273,7 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
     std::transform(std::begin(identifier), std::end(identifier), std::begin(identifier), ::toupper);
     
     if (identifier != "OCLC" && identifier != "ISBN") {
-        //TODO: log the error
-        newLibraryValues.success = false;
-        return newLibraryValues;
-    }
-    
-    identifierNum.erase(std::remove_if(std::begin(identifierNum), std::end(identifierNum), [](char c){ return !std::isdigit(c); }), identifierNum.end()); //remove all non digits
-    
-    
-    if (identifierNum.empty()) {
-        //TODO: log that this happened
+        BOOST_LOG_TRIVIAL(error) << "identifier was not OCLC or ISBN";
         newLibraryValues.success = false;
         return newLibraryValues;
     }
@@ -290,7 +284,7 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
     std::string readBuffer;
     
     if (!QueryByCurl(curlUrl, readBuffer)) {
-        //TODO: log that this happened
+        BOOST_LOG_TRIVIAL(error) << "curl failed to initialize";
         newLibraryValues.success = false;
         return newLibraryValues;
     }
@@ -306,8 +300,9 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
         newLibraryValues.title = openLibJson[combinedIdentifier]["title"].get<std::string>();
     }
     catch (nlohmann::json::exception& ex) {
-        //TODO: Log this exception
-        std::cout << ex.what() << std::endl;
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " failed to find author from openlibrary in: " + readBuffer;
+        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         newLibraryValues.success = false;
         return newLibraryValues;
     }
@@ -321,7 +316,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
     
     //validation check
     if (rtl::Trim(title).empty()) {
-        //TODO: log error
+        BOOST_LOG_TRIVIAL(warning) << "title cannot be empty";
         newDataValues.success = false;
         return newDataValues;
     }
@@ -334,7 +329,7 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
     
     std::string readBuffer;
     if (!QueryByCurl(curlUrl, readBuffer)) {
-        //TODO: log that this happened
+        BOOST_LOG_TRIVIAL(error) << "curl failed to initialize";
         newDataValues.success = false;
         return newDataValues;
     }
@@ -346,16 +341,16 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
         objectId = wikiDataJson["entities"].begin().key();
     }
     catch (nlohmann::json::exception& ex) {
-        //TODO: log error
-        std::cout << ex.what() << std::endl;
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " failed to parse: " + readBuffer;
+        BOOST_LOG_TRIVIAL(error) << exceptionMessage;
         newDataValues.success = false;
         return newDataValues;
     }
     
     //TODO: figure out how to test lambda belows try/catches without disabling this if block
     if (objectId == "-1") {
-        //TODO: log error
-        std::cout << "No object returned" << std::endl;
+        BOOST_LOG_TRIVIAL(warning) << "No object returned for title: " << title;
         newDataValues.success = false;
         return newDataValues;
     }
@@ -368,8 +363,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             success = true;
         }
         catch (nlohmann::json::exception& ex) {
-            //TODO: log error
-            std::cout << ex.what() << std::endl;
+            std::string exceptionMessage = ex.what();
+            exceptionMessage += " failed to retrieve title from: " + wikiDataJson.dump();
+            BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         }
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));
@@ -386,12 +382,13 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             if (QueryByCurl(seriesCurl, seriesBuffer)) {
                 auto wikiDataJsonSeries = nlohmann::json::parse(seriesBuffer);
                 newDataValues.series = wikiDataJsonSeries.at("entities").at(seriesId).at("claims").at("P1476").at(0).at("mainsnak").at("datavalue").at("value").at("text").get<std::string>();
+                success = true;
             }
-            success = true;
         }
         catch (nlohmann::json::exception& ex) {
-            //TODO: log error
-            std::cout << ex.what() << std::endl;
+            std::string exceptionMessage = ex.what();
+            exceptionMessage += " failed to retrieve series from: " + wikiDataJson.dump();
+            BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         }
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));
@@ -408,12 +405,13 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             if (QueryByCurl(authorCurl, authorBuffer)) {
                 auto wikiDataJsonAuthor = nlohmann::json::parse(authorBuffer);
                 newDataValues.author = wikiDataJsonAuthor.at("entities").at(authorId).at("claims").at("P742").at(0).at("mainsnak").at("datavalue").at("value").get<std::string>();
+                success = true;
             }
-            success = true;
         }
         catch (nlohmann::json::exception& ex) {
-            //TODO: log error
-            std::cout << ex.what() << std::endl;
+            std::string exceptionMessage = ex.what();
+            exceptionMessage += " failed to retrieve author from: " + wikiDataJson.dump();
+            BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         }
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));
@@ -430,12 +428,13 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             if (QueryByCurl(publisherCurl, publisherBuffer)) {
                 auto wikiDataJsonPublisher = nlohmann::json::parse(publisherBuffer);
                 newDataValues.publisher = wikiDataJsonPublisher.at("entities").at(publisherId).at("aliases").at("en").at(0).at("value").get<std::string>();
+                success = true;
             }
-            success = true;
         }
         catch (nlohmann::json::exception& ex) {
-            //TODO: log error
-            std::cout << ex.what() << std::endl;
+            std::string exceptionMessage = ex.what();
+            exceptionMessage += " failed to retrieve publisher from: " + wikiDataJson.dump();
+            BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         }
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));
@@ -448,8 +447,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             success = true;
         }
         catch (nlohmann::json::exception& ex) {
-            //TODO: log error
-            std::cout << ex.what() << std::endl;
+            std::string exceptionMessage = ex.what();
+            exceptionMessage += " failed to retrieve oclc from: " + wikiDataJson.dump();
+            BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         }
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));
@@ -463,9 +463,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             success = true;
         }
         catch (nlohmann::json::exception& ex) {
-            //TODO: log error
-            newDataValues.success = false;
-            std::cout << ex.what() << std::endl;
+            std::string exceptionMessage = ex.what();
+            exceptionMessage += " failed to retrieve datePublish from: " + wikiDataJson.dump();
+            BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         }
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));
@@ -478,8 +478,9 @@ rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
             success = true;
         }
         catch (nlohmann::json::exception& ex) {
-            //TODO: log error
-            std::cout << ex.what() << std::endl;
+            std::string exceptionMessage = ex.what();
+            exceptionMessage += " failed to retrieve isbn from: " + wikiDataJson.dump();
+            BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         }
         return success;
     }, wikiDataJson, objectId, std::ref(newDataValues));

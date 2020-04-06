@@ -7,7 +7,8 @@
 //
 
 #include "Logger.hpp"
-#include "LoggerPriv.hpp"
+
+using namespace boost;
 
 /*
  BOOST_LOG_TRIVIAL(trace) << "This is a trace severity message";
@@ -19,15 +20,18 @@
  */
 
 void logging::InitLogging() {
-    boost::log::register_simple_formatter_factory<boost::log::trivial::severity_level, char>("Severity");
+    log::register_simple_formatter_factory<log::trivial::severity_level, char>("Severity");
 
-    boost::log::add_file_log (
-        boost::log::keywords::file_name = "sample.log",
-        boost::log::keywords::format = "[%TimeStamp%] [%ThreadID%] [%Severity%] [%ProcessID%] [%LineID%] %Message%"
+    std::string utcDate = posix_time::to_simple_string(posix_time::second_clock::universal_time());
+    log::add_file_log (
+        log::keywords::file_name = "./Logs/testLog" + utcDate + ".log",
+        log::keywords::format = "[%TimeStamp%] [%ThreadID%] [%Severity%] [%ProcessID%] [%LineID%] %Message%",
+        log::keywords::auto_flush = true,
+        log::keywords::open_mode = (std::ios::out | std::ios::app)
     );
 
-    boost::log::core::get()->set_filter(boost::log::trivial::severity >= boost::log::trivial::info);
+    log::core::get()->set_filter(log::trivial::severity >= log::trivial::info);
 
-    boost::log::add_common_attributes();
+    log::add_common_attributes();
 }
 

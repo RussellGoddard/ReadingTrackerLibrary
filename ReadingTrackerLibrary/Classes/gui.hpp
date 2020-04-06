@@ -12,8 +12,9 @@
 #include <limits>
 #include <sstream>
 #include <vector>
-#include "FileMethods.hpp"
 #include "CommandLineHelpers.hpp"
+#include "FileMethods.hpp"
+#include "Logger.hpp"
 
 namespace rtl::CommandLine {
    

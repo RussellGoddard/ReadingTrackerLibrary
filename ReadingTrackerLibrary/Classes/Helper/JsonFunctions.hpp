@@ -10,8 +10,9 @@
 #define JsonFunctions_hpp
 
 #include <nlohmann/json.hpp>
-#include "ReadBook.hpp"
 #include "Author.hpp"
+#include "Logger.hpp"
+#include "ReadBook.hpp"
 
 namespace rtl {
     std::shared_ptr<rtl::Book> ConvertJsonToBookPtr(nlohmann::json json);

@@ -8,8 +8,23 @@
 #ifndef ReadBook_hpp
 #define ReadBook_hpp
 
-#include "Book.hpp"
 #include <sstream>
+#include <string>
+#include "Book.hpp"
+#include "Logger.hpp"
+
+//below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost
+// save diagnostic state
+#pragma GCC diagnostic push
+
+// turn off the specific warning
+#pragma GCC diagnostic ignored "-Wcomma"
+#pragma GCC diagnostic ignored "-Wdocumentation"
+
+#include <boost/date_time/gregorian/gregorian.hpp>
+
+// turn the warnings back on
+#pragma GCC diagnostic pop
 
 namespace rtl {
 

@@ -26,7 +26,9 @@ bool rtl::ReadBook::SetDateRead(std::string time) {
         auto d = boost::gregorian::from_string(time);
         this->dateRead = boost::gregorian::to_tm(d);
     } catch (std::exception& ex) {
-        //TODO: add logging
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " failed to convert " + time + " to boost::gregorian::date";
+        BOOST_LOG_TRIVIAL(error) << exceptionMessage;
         return false;
     }
     
@@ -66,12 +68,15 @@ bool rtl::ReadBook::SetRating(std::string rating) {
         int newRating = std::stoi(rating);
         //rating cannot be less than 1 or greater than 10, if it is don't change anything
         if (newRating < 1 || newRating > 10) {
+            BOOST_LOG_TRIVIAL(info) << "rating must be between 1 and 10 inclusive, input: " + rating;
             return false;
         }
         
         this->rating = newRating;
-    } catch (std::invalid_argument) {
-        //TODO: log error
+    } catch (std::invalid_argument ex) {
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " failed to convert to int, input: " + rating;
+        BOOST_LOG_TRIVIAL(error) << exceptionMessage;
         return false;
     }
     

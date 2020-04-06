@@ -112,8 +112,10 @@ bool rtl::Book::SetPageCount(std::string pageCount) {
         }
         
         this->pageCount = newPageCount;
-    } catch (std::invalid_argument) {
-        //TODO: Log error
+    } catch (std::invalid_argument ex) {
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " input pageCount: " + pageCount;
+        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         return false;
     }
     
@@ -156,7 +158,9 @@ bool rtl::Book::SetPublishDate(std::string publishDate) {
         auto d = boost::gregorian::from_string(publishDate);
         this->publishDate = boost::gregorian::to_tm(d);
     } catch (std::exception& ex) {
-        //TODO: log error
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " input publishDate: " + publishDate;
+        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         return false;
     }
     
@@ -175,7 +179,7 @@ bool rtl::Book::AddIsbn(std::string isbn) {
     isbn.erase(isbnEnd, isbn.end());
     for (auto x : isbn) {
         if (!std::isdigit(x)) {
-            //TODO: log this
+            BOOST_LOG_TRIVIAL(warning) << "isbn did not contain all digits";
             return false;
         }
     }

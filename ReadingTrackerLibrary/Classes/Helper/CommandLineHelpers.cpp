@@ -13,8 +13,8 @@ std::string rtl::CommandLine::PrintHeaderNumber() {
 }
 
 std::string rtl::CommandLine::PrintNumberSelector(int number) {
-    if (number > 9 || number < 1) {
-        //TODO: log this
+    if (number > 9 || number < 0) {
+        BOOST_LOG_TRIVIAL(info) << "Print number selector potential range issue: " << number;
     }
     
     return std::to_string(number) + ": ";

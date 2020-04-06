@@ -23,8 +23,10 @@ std::shared_ptr<rtl::Book> rtl::ConvertJsonToBookPtr(nlohmann::json json) {
         return std::make_shared<rtl::Book>(author, title, series, publisher, pageCount, genre, publishDate, isbnVector, oclcVector);
     }
     catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " passed json: " + json.dump();
+        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
+        //TODO: figure out better return when exception happens
         return nullptr;
     }
 }
@@ -47,8 +49,10 @@ std::shared_ptr<rtl::ReadBook> rtl::ConvertJsonToReadBookPtr(nlohmann::json json
         return std::make_shared<rtl::ReadBook>(readerId, rtl::Book(author, title, series, publisher, pageCount, genre, publishDate, isbnVector, oclcVector), rating, dateRead);;
     }
     catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
+        //TODO: figure out better return when exception happens
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " passed json: " + json.dump();
+        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         return nullptr;
     }
 }
@@ -65,8 +69,10 @@ std::shared_ptr<rtl::Author> rtl::ConvertJsonToAuthorPtr(nlohmann::json json) {
         return std::make_shared<rtl::Author>(name, dateBorn, booksWritten);
     }
     catch (nlohmann::json::exception& ex) {
-        //TODO: log this exception, figure out better return when exception happens
-        std::cout << ex.what() << std::endl;
+        //TODO: figure out better return when exception happens
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " passed json: " + json.dump();
+        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         return nullptr;
     }
 }

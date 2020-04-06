@@ -13,6 +13,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "Logger.hpp"
 
 namespace rtl::CommandLine {
     std::string PrintHeaderNumber();

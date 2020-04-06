@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include "HelperFunctions.hpp"
+#include "Logger.hpp"
 #include "StandardOutput.hpp"
 
 //below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost

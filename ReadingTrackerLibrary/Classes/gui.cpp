@@ -39,7 +39,7 @@ rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostre
             return rtl::CommandLine::GetNewAuthor(inputStream, outputStream, 0);
         }
         default: {
-            //TODO: log this, should never hit default
+            BOOST_LOG_TRIVIAL(error) << "default hit in switch, input: " << inputMode;
             break;
         }
     }
@@ -147,7 +147,7 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
             break;
         }
         default:
-            //TODO: log this, should never hit default
+            BOOST_LOG_TRIVIAL(error) << "default hit in switch, input: " << inputMode;
             break;
     }
     
@@ -227,15 +227,15 @@ void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& out
         }
     }
     catch (std::exception& ex) {
-        //TODO: log this
-        std::cout << ex.what() << std::endl;
+        BOOST_LOG_TRIVIAL(error) << ex.what();
         selectionInput = -1;
     }
     
     return;
 }
 
-//TODO: should only be called from mainMenu so not in header, do all the options need to share so much code not abstracted away (too much copy/paste)
+//TODO: do all the options need to share so much code not abstracted away (too much copy/paste)
+//should only be called from mainMenu so not in header
 void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList, int readerId) {
     
     std::vector<std::string> inputModes {"manual", "by identifier (isbn/oclc)", "by title" };
@@ -439,7 +439,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                 return;
             }
             default: {
-                //TODO: log this
+                BOOST_LOG_TRIVIAL(info) << "invalid selection: " << charInput;
                 userInputAgain(inputStream, outputStream, input);
                 continue;
             }
@@ -526,7 +526,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
                 break;
             }
             default: {
-                //TODO: log this
+                BOOST_LOG_TRIVIAL(error) << "invalid selection: " << currentDisplay;
                 break;
             }
         }
@@ -580,8 +580,13 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                     input = std::getenv("HOME");
                     input += "/Desktop/testFile.txt";
                 }
-                //TODO: log on error
-                (masterList.SaveInMemoryToFile(input) ? rtl::CommandLine::OutputLine(outputStream, "save success\n") : rtl::CommandLine::OutputLine(outputStream, "error saving"));
+                if (masterList.SaveInMemoryToFile(input)) {
+                    rtl::CommandLine::OutputLine(outputStream, "save success\n");
+                }
+                else {
+                    BOOST_LOG_TRIVIAL(error) << "error saving to path: " << input;
+                    rtl::CommandLine::OutputLine(outputStream, "error saving\n");
+                }
                 break;
             }
             case '8': {
@@ -595,8 +600,13 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                     input = std::getenv("HOME");
                     input += "/Desktop/testFile.txt";
                 }
-                //TODO: log on error
-                (masterList.LoadInMemoryFromFile(input) ? rtl::CommandLine::OutputLine(outputStream, "load success\n") : rtl::CommandLine::OutputLine(outputStream, "error loading"));
+                if (masterList.LoadInMemoryFromFile(input)) {
+                    rtl::CommandLine::OutputLine(outputStream, "load success\n");
+                }
+                else {
+                    BOOST_LOG_TRIVIAL(error) << "error loading path: " << input;
+                    rtl::CommandLine::OutputLine(outputStream, "error loading\n");
+                }
                 break;
             }
             case 'X':
@@ -611,6 +621,7 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                 }
             }
             default: {
+                BOOST_LOG_TRIVIAL(info) << "invalid selection: " << charInput;
                 userInputAgain(inputStream, outputStream, input);
                 continue;
             }

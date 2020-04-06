@@ -10,13 +10,13 @@
 		DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */; };
 		DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE5FC261237CDD7400346E3E /* testClassReadbook.mm */; };
 		DE7132BD243912AF004145F8 /* Logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7132BC243912AF004145F8 /* Logger.hpp */; };
-		DE7132BF243912AF004145F8 /* LoggerPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7132BE243912AF004145F8 /* LoggerPriv.hpp */; };
 		DE7132C1243912AF004145F8 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE7132C0243912AF004145F8 /* Logger.cpp */; };
 		DE7132D2243948A8004145F8 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
 		DE7132E424394B61004145F8 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132DF24394B27004145F8 /* libboost_thread-mt.dylib */; };
 		DE7132E524394E0B004145F8 /* libboost_log_setup-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */; };
 		DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE7AC029238B73DB00292006 /* testFileMethods.mm */; };
 		DE7C1678242A390700CFD799 /* StandardOutput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7C1676242A390700CFD799 /* StandardOutput.hpp */; };
+		DE8F78F1243BA6EA0026F30B /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762D2414672500425941 /* libboost_date_time-mt.a */; };
 		DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */; };
 		DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */; };
 		DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CE2374EF2200FF97A4 /* Book.hpp */; };
@@ -109,7 +109,6 @@
 		DE5FC261237CDD7400346E3E /* testClassReadbook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassReadbook.mm; sourceTree = "<group>"; };
 		DE7132BA243912AE004145F8 /* libLogger.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libLogger.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7132BC243912AF004145F8 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
-		DE7132BE243912AF004145F8 /* LoggerPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoggerPriv.hpp; sourceTree = "<group>"; };
 		DE7132C0243912AF004145F8 /* Logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
 		DE7132C5243944B0004145F8 /* libboost_log_setup.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_log_setup.a; path = ../../../../usr/local/lib/libboost_log_setup.a; sourceTree = "<group>"; };
 		DE7132C824394856004145F8 /* libboost_log-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_log-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_log-mt.a"; sourceTree = "<group>"; };
@@ -546,6 +545,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8F78F1243BA6EA0026F30B /* libboost_date_time-mt.a in Frameworks */,
 				DE7132E424394B61004145F8 /* libboost_thread-mt.dylib in Frameworks */,
 				DE7132E524394E0B004145F8 /* libboost_log_setup-mt.dylib in Frameworks */,
 				DE7132D2243948A8004145F8 /* libboost_log-mt.dylib in Frameworks */,
@@ -590,7 +590,6 @@
 			isa = PBXGroup;
 			children = (
 				DE7132BC243912AF004145F8 /* Logger.hpp */,
-				DE7132BE243912AF004145F8 /* LoggerPriv.hpp */,
 				DE7132C0243912AF004145F8 /* Logger.cpp */,
 			);
 			path = Logger;
@@ -1500,7 +1499,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7132BD243912AF004145F8 /* Logger.hpp in Headers */,
-				DE7132BF243912AF004145F8 /* LoggerPriv.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

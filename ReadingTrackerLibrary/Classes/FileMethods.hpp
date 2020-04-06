@@ -18,9 +18,8 @@
 #include "Author.hpp"
 #include "HelperFunctions.hpp"
 #include "JsonFunctions.hpp"
-
-
-//TODO: #include "ReadBook.hpp" see Author.hpp includes
+#include "Logger.hpp"
+#include "ReadBook.hpp"
 
 namespace rtl {
     //TODO: should these two structs be here or the queries spun into their own file

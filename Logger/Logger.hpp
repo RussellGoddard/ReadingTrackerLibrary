@@ -12,6 +12,7 @@
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
+
 // save diagnostic state
 #pragma GCC diagnostic push
 
@@ -19,6 +20,8 @@
 #pragma GCC diagnostic ignored "-Wcomma"
 #pragma GCC diagnostic ignored "-Wdocumentation"
 
+#include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/trivial.hpp>
