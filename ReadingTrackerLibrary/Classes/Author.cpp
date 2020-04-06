@@ -32,7 +32,9 @@ bool rtl::Author::SetDateBorn(std::string dateBorn) {
         auto d = boost::gregorian::from_string(dateBorn);
         this->dateBorn = boost::gregorian::to_tm(d);
     } catch (std::exception& ex) {
-        //TODO: add logging
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " dateBorn: " + dateBorn;
+        BOOST_LOG_TRIVIAL(warning) << exceptionMessage;
         return false;
     }
     

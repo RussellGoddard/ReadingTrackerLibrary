@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include "HelperFunctions.hpp"
+#include "Logger.hpp"
 #include "ReadBook.hpp" //TODO: this should only be Book.hpp but duplicate dependency due to FileMethod wanting to have both Author and ReadBook 
 
 namespace rtl {

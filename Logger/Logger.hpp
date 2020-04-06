@@ -12,8 +12,6 @@
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
-#include <iostream>
-
 // save diagnostic state
 #pragma GCC diagnostic push
 
@@ -27,12 +25,10 @@
 #include <boost/log/utility/setup/file.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 
-
 // turn the warnings back on
 #pragma GCC diagnostic pop
 
 namespace logging {
-
     void InitLogging();
 }
 

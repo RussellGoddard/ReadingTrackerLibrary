@@ -30,6 +30,12 @@
 		DE9505062374F5B100FF97A4 /* libReadingTrackerLibrary.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */; };
 		DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE95050C2374F61C00FF97A4 /* testClassBook.mm */; };
 		DE989E8323F4F94700D3C424 /* testGui.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE989E8223F4F94700D3C424 /* testGui.mm */; };
+		DEB0F3AB243AA791005DC0E2 /* libLogger.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132BA243912AE004145F8 /* libLogger.dylib */; };
+		DEB0F3AF243AAAF0005DC0E2 /* libboost_log_setup-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */; };
+		DEB0F3B1243AAE80005DC0E2 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
+		DEB0F3B2243AAF9C005DC0E2 /* libboost_log_setup-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */; };
+		DEB0F3B3243AAF9C005DC0E2 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
+		DEB0F3B4243AAFA5005DC0E2 /* libLogger.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132BA243912AE004145F8 /* libLogger.dylib */; };
 		DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762D2414672500425941 /* libboost_date_time-mt.a */; };
 		DEBC76352414B45F00425941 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762F2414A69F00425941 /* libcurl.a */; };
 		DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */; };
@@ -53,6 +59,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = DE9504A12374EAE300FF97A4;
 			remoteInfo = ReadingTrackerLibrary;
+		};
+		DEB0F0AF243A6F19005DC0E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE95049A2374EAE300FF97A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE9504A12374EAE300FF97A4;
+			remoteInfo = ReadingTrackerLibrary;
+		};
+		DEB0F3AC243AA796005DC0E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE95049A2374EAE300FF97A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE7132B9243912AE004145F8;
+			remoteInfo = Logger;
+		};
+		DEB0F3B5243AAFAD005DC0E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE95049A2374EAE300FF97A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE7132B9243912AE004145F8;
+			remoteInfo = Logger;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -114,6 +141,389 @@
 		DE9505052374F5B100FF97A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE95050C2374F61C00FF97A4 /* testClassBook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassBook.mm; sourceTree = "<group>"; };
 		DE989E8223F4F94700D3C424 /* testGui.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testGui.mm; sourceTree = "<group>"; };
+		DEB0F0C3243A749F005DC0E2 /* libboost_iostreams.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_iostreams.dylib; path = ../../../../usr/local/lib/libboost_iostreams.dylib; sourceTree = "<group>"; };
+		DEB0F0C4243A749F005DC0E2 /* libboost_locale-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_locale-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_locale-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0C5243A749F005DC0E2 /* libboost_locale-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_locale-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_locale-mt.a"; sourceTree = "<group>"; };
+		DEB0F0C6243A749F005DC0E2 /* libboost_coroutine-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_coroutine-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_coroutine-mt.a"; sourceTree = "<group>"; };
+		DEB0F0C7243A749F005DC0E2 /* libboost_exception.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_exception.a; path = ../../../../usr/local/lib/libboost_exception.a; sourceTree = "<group>"; };
+		DEB0F0C8243A749F005DC0E2 /* libboost_wserialization-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_wserialization-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_wserialization-mt.a"; sourceTree = "<group>"; };
+		DEB0F0C9243A749F005DC0E2 /* libboost_wave-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_wave-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_wave-mt.a"; sourceTree = "<group>"; };
+		DEB0F0CA243A749F005DC0E2 /* libboost_math_tr1l.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_math_tr1l.a; path = ../../../../usr/local/lib/libboost_math_tr1l.a; sourceTree = "<group>"; };
+		DEB0F0CB243A749F005DC0E2 /* libboost_random.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_random.dylib; path = ../../../../usr/local/lib/libboost_random.dylib; sourceTree = "<group>"; };
+		DEB0F0CC243A749F005DC0E2 /* libboost_context.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_context.a; path = ../../../../usr/local/lib/libboost_context.a; sourceTree = "<group>"; };
+		DEB0F0CD243A749F005DC0E2 /* libboost_stacktrace_noop.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_stacktrace_noop.a; path = ../../../../usr/local/lib/libboost_stacktrace_noop.a; sourceTree = "<group>"; };
+		DEB0F0CE243A74A0005DC0E2 /* libboost_math_tr1f.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_math_tr1f.dylib; path = ../../../../usr/local/lib/libboost_math_tr1f.dylib; sourceTree = "<group>"; };
+		DEB0F0CF243A74A0005DC0E2 /* libboost_program_options.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_program_options.a; path = ../../../../usr/local/lib/libboost_program_options.a; sourceTree = "<group>"; };
+		DEB0F0D0243A74A0005DC0E2 /* libboost_graph-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_graph-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_graph-mt.a"; sourceTree = "<group>"; };
+		DEB0F0D1243A74A0005DC0E2 /* libboost_timer-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_timer-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_timer-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0D2243A74A0005DC0E2 /* libboost_exception-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_exception-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_exception-mt.a"; sourceTree = "<group>"; };
+		DEB0F0D3243A74A0005DC0E2 /* libboost_container-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_container-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_container-mt.a"; sourceTree = "<group>"; };
+		DEB0F0D4243A74A0005DC0E2 /* libboost_prg_exec_monitor.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_prg_exec_monitor.dylib; path = ../../../../usr/local/lib/libboost_prg_exec_monitor.dylib; sourceTree = "<group>"; };
+		DEB0F0D5243A74A0005DC0E2 /* libboost_atomic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_atomic.a; path = ../../../../usr/local/lib/libboost_atomic.a; sourceTree = "<group>"; };
+		DEB0F0D6243A74A0005DC0E2 /* libboost_iostreams-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_iostreams-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_iostreams-mt.a"; sourceTree = "<group>"; };
+		DEB0F0D7243A74A0005DC0E2 /* libboost_regex-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_regex-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_regex-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0D8243A74A0005DC0E2 /* libboost_serialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_serialization.a; path = ../../../../usr/local/lib/libboost_serialization.a; sourceTree = "<group>"; };
+		DEB0F0D9243A74A0005DC0E2 /* libboost_wserialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_wserialization.a; path = ../../../../usr/local/lib/libboost_wserialization.a; sourceTree = "<group>"; };
+		DEB0F0DA243A74A0005DC0E2 /* libboost_stacktrace_addr2line-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_stacktrace_addr2line-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_stacktrace_addr2line-mt.a"; sourceTree = "<group>"; };
+		DEB0F0DB243A74A0005DC0E2 /* libboost_math_c99-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_c99-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_c99-mt.a"; sourceTree = "<group>"; };
+		DEB0F0DC243A74A0005DC0E2 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
+		DEB0F0DD243A74A0005DC0E2 /* libboost_program_options-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_program_options-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_program_options-mt.a"; sourceTree = "<group>"; };
+		DEB0F0DE243A74A0005DC0E2 /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = ../../../../usr/local/lib/libboost_unit_test_framework.dylib; sourceTree = "<group>"; };
+		DEB0F0DF243A74A0005DC0E2 /* libboost_test_exec_monitor-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_test_exec_monitor-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_test_exec_monitor-mt.a"; sourceTree = "<group>"; };
+		DEB0F0E0243A74A0005DC0E2 /* libboost_wave-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_wave-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_wave-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0E1243A74A1005DC0E2 /* libboost_serialization-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_serialization-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_serialization-mt.a"; sourceTree = "<group>"; };
+		DEB0F0E2243A74A1005DC0E2 /* libboost_unit_test_framework-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_unit_test_framework-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_unit_test_framework-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0E3243A74A1005DC0E2 /* libboost_stacktrace_noop.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_stacktrace_noop.dylib; path = ../../../../usr/local/lib/libboost_stacktrace_noop.dylib; sourceTree = "<group>"; };
+		DEB0F0E4243A74A1005DC0E2 /* libboost_regex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_regex.a; path = ../../../../usr/local/lib/libboost_regex.a; sourceTree = "<group>"; };
+		DEB0F0E5243A74A1005DC0E2 /* libboost_random.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_random.a; path = ../../../../usr/local/lib/libboost_random.a; sourceTree = "<group>"; };
+		DEB0F0E6243A74A1005DC0E2 /* libboost_stacktrace_addr2line.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_stacktrace_addr2line.dylib; path = ../../../../usr/local/lib/libboost_stacktrace_addr2line.dylib; sourceTree = "<group>"; };
+		DEB0F0E7243A74A1005DC0E2 /* libboost_container.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_container.dylib; path = ../../../../usr/local/lib/libboost_container.dylib; sourceTree = "<group>"; };
+		DEB0F0E8243A74A1005DC0E2 /* libboost_graph.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_graph.a; path = ../../../../usr/local/lib/libboost_graph.a; sourceTree = "<group>"; };
+		DEB0F0E9243A74A1005DC0E2 /* libboost_prg_exec_monitor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_prg_exec_monitor.a; path = ../../../../usr/local/lib/libboost_prg_exec_monitor.a; sourceTree = "<group>"; };
+		DEB0F0EA243A74A1005DC0E2 /* libboost_random-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_random-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_random-mt.a"; sourceTree = "<group>"; };
+		DEB0F0EB243A74A1005DC0E2 /* libboost_math_c99f.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_math_c99f.dylib; path = ../../../../usr/local/lib/libboost_math_c99f.dylib; sourceTree = "<group>"; };
+		DEB0F0EC243A74A1005DC0E2 /* libboost_type_erasure-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_type_erasure-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_type_erasure-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0ED243A74A1005DC0E2 /* libboost_math_tr1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_math_tr1.dylib; path = ../../../../usr/local/lib/libboost_math_tr1.dylib; sourceTree = "<group>"; };
+		DEB0F0EE243A74A1005DC0E2 /* libboost_filesystem-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_filesystem-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_filesystem-mt.a"; sourceTree = "<group>"; };
+		DEB0F0EF243A74A1005DC0E2 /* libboost_math_c99l.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_math_c99l.a; path = ../../../../usr/local/lib/libboost_math_c99l.a; sourceTree = "<group>"; };
+		DEB0F0F0243A74A2005DC0E2 /* libboost_contract.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_contract.a; path = ../../../../usr/local/lib/libboost_contract.a; sourceTree = "<group>"; };
+		DEB0F0F1243A74A2005DC0E2 /* libboost_math_c99f-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_math_c99f-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_c99f-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0F2243A74A2005DC0E2 /* libboost_python27.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_python27.dylib; path = ../../../../usr/local/lib/libboost_python27.dylib; sourceTree = "<group>"; };
+		DEB0F0F3243A74A2005DC0E2 /* libboost_graph.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_graph.dylib; path = ../../../../usr/local/lib/libboost_graph.dylib; sourceTree = "<group>"; };
+		DEB0F0F4243A74A2005DC0E2 /* libboost_stacktrace_addr2line-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_stacktrace_addr2line-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_stacktrace_addr2line-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0F5243A74A2005DC0E2 /* libboost_system-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_system-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_system-mt.a"; sourceTree = "<group>"; };
+		DEB0F0F6243A74A2005DC0E2 /* libboost_test_exec_monitor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_test_exec_monitor.a; path = ../../../../usr/local/lib/libboost_test_exec_monitor.a; sourceTree = "<group>"; };
+		DEB0F0F7243A74A2005DC0E2 /* libboost_wave.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_wave.dylib; path = ../../../../usr/local/lib/libboost_wave.dylib; sourceTree = "<group>"; };
+		DEB0F0F8243A74A2005DC0E2 /* libboost_stacktrace_noop-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_stacktrace_noop-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_stacktrace_noop-mt.a"; sourceTree = "<group>"; };
+		DEB0F0F9243A74A2005DC0E2 /* libboost_math_tr1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_math_tr1.a; path = ../../../../usr/local/lib/libboost_math_tr1.a; sourceTree = "<group>"; };
+		DEB0F0FA243A74A2005DC0E2 /* libboost_atomic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_atomic.dylib; path = ../../../../usr/local/lib/libboost_atomic.dylib; sourceTree = "<group>"; };
+		DEB0F0FB243A74A2005DC0E2 /* libboost_iostreams-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_iostreams-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_iostreams-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0FC243A74A2005DC0E2 /* libboost_system-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_system-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F0FD243A74A2005DC0E2 /* libboost_numpy27.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_numpy27.a; path = ../../../../usr/local/lib/libboost_numpy27.a; sourceTree = "<group>"; };
+		DEB0F0FE243A74A2005DC0E2 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../../../usr/local/lib/libboost_system.a; sourceTree = "<group>"; };
+		DEB0F0FF243A74A2005DC0E2 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
+		DEB0F100243A74A2005DC0E2 /* libboost_stacktrace_addr2line.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_stacktrace_addr2line.a; path = ../../../../usr/local/lib/libboost_stacktrace_addr2line.a; sourceTree = "<group>"; };
+		DEB0F101243A74A2005DC0E2 /* libboost_locale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_locale.a; path = ../../../../usr/local/lib/libboost_locale.a; sourceTree = "<group>"; };
+		DEB0F102243A74A2005DC0E2 /* libboost_timer-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_timer-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_timer-mt.a"; sourceTree = "<group>"; };
+		DEB0F103243A74A2005DC0E2 /* libboost_serialization.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_serialization.dylib; path = ../../../../usr/local/lib/libboost_serialization.dylib; sourceTree = "<group>"; };
+		DEB0F104243A74A2005DC0E2 /* libboost_type_erasure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_type_erasure.a; path = ../../../../usr/local/lib/libboost_type_erasure.a; sourceTree = "<group>"; };
+		DEB0F105243A74A3005DC0E2 /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_chrono.a; path = ../../../../usr/local/lib/libboost_chrono.a; sourceTree = "<group>"; };
+		DEB0F106243A74A3005DC0E2 /* libboost_context-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_context-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_context-mt.a"; sourceTree = "<group>"; };
+		DEB0F107243A74A3005DC0E2 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../../../../usr/local/lib/libboost_filesystem.a; sourceTree = "<group>"; };
+		DEB0F108243A74A3005DC0E2 /* libboost_python27.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_python27.a; path = ../../../../usr/local/lib/libboost_python27.a; sourceTree = "<group>"; };
+		DEB0F109243A74A3005DC0E2 /* libboost_math_c99f-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_c99f-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_c99f-mt.a"; sourceTree = "<group>"; };
+		DEB0F10A243A74A3005DC0E2 /* libboost_math_tr1f-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_math_tr1f-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_tr1f-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F10B243A74A3005DC0E2 /* libboost_math_tr1l-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_tr1l-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_tr1l-mt.a"; sourceTree = "<group>"; };
+		DEB0F10C243A74A3005DC0E2 /* libboost_type_erasure.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_type_erasure.dylib; path = ../../../../usr/local/lib/libboost_type_erasure.dylib; sourceTree = "<group>"; };
+		DEB0F10D243A74A3005DC0E2 /* libboost_math_tr1-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_tr1-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_tr1-mt.a"; sourceTree = "<group>"; };
+		DEB0F10E243A74A3005DC0E2 /* libboost_math_c99l.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_math_c99l.dylib; path = ../../../../usr/local/lib/libboost_math_c99l.dylib; sourceTree = "<group>"; };
+		DEB0F10F243A74A3005DC0E2 /* libboost_date_time.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_date_time.a; path = ../../../../usr/local/lib/libboost_date_time.a; sourceTree = "<group>"; };
+		DEB0F110243A74A3005DC0E2 /* libboost_regex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_regex.dylib; path = ../../../../usr/local/lib/libboost_regex.dylib; sourceTree = "<group>"; };
+		DEB0F111243A74A3005DC0E2 /* libboost_math_tr1f-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_tr1f-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_tr1f-mt.a"; sourceTree = "<group>"; };
+		DEB0F112243A74A3005DC0E2 /* libboost_context-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_context-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_context-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F113243A74A3005DC0E2 /* libboost_locale.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_locale.dylib; path = ../../../../usr/local/lib/libboost_locale.dylib; sourceTree = "<group>"; };
+		DEB0F114243A74A3005DC0E2 /* libboost_timer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_timer.a; path = ../../../../usr/local/lib/libboost_timer.a; sourceTree = "<group>"; };
+		DEB0F115243A74A3005DC0E2 /* libboost_numpy27.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_numpy27.dylib; path = ../../../../usr/local/lib/libboost_numpy27.dylib; sourceTree = "<group>"; };
+		DEB0F116243A74A3005DC0E2 /* libboost_serialization-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_serialization-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_serialization-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F117243A74A3005DC0E2 /* libboost_math_tr1l-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_math_tr1l-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_tr1l-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F118243A74A4005DC0E2 /* libboost_context.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_context.dylib; path = ../../../../usr/local/lib/libboost_context.dylib; sourceTree = "<group>"; };
+		DEB0F119243A74A4005DC0E2 /* libboost_coroutine-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_coroutine-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_coroutine-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F11A243A74A4005DC0E2 /* libboost_container-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_container-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_container-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F11B243A74A4005DC0E2 /* libboost_stacktrace_basic-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_stacktrace_basic-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_stacktrace_basic-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F11C243A74A4005DC0E2 /* libboost_stacktrace_basic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_stacktrace_basic.dylib; path = ../../../../usr/local/lib/libboost_stacktrace_basic.dylib; sourceTree = "<group>"; };
+		DEB0F11D243A74A4005DC0E2 /* libboost_prg_exec_monitor-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_prg_exec_monitor-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_prg_exec_monitor-mt.a"; sourceTree = "<group>"; };
+		DEB0F11E243A74A4005DC0E2 /* libboost_math_tr1f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_math_tr1f.a; path = ../../../../usr/local/lib/libboost_math_tr1f.a; sourceTree = "<group>"; };
+		DEB0F11F243A74A4005DC0E2 /* libboost_math_c99.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_math_c99.a; path = ../../../../usr/local/lib/libboost_math_c99.a; sourceTree = "<group>"; };
+		DEB0F120243A74A4005DC0E2 /* libboost_wave.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_wave.a; path = ../../../../usr/local/lib/libboost_wave.a; sourceTree = "<group>"; };
+		DEB0F121243A74A4005DC0E2 /* libboost_prg_exec_monitor-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_prg_exec_monitor-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_prg_exec_monitor-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F122243A74A4005DC0E2 /* libboost_math_c99f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_math_c99f.a; path = ../../../../usr/local/lib/libboost_math_c99f.a; sourceTree = "<group>"; };
+		DEB0F123243A74A4005DC0E2 /* libboost_contract-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_contract-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_contract-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F124243A74A4005DC0E2 /* libboost_coroutine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_coroutine.a; path = ../../../../usr/local/lib/libboost_coroutine.a; sourceTree = "<group>"; };
+		DEB0F125243A74A4005DC0E2 /* libboost_math_tr1-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_math_tr1-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_tr1-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F126243A74A4005DC0E2 /* libboost_timer.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_timer.dylib; path = ../../../../usr/local/lib/libboost_timer.dylib; sourceTree = "<group>"; };
+		DEB0F127243A74A4005DC0E2 /* libboost_math_c99-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_math_c99-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_c99-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F128243A74A4005DC0E2 /* libboost_math_tr1l.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_math_tr1l.dylib; path = ../../../../usr/local/lib/libboost_math_tr1l.dylib; sourceTree = "<group>"; };
+		DEB0F129243A74A4005DC0E2 /* libboost_date_time-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_date_time-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_date_time-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F12A243A74A4005DC0E2 /* libboost_fiber-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_fiber-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_fiber-mt.a"; sourceTree = "<group>"; };
+		DEB0F12B243A74A4005DC0E2 /* libboost_wserialization-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_wserialization-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_wserialization-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F12C243A74A4005DC0E2 /* libboost_date_time.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_date_time.dylib; path = ../../../../usr/local/lib/libboost_date_time.dylib; sourceTree = "<group>"; };
+		DEB0F12D243A74A5005DC0E2 /* libboost_stacktrace_basic-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_stacktrace_basic-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_stacktrace_basic-mt.a"; sourceTree = "<group>"; };
+		DEB0F12E243A74A5005DC0E2 /* libboost_unit_test_framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_unit_test_framework.a; path = ../../../../usr/local/lib/libboost_unit_test_framework.a; sourceTree = "<group>"; };
+		DEB0F12F243A74A5005DC0E2 /* libboost_random-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_random-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_random-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F130243A74A5005DC0E2 /* libboost_stacktrace_noop-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_stacktrace_noop-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_stacktrace_noop-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F131243A74A5005DC0E2 /* libboost_coroutine.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_coroutine.dylib; path = ../../../../usr/local/lib/libboost_coroutine.dylib; sourceTree = "<group>"; };
+		DEB0F132243A74A5005DC0E2 /* libboost_stacktrace_basic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_stacktrace_basic.a; path = ../../../../usr/local/lib/libboost_stacktrace_basic.a; sourceTree = "<group>"; };
+		DEB0F133243A74A5005DC0E2 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../usr/local/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
+		DEB0F134243A74A5005DC0E2 /* libboost_container.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_container.a; path = ../../../../usr/local/lib/libboost_container.a; sourceTree = "<group>"; };
+		DEB0F135243A74A5005DC0E2 /* libboost_graph-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_graph-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_graph-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F136243A74A5005DC0E2 /* libboost_math_c99l-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_math_c99l-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_c99l-mt.a"; sourceTree = "<group>"; };
+		DEB0F137243A74A5005DC0E2 /* libboost_wserialization.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_wserialization.dylib; path = ../../../../usr/local/lib/libboost_wserialization.dylib; sourceTree = "<group>"; };
+		DEB0F138243A74A5005DC0E2 /* libboost_chrono-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_chrono-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_chrono-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F139243A74A5005DC0E2 /* libboost_filesystem-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_filesystem-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F13A243A74A5005DC0E2 /* libboost_atomic-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_atomic-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_atomic-mt.a"; sourceTree = "<group>"; };
+		DEB0F13B243A74A5005DC0E2 /* libboost_type_erasure-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_type_erasure-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_type_erasure-mt.a"; sourceTree = "<group>"; };
+		DEB0F13C243A74A5005DC0E2 /* libboost_program_options.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_program_options.dylib; path = ../../../../usr/local/lib/libboost_program_options.dylib; sourceTree = "<group>"; };
+		DEB0F13D243A74A5005DC0E2 /* libboost_contract.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_contract.dylib; path = ../../../../usr/local/lib/libboost_contract.dylib; sourceTree = "<group>"; };
+		DEB0F13E243A74A5005DC0E2 /* libboost_fiber-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_fiber-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_fiber-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F13F243A74A5005DC0E2 /* libboost_chrono-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_chrono-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_chrono-mt.a"; sourceTree = "<group>"; };
+		DEB0F140243A74A5005DC0E2 /* libboost_atomic-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_atomic-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_atomic-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F141243A74A5005DC0E2 /* libboost_contract-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_contract-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_contract-mt.a"; sourceTree = "<group>"; };
+		DEB0F142243A74A5005DC0E2 /* libboost_unit_test_framework-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_unit_test_framework-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_unit_test_framework-mt.a"; sourceTree = "<group>"; };
+		DEB0F143243A74A5005DC0E2 /* libboost_math_c99l-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_math_c99l-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_math_c99l-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F144243A74A6005DC0E2 /* libboost_regex-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_regex-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_regex-mt.a"; sourceTree = "<group>"; };
+		DEB0F145243A74A6005DC0E2 /* libboost_iostreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_iostreams.a; path = ../../../../usr/local/lib/libboost_iostreams.a; sourceTree = "<group>"; };
+		DEB0F146243A74A6005DC0E2 /* libboost_program_options-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_program_options-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_program_options-mt.dylib"; sourceTree = "<group>"; };
+		DEB0F147243A74A6005DC0E2 /* libboost_math_c99.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_math_c99.dylib; path = ../../../../usr/local/lib/libboost_math_c99.dylib; sourceTree = "<group>"; };
+		DEB0F267243A7C1B005DC0E2 /* osxfuse.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = osxfuse.pc; sourceTree = "<group>"; };
+		DEB0F268243A7C1B005DC0E2 /* curlpp.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = curlpp.pc; sourceTree = "<group>"; };
+		DEB0F269243A7C1B005DC0E2 /* fuse.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = fuse.pc; sourceTree = "<group>"; };
+		DEB0F26A243A7C1B005DC0E2 /* libosxfuse.la */ = {isa = PBXFileReference; lastKnownFileType = text; name = libosxfuse.la; path = ../../../../usr/local/lib/libosxfuse.la; sourceTree = "<group>"; };
+		DEB0F26B243A7C1B005DC0E2 /* libcurlpp.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurlpp.1.0.0.dylib; path = ../../../../usr/local/Cellar/curlpp/0.8.1/lib/libcurlpp.1.0.0.dylib; sourceTree = "<group>"; };
+		DEB0F26E243A7C1B005DC0E2 /* libboost_wave-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wave-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F26F243A7C1B005DC0E2 /* libboost_wave-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wave-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F270243A7C1B005DC0E2 /* boost_wave-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_wave-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F271243A7C1B005DC0E2 /* libboost_wave-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wave-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F272243A7C1B005DC0E2 /* libboost_wave-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wave-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F273243A7C1B005DC0E2 /* boost_wave-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_wave-config.cmake"; sourceTree = "<group>"; };
+		DEB0F275243A7C1B005DC0E2 /* boost_serialization-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_serialization-config.cmake"; sourceTree = "<group>"; };
+		DEB0F276243A7C1B005DC0E2 /* boost_serialization-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_serialization-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F277243A7C1B005DC0E2 /* libboost_serialization-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_serialization-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F278243A7C1B005DC0E2 /* libboost_serialization-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_serialization-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F279243A7C1B005DC0E2 /* libboost_serialization-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_serialization-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F27A243A7C1B005DC0E2 /* libboost_serialization-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_serialization-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F27C243A7C1B005DC0E2 /* boost_exception-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_exception-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F27D243A7C1B005DC0E2 /* boost_exception-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_exception-config.cmake"; sourceTree = "<group>"; };
+		DEB0F27F243A7C1B005DC0E2 /* boost_fiber-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_fiber-config.cmake"; sourceTree = "<group>"; };
+		DEB0F280243A7C1B005DC0E2 /* boost_fiber-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_fiber-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F281243A7C1B005DC0E2 /* libboost_fiber-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_fiber-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F282243A7C1B005DC0E2 /* libboost_fiber-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_fiber-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F284243A7C1B005DC0E2 /* libboost_chrono-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_chrono-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F285243A7C1B005DC0E2 /* libboost_chrono-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_chrono-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F286243A7C1B005DC0E2 /* boost_chrono-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_chrono-config.cmake"; sourceTree = "<group>"; };
+		DEB0F287243A7C1B005DC0E2 /* boost_chrono-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_chrono-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F288243A7C1B005DC0E2 /* libboost_chrono-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_chrono-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F289243A7C1B005DC0E2 /* libboost_chrono-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_chrono-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F28B243A7C1B005DC0E2 /* boost_stacktrace_windbg-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_windbg-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F28C243A7C1B005DC0E2 /* boost_stacktrace_windbg-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_windbg-config.cmake"; sourceTree = "<group>"; };
+		DEB0F28E243A7C1B005DC0E2 /* libboost_math_c99f-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99f-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F28F243A7C1B005DC0E2 /* libboost_math_c99f-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99f-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F290243A7C1B005DC0E2 /* boost_math_c99f-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_c99f-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F291243A7C1B005DC0E2 /* libboost_math_c99f-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99f-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F292243A7C1B005DC0E2 /* libboost_math_c99f-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99f-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F293243A7C1B005DC0E2 /* boost_math_c99f-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_c99f-config.cmake"; sourceTree = "<group>"; };
+		DEB0F295243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_noop-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F296243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_noop-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F297243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_noop-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F298243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_noop-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F299243A7C1B005DC0E2 /* boost_stacktrace_noop-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_noop-config.cmake"; sourceTree = "<group>"; };
+		DEB0F29A243A7C1B005DC0E2 /* boost_stacktrace_noop-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_noop-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F29C243A7C1B005DC0E2 /* BoostConfigVersion.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = BoostConfigVersion.cmake; sourceTree = "<group>"; };
+		DEB0F29D243A7C1B005DC0E2 /* BoostConfig.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = BoostConfig.cmake; sourceTree = "<group>"; };
+		DEB0F29F243A7C1B005DC0E2 /* boost_math_c99-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_c99-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2A0243A7C1B005DC0E2 /* boost_math_c99-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_c99-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2A1243A7C1B005DC0E2 /* libboost_math_c99-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2A2243A7C1B005DC0E2 /* libboost_math_c99-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2A3243A7C1B005DC0E2 /* libboost_math_c99-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2A4243A7C1B005DC0E2 /* libboost_math_c99-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2A6243A7C1B005DC0E2 /* nlohmann_jsonTargets.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = nlohmann_jsonTargets.cmake; sourceTree = "<group>"; };
+		DEB0F2A7243A7C1B005DC0E2 /* nlohmann_jsonConfigVersion.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = nlohmann_jsonConfigVersion.cmake; sourceTree = "<group>"; };
+		DEB0F2A8243A7C1B005DC0E2 /* nlohmann_jsonConfig.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = nlohmann_jsonConfig.cmake; sourceTree = "<group>"; };
+		DEB0F2AA243A7C1B005DC0E2 /* boost_iostreams-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_iostreams-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2AB243A7C1B005DC0E2 /* libboost_iostreams-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_iostreams-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2AC243A7C1B005DC0E2 /* libboost_iostreams-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_iostreams-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2AD243A7C1B005DC0E2 /* boost_iostreams-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_iostreams-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2AE243A7C1B005DC0E2 /* libboost_iostreams-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_iostreams-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2AF243A7C1B005DC0E2 /* libboost_iostreams-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_iostreams-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2B1243A7C1B005DC0E2 /* boost_prg_exec_monitor-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_prg_exec_monitor-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2B2243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_prg_exec_monitor-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2B3243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_prg_exec_monitor-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2B4243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_prg_exec_monitor-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2B5243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_prg_exec_monitor-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2B6243A7C1B005DC0E2 /* boost_prg_exec_monitor-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_prg_exec_monitor-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2B8243A7C1B005DC0E2 /* libboost_math_tr1-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2B9243A7C1B005DC0E2 /* libboost_math_tr1-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2BA243A7C1B005DC0E2 /* libboost_math_tr1-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2BB243A7C1B005DC0E2 /* boost_math_tr1-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_tr1-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2BC243A7C1B005DC0E2 /* libboost_math_tr1-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2BD243A7C1B005DC0E2 /* boost_math_tr1-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_tr1-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2BF243A7C1B005DC0E2 /* boost_timer-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_timer-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2C0243A7C1B005DC0E2 /* libboost_timer-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_timer-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2C1243A7C1B005DC0E2 /* boost_timer-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_timer-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2C2243A7C1B005DC0E2 /* libboost_timer-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_timer-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2C3243A7C1B005DC0E2 /* libboost_timer-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_timer-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2C4243A7C1B005DC0E2 /* libboost_timer-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_timer-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2C6243A7C1B005DC0E2 /* libboost_locale-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_locale-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2C7243A7C1B005DC0E2 /* boost_locale-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_locale-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2C8243A7C1B005DC0E2 /* libboost_locale-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_locale-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2C9243A7C1B005DC0E2 /* libboost_locale-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_locale-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2CA243A7C1B005DC0E2 /* libboost_locale-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_locale-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2CB243A7C1B005DC0E2 /* boost_locale-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_locale-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2CD243A7C1B005DC0E2 /* boost_fiber_numa-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_fiber_numa-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2CE243A7C1B005DC0E2 /* boost_fiber_numa-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_fiber_numa-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2D0243A7C1B005DC0E2 /* boost_contract-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_contract-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2D1243A7C1B005DC0E2 /* libboost_contract-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_contract-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2D2243A7C1B005DC0E2 /* libboost_contract-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_contract-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2D3243A7C1B005DC0E2 /* boost_contract-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_contract-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2D4243A7C1B005DC0E2 /* libboost_contract-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_contract-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2D5243A7C1B005DC0E2 /* libboost_contract-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_contract-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2D7243A7C1B005DC0E2 /* libboost_math_c99l-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99l-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2D8243A7C1B005DC0E2 /* libboost_math_c99l-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99l-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2D9243A7C1B005DC0E2 /* libboost_math_c99l-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99l-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2DA243A7C1B005DC0E2 /* boost_math_c99l-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_c99l-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2DB243A7C1B005DC0E2 /* libboost_math_c99l-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_c99l-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2DC243A7C1B005DC0E2 /* boost_math_c99l-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_c99l-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2DE243A7C1B005DC0E2 /* boost_atomic-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_atomic-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2DF243A7C1B005DC0E2 /* libboost_atomic-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_atomic-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2E0243A7C1B005DC0E2 /* libboost_atomic-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_atomic-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2E1243A7C1B005DC0E2 /* libboost_atomic-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_atomic-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2E2243A7C1B005DC0E2 /* libboost_atomic-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_atomic-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2E3243A7C1B005DC0E2 /* boost_atomic-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_atomic-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2E5243A7C1B005DC0E2 /* boost_graph_parallel-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_graph_parallel-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2E6243A7C1B005DC0E2 /* boost_graph_parallel-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_graph_parallel-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2E8243A7C1B005DC0E2 /* boost_container-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_container-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2E9243A7C1B005DC0E2 /* libboost_container-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_container-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2EA243A7C1B005DC0E2 /* boost_container-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_container-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2EB243A7C1B005DC0E2 /* libboost_container-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_container-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2EC243A7C1B005DC0E2 /* libboost_container-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_container-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2ED243A7C1C005DC0E2 /* libboost_container-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_container-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2EF243A7C1C005DC0E2 /* boost_mpi-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_mpi-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2F0243A7C1C005DC0E2 /* boost_mpi-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_mpi-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2F2243A7C1C005DC0E2 /* libboost_log_setup-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log_setup-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2F3243A7C1C005DC0E2 /* libboost_log_setup-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log_setup-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2F4243A7C1C005DC0E2 /* boost_log_setup-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_log_setup-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2F5243A7C1C005DC0E2 /* boost_log_setup-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_log_setup-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F2F6243A7C1C005DC0E2 /* libboost_log_setup-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log_setup-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2F7243A7C1C005DC0E2 /* libboost_log_setup-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log_setup-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2F9243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_basic-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2FA243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_basic-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F2FB243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_basic-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2FC243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_basic-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F2FD243A7C1C005DC0E2 /* boost_stacktrace_basic-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_basic-config.cmake"; sourceTree = "<group>"; };
+		DEB0F2FE243A7C1C005DC0E2 /* boost_stacktrace_basic-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_basic-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F300243A7C1C005DC0E2 /* boost_regex-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_regex-config.cmake"; sourceTree = "<group>"; };
+		DEB0F301243A7C1C005DC0E2 /* libboost_regex-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_regex-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F302243A7C1C005DC0E2 /* libboost_regex-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_regex-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F303243A7C1C005DC0E2 /* boost_regex-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_regex-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F304243A7C1C005DC0E2 /* libboost_regex-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_regex-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F305243A7C1C005DC0E2 /* libboost_regex-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_regex-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F307243A7C1C005DC0E2 /* boost_stacktrace_windbg_cached-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_windbg_cached-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F308243A7C1C005DC0E2 /* boost_stacktrace_windbg_cached-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_windbg_cached-config.cmake"; sourceTree = "<group>"; };
+		DEB0F30A243A7C1C005DC0E2 /* libboost_wserialization-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wserialization-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F30B243A7C1C005DC0E2 /* libboost_wserialization-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wserialization-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F30C243A7C1C005DC0E2 /* libboost_wserialization-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wserialization-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F30D243A7C1C005DC0E2 /* libboost_wserialization-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_wserialization-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F30E243A7C1C005DC0E2 /* boost_wserialization-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_wserialization-config.cmake"; sourceTree = "<group>"; };
+		DEB0F30F243A7C1C005DC0E2 /* boost_wserialization-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_wserialization-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F311243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_addr2line-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F312243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_addr2line-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F313243A7C1C005DC0E2 /* boost_stacktrace_addr2line-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_addr2line-config.cmake"; sourceTree = "<group>"; };
+		DEB0F314243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_addr2line-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F315243A7C1C005DC0E2 /* boost_stacktrace_addr2line-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_addr2line-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F316243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_stacktrace_addr2line-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F318243A7C1C005DC0E2 /* libboost_date_time-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_date_time-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F319243A7C1C005DC0E2 /* libboost_date_time-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_date_time-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F31A243A7C1C005DC0E2 /* boost_date_time-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_date_time-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F31B243A7C1C005DC0E2 /* libboost_date_time-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_date_time-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F31C243A7C1C005DC0E2 /* boost_date_time-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_date_time-config.cmake"; sourceTree = "<group>"; };
+		DEB0F31D243A7C1C005DC0E2 /* libboost_date_time-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_date_time-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F31F243A7C1C005DC0E2 /* boost_type_erasure-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_type_erasure-config.cmake"; sourceTree = "<group>"; };
+		DEB0F320243A7C1C005DC0E2 /* libboost_type_erasure-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_type_erasure-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F321243A7C1C005DC0E2 /* libboost_type_erasure-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_type_erasure-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F322243A7C1C005DC0E2 /* libboost_type_erasure-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_type_erasure-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F323243A7C1C005DC0E2 /* boost_type_erasure-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_type_erasure-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F324243A7C1C005DC0E2 /* libboost_type_erasure-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_type_erasure-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F326243A7C1C005DC0E2 /* boost_python-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_python-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F327243A7C1C005DC0E2 /* libboost_python-variant-shared-py2.7.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_python-variant-shared-py2.7.cmake"; sourceTree = "<group>"; };
+		DEB0F328243A7C1C005DC0E2 /* libboost_python-variant-static-py2.7.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_python-variant-static-py2.7.cmake"; sourceTree = "<group>"; };
+		DEB0F329243A7C1C005DC0E2 /* boost_python-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_python-config.cmake"; sourceTree = "<group>"; };
+		DEB0F32B243A7C1C005DC0E2 /* boost_numpy-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_numpy-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F32C243A7C1C005DC0E2 /* boost_numpy-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_numpy-config.cmake"; sourceTree = "<group>"; };
+		DEB0F32D243A7C1C005DC0E2 /* libboost_numpy-variant-static-py2.7.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_numpy-variant-static-py2.7.cmake"; sourceTree = "<group>"; };
+		DEB0F32E243A7C1C005DC0E2 /* libboost_numpy-variant-shared-py2.7.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_numpy-variant-shared-py2.7.cmake"; sourceTree = "<group>"; };
+		DEB0F330243A7C1C005DC0E2 /* libboost_math_tr1f-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1f-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F331243A7C1C005DC0E2 /* libboost_math_tr1f-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1f-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F332243A7C1C005DC0E2 /* boost_math_tr1f-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_tr1f-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F333243A7C1C005DC0E2 /* libboost_math_tr1f-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1f-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F334243A7C1C005DC0E2 /* libboost_math_tr1f-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1f-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F335243A7C1C005DC0E2 /* boost_math_tr1f-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_tr1f-config.cmake"; sourceTree = "<group>"; };
+		DEB0F337243A7C1C005DC0E2 /* boost_context-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_context-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F338243A7C1C005DC0E2 /* boost_context-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_context-config.cmake"; sourceTree = "<group>"; };
+		DEB0F339243A7C1C005DC0E2 /* libboost_context-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_context-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F33A243A7C1C005DC0E2 /* libboost_context-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_context-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F33B243A7C1C005DC0E2 /* libboost_context-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_context-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F33C243A7C1C005DC0E2 /* libboost_context-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_context-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F33E243A7C1C005DC0E2 /* libboost_system-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_system-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F33F243A7C1C005DC0E2 /* libboost_system-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_system-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F340243A7C1C005DC0E2 /* libboost_system-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_system-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F341243A7C1C005DC0E2 /* boost_system-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_system-config.cmake"; sourceTree = "<group>"; };
+		DEB0F342243A7C1C005DC0E2 /* libboost_system-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_system-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F343243A7C1C005DC0E2 /* boost_system-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_system-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F345243A7C1C005DC0E2 /* boost_test_exec_monitor-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_test_exec_monitor-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F346243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_test_exec_monitor-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F347243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_test_exec_monitor-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F348243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_test_exec_monitor-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F349243A7C1C005DC0E2 /* boost_test_exec_monitor-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_test_exec_monitor-config.cmake"; sourceTree = "<group>"; };
+		DEB0F34A243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_test_exec_monitor-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F34C243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_unit_test_framework-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F34D243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_unit_test_framework-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F34E243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_unit_test_framework-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F34F243A7C1C005DC0E2 /* boost_unit_test_framework-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_unit_test_framework-config.cmake"; sourceTree = "<group>"; };
+		DEB0F350243A7C1C005DC0E2 /* boost_unit_test_framework-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_unit_test_framework-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F351243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_unit_test_framework-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F353243A7C1C005DC0E2 /* boost_program_options-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_program_options-config.cmake"; sourceTree = "<group>"; };
+		DEB0F354243A7C1C005DC0E2 /* libboost_program_options-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_program_options-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F355243A7C1C005DC0E2 /* libboost_program_options-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_program_options-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F356243A7C1C005DC0E2 /* libboost_program_options-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_program_options-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F357243A7C1C005DC0E2 /* libboost_program_options-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_program_options-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F358243A7C1C005DC0E2 /* boost_program_options-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_program_options-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F35A243A7C1C005DC0E2 /* libboost_filesystem-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_filesystem-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F35B243A7C1C005DC0E2 /* libboost_filesystem-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_filesystem-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F35C243A7C1C005DC0E2 /* libboost_filesystem-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_filesystem-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F35D243A7C1C005DC0E2 /* libboost_filesystem-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_filesystem-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F35E243A7C1C005DC0E2 /* boost_filesystem-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_filesystem-config.cmake"; sourceTree = "<group>"; };
+		DEB0F35F243A7C1C005DC0E2 /* boost_filesystem-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_filesystem-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F361243A7C1C005DC0E2 /* boost_headers-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_headers-config.cmake"; sourceTree = "<group>"; };
+		DEB0F362243A7C1C005DC0E2 /* boost_headers-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_headers-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F364243A7C1C005DC0E2 /* boost_stacktrace_backtrace-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_backtrace-config.cmake"; sourceTree = "<group>"; };
+		DEB0F365243A7C1C005DC0E2 /* boost_stacktrace_backtrace-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_stacktrace_backtrace-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F367243A7C1C005DC0E2 /* libboost_graph-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_graph-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F368243A7C1C005DC0E2 /* libboost_graph-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_graph-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F369243A7C1C005DC0E2 /* boost_graph-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_graph-config.cmake"; sourceTree = "<group>"; };
+		DEB0F36A243A7C1C005DC0E2 /* libboost_graph-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_graph-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F36B243A7C1C005DC0E2 /* boost_graph-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_graph-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F36C243A7C1C005DC0E2 /* libboost_graph-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_graph-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F36E243A7C1C005DC0E2 /* boost_thread-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_thread-config.cmake"; sourceTree = "<group>"; };
+		DEB0F36F243A7C1C005DC0E2 /* boost_thread-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_thread-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F370243A7C1C005DC0E2 /* libboost_thread-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_thread-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F371243A7C1C005DC0E2 /* libboost_thread-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_thread-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F372243A7C1C005DC0E2 /* libboost_thread-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_thread-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F373243A7C1C005DC0E2 /* libboost_thread-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_thread-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F375243A7C1C005DC0E2 /* boost_math_tr1l-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_tr1l-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F376243A7C1C005DC0E2 /* libboost_math_tr1l-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1l-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F377243A7C1C005DC0E2 /* libboost_math_tr1l-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1l-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F378243A7C1C005DC0E2 /* boost_math_tr1l-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_math_tr1l-config.cmake"; sourceTree = "<group>"; };
+		DEB0F379243A7C1C005DC0E2 /* libboost_math_tr1l-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1l-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F37A243A7C1C005DC0E2 /* libboost_math_tr1l-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_math_tr1l-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F37C243A7C1C005DC0E2 /* libboost_random-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_random-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F37D243A7C1C005DC0E2 /* libboost_random-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_random-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F37E243A7C1C005DC0E2 /* boost_random-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_random-config.cmake"; sourceTree = "<group>"; };
+		DEB0F37F243A7C1C005DC0E2 /* libboost_random-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_random-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F380243A7C1C005DC0E2 /* boost_random-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_random-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F381243A7C1C005DC0E2 /* libboost_random-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_random-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F383243A7C1C005DC0E2 /* boost_coroutine-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_coroutine-config.cmake"; sourceTree = "<group>"; };
+		DEB0F384243A7C1C005DC0E2 /* boost_coroutine-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_coroutine-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F385243A7C1C005DC0E2 /* libboost_coroutine-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_coroutine-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F386243A7C1C005DC0E2 /* libboost_coroutine-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_coroutine-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F387243A7C1C005DC0E2 /* libboost_coroutine-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_coroutine-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F388243A7C1C005DC0E2 /* libboost_coroutine-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_coroutine-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F38A243A7C1C005DC0E2 /* libboost_log-variant-mt-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log-variant-mt-static.cmake"; sourceTree = "<group>"; };
+		DEB0F38B243A7C1C005DC0E2 /* libboost_log-variant-mt-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log-variant-mt-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F38C243A7C1C005DC0E2 /* boost_log-config.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_log-config.cmake"; sourceTree = "<group>"; };
+		DEB0F38D243A7C1C005DC0E2 /* boost_log-config-version.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "boost_log-config-version.cmake"; sourceTree = "<group>"; };
+		DEB0F38E243A7C1C005DC0E2 /* libboost_log-variant-shared.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log-variant-shared.cmake"; sourceTree = "<group>"; };
+		DEB0F38F243A7C1C005DC0E2 /* libboost_log-variant-static.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libboost_log-variant-static.cmake"; sourceTree = "<group>"; };
+		DEB0F390243A7C1C005DC0E2 /* BoostDetectToolset-1.72.0.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = "BoostDetectToolset-1.72.0.cmake"; sourceTree = "<group>"; };
+		DEB0F391243A7C1C005DC0E2 /* libosxfuse.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libosxfuse.2.dylib; path = ../../../../usr/local/lib/libosxfuse.2.dylib; sourceTree = "<group>"; };
 		DEBC762D2414672500425941 /* libboost_date_time-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_date_time-mt.a"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_date_time-mt.a"; sourceTree = "<group>"; };
 		DEBC762F2414A69F00425941 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../usr/local/Cellar/curl/7.69.0/lib/libcurl.a; sourceTree = "<group>"; };
 		DEBC76312414A9A300425941 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
@@ -146,6 +556,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEB0F3B3243AAF9C005DC0E2 /* libboost_log-mt.dylib in Frameworks */,
+				DEB0F3B2243AAF9C005DC0E2 /* libboost_log_setup-mt.dylib in Frameworks */,
+				DEB0F3B4243AAFA5005DC0E2 /* libLogger.dylib in Frameworks */,
 				DEBC76352414B45F00425941 /* libcurl.a in Frameworks */,
 				DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */,
 			);
@@ -163,6 +576,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEB0F3B1243AAE80005DC0E2 /* libboost_log-mt.dylib in Frameworks */,
+				DEB0F3AF243AAAF0005DC0E2 /* libboost_log_setup-mt.dylib in Frameworks */,
+				DEB0F3AB243AA791005DC0E2 /* libLogger.dylib in Frameworks */,
 				DEF9CCA92377B44A00B5089A /* libReadingTrackerLibrary.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +662,653 @@
 			path = TestReadingTrackerLibrary;
 			sourceTree = "<group>";
 		};
+		DEB0F266243A7C1B005DC0E2 /* pkgconfig */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F267243A7C1B005DC0E2 /* osxfuse.pc */,
+				DEB0F268243A7C1B005DC0E2 /* curlpp.pc */,
+				DEB0F269243A7C1B005DC0E2 /* fuse.pc */,
+			);
+			name = pkgconfig;
+			path = ../../../../usr/local/lib/pkgconfig;
+			sourceTree = "<group>";
+		};
+		DEB0F26C243A7C1B005DC0E2 /* cmake */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F26D243A7C1B005DC0E2 /* boost_wave-1.72.0 */,
+				DEB0F274243A7C1B005DC0E2 /* boost_serialization-1.72.0 */,
+				DEB0F27B243A7C1B005DC0E2 /* boost_exception-1.72.0 */,
+				DEB0F27E243A7C1B005DC0E2 /* boost_fiber-1.72.0 */,
+				DEB0F283243A7C1B005DC0E2 /* boost_chrono-1.72.0 */,
+				DEB0F28A243A7C1B005DC0E2 /* boost_stacktrace_windbg-1.72.0 */,
+				DEB0F28D243A7C1B005DC0E2 /* boost_math_c99f-1.72.0 */,
+				DEB0F294243A7C1B005DC0E2 /* boost_stacktrace_noop-1.72.0 */,
+				DEB0F29B243A7C1B005DC0E2 /* Boost-1.72.0 */,
+				DEB0F29E243A7C1B005DC0E2 /* boost_math_c99-1.72.0 */,
+				DEB0F2A5243A7C1B005DC0E2 /* nlohmann_json */,
+				DEB0F2A9243A7C1B005DC0E2 /* boost_iostreams-1.72.0 */,
+				DEB0F2B0243A7C1B005DC0E2 /* boost_prg_exec_monitor-1.72.0 */,
+				DEB0F2B7243A7C1B005DC0E2 /* boost_math_tr1-1.72.0 */,
+				DEB0F2BE243A7C1B005DC0E2 /* boost_timer-1.72.0 */,
+				DEB0F2C5243A7C1B005DC0E2 /* boost_locale-1.72.0 */,
+				DEB0F2CC243A7C1B005DC0E2 /* boost_fiber_numa-1.72.0 */,
+				DEB0F2CF243A7C1B005DC0E2 /* boost_contract-1.72.0 */,
+				DEB0F2D6243A7C1B005DC0E2 /* boost_math_c99l-1.72.0 */,
+				DEB0F2DD243A7C1B005DC0E2 /* boost_atomic-1.72.0 */,
+				DEB0F2E4243A7C1B005DC0E2 /* boost_graph_parallel-1.72.0 */,
+				DEB0F2E7243A7C1B005DC0E2 /* boost_container-1.72.0 */,
+				DEB0F2EE243A7C1C005DC0E2 /* boost_mpi-1.72.0 */,
+				DEB0F2F1243A7C1C005DC0E2 /* boost_log_setup-1.72.0 */,
+				DEB0F2F8243A7C1C005DC0E2 /* boost_stacktrace_basic-1.72.0 */,
+				DEB0F2FF243A7C1C005DC0E2 /* boost_regex-1.72.0 */,
+				DEB0F306243A7C1C005DC0E2 /* boost_stacktrace_windbg_cached-1.72.0 */,
+				DEB0F309243A7C1C005DC0E2 /* boost_wserialization-1.72.0 */,
+				DEB0F310243A7C1C005DC0E2 /* boost_stacktrace_addr2line-1.72.0 */,
+				DEB0F317243A7C1C005DC0E2 /* boost_date_time-1.72.0 */,
+				DEB0F31E243A7C1C005DC0E2 /* boost_type_erasure-1.72.0 */,
+				DEB0F325243A7C1C005DC0E2 /* boost_python-1.72.0 */,
+				DEB0F32A243A7C1C005DC0E2 /* boost_numpy-1.72.0 */,
+				DEB0F32F243A7C1C005DC0E2 /* boost_math_tr1f-1.72.0 */,
+				DEB0F336243A7C1C005DC0E2 /* boost_context-1.72.0 */,
+				DEB0F33D243A7C1C005DC0E2 /* boost_system-1.72.0 */,
+				DEB0F344243A7C1C005DC0E2 /* boost_test_exec_monitor-1.72.0 */,
+				DEB0F34B243A7C1C005DC0E2 /* boost_unit_test_framework-1.72.0 */,
+				DEB0F352243A7C1C005DC0E2 /* boost_program_options-1.72.0 */,
+				DEB0F359243A7C1C005DC0E2 /* boost_filesystem-1.72.0 */,
+				DEB0F360243A7C1C005DC0E2 /* boost_headers-1.72.0 */,
+				DEB0F363243A7C1C005DC0E2 /* boost_stacktrace_backtrace-1.72.0 */,
+				DEB0F366243A7C1C005DC0E2 /* boost_graph-1.72.0 */,
+				DEB0F36D243A7C1C005DC0E2 /* boost_thread-1.72.0 */,
+				DEB0F374243A7C1C005DC0E2 /* boost_math_tr1l-1.72.0 */,
+				DEB0F37B243A7C1C005DC0E2 /* boost_random-1.72.0 */,
+				DEB0F382243A7C1C005DC0E2 /* boost_coroutine-1.72.0 */,
+				DEB0F389243A7C1C005DC0E2 /* boost_log-1.72.0 */,
+				DEB0F390243A7C1C005DC0E2 /* BoostDetectToolset-1.72.0.cmake */,
+			);
+			name = cmake;
+			path = ../../../../usr/local/lib/cmake;
+			sourceTree = "<group>";
+		};
+		DEB0F26D243A7C1B005DC0E2 /* boost_wave-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F26E243A7C1B005DC0E2 /* libboost_wave-variant-mt-static.cmake */,
+				DEB0F26F243A7C1B005DC0E2 /* libboost_wave-variant-mt-shared.cmake */,
+				DEB0F270243A7C1B005DC0E2 /* boost_wave-config-version.cmake */,
+				DEB0F271243A7C1B005DC0E2 /* libboost_wave-variant-shared.cmake */,
+				DEB0F272243A7C1B005DC0E2 /* libboost_wave-variant-static.cmake */,
+				DEB0F273243A7C1B005DC0E2 /* boost_wave-config.cmake */,
+			);
+			path = "boost_wave-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F274243A7C1B005DC0E2 /* boost_serialization-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F275243A7C1B005DC0E2 /* boost_serialization-config.cmake */,
+				DEB0F276243A7C1B005DC0E2 /* boost_serialization-config-version.cmake */,
+				DEB0F277243A7C1B005DC0E2 /* libboost_serialization-variant-mt-shared.cmake */,
+				DEB0F278243A7C1B005DC0E2 /* libboost_serialization-variant-mt-static.cmake */,
+				DEB0F279243A7C1B005DC0E2 /* libboost_serialization-variant-shared.cmake */,
+				DEB0F27A243A7C1B005DC0E2 /* libboost_serialization-variant-static.cmake */,
+			);
+			path = "boost_serialization-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F27B243A7C1B005DC0E2 /* boost_exception-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F27C243A7C1B005DC0E2 /* boost_exception-config-version.cmake */,
+				DEB0F27D243A7C1B005DC0E2 /* boost_exception-config.cmake */,
+			);
+			path = "boost_exception-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F27E243A7C1B005DC0E2 /* boost_fiber-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F27F243A7C1B005DC0E2 /* boost_fiber-config.cmake */,
+				DEB0F280243A7C1B005DC0E2 /* boost_fiber-config-version.cmake */,
+				DEB0F281243A7C1B005DC0E2 /* libboost_fiber-variant-mt-static.cmake */,
+				DEB0F282243A7C1B005DC0E2 /* libboost_fiber-variant-mt-shared.cmake */,
+			);
+			path = "boost_fiber-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F283243A7C1B005DC0E2 /* boost_chrono-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F284243A7C1B005DC0E2 /* libboost_chrono-variant-mt-shared.cmake */,
+				DEB0F285243A7C1B005DC0E2 /* libboost_chrono-variant-mt-static.cmake */,
+				DEB0F286243A7C1B005DC0E2 /* boost_chrono-config.cmake */,
+				DEB0F287243A7C1B005DC0E2 /* boost_chrono-config-version.cmake */,
+				DEB0F288243A7C1B005DC0E2 /* libboost_chrono-variant-static.cmake */,
+				DEB0F289243A7C1B005DC0E2 /* libboost_chrono-variant-shared.cmake */,
+			);
+			path = "boost_chrono-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F28A243A7C1B005DC0E2 /* boost_stacktrace_windbg-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F28B243A7C1B005DC0E2 /* boost_stacktrace_windbg-config-version.cmake */,
+				DEB0F28C243A7C1B005DC0E2 /* boost_stacktrace_windbg-config.cmake */,
+			);
+			path = "boost_stacktrace_windbg-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F28D243A7C1B005DC0E2 /* boost_math_c99f-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F28E243A7C1B005DC0E2 /* libboost_math_c99f-variant-shared.cmake */,
+				DEB0F28F243A7C1B005DC0E2 /* libboost_math_c99f-variant-static.cmake */,
+				DEB0F290243A7C1B005DC0E2 /* boost_math_c99f-config-version.cmake */,
+				DEB0F291243A7C1B005DC0E2 /* libboost_math_c99f-variant-mt-shared.cmake */,
+				DEB0F292243A7C1B005DC0E2 /* libboost_math_c99f-variant-mt-static.cmake */,
+				DEB0F293243A7C1B005DC0E2 /* boost_math_c99f-config.cmake */,
+			);
+			path = "boost_math_c99f-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F294243A7C1B005DC0E2 /* boost_stacktrace_noop-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F295243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-static.cmake */,
+				DEB0F296243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-mt-static.cmake */,
+				DEB0F297243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-shared.cmake */,
+				DEB0F298243A7C1B005DC0E2 /* libboost_stacktrace_noop-variant-mt-shared.cmake */,
+				DEB0F299243A7C1B005DC0E2 /* boost_stacktrace_noop-config.cmake */,
+				DEB0F29A243A7C1B005DC0E2 /* boost_stacktrace_noop-config-version.cmake */,
+			);
+			path = "boost_stacktrace_noop-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F29B243A7C1B005DC0E2 /* Boost-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F29C243A7C1B005DC0E2 /* BoostConfigVersion.cmake */,
+				DEB0F29D243A7C1B005DC0E2 /* BoostConfig.cmake */,
+			);
+			path = "Boost-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F29E243A7C1B005DC0E2 /* boost_math_c99-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F29F243A7C1B005DC0E2 /* boost_math_c99-config.cmake */,
+				DEB0F2A0243A7C1B005DC0E2 /* boost_math_c99-config-version.cmake */,
+				DEB0F2A1243A7C1B005DC0E2 /* libboost_math_c99-variant-shared.cmake */,
+				DEB0F2A2243A7C1B005DC0E2 /* libboost_math_c99-variant-mt-static.cmake */,
+				DEB0F2A3243A7C1B005DC0E2 /* libboost_math_c99-variant-mt-shared.cmake */,
+				DEB0F2A4243A7C1B005DC0E2 /* libboost_math_c99-variant-static.cmake */,
+			);
+			path = "boost_math_c99-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2A5243A7C1B005DC0E2 /* nlohmann_json */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2A6243A7C1B005DC0E2 /* nlohmann_jsonTargets.cmake */,
+				DEB0F2A7243A7C1B005DC0E2 /* nlohmann_jsonConfigVersion.cmake */,
+				DEB0F2A8243A7C1B005DC0E2 /* nlohmann_jsonConfig.cmake */,
+			);
+			path = nlohmann_json;
+			sourceTree = "<group>";
+		};
+		DEB0F2A9243A7C1B005DC0E2 /* boost_iostreams-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2AA243A7C1B005DC0E2 /* boost_iostreams-config.cmake */,
+				DEB0F2AB243A7C1B005DC0E2 /* libboost_iostreams-variant-mt-static.cmake */,
+				DEB0F2AC243A7C1B005DC0E2 /* libboost_iostreams-variant-static.cmake */,
+				DEB0F2AD243A7C1B005DC0E2 /* boost_iostreams-config-version.cmake */,
+				DEB0F2AE243A7C1B005DC0E2 /* libboost_iostreams-variant-shared.cmake */,
+				DEB0F2AF243A7C1B005DC0E2 /* libboost_iostreams-variant-mt-shared.cmake */,
+			);
+			path = "boost_iostreams-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2B0243A7C1B005DC0E2 /* boost_prg_exec_monitor-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2B1243A7C1B005DC0E2 /* boost_prg_exec_monitor-config-version.cmake */,
+				DEB0F2B2243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-mt-shared.cmake */,
+				DEB0F2B3243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-static.cmake */,
+				DEB0F2B4243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-mt-static.cmake */,
+				DEB0F2B5243A7C1B005DC0E2 /* libboost_prg_exec_monitor-variant-shared.cmake */,
+				DEB0F2B6243A7C1B005DC0E2 /* boost_prg_exec_monitor-config.cmake */,
+			);
+			path = "boost_prg_exec_monitor-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2B7243A7C1B005DC0E2 /* boost_math_tr1-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2B8243A7C1B005DC0E2 /* libboost_math_tr1-variant-static.cmake */,
+				DEB0F2B9243A7C1B005DC0E2 /* libboost_math_tr1-variant-shared.cmake */,
+				DEB0F2BA243A7C1B005DC0E2 /* libboost_math_tr1-variant-mt-shared.cmake */,
+				DEB0F2BB243A7C1B005DC0E2 /* boost_math_tr1-config-version.cmake */,
+				DEB0F2BC243A7C1B005DC0E2 /* libboost_math_tr1-variant-mt-static.cmake */,
+				DEB0F2BD243A7C1B005DC0E2 /* boost_math_tr1-config.cmake */,
+			);
+			path = "boost_math_tr1-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2BE243A7C1B005DC0E2 /* boost_timer-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2BF243A7C1B005DC0E2 /* boost_timer-config-version.cmake */,
+				DEB0F2C0243A7C1B005DC0E2 /* libboost_timer-variant-shared.cmake */,
+				DEB0F2C1243A7C1B005DC0E2 /* boost_timer-config.cmake */,
+				DEB0F2C2243A7C1B005DC0E2 /* libboost_timer-variant-static.cmake */,
+				DEB0F2C3243A7C1B005DC0E2 /* libboost_timer-variant-mt-static.cmake */,
+				DEB0F2C4243A7C1B005DC0E2 /* libboost_timer-variant-mt-shared.cmake */,
+			);
+			path = "boost_timer-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2C5243A7C1B005DC0E2 /* boost_locale-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2C6243A7C1B005DC0E2 /* libboost_locale-variant-static.cmake */,
+				DEB0F2C7243A7C1B005DC0E2 /* boost_locale-config.cmake */,
+				DEB0F2C8243A7C1B005DC0E2 /* libboost_locale-variant-shared.cmake */,
+				DEB0F2C9243A7C1B005DC0E2 /* libboost_locale-variant-mt-shared.cmake */,
+				DEB0F2CA243A7C1B005DC0E2 /* libboost_locale-variant-mt-static.cmake */,
+				DEB0F2CB243A7C1B005DC0E2 /* boost_locale-config-version.cmake */,
+			);
+			path = "boost_locale-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2CC243A7C1B005DC0E2 /* boost_fiber_numa-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2CD243A7C1B005DC0E2 /* boost_fiber_numa-config-version.cmake */,
+				DEB0F2CE243A7C1B005DC0E2 /* boost_fiber_numa-config.cmake */,
+			);
+			path = "boost_fiber_numa-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2CF243A7C1B005DC0E2 /* boost_contract-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2D0243A7C1B005DC0E2 /* boost_contract-config.cmake */,
+				DEB0F2D1243A7C1B005DC0E2 /* libboost_contract-variant-mt-shared.cmake */,
+				DEB0F2D2243A7C1B005DC0E2 /* libboost_contract-variant-mt-static.cmake */,
+				DEB0F2D3243A7C1B005DC0E2 /* boost_contract-config-version.cmake */,
+				DEB0F2D4243A7C1B005DC0E2 /* libboost_contract-variant-shared.cmake */,
+				DEB0F2D5243A7C1B005DC0E2 /* libboost_contract-variant-static.cmake */,
+			);
+			path = "boost_contract-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2D6243A7C1B005DC0E2 /* boost_math_c99l-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2D7243A7C1B005DC0E2 /* libboost_math_c99l-variant-shared.cmake */,
+				DEB0F2D8243A7C1B005DC0E2 /* libboost_math_c99l-variant-mt-shared.cmake */,
+				DEB0F2D9243A7C1B005DC0E2 /* libboost_math_c99l-variant-mt-static.cmake */,
+				DEB0F2DA243A7C1B005DC0E2 /* boost_math_c99l-config-version.cmake */,
+				DEB0F2DB243A7C1B005DC0E2 /* libboost_math_c99l-variant-static.cmake */,
+				DEB0F2DC243A7C1B005DC0E2 /* boost_math_c99l-config.cmake */,
+			);
+			path = "boost_math_c99l-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2DD243A7C1B005DC0E2 /* boost_atomic-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2DE243A7C1B005DC0E2 /* boost_atomic-config-version.cmake */,
+				DEB0F2DF243A7C1B005DC0E2 /* libboost_atomic-variant-mt-static.cmake */,
+				DEB0F2E0243A7C1B005DC0E2 /* libboost_atomic-variant-mt-shared.cmake */,
+				DEB0F2E1243A7C1B005DC0E2 /* libboost_atomic-variant-shared.cmake */,
+				DEB0F2E2243A7C1B005DC0E2 /* libboost_atomic-variant-static.cmake */,
+				DEB0F2E3243A7C1B005DC0E2 /* boost_atomic-config.cmake */,
+			);
+			path = "boost_atomic-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2E4243A7C1B005DC0E2 /* boost_graph_parallel-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2E5243A7C1B005DC0E2 /* boost_graph_parallel-config-version.cmake */,
+				DEB0F2E6243A7C1B005DC0E2 /* boost_graph_parallel-config.cmake */,
+			);
+			path = "boost_graph_parallel-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2E7243A7C1B005DC0E2 /* boost_container-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2E8243A7C1B005DC0E2 /* boost_container-config.cmake */,
+				DEB0F2E9243A7C1B005DC0E2 /* libboost_container-variant-static.cmake */,
+				DEB0F2EA243A7C1B005DC0E2 /* boost_container-config-version.cmake */,
+				DEB0F2EB243A7C1B005DC0E2 /* libboost_container-variant-mt-static.cmake */,
+				DEB0F2EC243A7C1B005DC0E2 /* libboost_container-variant-shared.cmake */,
+				DEB0F2ED243A7C1C005DC0E2 /* libboost_container-variant-mt-shared.cmake */,
+			);
+			path = "boost_container-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2EE243A7C1C005DC0E2 /* boost_mpi-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2EF243A7C1C005DC0E2 /* boost_mpi-config.cmake */,
+				DEB0F2F0243A7C1C005DC0E2 /* boost_mpi-config-version.cmake */,
+			);
+			path = "boost_mpi-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2F1243A7C1C005DC0E2 /* boost_log_setup-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2F2243A7C1C005DC0E2 /* libboost_log_setup-variant-shared.cmake */,
+				DEB0F2F3243A7C1C005DC0E2 /* libboost_log_setup-variant-mt-static.cmake */,
+				DEB0F2F4243A7C1C005DC0E2 /* boost_log_setup-config.cmake */,
+				DEB0F2F5243A7C1C005DC0E2 /* boost_log_setup-config-version.cmake */,
+				DEB0F2F6243A7C1C005DC0E2 /* libboost_log_setup-variant-static.cmake */,
+				DEB0F2F7243A7C1C005DC0E2 /* libboost_log_setup-variant-mt-shared.cmake */,
+			);
+			path = "boost_log_setup-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2F8243A7C1C005DC0E2 /* boost_stacktrace_basic-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F2F9243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-shared.cmake */,
+				DEB0F2FA243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-mt-shared.cmake */,
+				DEB0F2FB243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-mt-static.cmake */,
+				DEB0F2FC243A7C1C005DC0E2 /* libboost_stacktrace_basic-variant-static.cmake */,
+				DEB0F2FD243A7C1C005DC0E2 /* boost_stacktrace_basic-config.cmake */,
+				DEB0F2FE243A7C1C005DC0E2 /* boost_stacktrace_basic-config-version.cmake */,
+			);
+			path = "boost_stacktrace_basic-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F2FF243A7C1C005DC0E2 /* boost_regex-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F300243A7C1C005DC0E2 /* boost_regex-config.cmake */,
+				DEB0F301243A7C1C005DC0E2 /* libboost_regex-variant-shared.cmake */,
+				DEB0F302243A7C1C005DC0E2 /* libboost_regex-variant-mt-static.cmake */,
+				DEB0F303243A7C1C005DC0E2 /* boost_regex-config-version.cmake */,
+				DEB0F304243A7C1C005DC0E2 /* libboost_regex-variant-static.cmake */,
+				DEB0F305243A7C1C005DC0E2 /* libboost_regex-variant-mt-shared.cmake */,
+			);
+			path = "boost_regex-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F306243A7C1C005DC0E2 /* boost_stacktrace_windbg_cached-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F307243A7C1C005DC0E2 /* boost_stacktrace_windbg_cached-config-version.cmake */,
+				DEB0F308243A7C1C005DC0E2 /* boost_stacktrace_windbg_cached-config.cmake */,
+			);
+			path = "boost_stacktrace_windbg_cached-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F309243A7C1C005DC0E2 /* boost_wserialization-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F30A243A7C1C005DC0E2 /* libboost_wserialization-variant-mt-static.cmake */,
+				DEB0F30B243A7C1C005DC0E2 /* libboost_wserialization-variant-shared.cmake */,
+				DEB0F30C243A7C1C005DC0E2 /* libboost_wserialization-variant-static.cmake */,
+				DEB0F30D243A7C1C005DC0E2 /* libboost_wserialization-variant-mt-shared.cmake */,
+				DEB0F30E243A7C1C005DC0E2 /* boost_wserialization-config.cmake */,
+				DEB0F30F243A7C1C005DC0E2 /* boost_wserialization-config-version.cmake */,
+			);
+			path = "boost_wserialization-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F310243A7C1C005DC0E2 /* boost_stacktrace_addr2line-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F311243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-mt-static.cmake */,
+				DEB0F312243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-mt-shared.cmake */,
+				DEB0F313243A7C1C005DC0E2 /* boost_stacktrace_addr2line-config.cmake */,
+				DEB0F314243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-shared.cmake */,
+				DEB0F315243A7C1C005DC0E2 /* boost_stacktrace_addr2line-config-version.cmake */,
+				DEB0F316243A7C1C005DC0E2 /* libboost_stacktrace_addr2line-variant-static.cmake */,
+			);
+			path = "boost_stacktrace_addr2line-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F317243A7C1C005DC0E2 /* boost_date_time-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F318243A7C1C005DC0E2 /* libboost_date_time-variant-shared.cmake */,
+				DEB0F319243A7C1C005DC0E2 /* libboost_date_time-variant-static.cmake */,
+				DEB0F31A243A7C1C005DC0E2 /* boost_date_time-config-version.cmake */,
+				DEB0F31B243A7C1C005DC0E2 /* libboost_date_time-variant-mt-shared.cmake */,
+				DEB0F31C243A7C1C005DC0E2 /* boost_date_time-config.cmake */,
+				DEB0F31D243A7C1C005DC0E2 /* libboost_date_time-variant-mt-static.cmake */,
+			);
+			path = "boost_date_time-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F31E243A7C1C005DC0E2 /* boost_type_erasure-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F31F243A7C1C005DC0E2 /* boost_type_erasure-config.cmake */,
+				DEB0F320243A7C1C005DC0E2 /* libboost_type_erasure-variant-mt-static.cmake */,
+				DEB0F321243A7C1C005DC0E2 /* libboost_type_erasure-variant-mt-shared.cmake */,
+				DEB0F322243A7C1C005DC0E2 /* libboost_type_erasure-variant-static.cmake */,
+				DEB0F323243A7C1C005DC0E2 /* boost_type_erasure-config-version.cmake */,
+				DEB0F324243A7C1C005DC0E2 /* libboost_type_erasure-variant-shared.cmake */,
+			);
+			path = "boost_type_erasure-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F325243A7C1C005DC0E2 /* boost_python-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F326243A7C1C005DC0E2 /* boost_python-config-version.cmake */,
+				DEB0F327243A7C1C005DC0E2 /* libboost_python-variant-shared-py2.7.cmake */,
+				DEB0F328243A7C1C005DC0E2 /* libboost_python-variant-static-py2.7.cmake */,
+				DEB0F329243A7C1C005DC0E2 /* boost_python-config.cmake */,
+			);
+			path = "boost_python-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F32A243A7C1C005DC0E2 /* boost_numpy-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F32B243A7C1C005DC0E2 /* boost_numpy-config-version.cmake */,
+				DEB0F32C243A7C1C005DC0E2 /* boost_numpy-config.cmake */,
+				DEB0F32D243A7C1C005DC0E2 /* libboost_numpy-variant-static-py2.7.cmake */,
+				DEB0F32E243A7C1C005DC0E2 /* libboost_numpy-variant-shared-py2.7.cmake */,
+			);
+			path = "boost_numpy-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F32F243A7C1C005DC0E2 /* boost_math_tr1f-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F330243A7C1C005DC0E2 /* libboost_math_tr1f-variant-mt-shared.cmake */,
+				DEB0F331243A7C1C005DC0E2 /* libboost_math_tr1f-variant-static.cmake */,
+				DEB0F332243A7C1C005DC0E2 /* boost_math_tr1f-config-version.cmake */,
+				DEB0F333243A7C1C005DC0E2 /* libboost_math_tr1f-variant-mt-static.cmake */,
+				DEB0F334243A7C1C005DC0E2 /* libboost_math_tr1f-variant-shared.cmake */,
+				DEB0F335243A7C1C005DC0E2 /* boost_math_tr1f-config.cmake */,
+			);
+			path = "boost_math_tr1f-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F336243A7C1C005DC0E2 /* boost_context-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F337243A7C1C005DC0E2 /* boost_context-config-version.cmake */,
+				DEB0F338243A7C1C005DC0E2 /* boost_context-config.cmake */,
+				DEB0F339243A7C1C005DC0E2 /* libboost_context-variant-mt-static.cmake */,
+				DEB0F33A243A7C1C005DC0E2 /* libboost_context-variant-static.cmake */,
+				DEB0F33B243A7C1C005DC0E2 /* libboost_context-variant-mt-shared.cmake */,
+				DEB0F33C243A7C1C005DC0E2 /* libboost_context-variant-shared.cmake */,
+			);
+			path = "boost_context-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F33D243A7C1C005DC0E2 /* boost_system-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F33E243A7C1C005DC0E2 /* libboost_system-variant-mt-shared.cmake */,
+				DEB0F33F243A7C1C005DC0E2 /* libboost_system-variant-static.cmake */,
+				DEB0F340243A7C1C005DC0E2 /* libboost_system-variant-shared.cmake */,
+				DEB0F341243A7C1C005DC0E2 /* boost_system-config.cmake */,
+				DEB0F342243A7C1C005DC0E2 /* libboost_system-variant-mt-static.cmake */,
+				DEB0F343243A7C1C005DC0E2 /* boost_system-config-version.cmake */,
+			);
+			path = "boost_system-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F344243A7C1C005DC0E2 /* boost_test_exec_monitor-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F345243A7C1C005DC0E2 /* boost_test_exec_monitor-config-version.cmake */,
+				DEB0F346243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-shared.cmake */,
+				DEB0F347243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-mt-static.cmake */,
+				DEB0F348243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-static.cmake */,
+				DEB0F349243A7C1C005DC0E2 /* boost_test_exec_monitor-config.cmake */,
+				DEB0F34A243A7C1C005DC0E2 /* libboost_test_exec_monitor-variant-mt-shared.cmake */,
+			);
+			path = "boost_test_exec_monitor-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F34B243A7C1C005DC0E2 /* boost_unit_test_framework-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F34C243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-mt-static.cmake */,
+				DEB0F34D243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-static.cmake */,
+				DEB0F34E243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-shared.cmake */,
+				DEB0F34F243A7C1C005DC0E2 /* boost_unit_test_framework-config.cmake */,
+				DEB0F350243A7C1C005DC0E2 /* boost_unit_test_framework-config-version.cmake */,
+				DEB0F351243A7C1C005DC0E2 /* libboost_unit_test_framework-variant-mt-shared.cmake */,
+			);
+			path = "boost_unit_test_framework-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F352243A7C1C005DC0E2 /* boost_program_options-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F353243A7C1C005DC0E2 /* boost_program_options-config.cmake */,
+				DEB0F354243A7C1C005DC0E2 /* libboost_program_options-variant-static.cmake */,
+				DEB0F355243A7C1C005DC0E2 /* libboost_program_options-variant-shared.cmake */,
+				DEB0F356243A7C1C005DC0E2 /* libboost_program_options-variant-mt-static.cmake */,
+				DEB0F357243A7C1C005DC0E2 /* libboost_program_options-variant-mt-shared.cmake */,
+				DEB0F358243A7C1C005DC0E2 /* boost_program_options-config-version.cmake */,
+			);
+			path = "boost_program_options-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F359243A7C1C005DC0E2 /* boost_filesystem-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F35A243A7C1C005DC0E2 /* libboost_filesystem-variant-mt-shared.cmake */,
+				DEB0F35B243A7C1C005DC0E2 /* libboost_filesystem-variant-static.cmake */,
+				DEB0F35C243A7C1C005DC0E2 /* libboost_filesystem-variant-shared.cmake */,
+				DEB0F35D243A7C1C005DC0E2 /* libboost_filesystem-variant-mt-static.cmake */,
+				DEB0F35E243A7C1C005DC0E2 /* boost_filesystem-config.cmake */,
+				DEB0F35F243A7C1C005DC0E2 /* boost_filesystem-config-version.cmake */,
+			);
+			path = "boost_filesystem-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F360243A7C1C005DC0E2 /* boost_headers-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F361243A7C1C005DC0E2 /* boost_headers-config.cmake */,
+				DEB0F362243A7C1C005DC0E2 /* boost_headers-config-version.cmake */,
+			);
+			path = "boost_headers-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F363243A7C1C005DC0E2 /* boost_stacktrace_backtrace-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F364243A7C1C005DC0E2 /* boost_stacktrace_backtrace-config.cmake */,
+				DEB0F365243A7C1C005DC0E2 /* boost_stacktrace_backtrace-config-version.cmake */,
+			);
+			path = "boost_stacktrace_backtrace-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F366243A7C1C005DC0E2 /* boost_graph-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F367243A7C1C005DC0E2 /* libboost_graph-variant-static.cmake */,
+				DEB0F368243A7C1C005DC0E2 /* libboost_graph-variant-mt-static.cmake */,
+				DEB0F369243A7C1C005DC0E2 /* boost_graph-config.cmake */,
+				DEB0F36A243A7C1C005DC0E2 /* libboost_graph-variant-shared.cmake */,
+				DEB0F36B243A7C1C005DC0E2 /* boost_graph-config-version.cmake */,
+				DEB0F36C243A7C1C005DC0E2 /* libboost_graph-variant-mt-shared.cmake */,
+			);
+			path = "boost_graph-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F36D243A7C1C005DC0E2 /* boost_thread-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F36E243A7C1C005DC0E2 /* boost_thread-config.cmake */,
+				DEB0F36F243A7C1C005DC0E2 /* boost_thread-config-version.cmake */,
+				DEB0F370243A7C1C005DC0E2 /* libboost_thread-variant-mt-shared.cmake */,
+				DEB0F371243A7C1C005DC0E2 /* libboost_thread-variant-static.cmake */,
+				DEB0F372243A7C1C005DC0E2 /* libboost_thread-variant-mt-static.cmake */,
+				DEB0F373243A7C1C005DC0E2 /* libboost_thread-variant-shared.cmake */,
+			);
+			path = "boost_thread-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F374243A7C1C005DC0E2 /* boost_math_tr1l-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F375243A7C1C005DC0E2 /* boost_math_tr1l-config-version.cmake */,
+				DEB0F376243A7C1C005DC0E2 /* libboost_math_tr1l-variant-static.cmake */,
+				DEB0F377243A7C1C005DC0E2 /* libboost_math_tr1l-variant-shared.cmake */,
+				DEB0F378243A7C1C005DC0E2 /* boost_math_tr1l-config.cmake */,
+				DEB0F379243A7C1C005DC0E2 /* libboost_math_tr1l-variant-mt-shared.cmake */,
+				DEB0F37A243A7C1C005DC0E2 /* libboost_math_tr1l-variant-mt-static.cmake */,
+			);
+			path = "boost_math_tr1l-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F37B243A7C1C005DC0E2 /* boost_random-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F37C243A7C1C005DC0E2 /* libboost_random-variant-static.cmake */,
+				DEB0F37D243A7C1C005DC0E2 /* libboost_random-variant-shared.cmake */,
+				DEB0F37E243A7C1C005DC0E2 /* boost_random-config.cmake */,
+				DEB0F37F243A7C1C005DC0E2 /* libboost_random-variant-mt-static.cmake */,
+				DEB0F380243A7C1C005DC0E2 /* boost_random-config-version.cmake */,
+				DEB0F381243A7C1C005DC0E2 /* libboost_random-variant-mt-shared.cmake */,
+			);
+			path = "boost_random-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F382243A7C1C005DC0E2 /* boost_coroutine-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F383243A7C1C005DC0E2 /* boost_coroutine-config.cmake */,
+				DEB0F384243A7C1C005DC0E2 /* boost_coroutine-config-version.cmake */,
+				DEB0F385243A7C1C005DC0E2 /* libboost_coroutine-variant-static.cmake */,
+				DEB0F386243A7C1C005DC0E2 /* libboost_coroutine-variant-mt-shared.cmake */,
+				DEB0F387243A7C1C005DC0E2 /* libboost_coroutine-variant-shared.cmake */,
+				DEB0F388243A7C1C005DC0E2 /* libboost_coroutine-variant-mt-static.cmake */,
+			);
+			path = "boost_coroutine-1.72.0";
+			sourceTree = "<group>";
+		};
+		DEB0F389243A7C1C005DC0E2 /* boost_log-1.72.0 */ = {
+			isa = PBXGroup;
+			children = (
+				DEB0F38A243A7C1C005DC0E2 /* libboost_log-variant-mt-static.cmake */,
+				DEB0F38B243A7C1C005DC0E2 /* libboost_log-variant-mt-shared.cmake */,
+				DEB0F38C243A7C1C005DC0E2 /* boost_log-config.cmake */,
+				DEB0F38D243A7C1C005DC0E2 /* boost_log-config-version.cmake */,
+				DEB0F38E243A7C1C005DC0E2 /* libboost_log-variant-shared.cmake */,
+				DEB0F38F243A7C1C005DC0E2 /* libboost_log-variant-static.cmake */,
+			);
+			path = "boost_log-1.72.0";
+			sourceTree = "<group>";
+		};
 		DEEAC62724241B2400D970C9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +1334,144 @@
 		DEF9CCA82377B44A00B5089A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEB0F26C243A7C1B005DC0E2 /* cmake */,
+				DEB0F26B243A7C1B005DC0E2 /* libcurlpp.1.0.0.dylib */,
+				DEB0F391243A7C1C005DC0E2 /* libosxfuse.2.dylib */,
+				DEB0F26A243A7C1B005DC0E2 /* libosxfuse.la */,
+				DEB0F266243A7C1B005DC0E2 /* pkgconfig */,
+				DEB0F13A243A74A5005DC0E2 /* libboost_atomic-mt.a */,
+				DEB0F140243A74A5005DC0E2 /* libboost_atomic-mt.dylib */,
+				DEB0F0D5243A74A0005DC0E2 /* libboost_atomic.a */,
+				DEB0F0FA243A74A2005DC0E2 /* libboost_atomic.dylib */,
+				DEB0F13F243A74A5005DC0E2 /* libboost_chrono-mt.a */,
+				DEB0F138243A74A5005DC0E2 /* libboost_chrono-mt.dylib */,
+				DEB0F105243A74A3005DC0E2 /* libboost_chrono.a */,
+				DEB0F0FF243A74A2005DC0E2 /* libboost_chrono.dylib */,
+				DEB0F0D3243A74A0005DC0E2 /* libboost_container-mt.a */,
+				DEB0F11A243A74A4005DC0E2 /* libboost_container-mt.dylib */,
+				DEB0F134243A74A5005DC0E2 /* libboost_container.a */,
+				DEB0F0E7243A74A1005DC0E2 /* libboost_container.dylib */,
+				DEB0F106243A74A3005DC0E2 /* libboost_context-mt.a */,
+				DEB0F112243A74A3005DC0E2 /* libboost_context-mt.dylib */,
+				DEB0F0CC243A749F005DC0E2 /* libboost_context.a */,
+				DEB0F118243A74A4005DC0E2 /* libboost_context.dylib */,
+				DEB0F141243A74A5005DC0E2 /* libboost_contract-mt.a */,
+				DEB0F123243A74A4005DC0E2 /* libboost_contract-mt.dylib */,
+				DEB0F0F0243A74A2005DC0E2 /* libboost_contract.a */,
+				DEB0F13D243A74A5005DC0E2 /* libboost_contract.dylib */,
+				DEB0F0C6243A749F005DC0E2 /* libboost_coroutine-mt.a */,
+				DEB0F119243A74A4005DC0E2 /* libboost_coroutine-mt.dylib */,
+				DEB0F124243A74A4005DC0E2 /* libboost_coroutine.a */,
+				DEB0F131243A74A5005DC0E2 /* libboost_coroutine.dylib */,
+				DEB0F129243A74A4005DC0E2 /* libboost_date_time-mt.dylib */,
+				DEB0F10F243A74A3005DC0E2 /* libboost_date_time.a */,
+				DEB0F12C243A74A4005DC0E2 /* libboost_date_time.dylib */,
+				DEB0F0D2243A74A0005DC0E2 /* libboost_exception-mt.a */,
+				DEB0F0C7243A749F005DC0E2 /* libboost_exception.a */,
+				DEB0F12A243A74A4005DC0E2 /* libboost_fiber-mt.a */,
+				DEB0F13E243A74A5005DC0E2 /* libboost_fiber-mt.dylib */,
+				DEB0F0EE243A74A1005DC0E2 /* libboost_filesystem-mt.a */,
+				DEB0F139243A74A5005DC0E2 /* libboost_filesystem-mt.dylib */,
+				DEB0F107243A74A3005DC0E2 /* libboost_filesystem.a */,
+				DEB0F133243A74A5005DC0E2 /* libboost_filesystem.dylib */,
+				DEB0F0D0243A74A0005DC0E2 /* libboost_graph-mt.a */,
+				DEB0F135243A74A5005DC0E2 /* libboost_graph-mt.dylib */,
+				DEB0F0E8243A74A1005DC0E2 /* libboost_graph.a */,
+				DEB0F0F3243A74A2005DC0E2 /* libboost_graph.dylib */,
+				DEB0F0D6243A74A0005DC0E2 /* libboost_iostreams-mt.a */,
+				DEB0F0FB243A74A2005DC0E2 /* libboost_iostreams-mt.dylib */,
+				DEB0F145243A74A6005DC0E2 /* libboost_iostreams.a */,
+				DEB0F0C3243A749F005DC0E2 /* libboost_iostreams.dylib */,
+				DEB0F0C5243A749F005DC0E2 /* libboost_locale-mt.a */,
+				DEB0F0C4243A749F005DC0E2 /* libboost_locale-mt.dylib */,
+				DEB0F101243A74A2005DC0E2 /* libboost_locale.a */,
+				DEB0F113243A74A3005DC0E2 /* libboost_locale.dylib */,
+				DEB0F0DB243A74A0005DC0E2 /* libboost_math_c99-mt.a */,
+				DEB0F127243A74A4005DC0E2 /* libboost_math_c99-mt.dylib */,
+				DEB0F11F243A74A4005DC0E2 /* libboost_math_c99.a */,
+				DEB0F147243A74A6005DC0E2 /* libboost_math_c99.dylib */,
+				DEB0F109243A74A3005DC0E2 /* libboost_math_c99f-mt.a */,
+				DEB0F0F1243A74A2005DC0E2 /* libboost_math_c99f-mt.dylib */,
+				DEB0F122243A74A4005DC0E2 /* libboost_math_c99f.a */,
+				DEB0F0EB243A74A1005DC0E2 /* libboost_math_c99f.dylib */,
+				DEB0F136243A74A5005DC0E2 /* libboost_math_c99l-mt.a */,
+				DEB0F143243A74A5005DC0E2 /* libboost_math_c99l-mt.dylib */,
+				DEB0F0EF243A74A1005DC0E2 /* libboost_math_c99l.a */,
+				DEB0F10E243A74A3005DC0E2 /* libboost_math_c99l.dylib */,
+				DEB0F10D243A74A3005DC0E2 /* libboost_math_tr1-mt.a */,
+				DEB0F125243A74A4005DC0E2 /* libboost_math_tr1-mt.dylib */,
+				DEB0F0F9243A74A2005DC0E2 /* libboost_math_tr1.a */,
+				DEB0F0ED243A74A1005DC0E2 /* libboost_math_tr1.dylib */,
+				DEB0F111243A74A3005DC0E2 /* libboost_math_tr1f-mt.a */,
+				DEB0F10A243A74A3005DC0E2 /* libboost_math_tr1f-mt.dylib */,
+				DEB0F11E243A74A4005DC0E2 /* libboost_math_tr1f.a */,
+				DEB0F0CE243A74A0005DC0E2 /* libboost_math_tr1f.dylib */,
+				DEB0F10B243A74A3005DC0E2 /* libboost_math_tr1l-mt.a */,
+				DEB0F117243A74A3005DC0E2 /* libboost_math_tr1l-mt.dylib */,
+				DEB0F0CA243A749F005DC0E2 /* libboost_math_tr1l.a */,
+				DEB0F128243A74A4005DC0E2 /* libboost_math_tr1l.dylib */,
+				DEB0F0FD243A74A2005DC0E2 /* libboost_numpy27.a */,
+				DEB0F115243A74A3005DC0E2 /* libboost_numpy27.dylib */,
+				DEB0F11D243A74A4005DC0E2 /* libboost_prg_exec_monitor-mt.a */,
+				DEB0F121243A74A4005DC0E2 /* libboost_prg_exec_monitor-mt.dylib */,
+				DEB0F0E9243A74A1005DC0E2 /* libboost_prg_exec_monitor.a */,
+				DEB0F0D4243A74A0005DC0E2 /* libboost_prg_exec_monitor.dylib */,
+				DEB0F0DD243A74A0005DC0E2 /* libboost_program_options-mt.a */,
+				DEB0F146243A74A6005DC0E2 /* libboost_program_options-mt.dylib */,
+				DEB0F0CF243A74A0005DC0E2 /* libboost_program_options.a */,
+				DEB0F13C243A74A5005DC0E2 /* libboost_program_options.dylib */,
+				DEB0F108243A74A3005DC0E2 /* libboost_python27.a */,
+				DEB0F0F2243A74A2005DC0E2 /* libboost_python27.dylib */,
+				DEB0F0EA243A74A1005DC0E2 /* libboost_random-mt.a */,
+				DEB0F12F243A74A5005DC0E2 /* libboost_random-mt.dylib */,
+				DEB0F0E5243A74A1005DC0E2 /* libboost_random.a */,
+				DEB0F0CB243A749F005DC0E2 /* libboost_random.dylib */,
+				DEB0F144243A74A6005DC0E2 /* libboost_regex-mt.a */,
+				DEB0F0D7243A74A0005DC0E2 /* libboost_regex-mt.dylib */,
+				DEB0F0E4243A74A1005DC0E2 /* libboost_regex.a */,
+				DEB0F110243A74A3005DC0E2 /* libboost_regex.dylib */,
+				DEB0F0E1243A74A1005DC0E2 /* libboost_serialization-mt.a */,
+				DEB0F116243A74A3005DC0E2 /* libboost_serialization-mt.dylib */,
+				DEB0F0D8243A74A0005DC0E2 /* libboost_serialization.a */,
+				DEB0F103243A74A2005DC0E2 /* libboost_serialization.dylib */,
+				DEB0F0DA243A74A0005DC0E2 /* libboost_stacktrace_addr2line-mt.a */,
+				DEB0F0F4243A74A2005DC0E2 /* libboost_stacktrace_addr2line-mt.dylib */,
+				DEB0F100243A74A2005DC0E2 /* libboost_stacktrace_addr2line.a */,
+				DEB0F0E6243A74A1005DC0E2 /* libboost_stacktrace_addr2line.dylib */,
+				DEB0F12D243A74A5005DC0E2 /* libboost_stacktrace_basic-mt.a */,
+				DEB0F11B243A74A4005DC0E2 /* libboost_stacktrace_basic-mt.dylib */,
+				DEB0F132243A74A5005DC0E2 /* libboost_stacktrace_basic.a */,
+				DEB0F11C243A74A4005DC0E2 /* libboost_stacktrace_basic.dylib */,
+				DEB0F0F8243A74A2005DC0E2 /* libboost_stacktrace_noop-mt.a */,
+				DEB0F130243A74A5005DC0E2 /* libboost_stacktrace_noop-mt.dylib */,
+				DEB0F0CD243A749F005DC0E2 /* libboost_stacktrace_noop.a */,
+				DEB0F0E3243A74A1005DC0E2 /* libboost_stacktrace_noop.dylib */,
+				DEB0F0F5243A74A2005DC0E2 /* libboost_system-mt.a */,
+				DEB0F0FC243A74A2005DC0E2 /* libboost_system-mt.dylib */,
+				DEB0F0FE243A74A2005DC0E2 /* libboost_system.a */,
+				DEB0F0DC243A74A0005DC0E2 /* libboost_system.dylib */,
+				DEB0F0DF243A74A0005DC0E2 /* libboost_test_exec_monitor-mt.a */,
+				DEB0F0F6243A74A2005DC0E2 /* libboost_test_exec_monitor.a */,
+				DEB0F102243A74A2005DC0E2 /* libboost_timer-mt.a */,
+				DEB0F0D1243A74A0005DC0E2 /* libboost_timer-mt.dylib */,
+				DEB0F114243A74A3005DC0E2 /* libboost_timer.a */,
+				DEB0F126243A74A4005DC0E2 /* libboost_timer.dylib */,
+				DEB0F13B243A74A5005DC0E2 /* libboost_type_erasure-mt.a */,
+				DEB0F0EC243A74A1005DC0E2 /* libboost_type_erasure-mt.dylib */,
+				DEB0F104243A74A2005DC0E2 /* libboost_type_erasure.a */,
+				DEB0F10C243A74A3005DC0E2 /* libboost_type_erasure.dylib */,
+				DEB0F142243A74A5005DC0E2 /* libboost_unit_test_framework-mt.a */,
+				DEB0F0E2243A74A1005DC0E2 /* libboost_unit_test_framework-mt.dylib */,
+				DEB0F12E243A74A5005DC0E2 /* libboost_unit_test_framework.a */,
+				DEB0F0DE243A74A0005DC0E2 /* libboost_unit_test_framework.dylib */,
+				DEB0F0C9243A749F005DC0E2 /* libboost_wave-mt.a */,
+				DEB0F0E0243A74A0005DC0E2 /* libboost_wave-mt.dylib */,
+				DEB0F120243A74A4005DC0E2 /* libboost_wave.a */,
+				DEB0F0F7243A74A2005DC0E2 /* libboost_wave.dylib */,
+				DEB0F0C8243A749F005DC0E2 /* libboost_wserialization-mt.a */,
+				DEB0F12B243A74A4005DC0E2 /* libboost_wserialization-mt.dylib */,
+				DEB0F0D9243A74A0005DC0E2 /* libboost_wserialization.a */,
+				DEB0F137243A74A5005DC0E2 /* libboost_wserialization.dylib */,
 				DE7132DC24394B27004145F8 /* libboost_thread-mt.a */,
 				DE7132DF24394B27004145F8 /* libboost_thread-mt.dylib */,
 				DE7132DD24394B27004145F8 /* libboost_thread.a */,
@@ -351,6 +1552,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DEB0F3B6243AAFAD005DC0E2 /* PBXTargetDependency */,
 			);
 			name = ReadingTrackerLibrary;
 			productName = ReadingTrackerLibrary;
@@ -387,6 +1589,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				DEB0F3AD243AA796005DC0E2 /* PBXTargetDependency */,
+				DEB0F0B0243A6F19005DC0E2 /* PBXTargetDependency */,
 			);
 			name = ReadingTrackerCommandLine;
 			productName = ReadingTrackerCommandLine;
@@ -501,6 +1705,21 @@
 			isa = PBXTargetDependency;
 			target = DE9504A12374EAE300FF97A4 /* ReadingTrackerLibrary */;
 			targetProxy = DE9505072374F5B100FF97A4 /* PBXContainerItemProxy */;
+		};
+		DEB0F0B0243A6F19005DC0E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE9504A12374EAE300FF97A4 /* ReadingTrackerLibrary */;
+			targetProxy = DEB0F0AF243A6F19005DC0E2 /* PBXContainerItemProxy */;
+		};
+		DEB0F3AD243AA796005DC0E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE7132B9243912AE004145F8 /* Logger */;
+			targetProxy = DEB0F3AC243AA796005DC0E2 /* PBXContainerItemProxy */;
+		};
+		DEB0F3B6243AAFAD005DC0E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE7132B9243912AE004145F8 /* Logger */;
+			targetProxy = DEB0F3B5243AAFAD005DC0E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -689,7 +1908,10 @@
 					/usr/local/Cellar/curl/7.69.0/lib,
 					/usr/local/Cellar/curlpp/0.8.1/lib,
 				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DBOOST_LOG_DYN_LINK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -712,7 +1934,10 @@
 					/usr/local/Cellar/curl/7.69.0/lib,
 					/usr/local/Cellar/curlpp/0.8.1/lib,
 				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DBOOST_LOG_DYN_LINK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -758,6 +1983,15 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.72.0/lib,
+					/usr/local/Cellar/curlpp/0.8.1/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DBOOST_LOG_DYN_LINK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -768,6 +2002,15 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.72.0/lib,
+					/usr/local/Cellar/curlpp/0.8.1/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DBOOST_LOG_DYN_LINK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
