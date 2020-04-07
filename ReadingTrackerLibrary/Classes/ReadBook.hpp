@@ -63,6 +63,10 @@ namespace rtl {
         const int kWidthPage = 6;
         const int kWidthDateRead = 13;
         const int kWidthRating = 4;
+        
+        const std::string kReaderId = "Reader ID";
+        const std::string kDateRead = "Date Read";
+        const std::string kRating = "Rating";
     };
 
     bool operator==(const ReadBook& lhs, const ReadBook& rhs);

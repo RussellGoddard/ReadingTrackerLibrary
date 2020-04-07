@@ -122,8 +122,10 @@ bool rtl::Book::SetPageCount(std::string pageCount) {
     return true;
 }
 
-//TODO: validation
 bool rtl::Book::SetGenre(Genre genre) {
+    if (genre == rtl::Genre::genreNotSet) {
+        return false;
+    }
     this->genre = genre;
     return true;
 }

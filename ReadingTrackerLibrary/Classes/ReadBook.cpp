@@ -105,9 +105,13 @@ int rtl::ReadBook::GetReaderId() const {
 }
 
 rtl::SetsPtr rtl::ReadBook::GetUpdateFunction(std::string input) {
-    //TODO: implement this
-    SetsPtr returnPtr = nullptr;
+    SetsPtr returnPtr = this->Book::GetUpdateFunction(input);
     
+    if (returnPtr == nullptr) {
+        if (input == this->kReaderId) { return nullptr; }
+        else if (input == this->kRating) { return static_cast<rtl::SetsPtr>(&rtl::ReadBook::SetRating); }
+        else if (input == this->kDateRead) { return static_cast<rtl::SetsPtr>(&rtl::ReadBook::SetDateRead); }
+    }
     
     return returnPtr;
 }
@@ -167,9 +171,9 @@ std::string rtl::ReadBook::PrintDetailed() const {
     
     returnStr << std::left;
     returnStr << this->Book::PrintDetailed();
-    returnStr << std::setw(15) << "ReaderId: " << std::setw(65) << this->GetReaderId() << std::endl;
-    returnStr << std::setw(15) << "Rating: " << std::setw(65) << this->GetRating() << std::endl;
-    returnStr << std::setw(15) << "Date Read: " << std::setw(65) << this->PrintDateRead() << std::endl;
+    returnStr << std::setw(15) << this->kReaderId + ": " << std::setw(65) << this->GetReaderId() << std::endl;
+    returnStr << std::setw(15) << this->kRating + ": " << std::setw(65) << this->GetRating() << std::endl;
+    returnStr << std::setw(15) << this->kDateRead + ": " << std::setw(65) << this->PrintDateRead() << std::endl;
     
     return returnStr.str();
 }
