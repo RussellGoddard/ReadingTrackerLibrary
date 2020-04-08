@@ -13,6 +13,7 @@
 #include <exception>
 #include <sstream>
 #include <string>
+#include <vector>
 #include "HelperFunctions.hpp"
 #include "Logger.hpp"
 #include "StandardOutput.hpp"
@@ -35,7 +36,8 @@ namespace rtl {
     
     class Book : public StandardOutput {
     public:
-        std::string GetAuthor() const;
+        std::vector<std::string> GetAuthors() const;
+        std::string GetAuthorsString() const;
         std::string GetTitle() const;
         std::string GetSeries() const;
         std::string GetPublisher() const;
@@ -46,7 +48,8 @@ namespace rtl {
         time_t GetPublishDateAsTimeT();
         std::vector<std::string> GetOclc() const;
         std::vector<std::string> GetIsbn() const;
-        std::string GetAuthorId() const;
+        std::vector<std::string> GetAuthorId() const;
+        std::string GetAuthorIdString() const;
         std::string GetBookId() const;
         std::string PrintPublishDate() const;
         
@@ -70,16 +73,16 @@ namespace rtl {
         
         Book() = delete; //Book class HAS to be constructed with a title and author
         Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0));
+        Book(std::vector<std::string> author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0));
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
-        Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::string isbn = "", std::string oclc = "");
-        Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc);
+        Book(std::vector<std::string> authors, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn = {}, std::vector<std::string> oclc = {});
         
     private:
-        std::string authorId = "";
         std::string bookId = "";
         std::vector<std::string> isbnVector;
         std::vector<std::string> oclcVector;
-        std::string author = "";
+        std::vector<std::string> authors;
+        std::vector<std::string> authorId;
         std::string title = "";
         std::string publisher = "";
         std::string series = "";

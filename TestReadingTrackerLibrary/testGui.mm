@@ -64,7 +64,7 @@
     
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 0);
     
-    XCTAssert(testBook.GetAuthor() == "testAuthor");
+    XCTAssert(testBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testBook.GetTitle() == "testTitle");
     XCTAssert(testBook.GetPublisher() == "testPublisher");
     XCTAssert(testBook.GetSeries() == "testSeries");
@@ -83,7 +83,7 @@
     inputSs.str("OCLC\n21341234123412341234\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 1);
     
-    XCTAssert(testBook.GetAuthor() == "testAuthor");
+    XCTAssert(testBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testBook.GetTitle() == "testTitle");
     XCTAssert(testBook.GetPublisher() == "testPublisher");
     XCTAssert(testBook.GetSeries() == "testSeries");
@@ -102,7 +102,7 @@
     inputSs.str("ISBN\n0312850093\n");
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 1);
     
-    XCTAssert(testBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testBook.GetAuthors().at(0) == "Robert Jordan");
     XCTAssert(testBook.GetTitle() == "The Eye of the World");
     XCTAssert(testBook.GetPublisher() == "Tor Publishing");
     XCTAssert(testBook.GetSeries() == "The Wheel of Time");
@@ -121,7 +121,7 @@
     inputSs.str("The Eye of the World");
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 2);
     
-    XCTAssert(testBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testBook.GetAuthors().at(0) == "Robert Jordan");
     XCTAssert(testBook.GetTitle() == "The Eye of the World");
     XCTAssert(testBook.GetPublisher() == "Tor Publishing");
     XCTAssert(testBook.GetSeries() == "The Wheel of Time");
@@ -140,7 +140,7 @@
     inputSs.str("gibberishtitle\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 2);
     
-    XCTAssert(testBook.GetAuthor() == "testAuthor");
+    XCTAssert(testBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testBook.GetTitle() == "testTitle");
     XCTAssert(testBook.GetPublisher() == "testPublisher");
     XCTAssert(testBook.GetSeries() == "testSeries");
@@ -182,7 +182,7 @@
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 0);
     
     XCTAssert(testReadBook.GetReaderId() == 123);
-    XCTAssert(testReadBook.GetAuthor() == "testAuthor");
+    XCTAssert(testReadBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testReadBook.GetTitle() == "testTitle");
     XCTAssert(testReadBook.GetPublisher() == "testPublisher");
     XCTAssert(testReadBook.GetSeries() == "testSeries");
@@ -204,7 +204,7 @@
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 1);
     
     XCTAssert(testReadBook.GetReaderId() == 123);
-    XCTAssert(testReadBook.GetAuthor() == "testAuthor");
+    XCTAssert(testReadBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testReadBook.GetTitle() == "testTitle");
     XCTAssert(testReadBook.GetPublisher() == "testPublisher");
     XCTAssert(testReadBook.GetSeries() == "testSeries");
@@ -228,7 +228,7 @@
     XCTAssert(testReadBook.GetReaderId() == 123);
     XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
     XCTAssert(testReadBook.GetRating() == 9);
-    XCTAssert(testReadBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
     XCTAssert(testReadBook.GetTitle() == "The Eye of the World");
     XCTAssert(testReadBook.GetPublisher() == "Tor Publishing");
     XCTAssert(testReadBook.GetSeries() == "The Wheel of Time");
@@ -248,7 +248,7 @@
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
     
     XCTAssert(testReadBook.GetReaderId() == 123);
-    XCTAssert(testReadBook.GetAuthor() == "testAuthor");
+    XCTAssert(testReadBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testReadBook.GetTitle() == "testTitle");
     XCTAssert(testReadBook.GetPublisher() == "testPublisher");
     XCTAssert(testReadBook.GetSeries() == "testSeries");
@@ -272,7 +272,7 @@
     XCTAssert(testReadBook.GetReaderId() == 123);
     XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
     XCTAssert(testReadBook.GetRating() == 9);
-    XCTAssert(testReadBook.GetAuthor() == "Robert Jordan");
+    XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
     XCTAssert(testReadBook.GetTitle() == "The Eye of the World");
     XCTAssert(testReadBook.GetPublisher() == "Tor Publishing");
     XCTAssert(testReadBook.GetSeries() == "The Wheel of Time");

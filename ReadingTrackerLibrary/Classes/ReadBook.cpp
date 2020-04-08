@@ -135,7 +135,7 @@ std::string rtl::ReadBook::PrintSimple() const {
     returnStr.fill(' ');
     
     returnStr.width(kWidthAuthor);
-    returnStr << std::left << this->GetAuthor().substr(0, kWidthAuthor - 1);
+    returnStr << std::left << this->GetAuthorsString().substr(0, kWidthAuthor - 1);
     returnStr.width(kWidthTitle);
     returnStr << std::left << this->GetTitle().substr(0, kWidthTitle - 1);
     returnStr.width(kWidthPage);
@@ -216,7 +216,7 @@ rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std
     this->SetRating(rating);
 }
 
-rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book({author}, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
@@ -239,8 +239,8 @@ bool rtl::operator<(const ReadBook& lhs, const ReadBook& rhs) {
     //TODO: see if this can be simplified
     //sort by Book comparison then by dateRead
     
-    if (lhs.GetAuthor() < rhs.GetAuthor()) { return true; }
-    else if (lhs.GetAuthor() > rhs.GetAuthor()) { return false; }
+    if (lhs.GetAuthors() < rhs.GetAuthors()) { return true; }
+    else if (lhs.GetAuthors() > rhs.GetAuthors()) { return false; }
     else {
         if (lhs.GetSeries() < rhs.GetSeries()) { return true; }
         else if (lhs.GetSeries() > rhs.GetSeries()) { return false; }

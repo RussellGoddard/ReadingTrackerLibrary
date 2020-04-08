@@ -24,21 +24,21 @@
 - (void)test_ConvertJsonToBookPtr_PassJson_ReturnSharedPtrToBook {
     nlohmann::json jsonTestPass = R"(
       {
-        "author":"Robert Jordan",
+        "author":["Robert Jordan"],
         "genre":"fantasy",
         "pageCount":684,
         "publisher":"Tor Books",
         "series":"The Wheel of Time",
         "title":"The Fires of Heaven",
         "publishDate":"1992-Sep-15",
-        "isbn":["1234567890","1234567890abc"],
+        "isbn":["1234567890","1234567890123"],
         "oclc":["123456"]
       }
     )"_json;
     
     std::shared_ptr<rtl::Book> testPtrBook1 = rtl::ConvertJsonToBookPtr(jsonTestPass);
     
-    XCTAssert(testPtrBook1->GetAuthor() == jsonTestPass["author"].get<std::string>());
+    XCTAssert(testPtrBook1->GetAuthors() == jsonTestPass["author"].get<std::vector<std::string>>());
     XCTAssert(testPtrBook1->PrintGenre() == jsonTestPass["genre"].get<std::string>());
     XCTAssert(testPtrBook1->GetPageCount() == jsonTestPass["pageCount"].get<int>());
     XCTAssert(testPtrBook1->GetPublisher() == jsonTestPass["publisher"].get<std::string>());
@@ -47,7 +47,7 @@
     XCTAssert(testPtrBook1->PrintPublishDate() == jsonTestPass["publishDate"].get<std::string>());
     XCTAssert(testPtrBook1->GetIsbn().size() == 2);
     XCTAssert(testPtrBook1->GetIsbn().at(0) == "1234567890");
-    XCTAssert(testPtrBook1->GetIsbn().at(1) == "1234567890abc");
+    XCTAssert(testPtrBook1->GetIsbn().at(1) == "1234567890123");
     XCTAssert(testPtrBook1->GetOclc().size() == 1);
     XCTAssert(testPtrBook1->GetOclc().at(0) == "123456");
 }
@@ -72,7 +72,7 @@
     nlohmann::json jsonTestPass = R"(
       {
         "readerId":123,
-        "author":"Robert Jordan",
+        "author":["Robert Jordan"],
         "isbn":[],
         "oclc":["123456"],
         "dateRead":"2020-Jan-29",
@@ -90,7 +90,7 @@
     std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = rtl::ConvertJsonToReadBookPtr(jsonTestPass);
     
     XCTAssert(testPtrReadBook1->GetReaderId() == jsonTestPass["readerId"].get<int>());
-    XCTAssert(testPtrReadBook1->GetAuthor() == jsonTestPass["author"].get<std::string>());
+    XCTAssert(testPtrReadBook1->GetAuthors() == jsonTestPass["author"].get<std::vector<std::string>>());
     XCTAssert(testPtrReadBook1->PrintGenre() == jsonTestPass["genre"].get<std::string>());
     XCTAssert(testPtrReadBook1->GetPageCount() == jsonTestPass["pageCount"].get<int>());
     XCTAssert(testPtrReadBook1->GetPublisher() == jsonTestPass["publisher"].get<std::string>());
@@ -133,7 +133,7 @@
           "booksWritten": [{
               "isbn":["1234567890"],
               "oclc":["123456"],
-              "author": "testAuthor1",
+              "author":["testAuthor1"],
               "title": "testTitle1",
               "series": "testSeries1",
               "publisher": "testPublisher1",
@@ -143,7 +143,7 @@
           }, {
               "isbn":["1234567890abc"],
               "oclc":[],
-              "author": "testAuthor2",
+              "author":["testAuthor2"],
               "title": "testTitle2",
               "series": "testSeries2",
               "publisher": "testPublisher2",

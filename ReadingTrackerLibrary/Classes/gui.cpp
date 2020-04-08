@@ -60,9 +60,9 @@ rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostre
 */
 
 rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode) {
-    std::string author = "";
-    std::string isbn = "";
-    std::string oclc = "";
+    std::vector<std::string> author;
+    std::vector<std::string> isbn;
+    std::vector<std::string> oclc;
     std::string title = "";
     std::string publisher = "";
     std::string series = "";
@@ -75,11 +75,14 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
         case 0: {
             //TODO: more descriptive input messages
             OutputLine(outputStream, "Input author");
-            author = GetInput(inputStream);
+            //TODO: support multiple authors
+            author.push_back(GetInput(inputStream));
             OutputLine(outputStream, "Input ISBN");
-            isbn = GetInput(inputStream);
+            //TODO: support multiple ISBN
+            isbn.push_back(GetInput(inputStream));
             OutputLine(outputStream, "Input OCLC");
-            oclc = GetInput(inputStream);
+            //TODO: support multiple OCLC
+            oclc.push_back(GetInput(inputStream));
             OutputLine(outputStream, "Input title");
             title = GetInput(inputStream);
             OutputLine(outputStream, "Input publisher");
@@ -115,13 +118,16 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
                 return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
             }
             
-            author = wikiDataValues.author;
+            //TODO: find example of multiple authors
+            author.push_back(wikiDataValues.author);
             title = wikiDataValues.title;
             series = wikiDataValues.series;
             publisher = wikiDataValues.publisher;
             datePublished = boost::gregorian::to_simple_string(wikiDataValues.datePublished);
-            isbn = wikiDataValues.isbn;
-            oclc = wikiDataValues.oclc;
+            //TODO: retrieve all found ISBN numbers
+            isbn.push_back(wikiDataValues.isbn);
+            //TODO: retrieve all found OCLC numbers
+            oclc.push_back(wikiDataValues.oclc);
             break;
         }
         //by title
@@ -135,13 +141,16 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
                 OutputLine(outputStream, "Query failed, calling manual entry");
                 return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
             }
-            author = wikiDataValues.author;
+            //TODO: find example of multiple authors
+            author.push_back(wikiDataValues.author);
             title = wikiDataValues.title;
             series = wikiDataValues.series;
             publisher = wikiDataValues.publisher;
             datePublished = boost::gregorian::to_simple_string(wikiDataValues.datePublished);
-            isbn = wikiDataValues.isbn;
-            oclc = wikiDataValues.oclc;
+            //TODO: retrieve all ISBN found
+            isbn.push_back(wikiDataValues.isbn);
+            //TODO: retrieve all OCLC found
+            oclc.push_back(wikiDataValues.oclc);
             
             OutputLine(outputStream, "Query success");
             break;
