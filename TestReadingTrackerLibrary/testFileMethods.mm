@@ -333,23 +333,31 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
 }
 
 - (void)test_QueryBookByIdentifier_PassISBNAndISBNNumber_ReturnOpenLibraryValues {
-    rtl::OpenLibraryValues testQuery;
+    std::vector<std::string> isbnAnswer {"0812511816", "081257995X", "0613176340", "0812500482", "9780812511819", "9780812579956", "9780613176347", "9780812500486"};
+    std::vector<std::string> oclcAnswer {"22671036"};
     
-    testQuery = rtl::QueryBookByIdentifier("ISBN", "08-1251181-6");
+    rtl::OpenLibraryValues testQuery = rtl::QueryBookByIdentifier("ISBN", "08-1251181-6");
+    
     XCTAssert(testQuery.success);
-    //TODO: bring back oclc and isbn
-    //XCTAssert(testQuery.oclc == "22671036");
+    XCTAssert(testQuery.isbn == isbnAnswer);
+    XCTAssert(testQuery.oclc == oclcAnswer);
     XCTAssert(testQuery.title == "The eye of the world");
-    XCTAssert(testQuery.author == "Robert Jordan");
+    XCTAssert(testQuery.authors.size() == 1);
+    XCTAssert(testQuery.authors.at(0) == "Robert Jordan");
 }
 
 - (void)test_QueryBookByIdentifier_PassOCLCAndOCLCNumber_ReturnOpenLibraryValues {
+    std::vector<std::string> isbnAnswer {"0739384155", "9780739384152"};
+    std::vector<std::string> oclcAnswer{"861961500"};
+    
     rtl::OpenLibraryValues testQuery = rtl::QueryBookByIdentifier("oclc", "861961500");
+    
     XCTAssert(testQuery.success);
-    //TODO: bring back oclc and isbn
-    //XCTAssert(testQuery.oclc == "861961500");
+    XCTAssert(testQuery.isbn == isbnAnswer);
+    XCTAssert(testQuery.oclc == oclcAnswer);
     XCTAssert(testQuery.title == "The Girl with the Dragon Tattoo");
-    XCTAssert(testQuery.author == "Stieg Larsson");
+    XCTAssert(testQuery.authors.size() == 1);
+    XCTAssert(testQuery.authors.at(0) == "Stieg Larsson");
 }
 
 - (void)test_QueryBookByIdentifier_PassEmptyIdentifier_ReturnOpenLibraryValuesSuccessIsFalse {
@@ -392,5 +400,22 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     XCTAssert(rtl::QueryBookByTitle("gibberishthatwonthaveapage").success == false);
 }
 
+- (void)test_QueryBooksByIdentifier_PassIdentifier_ReturnWithAllIsbn {
+    rtl::OpenLibraryValues newQuery = rtl::QueryBookByIdentifier("ISBN", "0261102354");
+    std::vector<std::string> answerVector {"0261102354", "9780261102354"};
+    
+    XCTAssert(newQuery.success == true);
+    XCTAssert(newQuery.isbn == answerVector);
+    
+}
+
+- (void)test_QueryBooksByIdentifier_PassIdentifier_ReturnWithAllOclc {
+    rtl::OpenLibraryValues newQuery = rtl::QueryBookByIdentifier("ISBN", "0261102354");
+    std::vector<std::string> answerVector {"869828061", "644361719", "49652808", "847522557", "892147306", "918598176", "473798507"};
+    
+    
+    XCTAssert(newQuery.success == true);
+    XCTAssert(newQuery.oclc == answerVector);
+}
 
 @end

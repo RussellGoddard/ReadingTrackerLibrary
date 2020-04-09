@@ -197,7 +197,7 @@ rtl::Author::Author(std::string name, std::string dateBorn, std::vector<std::sha
 
 bool rtl::operator==(const Author& lhs, const Author& rhs) {
     
-    /* TODO: add way to combine authors even if birthdate is missing/inccorrect somehow, disabled birthdate compare so that it is feasible that authors get combined appropriately
+    /* TODO: add way to combine authors even if birthdate is missing somehow, disabled birthdate compare so that it is feasible that authors get combined appropriately
     tm lhstm = lhs.getDateBorn();
     tm rhstm = rhs.getDateBorn();
     time_t lhstt = std::mktime(&lhstm);

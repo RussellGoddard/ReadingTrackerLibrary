@@ -36,11 +36,10 @@ namespace rtl {
 
     struct OpenLibraryValues {
         bool success = true;
-        //TODO: support vectors for isbn and oclc
         //TODO: page number
-        //std::string isbn = "";
-        //std::string oclc = "";
-        std::string author = "";
+        std::vector<std::string> isbn;
+        std::vector<std::string> oclc;
+        std::vector<std::string> authors;
         std::string title = "";
     };
 

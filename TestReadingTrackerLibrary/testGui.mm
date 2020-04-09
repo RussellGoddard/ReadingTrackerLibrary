@@ -98,6 +98,8 @@
 
 - (void)testGetNewBookByIdentifier {
     std::stringstream inputSs, outputSs;
+    std::vector<std::string> isbnAnswer {"0312850093", "9780765324887"};
+    std::vector<std::string> oclcAnswer {"19723327"};
     
     inputSs.str("ISBN\n0312850093\n");
     rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 1);
@@ -109,10 +111,8 @@
     XCTAssert(testBook.GetGenre() == rtl::Genre::genreNotSet);
     XCTAssert(testBook.PrintPublishDate() == "1990-Jan-15");
     XCTAssert(testBook.GetPageCount() == -1);
-    XCTAssert(testBook.GetIsbn().size() == 1);
-    XCTAssert(testBook.GetIsbn().at(0) == "9780765324887");
-    XCTAssert(testBook.GetOclc().size() == 1);
-    XCTAssert(testBook.GetOclc().at(0) == "19723327");
+    XCTAssert(testBook.GetIsbn()  == isbnAnswer);
+    XCTAssert(testBook.GetOclc() == oclcAnswer);
 }
 
 - (void)testGetNewBookByTitle {
@@ -222,6 +222,8 @@
 - (void)testGetNewReadBookByIdentifier {
     std::stringstream inputSs, outputSs;
     inputSs.str("ISBN\n0312850093\n1999-Oct-02\n9\n");
+    std::vector<std::string> isbnAnswer {"0312850093", "9780765324887"};
+    std::vector<std::string> oclcAnswer {"19723327"};
     
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 1);
     
@@ -235,10 +237,8 @@
     XCTAssert(testReadBook.GetGenre() == rtl::Genre::genreNotSet);
     XCTAssert(testReadBook.PrintPublishDate() == "1990-Jan-15");
     XCTAssert(testReadBook.GetPageCount() == -1);
-    XCTAssert(testReadBook.GetIsbn().size() == 1);
-    XCTAssert(testReadBook.GetIsbn().at(0) == "9780765324887");
-    XCTAssert(testReadBook.GetOclc().size() == 1);
-    XCTAssert(testReadBook.GetOclc().at(0) == "19723327");
+    XCTAssert(testReadBook.GetIsbn() == isbnAnswer);
+    XCTAssert(testReadBook.GetOclc() == oclcAnswer);
 }
 
 - (void)testGetNewReadBookByTitleInvalidTitle {

@@ -294,11 +294,29 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
         nlohmann::json openLibJson = nlohmann::json::parse(readBuffer);
         
         //author
-        //TODO: figure out multiple authors
-        newLibraryValues.author = openLibJson[combinedIdentifier]["authors"].at(0)["name"].get<std::string>();
+        for (auto x : openLibJson[combinedIdentifier]["authors"].items()) {
+            newLibraryValues.authors.push_back(x.value()["name"].get<std::string>());
+        }
         
         //title
         newLibraryValues.title = openLibJson[combinedIdentifier]["title"].get<std::string>();
+        
+        //isbn 10
+        if (openLibJson[combinedIdentifier]["identifiers"].contains("isbn_10")) {
+            std::vector<std::string> newIsbn = openLibJson[combinedIdentifier]["identifiers"]["isbn_10"].get<std::vector<std::string>>();
+            newLibraryValues.isbn.insert(std::end(newLibraryValues.isbn), std::begin(newIsbn), std::end(newIsbn));
+        }
+        
+        //isbn 13
+        if (openLibJson[combinedIdentifier]["identifiers"].contains("isbn_13")) {
+            std::vector<std::string> newIsbn = openLibJson[combinedIdentifier]["identifiers"]["isbn_13"].get<std::vector<std::string>>();
+            newLibraryValues.isbn.insert(std::end(newLibraryValues.isbn), std::begin(newIsbn), std::end(newIsbn));
+        }
+        
+        //oclc
+        if (openLibJson[combinedIdentifier]["identifiers"].contains("oclc")) {
+            newLibraryValues.oclc = openLibJson[combinedIdentifier]["identifiers"]["oclc"].get<std::vector<std::string>>();
+        }
     }
     catch (nlohmann::json::exception& ex) {
         std::string exceptionMessage = ex.what();
