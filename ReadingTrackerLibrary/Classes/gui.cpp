@@ -99,8 +99,8 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
         }
         //by identifier (ISBN or OCLC)
         case 1: {
-            //TODO: make better use of data in openlibrary
-            
+            //TODO: make better use of data in openlibrary, like openlibrary author vs wikidata author
+
             OutputLine(outputStream, "Query openlibrary by? (input 'OCLC' or 'ISBN'");
             std::string identifier = GetInput(inputStream);
             OutputLine(outputStream, "Enter identifier number:");
@@ -118,25 +118,17 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
                 return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
             }
             
-            author.push_back(wikiDataValues.author);
+            author.insert(std::end(author), std::begin(wikiDataValues.author), std::end(wikiDataValues.author));
             title = wikiDataValues.title;
             series = wikiDataValues.series;
             publisher = wikiDataValues.publisher;
             datePublished = boost::gregorian::to_simple_string(wikiDataValues.datePublished);
-            for (auto x : openLibraryValues.isbn) {
-                isbn.push_back(x);
-            }
-            //for (auto x : wikiDataValues.isbn) {
-                isbn.push_back(wikiDataValues.isbn);
-            //}
+            isbn.insert(std::end(isbn), std::begin(openLibraryValues.isbn), std::end(openLibraryValues.isbn));
+            isbn.insert(std::end(isbn), std::begin(wikiDataValues.isbn), std::end(wikiDataValues.isbn));
             std::sort(std::begin(isbn), std::end(isbn));
             std::unique(std::begin(isbn), std::end(isbn));
-            for (auto x : openLibraryValues.oclc) {
-                oclc.push_back(x);
-            }
-            //for (auto x : wikiDataValues.oclc) {
-                oclc.push_back(wikiDataValues.oclc);
-            //}
+            oclc.insert(std::end(oclc), std::begin(openLibraryValues.oclc), std::end(openLibraryValues.oclc));
+            oclc.insert(std::end(oclc), std::begin(wikiDataValues.oclc), std::end(wikiDataValues.oclc));
             std::sort(std::begin(oclc), std::end(oclc));
             std::unique(std::begin(oclc), std::end(oclc));
             break;
@@ -153,15 +145,13 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
                 return rtl::CommandLine::GetNewBook(inputStream, outputStream, 0);
             }
             
-            author.push_back(wikiDataValues.author);
+            author.insert(std::end(author), std::begin(wikiDataValues.author), std::end(wikiDataValues.author));
             title = wikiDataValues.title;
             series = wikiDataValues.series;
             publisher = wikiDataValues.publisher;
             datePublished = boost::gregorian::to_simple_string(wikiDataValues.datePublished);
-            //TODO: retrieve all ISBN found
-            isbn.push_back(wikiDataValues.isbn);
-            //TODO: retrieve all OCLC found
-            oclc.push_back(wikiDataValues.oclc);
+            isbn.insert(std::end(isbn), std::begin(wikiDataValues.isbn), std::end(wikiDataValues.isbn));
+            oclc.insert(std::end(oclc), std::begin(wikiDataValues.oclc), std::end(wikiDataValues.oclc));
             
             OutputLine(outputStream, "Query success");
             break;

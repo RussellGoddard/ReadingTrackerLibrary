@@ -384,9 +384,9 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     rtl::WikiDataValues newQuery = rtl::QueryBookByTitle("The Eye of the World");
     
     XCTAssert(newQuery.success == true);
-    XCTAssert(newQuery.author == "Robert Jordan");
-    XCTAssert(newQuery.oclc == "19723327");
-    XCTAssert(newQuery.isbn == "978-0-7653-2488-7");
+    XCTAssert(newQuery.author.at(0) == "Robert Jordan");
+    XCTAssert(newQuery.oclc.at(0) == "19723327");
+    XCTAssert(newQuery.isbn.at(0) == "978-0-7653-2488-7");
     XCTAssert(newQuery.series == "The Wheel of Time");
     XCTAssert(newQuery.title == "The Eye of the World");
     XCTAssert(newQuery.publisher == "Tor Publishing");
@@ -416,6 +416,23 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     
     XCTAssert(newQuery.success == true);
     XCTAssert(newQuery.oclc == answerVector);
+}
+
+- (void)test_QueryBooksByTitle_PassIdentifier_ReturnAllAuthors {
+    std::vector<std::string> authorVector {"Terry Pratchett", "Neil Gaiman"};
+    std::vector<std::string> oclcVector {"21299949"};
+    std::vector<std::string> isbnVector {"978-2-84626-021-3", "2-84626-021-4"};
+    
+    rtl::WikiDataValues newQuery = rtl::QueryBookByTitle("Good Omens");
+    
+    XCTAssert(newQuery.success == true);
+    XCTAssert(newQuery.author == authorVector);
+    XCTAssert(newQuery.oclc == oclcVector);
+    XCTAssert(newQuery.isbn == isbnVector);
+    XCTAssert(newQuery.series == "");
+    XCTAssert(newQuery.title == "Good Omens");
+    XCTAssert(newQuery.publisher == "Victor Gollancz");
+    XCTAssert(newQuery.datePublishedString() == "1990-May-01");
 }
 
 @end

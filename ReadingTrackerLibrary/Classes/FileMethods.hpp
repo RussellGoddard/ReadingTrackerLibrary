@@ -25,13 +25,17 @@ namespace rtl {
     //TODO: should these two structs be here or the queries spun into their own file
     struct WikiDataValues {
         bool success = true;
-        std::string isbn = "";
-        std::string oclc = "";
+        std::vector<std::string> isbn;
+        std::vector<std::string> oclc;
         std::string title = "";
         std::string series = "";
-        std::string author = "";
+        std::vector<std::string> author;
         std::string publisher = "";
         boost::gregorian::date datePublished;
+        
+        std::string datePublishedString() {
+            return boost::gregorian::to_simple_string(this->datePublished);
+        }
     };
 
     struct OpenLibraryValues {

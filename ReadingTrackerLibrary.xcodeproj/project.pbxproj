@@ -17,6 +17,9 @@
 		DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE7AC029238B73DB00292006 /* testFileMethods.mm */; };
 		DE7C1678242A390700CFD799 /* StandardOutput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7C1676242A390700CFD799 /* StandardOutput.hpp */; };
 		DE8F78F1243BA6EA0026F30B /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762D2414672500425941 /* libboost_date_time-mt.a */; };
+		DE922F4E243FE4E100459025 /* libboost_date_time-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB0F129243A74A4005DC0E2 /* libboost_date_time-mt.dylib */; };
+		DE922F4F243FE4F400459025 /* libboost_date_time-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB0F129243A74A4005DC0E2 /* libboost_date_time-mt.dylib */; };
+		DE922F58243FE5D000459025 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762F2414A69F00425941 /* libcurl.a */; };
 		DE9504D62374EF2200FF97A4 /* ReadBook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */; };
 		DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */; };
 		DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504CE2374EF2200FF97A4 /* Book.hpp */; };
@@ -36,8 +39,6 @@
 		DEB0F3B2243AAF9C005DC0E2 /* libboost_log_setup-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */; };
 		DEB0F3B3243AAF9C005DC0E2 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
 		DEB0F3B4243AAFA5005DC0E2 /* libLogger.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132BA243912AE004145F8 /* libLogger.dylib */; };
-		DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762D2414672500425941 /* libboost_date_time-mt.a */; };
-		DEBC76352414B45F00425941 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC762F2414A69F00425941 /* libcurl.a */; };
 		DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DEEAC61F2423C57000D970C9 /* HelperFunctions.cpp */; };
 		DEEAC6222423C57000D970C9 /* HelperFunctions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC6202423C57000D970C9 /* HelperFunctions.hpp */; };
 		DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DEEAC624242415BC00D970C9 /* SortUnique.hpp */; };
@@ -556,11 +557,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE922F58243FE5D000459025 /* libcurl.a in Frameworks */,
+				DE922F4F243FE4F400459025 /* libboost_date_time-mt.dylib in Frameworks */,
 				DEB0F3B3243AAF9C005DC0E2 /* libboost_log-mt.dylib in Frameworks */,
 				DEB0F3B2243AAF9C005DC0E2 /* libboost_log_setup-mt.dylib in Frameworks */,
 				DEB0F3B4243AAFA5005DC0E2 /* libLogger.dylib in Frameworks */,
-				DEBC76352414B45F00425941 /* libcurl.a in Frameworks */,
-				DEBC762E2414672500425941 /* libboost_date_time-mt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +569,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE922F4E243FE4E100459025 /* libboost_date_time-mt.dylib in Frameworks */,
 				DE9505062374F5B100FF97A4 /* libReadingTrackerLibrary.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1953,6 +1955,10 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.72.0/lib,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = RT.TestReadingTrackerLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1969,6 +1975,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.72.0/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RT.TestReadingTrackerLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
