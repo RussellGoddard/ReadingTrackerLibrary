@@ -22,7 +22,7 @@
 - (void)tearDown {
 }
 
-- (void)testGetNewAuthorManualMode {
+- (void)test_GetNewAuthor_Manual_ReturnNewAuthor {
     std::stringstream inputSs, outputSs;
     inputSs.str("testAuthor\n1998-Nov-25\n");
     rtl::Author testAuthor = rtl::CommandLine::GetNewAuthor(inputSs, outputSs, 0);
@@ -31,7 +31,7 @@
     XCTAssert(testAuthor.PrintDateBorn() == "1998-Nov-25");
 }
 
-- (void)testGetNewAuthorByIdentifier {
+- (void)test_GetNewAuthor_ByIdentifier_ReturnNewAuthor {
     std::stringstream inputSs, outputSs;
     inputSs.str("testAuthor\n1998-Nov-25\n");
     rtl::Author testAuthor = rtl::CommandLine::GetNewAuthor(inputSs, outputSs, 1);
@@ -40,7 +40,7 @@
     XCTAssert(testAuthor.PrintDateBorn() == "1998-Nov-25");
 }
 
-- (void)testGetNewAuthorByTitle {
+- (void)test_GetNewAuthor_ByTitle_ReturnNewAuthor {
     std::stringstream inputSs, outputSs;
     inputSs.str("testAuthor\n1998-Nov-25\n");
     rtl::Author testAuthor = rtl::CommandLine::GetNewAuthor(inputSs, outputSs, 2);
@@ -49,7 +49,7 @@
     XCTAssert(testAuthor.PrintDateBorn() == "1998-Nov-25");
 }
 
-- (void)testGetNewAuthorInvalidInputMode {
+- (void)test_GetNewAuthor_InvalidInputMode_ReturnEmptyAuthor {
     //TODO: verify logging when this happens
     std::stringstream inputSs, outputSs;
     inputSs.str("testAuthor\n1998-Nov-25\n");
@@ -57,7 +57,7 @@
     
     XCTAssert(testAuthor.GetName() == "");}
 
-- (void)testGetNewBookManual {
+- (void)test_GetNewBook_Manual_ReturnNewBook {
     std::stringstream inputSs, outputSs;
     
     inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
@@ -77,7 +77,7 @@
     XCTAssert(testBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewBookByIdentifierInvalidIdentifier {
+- (void)test_GetNewBook_ByIdentifier_PassInvalidIdentifierThenGoManualMode_ReturnNewBook {
     std::stringstream inputSs, outputSs;
     
     inputSs.str("OCLC\n21341234123412341234\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
@@ -96,7 +96,7 @@
     XCTAssert(testBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewBookByIdentifier {
+- (void)test_GetNewBook_ByIdentifier_ReturnNewBook {
     std::stringstream inputSs, outputSs;
     std::vector<std::string> isbnAnswer {"0312850093", "9780765324887"};
     std::vector<std::string> oclcAnswer {"19723327"};
@@ -115,7 +115,7 @@
     XCTAssert(testBook.GetOclc() == oclcAnswer);
 }
 
-- (void)testGetNewBookByTitle {
+- (void)test_GetNewBook_ByTitle_ReturnNewBook {
     std::stringstream inputSs, outputSs;
     
     inputSs.str("The Eye of the World");
@@ -134,7 +134,7 @@
     XCTAssert(testBook.GetOclc().at(0) == "19723327");
 }
 
-- (void)testGetNewBookByTitleInvalidTitle {
+- (void)test_GetNewBook_ByTitle_PassInvalidTitleRevertToManualMode_ReturnNewBook {
     std::stringstream inputSs, outputSs;
     
     inputSs.str("gibberishtitle\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
@@ -175,7 +175,7 @@
 }
 */
  
-- (void)testGetNewReadBookManual {
+- (void)test_GetNewReadBook_Manual_ReturnNewReadBook {
     std::stringstream inputSs, outputSs;
     inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
@@ -197,7 +197,7 @@
     XCTAssert(testReadBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewReadBookByIdentifierInvalid {
+- (void)test_GetNewReadBook_ByIdentifier_PassInvalidIdentifierThenRevertToManualMode_ReturnNewReadBook {
     std::stringstream inputSs, outputSs;
     inputSs.str("ISBN\n12341234213412341234\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
@@ -219,7 +219,7 @@
     XCTAssert(testReadBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewReadBookByIdentifier {
+- (void)test_GetNewReadBook_ByIdentifier_ReturnNewReadBook {
     std::stringstream inputSs, outputSs;
     inputSs.str("ISBN\n0312850093\n1999-Oct-02\n9\n");
     std::vector<std::string> isbnAnswer {"0312850093", "9780765324887"};
@@ -241,7 +241,7 @@
     XCTAssert(testReadBook.GetOclc() == oclcAnswer);
 }
 
-- (void)testGetNewReadBookByTitleInvalidTitle {
+- (void)test_GetNewReadBook_ByTitle_PassInvalidTitleThenRevertToManual_ReturnNewReadBook {
     std::stringstream inputSs, outputSs;
     inputSs.str("gibberishtitle\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
@@ -263,7 +263,7 @@
     XCTAssert(testReadBook.GetOclc().at(0) == "123456");
 }
 
-- (void)testGetNewReadBookByTitle {
+- (void)test_GetNewReadBook_ByTitle_ReturnNewReadBook {
     std::stringstream inputSs, outputSs;
     inputSs.str("The Eye of the World\n1999-Oct-02\n9\n");
     
@@ -310,7 +310,7 @@
 }
 */
 
-- (void)testOutputLine {
+- (void)test_OutputLine_PassOutputStreamAndString_ReturnOutputStreamContainingPassedStringAndNewLine {
     std::stringstream outputSs;
     
     rtl::CommandLine::OutputLine(outputSs, "test Input 23");
@@ -322,7 +322,7 @@
     XCTAssert(outputSs.eof());
 }
 
-- (void)testOutputLineVector {
+- (void)test_OutputLineVector_PassOutputStreamAndVectorOfStrings_ReturnOutputStreamContainingPassedVector {
     std::stringstream outputSs;
     std::vector<std::string> input {"the", "Rain", "in", "Sp Ain", "t h     e", "p   "};
     
