@@ -13,17 +13,8 @@ bool rtl::Author::SetName(std::string name) {
     return true;
 }
 
-bool rtl::Author::SetDateBorn(time_t dateBorn) {
-    //TODO: validation?
-    this->dateBorn = *std::gmtime(&dateBorn);
-    this->dateBorn.tm_sec = 0;
-    this->dateBorn.tm_min = 0;
-    this->dateBorn.tm_hour = 0;
-    this->dateBorn.tm_wday = 0;
-    this->dateBorn.tm_isdst = 0;
-    this->dateBorn.tm_gmtoff = 0;
-    this->dateBorn.tm_zone = nullptr;
-    
+bool rtl::Author::SetDateBorn(boost::posix_time::ptime dateBorn) {
+    this->dateBorn = boost::posix_time::to_tm(dateBorn);
     return true;
 }
 
@@ -67,8 +58,8 @@ tm rtl::Author::GetDateBorn() const {
     return this->dateBorn;
 }
 
-time_t rtl::Author::GetDateBornTimeT() {
-    return std::mktime(&this->dateBorn);
+boost::posix_time::ptime rtl::Author::GetDateBornPosixTime() {
+    return boost::posix_time::ptime_from_tm(this->dateBorn);
 }
 
 std::string rtl::Author::PrintDateBorn() const {
@@ -181,7 +172,7 @@ std::string rtl::Author::PrintHeader() const {
     return returnStr.str();
 }
 
-rtl::Author::Author(std::string name, time_t dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten) {
+rtl::Author::Author(std::string name, boost::posix_time::ptime dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten) {
     this->SetName(name);
     this->SetDateBorn(dateBorn);
     this->AddBookWritten(booksWritten);

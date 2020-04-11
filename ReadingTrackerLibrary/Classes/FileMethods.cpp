@@ -82,7 +82,7 @@ void rtl::InMemoryContainers::AddMasterAuthors(std::shared_ptr<rtl::Author> newA
 void rtl::InMemoryContainers::AddMasterAuthors(std::shared_ptr<rtl::Book> newBook) {
     for (std::string x : newBook->GetAuthors()) {
         //TODO: get author birth date
-        auto newAuthor = std::make_shared<rtl::Author>(x, rtl::jan2038, std::vector<std::shared_ptr<rtl::Book>>{newBook});
+        auto newAuthor = std::make_shared<rtl::Author>(x, rtl::defaultDateBorn, std::vector<std::shared_ptr<rtl::Book>>{newBook});
         this->authorVector.push_back(newAuthor);
         rtl::SortUnique(this->authorVector);
     }
@@ -93,7 +93,7 @@ void rtl::InMemoryContainers::AddMasterAuthors(std::vector<std::shared_ptr<rtl::
     for (auto newBook : newBookVector) {
         for (std::string x : newBook->GetAuthors()) {
             //TODO: retrieve author birth date
-            auto newAuthor = std::make_shared<rtl::Author>(x, rtl::jan2038, newBookVector);
+            auto newAuthor = std::make_shared<rtl::Author>(x, rtl::defaultDateBorn, newBookVector);
             this->authorVector.push_back(newAuthor);
         }
     }

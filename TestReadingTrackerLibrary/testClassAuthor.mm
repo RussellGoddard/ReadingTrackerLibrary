@@ -38,15 +38,12 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor.GetName() == "pickle");
 }
 
-- (void)test_SetDateBornTimeT_ReturnTimeT {
+- (void)test_SetDateBornPosixTime_ReturnPosixTime {
     rtl::Author testAuthor("testAuthor");
-    time_t testValue = 1573862400;
+    boost::posix_time::ptime testValue(boost::date_time::min_date_time);
     XCTAssert(testAuthor.SetDateBorn(testValue));
-    tm initialTm = *std::gmtime(&testValue);
-    tm testTm = testAuthor.GetDateBorn();
     
-    XCTAssert(std::mktime(&initialTm) == std::mktime(&testTm));
-    XCTAssert(testAuthor.GetDateBornTimeT() == 1573880400);
+    XCTAssert(testAuthor.GetDateBornPosixTime() == testValue);
 }
 
 - (void)test_setDateBornString_ReturnString {
@@ -88,9 +85,9 @@ std::shared_ptr<rtl::Book> testBook2;
 
 - (void)test_AuthorConstructorDefault {
     //Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
-    rtl::Author testAuthor1("testAuthor1", 660027600);
+    rtl::Author testAuthor1("testAuthor1", boost::posix_time::min_date_time);
     XCTAssert(testAuthor1.GetName() == "testAuthor1");
-    XCTAssert(testAuthor1.GetDateBornTimeT() == 660027600);
+    XCTAssert(testAuthor1.GetDateBornPosixTime() == boost::posix_time::min_date_time);
     XCTAssert(testAuthor1.GetBooksWritten().size() == 0);
     XCTAssert(testAuthor1.GetAuthorId() == "23f9");
 }

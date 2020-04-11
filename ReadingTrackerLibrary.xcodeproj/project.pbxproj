@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */; };
 		DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE5FC261237CDD7400346E3E /* testClassReadbook.mm */; };
+		DE7069D82442352A0042045C /* ServerMethods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE7069D62442352A0042045C /* ServerMethods.cpp */; };
+		DE7069D92442352A0042045C /* ServerMethods.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7069D72442352A0042045C /* ServerMethods.hpp */; };
 		DE7132BD243912AF004145F8 /* Logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7132BC243912AF004145F8 /* Logger.hpp */; };
 		DE7132C1243912AF004145F8 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE7132C0243912AF004145F8 /* Logger.cpp */; };
 		DE7132D2243948A8004145F8 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
@@ -108,6 +110,8 @@
 /* Begin PBXFileReference section */
 		DE3CEE2B237F76F20043B169 /* testClassAuthor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassAuthor.mm; sourceTree = "<group>"; };
 		DE5FC261237CDD7400346E3E /* testClassReadbook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassReadbook.mm; sourceTree = "<group>"; };
+		DE7069D62442352A0042045C /* ServerMethods.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ServerMethods.cpp; sourceTree = "<group>"; };
+		DE7069D72442352A0042045C /* ServerMethods.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ServerMethods.hpp; sourceTree = "<group>"; };
 		DE7132BA243912AE004145F8 /* libLogger.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libLogger.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7132BC243912AF004145F8 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		DE7132C0243912AF004145F8 /* Logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
@@ -643,6 +647,8 @@
 				DE9504CD2374EF2200FF97A4 /* ReadBook.cpp */,
 				DE9504CC2374EF2200FF97A4 /* ReadBook.hpp */,
 				DE7C1676242A390700CFD799 /* StandardOutput.hpp */,
+				DE7069D62442352A0042045C /* ServerMethods.cpp */,
+				DE7069D72442352A0042045C /* ServerMethods.hpp */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1515,6 +1521,7 @@
 				DEEAC6352426A76500D970C9 /* JsonFunctions.hpp in Headers */,
 				DEEAC626242415BC00D970C9 /* SortUnique.hpp in Headers */,
 				DEF48777242CE37B000D1A2B /* CommandLineHelpers.hpp in Headers */,
+				DE7069D92442352A0042045C /* ServerMethods.hpp in Headers */,
 				DE9504DB2374EF2200FF97A4 /* FileMethods.hpp in Headers */,
 				DE9504DD2374EF2200FF97A4 /* gui.hpp in Headers */,
 				DE9504D82374EF2200FF97A4 /* Book.hpp in Headers */,
@@ -1667,6 +1674,7 @@
 				DE9504DA2374EF2200FF97A4 /* Book.cpp in Sources */,
 				DEF48776242CE37B000D1A2B /* CommandLineHelpers.cpp in Sources */,
 				DE9504D92374EF2200FF97A4 /* Author.cpp in Sources */,
+				DE7069D82442352A0042045C /* ServerMethods.cpp in Sources */,
 				DE9504D72374EF2200FF97A4 /* ReadBook.cpp in Sources */,
 				DE9504DF2374EF2200FF97A4 /* gui.cpp in Sources */,
 				DEEAC6212423C57000D970C9 /* HelperFunctions.cpp in Sources */,

@@ -27,6 +27,7 @@
 #pragma GCC diagnostic ignored "-Wdocumentation"
 
 #include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 // turn the warnings back on
 #pragma GCC diagnostic pop

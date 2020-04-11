@@ -25,20 +25,19 @@
 #pragma GCC diagnostic ignored "-Wdocumentation"
 
 #include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 // turn the warnings back on
 #pragma GCC diagnostic pop
 
 namespace rtl {
-
-    
     //TODO: change default author dateBorn to something else
-    const time_t jan2038 = 2145916800;
+    const boost::posix_time::ptime defaultDateBorn(boost::date_time::max_date_time);
 
     class Author : public StandardOutput {
     public:
         bool SetName(std::string name);
-        bool SetDateBorn(time_t dateBorn);
+        bool SetDateBorn(boost::posix_time::ptime dateBorn);
         bool SetDateBorn(std::string dateBorn);
         bool AddBookWritten(std::shared_ptr<rtl::Book> book);
         bool AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books);
@@ -46,7 +45,7 @@ namespace rtl {
         std::vector<std::shared_ptr<rtl::Book>> GetBooksWritten() const;
         std::string GetName() const;
         tm GetDateBorn() const;
-        time_t GetDateBornTimeT();
+        boost::posix_time::ptime GetDateBornPosixTime();
         std::string PrintDateBorn() const;
         
         rtl::SetsPtr GetUpdateFunction(std::string input) override;
@@ -56,7 +55,7 @@ namespace rtl {
         std::string PrintHeader() const override;
         
         Author() = delete; //Author class HAS to be constructed with a name
-        Author(std::string name, time_t dateBorn = jan2038, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
+        Author(std::string name, boost::posix_time::ptime dateBorn = defaultDateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
         Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
     private:
         std::string authorId;
