@@ -7,16 +7,9 @@
 
 #include "ReadBook.hpp"
 
-//TODO: validation, is this needed
-bool rtl::ReadBook::SetDateRead(time_t time) {
-    this->dateRead = *std::gmtime(&time);
-    this->dateRead.tm_sec = 0;
-    this->dateRead.tm_min = 0;
-    this->dateRead.tm_hour = 0;
-    this->dateRead.tm_wday = 0;
-    this->dateRead.tm_isdst = 0;
-    this->dateRead.tm_gmtoff = 0;
-    this->dateRead.tm_zone = nullptr;
+//TODO: validation
+bool rtl::ReadBook::SetDateRead(boost::posix_time::ptime time) {
+    this->dateRead = boost::posix_time::to_tm(time);
     
     return true;
 }
@@ -87,8 +80,8 @@ tm rtl::ReadBook::GetDateRead() const {
     return this->dateRead;
 }
 
-time_t rtl::ReadBook::GetDateReadAsTimeT() {
-    return std::mktime(&dateRead);
+boost::posix_time::ptime rtl::ReadBook::GetDateReadAsPosixTime() {
+    return boost::posix_time::ptime_from_tm(this->dateRead);;
 }
 
 std::string rtl::ReadBook::PrintDateRead() const {
@@ -197,7 +190,7 @@ std::string rtl::ReadBook::PrintHeader() const {
     return returnStr.str();
 }
 
-rtl::ReadBook::ReadBook(int readerId, Book book, int rating, time_t dateRead) : Book(book) {
+rtl::ReadBook::ReadBook(int readerId, Book book, int rating, boost::posix_time::ptime dateRead) : Book(book) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
@@ -210,7 +203,7 @@ rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRea
 }
 
 
-rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, rtl::Genre genre, time_t publishDate, int rating, time_t dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, rtl::Genre genre, boost::posix_time::ptime publishDate, int rating, boost::posix_time::ptime dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
@@ -245,29 +238,24 @@ bool rtl::operator<(const ReadBook& lhs, const ReadBook& rhs) {
         if (lhs.GetSeries() < rhs.GetSeries()) { return true; }
         else if (lhs.GetSeries() > rhs.GetSeries()) { return false; }
         else {
-            tm lhstm;
-            tm rhstm;
-            time_t lhstt;
-            time_t rhstt;
+            tm lhstm = lhs.GetPublishDate();
+            tm rhstm = rhs.GetPublishDate();;
+            boost::posix_time::ptime lhspt = boost::posix_time::ptime_from_tm(lhstm);
+            boost::posix_time::ptime rhspt = boost::posix_time::ptime_from_tm(rhstm);
             
-            lhstm = lhs.GetPublishDate();
-            lhstt = std::mktime(&lhstm);
-            rhstm = rhs.GetPublishDate();
-            rhstt = std::mktime(&rhstm);
-            
-            if (lhstt < rhstt) { return true; }
-            else if (lhstt > rhstt) { return false; }
+            if (lhspt < rhspt) { return true; }
+            else if (lhspt > rhspt) { return false; }
             else {
                 if (lhs.GetTitle() < rhs.GetTitle()) { return true; }
                 else if (lhs.GetTitle() > rhs.GetTitle()) { return false; }
                 else {
                     lhstm = lhs.GetDateRead();
-                    lhstt = std::mktime(&lhstm);
+                    lhspt = boost::posix_time::ptime_from_tm(lhstm);
                     rhstm = rhs.GetDateRead();
-                    rhstt = std::mktime(&rhstm);
+                    rhspt = boost::posix_time::ptime_from_tm(rhstm);
                     
-                    if (lhstt < rhstt) { return true; }
-                    else if (rhstt > lhstt) { return false; }
+                    if (lhspt < rhspt) { return true; }
+                    else if (rhspt > lhspt) { return false; }
                 }
             }
         }

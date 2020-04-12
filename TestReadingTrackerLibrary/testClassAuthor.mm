@@ -84,7 +84,7 @@ std::shared_ptr<rtl::Book> testBook2;
 }
 
 - (void)test_AuthorConstructorDefault {
-    //Author(std::string name, time_t dateBorn = std::time(0), std::vector<std::shared_ptr<Book>> booksWritten = {});
+    //Author(std::string name, boost::posix_time::ptime dateBorn = defaultDateBorn, std::vector<std::shared_ptr<Book>> booksWritten = {});
     rtl::Author testAuthor1("testAuthor1", boost::posix_time::min_date_time);
     XCTAssert(testAuthor1.GetName() == "testAuthor1");
     XCTAssert(testAuthor1.GetDateBornPosixTime() == boost::posix_time::min_date_time);

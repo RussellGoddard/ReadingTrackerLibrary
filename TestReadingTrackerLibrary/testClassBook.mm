@@ -160,15 +160,10 @@
     XCTAssert(!testBook.SetPublishDate("2001-Feb-29"));
 }
 
-//TODO: replace time_t
-- (void)testSetPublishDateTimeT {
+- (void)test_SetPublishDate_PassPosixTime_ReturnPosixTime {
     rtl::Book testBook("testAuthor", "testTitle");
-    time_t testTimeInitial = 1199163600; //Tuesday, January 1, 2008 12:00:00 AM GMT -5
-    XCTAssert(testBook.SetPublishDate(testTimeInitial));
-    XCTAssert(testTimeInitial == testBook.GetPublishDateAsTimeT());
-    time_t testTime = 1199165003; //Tuesday, January 1, 2008 12:23:23 AM GMT -5
-    XCTAssert(testBook.SetPublishDate(testTime));
-    XCTAssert(testTimeInitial == testBook.GetPublishDateAsTimeT());
+    XCTAssert(testBook.SetPublishDate(boost::date_time::min_date_time));
+    XCTAssert(testBook.GetPublishDateAsPosixTime() == boost::posix_time::ptime(boost::date_time::min_date_time));
 }
 
 - (void)test_OperatorEquals {
@@ -265,8 +260,8 @@
 }
 
 - (void)test_DefaultConstructor {
-    //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
-    rtl::Book testBookConstructor("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtl::Genre::romance, 1199163600);
+    //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, boost::posix_time::ptime publishDate = boost::posix_time::second_clock::universal_time());
+    rtl::Book testBookConstructor("testAuthor", "testTitle", "testSeries", "testPublisher", 1111, rtl::Genre::romance, boost::date_time::min_date_time);
     
     XCTAssert(testBookConstructor.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testBookConstructor.GetTitle() == "testTitle");
@@ -274,14 +269,14 @@
     XCTAssert(testBookConstructor.GetPublisher() == "testPublisher");
     XCTAssert(testBookConstructor.GetPageCount() == 1111);
     XCTAssert(testBookConstructor.GetGenre() == rtl::Genre::romance);
-    XCTAssert(testBookConstructor.GetPublishDateAsTimeT() == 1199163600);
+    XCTAssert(testBookConstructor.GetPublishDateAsPosixTime() == boost::date_time::min_date_time);
     XCTAssert(testBookConstructor.GetBookId() == "2ff6b24");
     XCTAssert(testBookConstructor.GetAuthorId().at(0) == "1ecb");
 }
 
 - (void)test_Constructor2 {
-    //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, time_t publishDate = std::time(0));
-    rtl::Book testBookConstructor(std::vector<std::string> {"testAuthor1", "testAuthor2"}, "testTitle", "testSeries", "testPublisher", 1111, rtl::Genre::romance, 1199163600);
+    //Book(std::string author = "", std::string title = "", std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = genreNotSet, boost::posix_time::ptime publishDate = boost::posix_time::second_clock::universal_time());
+    rtl::Book testBookConstructor(std::vector<std::string> {"testAuthor1", "testAuthor2"}, "testTitle", "testSeries", "testPublisher", 1111, rtl::Genre::romance, boost::date_time::min_date_time);
     
     XCTAssert(testBookConstructor.GetAuthors().size() == 2);
     XCTAssert(testBookConstructor.GetAuthors().at(0) == "testAuthor1");
@@ -291,7 +286,7 @@
     XCTAssert(testBookConstructor.GetPublisher() == "testPublisher");
     XCTAssert(testBookConstructor.GetPageCount() == 1111);
     XCTAssert(testBookConstructor.GetGenre() == rtl::Genre::romance);
-    XCTAssert(testBookConstructor.GetPublishDateAsTimeT() == 1199163600);
+    XCTAssert(testBookConstructor.GetPublishDateAsPosixTime() == boost::date_time::min_date_time);
     XCTAssert(testBookConstructor.GetBookId() == "914e89d635");
     XCTAssert(testBookConstructor.GetAuthorId().size() == 2);
     XCTAssert(testBookConstructor.GetAuthorId().at(0) == "23f9");

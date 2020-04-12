@@ -87,8 +87,8 @@ tm rtl::Book::GetPublishDate() const {
     return this->publishDate;
 }
 
-time_t rtl::Book::GetPublishDateAsTimeT() {
-    return std::mktime(&this->publishDate);
+boost::posix_time::ptime rtl::Book::GetPublishDateAsPosixTime() {
+    return boost::posix_time::ptime_from_tm(this->publishDate);
 }
 
 std::string rtl::Book::PrintPublishDate() const {
@@ -173,17 +173,8 @@ bool rtl::Book::SetGenre(std::string genre) {
     return true;
 }
 
-//TODO: get rid of time_t, replace with struct tm
-bool rtl::Book::SetPublishDate(time_t publishDate) {
-    this->publishDate = *std::gmtime(&publishDate);
-    this->publishDate.tm_sec = 0;
-    this->publishDate.tm_min = 0;
-    this->publishDate.tm_hour = 0;
-    this->publishDate.tm_wday = 0;
-    this->publishDate.tm_isdst = 0;
-    this->publishDate.tm_gmtoff = 0;
-    this->publishDate.tm_zone = nullptr;
-    
+bool rtl::Book::SetPublishDate(boost::posix_time::ptime publishDate) {
+    this->publishDate = boost::posix_time::to_tm(publishDate);
     return true;
 }
 
@@ -389,7 +380,7 @@ std::string rtl::Book::PrintHeader() const {
     return returnStr.str();
 }
 
-rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
+rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, boost::posix_time::ptime publishDate) {
     this->authors = {author};
     this->title = title;
     this->SetSeries(series);
@@ -405,7 +396,7 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
     return;
 }
 
-rtl::Book::Book(std::vector<std::string> author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, time_t publishDate) {
+rtl::Book::Book(std::vector<std::string> author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, boost::posix_time::ptime publishDate) {
     this->authors = author;
     this->title = title;
     this->SetSeries(series);
@@ -485,18 +476,13 @@ bool rtl::operator<(const rtl::Book& lhs, const rtl::Book& rhs) {
         if (lhs.GetSeries() < rhs.GetSeries()) { return true; }
         else if (lhs.GetSeries() > rhs.GetSeries()) { return false; }
         else {
-            tm lhstm;
-            tm rhstm;
-            time_t lhstt;
-            time_t rhstt;
+            tm lhstm = lhs.GetPublishDate();
+            tm rhstm = rhs.GetPublishDate();
+            boost::posix_time::ptime lhspt = boost::posix_time::ptime_from_tm(lhstm);
+            boost::posix_time::ptime rhspt = boost::posix_time::ptime_from_tm(rhstm);
             
-            lhstm = lhs.GetPublishDate();
-            lhstt = std::mktime(&lhstm);
-            rhstm = rhs.GetPublishDate();
-            rhstt = std::mktime(&rhstm);
-            
-            if (lhstt < rhstt) { return true; }
-            else if (lhstt > rhstt) { return false; }
+            if (lhspt < rhspt) { return true; }
+            else if (lhspt > rhspt) { return false; }
             else {
                 if (lhs.GetTitle() < rhs.GetTitle()) { return true; }
                 else if (lhs.GetTitle() > rhs.GetTitle()) { return false; }

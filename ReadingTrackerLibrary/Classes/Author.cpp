@@ -188,16 +188,8 @@ rtl::Author::Author(std::string name, std::string dateBorn, std::vector<std::sha
 
 bool rtl::operator==(const Author& lhs, const Author& rhs) {
     
-    /* TODO: add way to combine authors even if birthdate is missing somehow, disabled birthdate compare so that it is feasible that authors get combined appropriately
-    tm lhstm = lhs.getDateBorn();
-    tm rhstm = rhs.getDateBorn();
-    time_t lhstt = std::mktime(&lhstm);
-    time_t rhstt = std::mktime(&rhstm);
-    
-    if (lhstt != rhstt) {
-        return false;
-    }
-     */
+    //TODO: add way to combine authors even if birthdate is missing somehow, disabled birthdate compare so that it is feasible that authors get combined appropriately
+
     if (lhs.GetName() != rhs.GetName()) {
         return false;
     }
@@ -228,11 +220,11 @@ bool rtl::operator<(const Author& lhs, const Author& rhs) {
         
         tm lhstm = lhs.GetDateBorn();
         tm rhstm = rhs.GetDateBorn();
-        time_t lhstt = std::mktime(&lhstm);
-        time_t rhstt = std::mktime(&rhstm);
+        boost::posix_time::ptime lhspt = boost::posix_time::ptime_from_tm(lhstm);
+        boost::posix_time::ptime rhspt = boost::posix_time::ptime_from_tm(rhstm);
         
-        if (lhstt < rhstt) { return true; }
-        else if (rhstt > lhstt) { return false; }
+        if (lhspt < rhspt) { return true; }
+        else if (rhspt > lhspt) { return false; }
     }
     
     return false;

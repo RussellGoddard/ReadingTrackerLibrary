@@ -46,7 +46,7 @@ namespace rtl {
         Genre GetGenre() const;
         std::string PrintGenre() const;
         tm GetPublishDate() const;
-        time_t GetPublishDateAsTimeT();
+        boost::posix_time::ptime GetPublishDateAsPosixTime();
         std::vector<std::string> GetOclc() const;
         std::vector<std::string> GetIsbn() const;
         std::vector<std::string> GetAuthorId() const;
@@ -61,7 +61,7 @@ namespace rtl {
         bool SetPageCount(std::string pageCount);
         bool SetGenre(Genre genre);
         bool SetGenre(std::string genre);
-        bool SetPublishDate(time_t publishDate);
+        bool SetPublishDate(boost::posix_time::ptime publishDate);
         bool SetPublishDate(std::string publishDate);
         bool AddOclc(std::string oclc);
         bool AddIsbn(std::string isbn);
@@ -73,8 +73,8 @@ namespace rtl {
         std::string PrintHeader() const override;
         
         Book() = delete; //Book class HAS to be constructed with a title and author
-        Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0));
-        Book(std::vector<std::string> author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0));
+        Book(std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, boost::posix_time::ptime publishDate = boost::posix_time::second_clock::universal_time());
+        Book(std::vector<std::string> author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, Genre genre = rtl::Genre::genreNotSet, boost::posix_time::ptime publishDate = boost::posix_time::second_clock::universal_time());
         Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate);
         Book(std::vector<std::string> authors, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn = {}, std::vector<std::string> oclc = {});
         

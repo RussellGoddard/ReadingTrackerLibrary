@@ -22,6 +22,7 @@
 #pragma GCC diagnostic ignored "-Wdocumentation"
 
 #include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 // turn the warnings back on
 #pragma GCC diagnostic pop
@@ -30,13 +31,13 @@ namespace rtl {
 
     class ReadBook : public rtl::Book {
     public:
-        bool SetDateRead(time_t time);
+        bool SetDateRead(boost::posix_time::ptime time);
         bool SetDateRead(std::string time);
         bool SetRating(int rating);
         bool SetRating(char pageCount); //will result in rating being set to 0
         bool SetRating(std::string pageCount); //will attempt a stoi if it fails set rating to 0
         tm GetDateRead() const;
-        time_t GetDateReadAsTimeT();
+        boost::posix_time::ptime GetDateReadAsPosixTime();
         std::string PrintDateRead() const;
         int GetRating() const;
         int GetReaderId() const;
@@ -48,9 +49,9 @@ namespace rtl {
         std::string PrintHeader() const override;
         
         ReadBook() = delete; //ReadBook class HAS to be constructed with a readerId, book author and book title
-        ReadBook(int readerId, Book book, int rating, time_t dateRead);
+        ReadBook(int readerId, Book book, int rating, boost::posix_time::ptime dateRead);
         ReadBook(int readerId, Book book, int rating, std::string dateRead);
-        ReadBook(int readerId, std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, rtl::Genre genre = rtl::Genre::genreNotSet, time_t publishDate = std::time(0), int rating = 0, time_t dateRead = std::time(0));
+        ReadBook(int readerId, std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, rtl::Genre genre = rtl::Genre::genreNotSet, boost::posix_time::ptime publishDate = boost::posix_time::second_clock::universal_time(), int rating = 0, boost::posix_time::ptime dateRead = boost::posix_time::second_clock::universal_time());
         ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead);
     private:
         int readerId;
