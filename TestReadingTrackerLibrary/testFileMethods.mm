@@ -435,4 +435,11 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     XCTAssert(newQuery.datePublishedString() == "1990-May-01");
 }
 
+- (void)test_QueryBooksByIdentifier_PassIdentifier_ReturnPageNumber {
+    rtl::OpenLibraryValues newQuery = rtl::QueryBookByIdentifier("ISBN", "0812511816");
+    
+    XCTAssert(newQuery.success == true);
+    XCTAssert(newQuery.pageCount = 814);
+}
+
 @end

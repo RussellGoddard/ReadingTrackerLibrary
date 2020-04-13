@@ -204,7 +204,6 @@ bool rtl::operator!=(const Author& lhs, const Author& rhs) {
 
 //sort by last word in name then by birthdate
 bool rtl::operator<(const Author& lhs, const Author& rhs) {
-    //TODO: there is probably a way to do an insensitive case string compare
     //make names lower case for comparison
     std::string lowerLhsName = lhs.GetName();
     std::string lowerRhsName = rhs.GetName();

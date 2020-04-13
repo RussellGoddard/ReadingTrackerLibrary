@@ -13,6 +13,7 @@
 #include <functional>
 #include <future>
 #include <memory>
+#include <regex>
 #include <set>
 #include <utility>
 #include "Author.hpp"
@@ -40,7 +41,7 @@ namespace rtl {
 
     struct OpenLibraryValues {
         bool success = true;
-        //TODO: page number
+        int pageCount = -1;
         std::vector<std::string> isbn;
         std::vector<std::string> oclc;
         std::vector<std::string> authors;

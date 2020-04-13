@@ -31,7 +31,6 @@
 #pragma GCC diagnostic pop
 
 namespace rtl {
-    //TODO: change default author dateBorn to something else
     const boost::posix_time::ptime defaultDateBorn(boost::date_time::max_date_time);
 
     class Author : public StandardOutput {

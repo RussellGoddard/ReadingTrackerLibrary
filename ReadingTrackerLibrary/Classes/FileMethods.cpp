@@ -298,6 +298,26 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
             newLibraryValues.authors.push_back(x.value()["name"].get<std::string>());
         }
         
+        //pageCount, look for 3 and 4 digits then 2 digits
+        if (openLibJson[combinedIdentifier].contains("pagination")) {
+            std::string pagination = openLibJson[combinedIdentifier]["pagination"].get<std::string>();
+            std::regex regexPattern = std::regex("\\d{3,4} regex");
+            std::smatch regexResults;
+            bool paginationContainsRegex = std::regex_search(pagination, regexResults, regexPattern);
+            
+            if (paginationContainsRegex) {
+                newLibraryValues.pageCount = stoi(regexResults[0]);
+            }
+            else {
+                regexPattern = std::regex("\\d{2} regex");
+                paginationContainsRegex = std::regex_search(pagination, regexResults, regexPattern);
+                
+                if (paginationContainsRegex) {
+                    newLibraryValues.pageCount = stoi(regexResults[0]);
+                }
+            }
+        }
+        
         //title
         newLibraryValues.title = openLibJson[combinedIdentifier]["title"].get<std::string>();
         
@@ -329,7 +349,7 @@ rtl::OpenLibraryValues rtl::QueryBookByIdentifier(std::string identifier, std::s
     return newLibraryValues;
 }
 
-//TODO: curl query very fragile due to requiring exact capitalization figure out better way (might have to move google books)
+//TODO: curl query very fragile due to requiring exact capitalization figure out better way (might have to move to google books)
 rtl::WikiDataValues rtl::QueryBookByTitle(std::string title) {
     rtl::WikiDataValues newDataValues;
     

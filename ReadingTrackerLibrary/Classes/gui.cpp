@@ -68,7 +68,8 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
     std::string series = "";
     std::string genre = "genre not set";
     std::string datePublished = "";
-    std::string pageCount = "-1";
+    int pageCount = -1;
+    std::string pageCountStr = "-1";
     
     switch(inputMode) {
         //manual
@@ -94,7 +95,8 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
             OutputLine(outputStream, "Input date published");
             datePublished = GetInput(inputStream);
             OutputLine(outputStream, "Input page count");
-            pageCount = GetInput(inputStream);
+            pageCountStr = GetInput(inputStream);
+            pageCount = stoi(pageCountStr);
             break;
         }
         //by identifier (ISBN or OCLC)
@@ -122,6 +124,7 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
             title = wikiDataValues.title;
             series = wikiDataValues.series;
             publisher = wikiDataValues.publisher;
+            pageCount = openLibraryValues.pageCount;
             datePublished = boost::gregorian::to_simple_string(wikiDataValues.datePublished);
             isbn.insert(std::end(isbn), std::begin(openLibraryValues.isbn), std::end(openLibraryValues.isbn));
             isbn.insert(std::end(isbn), std::begin(wikiDataValues.isbn), std::end(wikiDataValues.isbn));
@@ -161,7 +164,7 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
             break;
     }
     
-    return rtl::Book(author, title, series, publisher, stoi(pageCount), genre, datePublished, isbn, oclc);
+    return rtl::Book(author, title, series, publisher, pageCount, genre, datePublished, isbn, oclc);
 }
 
 
