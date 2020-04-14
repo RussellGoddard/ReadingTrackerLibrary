@@ -19,12 +19,12 @@ using namespace boost;
  BOOST_LOG_TRIVIAL(fatal) << "and this is a fatal severity message";
  */
 
-void logging::InitLogging() {
+void logging::InitLogging(std::string logName) {
     log::register_simple_formatter_factory<log::trivial::severity_level, char>("Severity");
 
     std::string utcDate = posix_time::to_simple_string(posix_time::second_clock::universal_time());
     log::add_file_log (
-        log::keywords::file_name = "./Logs/testLog" + utcDate + ".log",
+        log::keywords::file_name = "./Logs/" + logName + utcDate + ".log",
         log::keywords::format = "[%TimeStamp%] [%ThreadID%] [%Severity%] [%ProcessID%] [%LineID%] %Message%",
         log::keywords::auto_flush = true,
         log::keywords::open_mode = (std::ios::out | std::ios::app)

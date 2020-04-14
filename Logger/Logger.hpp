@@ -32,7 +32,7 @@
 #pragma GCC diagnostic pop
 
 namespace logging {
-    void InitLogging();
+    void InitLogging(std::string logName);
 }
 
 #pragma GCC visibility pop

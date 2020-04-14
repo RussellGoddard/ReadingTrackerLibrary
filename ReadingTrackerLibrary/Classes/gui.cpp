@@ -585,13 +585,17 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
             case '7': {
                 rtl::CommandLine::OutputLine(outputStream, std::vector<std::string> {
                     "Input file path for save file or enter shortcut below:",
+                    "default: same as blank, saves in ./Files/",
                     "desktop: (shortcut to macOS user desktop)"
                 });
                 input = rtl::CommandLine::GetInput(inputStream);
-                //shortcut to macOS desktop TODO: dedicated save space than desktop
-                if(input == "desktop") {
+                if (input == "" || input == "default") {
+                    input = "./Files/rtlDataFile.txt";
+                }
+                //shortcut to macOS desktop
+                else if (input == "desktop") {
                     input = std::getenv("HOME");
-                    input += "/Desktop/testFile.txt";
+                    input += "/Desktop/rtlDataFile.txt";
                 }
                 if (masterList.SaveInMemoryToFile(input)) {
                     rtl::CommandLine::OutputLine(outputStream, "save success\n");
@@ -608,10 +612,13 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                     "desktop: (shortcut to macOS user desktop)"
                 });
                 input = rtl::CommandLine::GetInput(inputStream);
-                //shortcut to macOS desktop TODO: dedicated save space than desktop
-                if (input == "desktop") {
+                if (input == "" || input == "default") {
+                    input = "./Files/rtlDataFile.txt";
+                }
+                //shortcut to macOS desktop
+                else if (input == "desktop") {
                     input = std::getenv("HOME");
-                    input += "/Desktop/testFile.txt";
+                    input += "/Desktop/rtlDataFile.txt";
                 }
                 if (masterList.LoadInMemoryFromFile(input)) {
                     rtl::CommandLine::OutputLine(outputStream, "load success\n");
