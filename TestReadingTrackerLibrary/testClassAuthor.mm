@@ -288,4 +288,26 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor3.PrintJson() == R"({"authorId":"268","name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"bookId":"4735c0","isbn":[],"oclc":[],"author":["3rd"],"authorId":["268"],"title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"bookId":"474dd0","isbn":[],"oclc":[],"author":["3rd"],"authorId":["268"],"title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
 }
 
+- (void)test_GetUpdateFunction_PassStringAuthor_ReturnPointerToAuthorFunction {
+    rtl::Author testAuthor("testName", "2000-Jan-01");
+    
+    rtl::SetsPtr returnFunction = testAuthor.GetUpdateFunction("Author");
+    
+    XCTAssert(returnFunction == &rtl::Author::SetName);
+    
+    XCTAssert(std::invoke(returnFunction, testAuthor, "newName"));
+    XCTAssert(testAuthor.GetName() == "newName");
+}
+
+- (void)test_GetUpdateFunction_PassStringDateBorn_ReturnPointerToAuthorFunction {
+    rtl::Author testAuthor("testName", "2000-Jan-01");
+    
+    rtl::SetsPtr returnFunction = testAuthor.GetUpdateFunction("Date Born");
+    
+    XCTAssert(returnFunction == static_cast<rtl::SetsPtr>(&rtl::Author::SetDateBorn));
+    
+    XCTAssert(std::invoke(returnFunction, testAuthor, "2020-Apr-15"));
+    XCTAssert(testAuthor.PrintDateBorn() == "2020-Apr-15");
+}
+
 @end

@@ -223,14 +223,14 @@ void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& out
             rtl::CommandLine::OutputLine(outputStream, (*it)->PrintDetailed());
             rtl::CommandLine::OutputLine(outputStream, "Enter the name of the record you would like to update, else press enter");
             std::string updateRecord = rtl::CommandLine::GetInput(inputStream);
-            rtl::SetsPtr testPtr = (*it)->GetUpdateFunction(updateRecord);
-            if (testPtr == nullptr) {
+            rtl::SetsPtr updatePtr = (*it)->GetUpdateFunction(updateRecord);
+            if (updatePtr == nullptr) {
                 rtl::CommandLine::OutputLine(outputStream, "Field not entered correctly or field not allowed to be changed");
             }
             else {
                 rtl::CommandLine::OutputLine(outputStream, "Enter the updated field:");
                 std::string newRecord = rtl::CommandLine::GetInput(inputStream);
-                if (std::invoke(testPtr, *it, newRecord)) {
+                if (std::invoke(updatePtr, *it, newRecord)) {
                     rtl::CommandLine::OutputLine(outputStream, "Update Success");
                 }
                 else {
