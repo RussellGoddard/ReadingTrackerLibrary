@@ -413,4 +413,83 @@
     XCTAssert(testBook.GetAuthorsString() == "test author1, test author2");
 }
 
+- (void)test_GetUpdateFunction_PassStringSeries_ReturnPointerToSetSeries {
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("Series");
+    
+    XCTAssert(returnFunction == &rtl::Book::SetSeries);
+    
+    XCTAssert(std::invoke(returnFunction, testBook, "newSeries"));
+    XCTAssert(testBook.GetSeries() == "newSeries");
+}
+
+- (void)test_GetUpdateFunction_PassStringGenre_ReturnPointerToSetGenre {
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("Genre");
+    
+    XCTAssert(returnFunction == static_cast<rtl::SetsPtr>(&rtl::Book::SetGenre));
+    
+    XCTAssert(std::invoke(returnFunction, testBook, "romance"));
+    XCTAssert(testBook.GetGenre() == rtl::Genre::romance);
+}
+
+- (void)test_GetUpdateFunction_PassStringPageCount_ReturnPointerToSetPageCount {
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("Page Count");
+    
+    XCTAssert(returnFunction == static_cast<rtl::SetsPtr>(&rtl::Book::SetPageCount));
+    
+    XCTAssert(std::invoke(returnFunction, testBook, "22"));
+    XCTAssert(testBook.GetPageCount() == 22);
+}
+
+- (void)test_GetUpdateFunction_PassStringPublisher_ReturnPointerToSetPublisher {
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("Publisher");
+    
+    XCTAssert(returnFunction == &rtl::Book::SetPublisher);
+    
+    XCTAssert(std::invoke(returnFunction, testBook, "newPub"));
+    XCTAssert(testBook.GetPublisher() == "newPub");
+}
+
+- (void)test_GetUpdateFunction_PassStringPublishDate_ReturnPointerToSetPublishDate {
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("Publish Date");
+    
+    XCTAssert(returnFunction == static_cast<rtl::SetsPtr>(&rtl::Book::SetPublishDate));
+    
+    XCTAssert(std::invoke(returnFunction, testBook, "2020-Apr-15"));
+    XCTAssert(testBook.PrintPublishDate() == "2020-Apr-15");
+}
+
+- (void)test_GetUpdateFunction_PassStringIsbn_ReturnPointerToAddIsbn {
+    rtl::Book testBook("testAuthor", "testTitle");
+
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("ISBN");
+    
+    XCTAssert(returnFunction == &rtl::Book::AddIsbn);
+    
+    XCTAssert(std::invoke(returnFunction, testBook, "1234567890"));
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn()[0] == "1234567890");
+}
+
+- (void)test_GetUpdateFunction_PassStringOclc_ReturnPointerToAddOclc {
+    rtl::Book testBook("testAuthor", "testTitle");
+
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("OCLC");
+    
+    XCTAssert(returnFunction == &rtl::Book::AddOclc);
+    
+    XCTAssert(std::invoke(returnFunction, testBook, "123456"));
+    XCTAssert(testBook.GetOclc().size() == 1);
+    XCTAssert(testBook.GetOclc()[0] == "123456");
+}
+
 @end
