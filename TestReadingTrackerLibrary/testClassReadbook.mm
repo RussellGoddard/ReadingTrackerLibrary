@@ -340,4 +340,26 @@ int testReaderId = 1;
     XCTAssert(testReadBook1.PrintJson() == jsonString);
 }
 
+- (void)test_GetUpdateFunction_PassStringRating_ReturnPointerToSetRating {
+    rtl::ReadBook testReadBook(123, "testAuthor", "testTitle");
+    
+    rtl::SetsPtr returnFunction = testReadBook.GetUpdateFunction("Rating");
+    
+    XCTAssert(returnFunction == static_cast<rtl::SetsPtr>(&rtl::ReadBook::SetRating));
+    
+    XCTAssert(std::invoke(returnFunction, testReadBook, "9"));
+    XCTAssert(testReadBook.GetRating() == 9);
+}
+
+- (void)test_GetUpdateFunction_PassStringDateRead_ReturnPointerToSetDateRead {
+    rtl::ReadBook testReadBook(123, "testAuthor", "testTitle");
+    
+    rtl::SetsPtr returnFunction = testReadBook.GetUpdateFunction("Date Read");
+    
+    XCTAssert(returnFunction == static_cast<rtl::SetsPtr>(&rtl::ReadBook::SetDateRead));
+    
+    XCTAssert(std::invoke(returnFunction, testReadBook, "2020-Apr-16"));
+    XCTAssert(testReadBook.PrintDateRead() == "2020-Apr-16");
+}
+
 @end
