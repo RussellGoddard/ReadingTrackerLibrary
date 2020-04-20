@@ -285,6 +285,50 @@
     XCTAssert(testReadBook.GetOclc().at(0) == "19723327");
 }
 
+- (void)test_GetNewBook_ByTitle_PassInvalidDate_OutputErrorMessageAndReadBookReadDateIsEmpty {
+    std::stringstream inputSs, outputSs;
+    inputSs.str("The Eye of the World\n199-123-ab\n9\n");
+    
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
+    
+    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.PrintDateRead() == "");
+    XCTAssert(testReadBook.GetRating() == 9);
+    XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
+    XCTAssert(testReadBook.GetTitle() == "The Eye of the World");
+    XCTAssert(testReadBook.GetPublisher() == "Tor Publishing");
+    XCTAssert(testReadBook.GetSeries() == "The Wheel of Time");
+    XCTAssert(testReadBook.GetGenre() == rtl::Genre::genreNotSet);
+    XCTAssert(testReadBook.PrintPublishDate() == "1990-Jan-15");
+    XCTAssert(testReadBook.GetPageCount() == -1);
+    XCTAssert(testReadBook.GetIsbn().size() == 1);
+    XCTAssert(testReadBook.GetIsbn().at(0) == "9780765324887");
+    XCTAssert(testReadBook.GetOclc().size() == 1);
+    XCTAssert(testReadBook.GetOclc().at(0) == "19723327");
+}
+
+- (void)test_GetNewBook_ByTitle_PassRating_ReadBookReadDateIsEmpty {
+    std::stringstream inputSs, outputSs;
+    inputSs.str("The Eye of the World\n199-123-ab\n9\n");
+    
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
+    
+    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.PrintDateRead() == "");
+    XCTAssert(testReadBook.GetRating() == 9);
+    XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
+    XCTAssert(testReadBook.GetTitle() == "The Eye of the World");
+    XCTAssert(testReadBook.GetPublisher() == "Tor Publishing");
+    XCTAssert(testReadBook.GetSeries() == "The Wheel of Time");
+    XCTAssert(testReadBook.GetGenre() == rtl::Genre::genreNotSet);
+    XCTAssert(testReadBook.PrintPublishDate() == "1990-Jan-15");
+    XCTAssert(testReadBook.GetPageCount() == -1);
+    XCTAssert(testReadBook.GetIsbn().size() == 1);
+    XCTAssert(testReadBook.GetIsbn().at(0) == "9780765324887");
+    XCTAssert(testReadBook.GetOclc().size() == 1);
+    XCTAssert(testReadBook.GetOclc().at(0) == "19723327");
+}
+
 //TODO: logging when this happens
 /*
 - (void)testGetNewReadBookInvalidInputMode {

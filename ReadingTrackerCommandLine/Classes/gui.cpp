@@ -59,6 +59,7 @@ rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostre
 }
 */
 
+//TODO: validation on inputs
 rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode) {
     std::vector<std::string> author;
     std::vector<std::string> isbn;
