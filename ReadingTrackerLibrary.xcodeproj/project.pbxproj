@@ -16,6 +16,7 @@
 		DE7132D2243948A8004145F8 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
 		DE7132E424394B61004145F8 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132DF24394B27004145F8 /* libboost_thread-mt.dylib */; };
 		DE7132E524394E0B004145F8 /* libboost_log_setup-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CC24394856004145F8 /* libboost_log_setup-mt.dylib */; };
+		DE72CA10244E12DF00F42017 /* testServerMethods.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE72CA0F244E12DF00F42017 /* testServerMethods.mm */; };
 		DE73B57A244B917300A94C05 /* gui.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE9504D32374EF2200FF97A4 /* gui.hpp */; };
 		DE73B57B244B918400A94C05 /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE9504D52374EF2200FF97A4 /* gui.cpp */; };
 		DE7AC02A238B73DB00292006 /* testFileMethods.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE7AC029238B73DB00292006 /* testFileMethods.mm */; };
@@ -127,6 +128,7 @@
 		DE7132DD24394B27004145F8 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = ../../../../usr/local/lib/libboost_thread.a; sourceTree = "<group>"; };
 		DE7132DE24394B27004145F8 /* libboost_thread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_thread.dylib; path = ../../../../usr/local/lib/libboost_thread.dylib; sourceTree = "<group>"; };
 		DE7132DF24394B27004145F8 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "../../../../usr/local/Cellar/boost/1.72.0/lib/libboost_thread-mt.dylib"; sourceTree = "<group>"; };
+		DE72CA0F244E12DF00F42017 /* testServerMethods.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testServerMethods.mm; sourceTree = "<group>"; };
 		DE7AC029238B73DB00292006 /* testFileMethods.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testFileMethods.mm; sourceTree = "<group>"; };
 		DE7C1676242A390700CFD799 /* StandardOutput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StandardOutput.hpp; sourceTree = "<group>"; };
 		DE9504A22374EAE300FF97A4 /* libReadingTrackerLibrary.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libReadingTrackerLibrary.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -673,6 +675,7 @@
 		DE9505022374F5B100FF97A4 /* TestReadingTrackerLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				DE72CA0F244E12DF00F42017 /* testServerMethods.mm */,
 				DEF48778242CE5BE000D1A2B /* testCommandLineHelpers.mm */,
 				DEEAC6362426ADF600D970C9 /* testJsonHelper.mm */,
 				DEEAC62A2425337A00D970C9 /* testHelperFunctions.mm */,
@@ -1708,6 +1711,7 @@
 				DE95050D2374F61C00FF97A4 /* testClassBook.mm in Sources */,
 				DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */,
 				DEEAC6372426ADF600D970C9 /* testJsonHelper.mm in Sources */,
+				DE72CA10244E12DF00F42017 /* testServerMethods.mm in Sources */,
 				DEF48779242CE5BE000D1A2B /* testCommandLineHelpers.mm in Sources */,
 				DE989E8323F4F94700D3C424 /* testGui.mm in Sources */,
 				DE3CEE2C237F76F20043B169 /* testClassAuthor.mm in Sources */,
