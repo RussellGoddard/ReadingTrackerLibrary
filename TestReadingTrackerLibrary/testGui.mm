@@ -292,6 +292,7 @@
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
     
     XCTAssert(testReadBook.GetReaderId() == 123);
+    std::string testStr = testReadBook.PrintDateRead();
     XCTAssert(testReadBook.PrintDateRead() == "");
     XCTAssert(testReadBook.GetRating() == 9);
     XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
@@ -307,15 +308,15 @@
     XCTAssert(testReadBook.GetOclc().at(0) == "19723327");
 }
 
-- (void)test_GetNewBook_ByTitle_PassRating_ReadBookReadDateIsEmpty {
+- (void)test_GetNewBook_ByTitle_PassInvalidRating_ReadBookRatingIsNeg1 {
     std::stringstream inputSs, outputSs;
-    inputSs.str("The Eye of the World\n199-123-ab\n9\n");
+    inputSs.str("The Eye of the World\n1999-Oct-02\nab\n");
     
     rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
     
     XCTAssert(testReadBook.GetReaderId() == 123);
-    XCTAssert(testReadBook.PrintDateRead() == "");
-    XCTAssert(testReadBook.GetRating() == 9);
+    XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
+    XCTAssert(testReadBook.GetRating() == -1);
     XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
     XCTAssert(testReadBook.GetTitle() == "The Eye of the World");
     XCTAssert(testReadBook.GetPublisher() == "Tor Publishing");

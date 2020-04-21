@@ -104,16 +104,30 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor2.GetAuthorId() == "2404");
 }
 
-- (void)test_OperatorEquals {
+- (void)test_OperatorEquals_PassAuthorsWithBirthdate_ReturnTrue {
     rtl::Author testAuthor1("testAuthor1", "1990-Dec-01");
     rtl::Author testAuthor2("testAuthor1", "1990-Dec-01");
     
     XCTAssert(testAuthor1 == testAuthor2);
 }
 
-- (void)test_OperatorNotEquals {
+- (void)test_OperatorEquals_PassAuthorWithoutBirthdate_ReturnTrue {
+    rtl::Author testAuthor1("testAuthor1", "1990-Dec-01");
+    rtl::Author testAuthor2("testAuthor1");
+    
+    XCTAssert(testAuthor1 == testAuthor2);
+}
+
+- (void)test_OperatorNotEquals_PassAuthorsDifferentNames_ReturnTrue {
     rtl::Author testAuthor1("testAuthor1", "1990-Dec-01");
     rtl::Author testAuthor2("testAuthor2", "1990-Dec-01");
+    
+    XCTAssert(testAuthor1 != testAuthor2);
+}
+
+- (void)test_OperatorNotEquals_PassAuthorsDifferentBirthdays_ReturnFalse {
+    rtl::Author testAuthor1("testAuthor1", "1990-Dec-01");
+    rtl::Author testAuthor2("testAuthor2", "1990-Dec-02");
     
     XCTAssert(testAuthor1 != testAuthor2);
 }

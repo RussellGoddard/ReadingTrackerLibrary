@@ -85,8 +85,16 @@ boost::posix_time::ptime rtl::ReadBook::GetDateReadAsPosixTime() {
 }
 
 std::string rtl::ReadBook::PrintDateRead() const {
-    auto returnDate = boost::gregorian::date_from_tm(this->dateRead);
-    return boost::gregorian::to_simple_string(returnDate);
+    try {
+        auto returnDate = boost::gregorian::date_from_tm(this->dateRead);
+        return boost::gregorian::to_simple_string(returnDate);
+    }
+    catch (std::exception ex) {
+        std::string exceptionMessage = ex.what();
+        exceptionMessage += " failed to convert this struct tm to boost::gregorian::date";
+        BOOST_LOG_TRIVIAL(error) << exceptionMessage;
+        return "";
+    }
 }
 
 int rtl::ReadBook::GetRating() const {

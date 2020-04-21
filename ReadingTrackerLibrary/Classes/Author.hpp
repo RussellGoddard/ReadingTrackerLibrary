@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <ctime>
 #include <string>
+#include <unordered_map>
 #include <vector>
 #include "HelperFunctions.hpp"
 #include "Logger.hpp"

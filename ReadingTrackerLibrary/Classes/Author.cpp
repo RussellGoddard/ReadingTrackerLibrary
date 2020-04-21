@@ -33,14 +33,12 @@ bool rtl::Author::SetDateBorn(std::string dateBorn) {
 }
 
 bool rtl::Author::AddBookWritten(std::shared_ptr<rtl::Book> book) {
-    //TODO: add false path
     this->booksWritten.push_back(book);
     rtl::SortUnique(this->booksWritten);
     return true;
 }
 
 bool rtl::Author::AddBookWritten(std::vector<std::shared_ptr<rtl::Book>> books) {
-    //TODO: false path
     this->booksWritten.insert(std::end(this->booksWritten), std::begin(books), std::end(books));
     rtl::SortUnique(this->booksWritten);
     return true;

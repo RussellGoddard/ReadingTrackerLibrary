@@ -23,7 +23,7 @@
 }
 
 - (void)test_Dynamodb {
-    testDyanamodb(2, 'name');
+    //testDyanamodb(2, 'name');
 }
 
 @end

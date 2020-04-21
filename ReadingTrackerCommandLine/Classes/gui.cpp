@@ -191,8 +191,16 @@ rtl::ReadBook rtl::CommandLine::GetNewReadBook(std::istream& inputStream, std::o
     std::string dateFinished = GetInput(inputStream);
     OutputLine(outputStream, "On a scale of 1 - 10 rate the book");
     std::string rating = GetInput(inputStream);
+    int intRating = -1;
+    try {
+        intRating = stoi(rating);
+    }
+    catch(std::invalid_argument& ex) {
+        BOOST_LOG_TRIVIAL(warning) << ex.what();
+        rating = "-1";
+    }
     
-    return rtl::ReadBook(readerId, newBook, stoi(rating), dateFinished);
+    return rtl::ReadBook(readerId, newBook, intRating, dateFinished);
 }
 
 //resets istream, ostream, and input
