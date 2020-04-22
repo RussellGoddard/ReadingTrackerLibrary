@@ -40,6 +40,18 @@
     XCTAssert(rtl::StandardOutput::GenerateId(test7) == "7bc75959ace9d2a0");
 }
 
+- (void)test_RemoveNonPrintChar_PassInvalidCharacters_ReturnOnlyValidString {
+    std::string test1 = "\nhi\n";
+    std::string test2 = "\a\b\t\n\v\f\r\e";
+    std::string test3 = "The Quick Brown Fox Jumped Over The Lazy Moon";
+    std::string test4 = "1 2 3 456 7 8 90";
+    
+    XCTAssert(rtl::StandardOutput::RemoveNonPrint(test1) == "hi");
+    XCTAssert(rtl::StandardOutput::RemoveNonPrint(test2) == "");
+    XCTAssert(rtl::StandardOutput::RemoveNonPrint(test3) == "The Quick Brown Fox Jumped Over The Lazy Moon");
+    XCTAssert(rtl::StandardOutput::RemoveNonPrint(test4) == "1 2 3 456 7 8 90");
+}
+
 - (void)test_Trim {
     std::string test1 = "test1";
     std::string test2 = "   test2";

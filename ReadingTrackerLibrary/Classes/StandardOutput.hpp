@@ -10,6 +10,10 @@
 #define StandardOutput_hpp
 
 #include <string>
+#include <algorithm>
+#include <string>
+#include <iostream>
+#include <cctype>
 
 //below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost
 // save diagnostic state
@@ -73,6 +77,11 @@ class StandardOutput;
             ss << std::hex <<  id;
             
             return ss.str();
+        }
+        
+        static std::string& RemoveNonPrint(std::string& input) {
+            input.erase(std::remove_if(std::begin(input), std::end(input), ::iscntrl), std::end(input));
+            return input;
         }
     };
 
