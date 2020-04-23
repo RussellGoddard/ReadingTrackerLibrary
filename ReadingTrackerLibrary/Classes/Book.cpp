@@ -96,14 +96,41 @@ std::string rtl::Book::PrintPublishDate() const {
     return boost::gregorian::to_simple_string(returnDate);
 }
 
-//TODO: validation
+bool rtl::Book::AddAuthor(std::string author) {
+    rtl::Book::RemoveNonPrint(author);
+    if (author.empty()) {
+        return false;
+    }
+
+    this->authors.push_back(author);
+    return true;
+}
+
+bool rtl::Book::SetTitle(std::string title) {
+    rtl::Book::RemoveNonPrint(title);
+    if (title.empty()) {
+        return false;
+    }
+    
+    this->title = title;
+    return true;
+}
+
 bool rtl::Book::SetSeries(std::string series) {
+    rtl::Book::RemoveNonPrint(series);
+    if (series.empty()) {
+        return false;
+    }
+    
     this->series = series;
     return true;
 }
 
-//TODO: validation
 bool rtl::Book::SetPublisher(std::string publisher) {
+    rtl::Book::RemoveNonPrint(publisher);
+    if (publisher.empty()) {
+        return false;
+    }
     this->publisher = publisher;
     return true;
 }
@@ -163,6 +190,11 @@ bool rtl::Book::SetGenre(Genre genre) {
 }
 
 bool rtl::Book::SetGenre(std::string genre) {
+    rtl::Book::RemoveNonPrint(genre);
+    if (genre.empty()) {
+        return false;
+    }
+    
     rtl::Genre newGenre = ConvertStringToGenre(genre);
     
     if (newGenre == rtl::Genre::genreNotSet) {
@@ -179,6 +211,11 @@ bool rtl::Book::SetPublishDate(boost::posix_time::ptime publishDate) {
 }
 
 bool rtl::Book::SetPublishDate(std::string publishDate) {
+    rtl::Book::RemoveNonPrint(publishDate);
+    if (publishDate.empty()) {
+        return false;
+    }
+    
     try {
         auto d = boost::gregorian::from_string(publishDate);
         this->publishDate = boost::gregorian::to_tm(d);
@@ -192,14 +229,24 @@ bool rtl::Book::SetPublishDate(std::string publishDate) {
     return true;
 }
 
-//TODO: validation
+//TODO: oclc validation
 bool rtl::Book::AddOclc(std::string oclc) {
+    rtl::Book::RemoveNonPrint(oclc);
+    if (oclc.empty()) {
+        return false;
+    }
+    
     this->oclcVector.push_back(oclc);
     return true;
 }
 
 //TODO: better validation of ISBN
 bool rtl::Book::AddIsbn(std::string isbn) {
+    rtl::Book::RemoveNonPrint(isbn);
+    if (isbn.empty()) {
+        return false;
+    }
+    
     auto isbnEnd = std::remove_if(std::begin(isbn), std::end(isbn), [&](auto x){ return (x == '-'); });
     isbn.erase(isbnEnd, isbn.end());
     for (auto x : isbn) {
@@ -381,8 +428,12 @@ std::string rtl::Book::PrintHeader() const {
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, boost::posix_time::ptime publishDate) {
-    this->authors = {author};
-    this->title = title;
+    if (!this->AddAuthor(author)) {
+        //TODO: create exception
+    }
+    if (!this->SetTitle(title)) {
+        //TODO: create exception
+    }
     this->SetSeries(series);
     this->SetPublisher(publisher);
     this->SetPageCount(pageCount);
@@ -397,8 +448,14 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
 }
 
 rtl::Book::Book(std::vector<std::string> author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, boost::posix_time::ptime publishDate) {
-    this->authors = author;
-    this->title = title;
+    for (auto x : author) {
+        if (!this->AddAuthor(x)) {
+            //TODO: create exception
+        }
+    }
+    if (!this->SetTitle(title)) {
+        //TODO: create exception
+    }
     this->SetSeries(series);
     this->SetPublisher(publisher);
     this->SetPageCount(pageCount);
@@ -413,8 +470,12 @@ rtl::Book::Book(std::vector<std::string> author, std::string title, std::string 
 }
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate) {
-    this->authors = {author};
-    this->title = title;
+    if (!this->AddAuthor(author)) {
+        //TODO: create exception
+    }
+    if (!this->SetTitle(title)) {
+        //TODO: create exception
+    }
     this->SetSeries(series);
     this->SetPublisher(publisher);
     this->SetPageCount(pageCount);
@@ -427,8 +488,14 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
 }
 
 rtl::Book::Book(std::vector<std::string> authors, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc) {
-    this->authors = authors;
-    this->title = title;
+    for (auto x : authors) {
+        if (!this->AddAuthor(x)) {
+            //TODO: create exception
+        }
+    }
+    if (!this->SetTitle(title)) {
+        //TODO: create exception
+    }
     this->SetSeries(series);
     this->SetPublisher(publisher);
     this->SetPageCount(pageCount);

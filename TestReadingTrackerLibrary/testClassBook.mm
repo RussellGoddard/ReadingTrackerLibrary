@@ -50,8 +50,7 @@
     std::string publisher = "testPublisher";
     rtl::Book testBook("testAuthor", "testTitle");
     
-    //SetPublisher returns a bool based on success
-    XCTAssert(testBook.SetPublisher(publisher));
+    XCTAssert(testBook.SetPublisher(publisher) == true);
     
     XCTAssert(testBook.GetPublisher() == publisher);
 }
@@ -490,6 +489,104 @@
     XCTAssert(std::invoke(returnFunction, testBook, "123456"));
     XCTAssert(testBook.GetOclc().size() == 1);
     XCTAssert(testBook.GetOclc()[0] == "123456");
+}
+
+- (void)test_SetSeries_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\ntestSeries\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetSeries(test) == true);
+    
+    XCTAssert(testBook.GetSeries() == "testSeries");
+}
+
+- (void)test_SetSeries_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetSeries(test) == false);
+}
+
+- (void)test_SetPublisher_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\ntestPublisher\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetPublisher(test) == true);
+    
+    XCTAssert(testBook.GetPublisher() == "testPublisher");
+}
+
+- (void)test_SetPublisher_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetPublisher(test) == false);
+}
+
+- (void)test_SetGenre_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\nthriller\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetGenre(test) == true);
+    
+    XCTAssert(testBook.GetGenre() == rtl::Genre::thriller);
+}
+
+- (void)test_SetGenre_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetGenre(test) == false);
+}
+
+- (void)test_SetPublishDate_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\n1990-Apr-01\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetPublishDate(test) == true);
+    
+    XCTAssert(testBook.PrintPublishDate() == "1990-Apr-01");
+}
+
+- (void)test_SetPublishDate_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetPublishDate(test) == false);
+}
+
+- (void)test_SetOclc_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\n123456\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.AddOclc(test) == true);
+    
+    XCTAssert(testBook.GetOclc().size() == 1);
+    XCTAssert(testBook.GetOclc()[0] == "123456");
+}
+
+- (void)test_SetOclc_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.AddOclc(test) == false);
+}
+
+- (void)test_SetIsbn_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\n1234567890\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.AddIsbn(test) == true);
+    
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn()[0] == "1234567890");
+}
+
+- (void)test_SetIsbn_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::Book testBook("testAuthor", "testTitle");
+    
+    XCTAssert(testBook.AddIsbn(test) == false);
 }
 
 @end

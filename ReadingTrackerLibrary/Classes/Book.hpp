@@ -79,6 +79,9 @@ namespace rtl {
         Book(std::vector<std::string> authors, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn = {}, std::vector<std::string> oclc = {});
         
     private:
+        bool AddAuthor(std::string author);
+        bool SetTitle(std::string title);
+        
         std::string bookId = "";
         std::vector<std::string> isbnVector;
         std::vector<std::string> oclcVector;
