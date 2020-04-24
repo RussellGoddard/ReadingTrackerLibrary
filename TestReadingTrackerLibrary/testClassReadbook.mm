@@ -362,4 +362,36 @@ int testReaderId = 1;
     XCTAssert(testReadBook.PrintDateRead() == "2020-Apr-16");
 }
 
+- (void)test_SetDateRead_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\n1990-Apr-01\n";
+    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetDateRead(test) == true);
+    
+    XCTAssert(testBook.PrintDateRead() == "1990-Apr-01");
+}
+
+- (void)test_SetDateRead_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetDateRead(test) == false);
+}
+
+- (void)test_SetRating_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\n9\n";
+    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetRating(test) == true);
+    
+    XCTAssert(testBook.GetRating() == 9);
+}
+
+- (void)test_SetRating_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    
+    XCTAssert(testBook.SetRating(test) == false);
+}
+
 @end

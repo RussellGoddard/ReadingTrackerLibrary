@@ -36,7 +36,6 @@ namespace rtl {
 
     class Author : public StandardOutput {
     public:
-        bool SetName(std::string name);
         bool SetDateBorn(boost::posix_time::ptime dateBorn);
         bool SetDateBorn(std::string dateBorn);
         bool AddBookWritten(std::shared_ptr<rtl::Book> book);
@@ -58,6 +57,7 @@ namespace rtl {
         Author(std::string name, boost::posix_time::ptime dateBorn = defaultDateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
         Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
     private:
+        bool SetName(std::string name);
         std::string authorId;
         std::string name;
         struct tm dateBorn;

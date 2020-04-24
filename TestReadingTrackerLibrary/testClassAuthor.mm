@@ -31,13 +31,6 @@ std::shared_ptr<rtl::Book> testBook2;
     bookCollection.clear();
 }
 
-- (void)test_SetName_ReturnPassedString {
-    rtl::Author testAuthor("testAuthor");
-    XCTAssert(testAuthor.GetName() == "testAuthor");
-    XCTAssert(testAuthor.SetName("pickle"));
-    XCTAssert(testAuthor.GetName() == "pickle");
-}
-
 - (void)test_SetDateBornPosixTime_ReturnPosixTime {
     rtl::Author testAuthor("testAuthor");
     boost::posix_time::ptime testValue(boost::date_time::min_date_time);
@@ -138,19 +131,18 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(testAuthor1 < testAuthor2);
     
-    testAuthor1.SetName("chris test");
+    rtl::Author testAuthor3("chris test", "1990-Dec-01");
     
-    XCTAssert(testAuthor2 < testAuthor1);
+    XCTAssert(testAuthor2 < testAuthor3);
     
-    testAuthor2.SetName("Laura Winner");
+    rtl::Author testAuthor4("Laura Winner", "1990-Dec-01");
     
-    XCTAssert(testAuthor1 < testAuthor2);
+    XCTAssert(testAuthor3 < testAuthor4);
     
-    testAuthor1.SetName("a");
-    testAuthor2.SetName("a");
-    testAuthor1.SetDateBorn("1990-Dec-02");
+    rtl::Author testAuthor5("a", "1990-Dec-02");
+    rtl::Author testAuthor6("a", "1990-Dec-01");
     
-    XCTAssert(testAuthor2 < testAuthor1);
+    XCTAssert(testAuthor6 < testAuthor5);
 }
 
 - (void)test_OperatorLessThanEquals {
@@ -159,22 +151,22 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(testAuthor1 <= testAuthor2);
     
-    testAuthor1.SetName("chris test");
+    rtl::Author testAuthor3("chris test", "1990-Dec-01");
     
-    XCTAssert(testAuthor2 <= testAuthor1);
+    XCTAssert(testAuthor2 <= testAuthor3);
     
-    testAuthor2.SetName("Laura Winner");
+    rtl::Author testAuthor4("Laura Winner", "1990-Dec-01");
     
-    XCTAssert(testAuthor1 <= testAuthor2);
+    XCTAssert(testAuthor3 <= testAuthor4);
     
-    testAuthor1.SetName("a");
-    testAuthor2.SetName("a");
+    rtl::Author testAuthor5("a", "1990-Dec-02");
+    rtl::Author testAuthor6("a", "1990-Dec-01");
     
-    XCTAssert(testAuthor2 <= testAuthor1);
+    XCTAssert(testAuthor6 <= testAuthor5);
     
-    testAuthor2.SetDateBorn("1990-Dec-02");
+    testAuthor6.SetDateBorn("1990-Dec-02");
     
-    XCTAssert(testAuthor1 <= testAuthor2);
+    XCTAssert(testAuthor5 <= testAuthor6);
 }
 
 - (void)test_OperatorGreaterThan {
@@ -183,19 +175,16 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(testAuthor2 > testAuthor1);
     
-    testAuthor1.SetName("chris test");
+    rtl::Author testAuthor3("chris test", "1990-Dec-01");
+    XCTAssert(testAuthor3 > testAuthor2);
     
-    XCTAssert(testAuthor1 > testAuthor2);
+    rtl::Author testAuthor4("Laura Winner", "1990-Dec-01");
+    XCTAssert(testAuthor4 > testAuthor3);
     
-    testAuthor2.SetName("Laura Winner");
+    rtl::Author testAuthor5("a", "1990-Dec-02");
+    rtl::Author testAuthor6("a", "1990-Dec-01");
     
-    XCTAssert(testAuthor2 > testAuthor1);
-    
-    testAuthor1.SetName("a");
-    testAuthor2.SetName("a");
-    testAuthor1.SetDateBorn("1990-Dec-02");
-    
-    XCTAssert(testAuthor1 > testAuthor2);
+    XCTAssert(testAuthor5 > testAuthor6);
 }
 
 - (void)test_OperatorGreaterThanEquals {
@@ -204,22 +193,20 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(testAuthor2 >= testAuthor1);
     
-    testAuthor1.SetName("chris test");
+    rtl::Author testAuthor3("chris test", "1990-Dec-01");
+    XCTAssert(testAuthor3 >= testAuthor2);
     
-    XCTAssert(testAuthor1 >= testAuthor2);
+    rtl::Author testAuthor4("Laura Winner", "1990-Dec-01");
+    XCTAssert(testAuthor4 >= testAuthor3);
     
-    testAuthor2.SetName("Laura Winner");
+    rtl::Author testAuthor5("a", "1990-Dec-01");
+    rtl::Author testAuthor6("a", "1990-Dec-01");
     
-    XCTAssert(testAuthor2 >= testAuthor1);
+    XCTAssert(testAuthor5 >= testAuthor6);
     
-    testAuthor1.SetName("a");
-    testAuthor2.SetName("a");
+    testAuthor6.SetDateBorn("1990-Dec-02");
     
-    XCTAssert(testAuthor1 >= testAuthor2);
-    
-    testAuthor2.SetDateBorn("1990-Dec-02");
-    
-    XCTAssert(testAuthor2 >= testAuthor1);
+    XCTAssert(testAuthor6 >= testAuthor5);
 }
 
 - (void)test_PrintHeader {
@@ -302,17 +289,6 @@ std::shared_ptr<rtl::Book> testBook2;
     XCTAssert(testAuthor3.PrintJson() == R"({"authorId":"268","name":"3rd","dateBorn":"2000-Apr-01","booksWritten":[{"bookId":"4735c0","isbn":[],"oclc":[],"author":["3rd"],"authorId":["268"],"title":"testTitle1","series":"testSeries1","publisher":"testPublisher1","genre":"fantasy","pageCount":1,"publishDate":"1992-Nov-11"},{"bookId":"474dd0","isbn":[],"oclc":[],"author":["3rd"],"authorId":["268"],"title":"testTitle2","series":"testSeries2","publisher":"testPublisher2","genre":"western","pageCount":22,"publishDate":"2020-Nov-11"}]})");
 }
 
-- (void)test_GetUpdateFunction_PassStringAuthor_ReturnPointerToAuthorFunction {
-    rtl::Author testAuthor("testName", "2000-Jan-01");
-    
-    rtl::SetsPtr returnFunction = testAuthor.GetUpdateFunction("Author");
-    
-    XCTAssert(returnFunction == &rtl::Author::SetName);
-    
-    XCTAssert(std::invoke(returnFunction, testAuthor, "newName"));
-    XCTAssert(testAuthor.GetName() == "newName");
-}
-
 - (void)test_GetUpdateFunction_PassStringDateBorn_ReturnPointerToAuthorFunction {
     rtl::Author testAuthor("testName", "2000-Jan-01");
     
@@ -322,6 +298,22 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(std::invoke(returnFunction, testAuthor, "2020-Apr-15"));
     XCTAssert(testAuthor.PrintDateBorn() == "2020-Apr-15");
+}
+
+- (void)test_SetDateBorn_PassStringWithControlCharacters_ControlCharactersAreRemoved {
+    std::string test = "\n\n1890-Nov-12\n";
+    rtl::Author testAuthor("testAuthor");
+    
+    XCTAssert(testAuthor.SetDateBorn(test) == true);
+    
+    XCTAssert(testAuthor.PrintDateBorn() == "1890-Nov-12");
+}
+
+- (void)test_SetDateBorn_PassStringOnlyWithControlCharacters_ReturnFalse {
+    std::string test = "\n\n\t\t\n";
+    rtl::Author testAuthor("testAuthor");
+    
+    XCTAssert(testAuthor.SetDateBorn(test) == false);
 }
 
 @end

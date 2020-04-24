@@ -8,7 +8,11 @@
 #include "Author.hpp"
 
 bool rtl::Author::SetName(std::string name) {
-    //TODO: validation
+    rtl::Author::RemoveNonPrint(name);
+    if (name.empty()) {
+        return false;
+    }
+    
     this->name = name;
     return true;
 }
@@ -19,6 +23,11 @@ bool rtl::Author::SetDateBorn(boost::posix_time::ptime dateBorn) {
 }
 
 bool rtl::Author::SetDateBorn(std::string dateBorn) {
+    rtl::Author::RemoveNonPrint(dateBorn);
+    if (dateBorn.empty()) {
+        return false;
+    }
+    
     try {
         auto d = boost::gregorian::from_string(dateBorn);
         this->dateBorn = boost::gregorian::to_tm(d);
@@ -74,7 +83,7 @@ std::vector<std::shared_ptr<rtl::Book>> rtl::Author::GetBooksWritten() const {
 rtl::SetsPtr rtl::Author::GetUpdateFunction(std::string input) {
     //TODO: make case insensitive
     //TODO: message about not changing authorId, about adding books written
-    if (input == this->kAuthor) { return static_cast<rtl::SetsPtr>(&rtl::Author::SetName); }
+    if (input == this->kAuthor) { return nullptr; } //private function &rtl::Author::SetName
     else if (input == this->kAuthorId) { return nullptr; }
     else if (input == this->kDateBorn) { return static_cast<rtl::SetsPtr>(&rtl::Author::SetDateBorn); }
     else if (input == this->kBooksWritten) { return nullptr; }

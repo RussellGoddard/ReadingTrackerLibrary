@@ -15,6 +15,11 @@ bool rtl::ReadBook::SetDateRead(boost::posix_time::ptime time) {
 }
 
 bool rtl::ReadBook::SetDateRead(std::string time) {
+    rtl::ReadBook::RemoveNonPrint(time);
+    if (time.empty()) {
+        return false;
+    }
+    
     try {
         auto d = boost::gregorian::from_string(time);
         this->dateRead = boost::gregorian::to_tm(d);
@@ -57,6 +62,11 @@ bool rtl::ReadBook::SetRating(char rating) {
 
 //will attempt a stoi if it fails set rating to 0
 bool rtl::ReadBook::SetRating(std::string rating) {
+    rtl::ReadBook::RemoveNonPrint(rating);
+    if (rating.empty()) {
+        return false;
+    }
+    
     try {
         int newRating = std::stoi(rating);
         //rating cannot be less than 1 or greater than 10, if it is don't change anything
