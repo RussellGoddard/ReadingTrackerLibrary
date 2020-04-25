@@ -429,10 +429,10 @@ std::string rtl::Book::PrintHeader() const {
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, boost::posix_time::ptime publishDate) {
     if (!this->AddAuthor(author)) {
-        //TODO: create exception
+        throw std::invalid_argument("author cannot be empty");
     }
     if (!this->SetTitle(title)) {
-        //TODO: create exception
+        throw std::invalid_argument("title cannot be empty");
     }
     this->SetSeries(series);
     this->SetPublisher(publisher);
@@ -450,11 +450,11 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
 rtl::Book::Book(std::vector<std::string> author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, boost::posix_time::ptime publishDate) {
     for (auto x : author) {
         if (!this->AddAuthor(x)) {
-            //TODO: create exception
+            throw std::invalid_argument("author cannot be empty");
         }
     }
     if (!this->SetTitle(title)) {
-        //TODO: create exception
+        throw std::invalid_argument("title cannot be empty");
     }
     this->SetSeries(series);
     this->SetPublisher(publisher);
@@ -471,10 +471,10 @@ rtl::Book::Book(std::vector<std::string> author, std::string title, std::string 
 
 rtl::Book::Book(std::string author, std::string title, std::string series, std::string publisher, int pageCount, Genre genre, std::string publishDate) {
     if (!this->AddAuthor(author)) {
-        //TODO: create exception
+        throw std::invalid_argument("author cannot be empty");
     }
     if (!this->SetTitle(title)) {
-        //TODO: create exception
+        throw std::invalid_argument("title cannot be empty");
     }
     this->SetSeries(series);
     this->SetPublisher(publisher);
@@ -490,11 +490,11 @@ rtl::Book::Book(std::string author, std::string title, std::string series, std::
 rtl::Book::Book(std::vector<std::string> authors, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn, std::vector<std::string> oclc) {
     for (auto x : authors) {
         if (!this->AddAuthor(x)) {
-            //TODO: create exception
+            throw std::invalid_argument("author cannot be empty");
         }
     }
     if (!this->SetTitle(title)) {
-        //TODO: create exception
+        throw std::invalid_argument("title cannot be empty");
     }
     this->SetSeries(series);
     this->SetPublisher(publisher);

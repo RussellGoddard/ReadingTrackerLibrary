@@ -589,4 +589,112 @@
     XCTAssert(testBook.AddIsbn(test) == false);
 }
 
+- (void)test_BookConstructor1_PassInvalidAuthor_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    
+    try {
+        rtl::Book testBook("\n\n\t\t", "testTitle");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "author cannot be empty");
+}
+
+- (void)test_BookConstructor1_PassInvalidTitle_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    
+    try {
+        rtl::Book testBook("testAuthor", "");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "title cannot be empty");
+}
+
+- (void)test_BookConstructor2_PassInvalidAuthor_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    std::vector<std::string> authorVector = {"testAuthor", "\n\n\n\n"};
+    
+    try {
+        rtl::Book testBook(authorVector, "testTitle");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "author cannot be empty");
+}
+
+- (void)test_BookConstructor2_PassInvalidTitle_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    std::vector<std::string> authorVector = {"testAuthor1", "testAuthor2"};
+    
+    try {
+        rtl::Book testBook(authorVector, "");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "title cannot be empty");
+}
+
+- (void)test_BookConstructor3_PassInvalidAuthor_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    
+    try {
+        rtl::Book testBook("\n\n\t\t", "testTitle", "testSeries", "testPublisher", 10, rtl::Genre::western, "2000-Apr-10");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "author cannot be empty");
+}
+
+- (void)test_BookConstructor3_PassInvalidTitle_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    
+    try {
+        rtl::Book testBook("testAuthor", "\n\n\n", "testSeries", "testPublisher", 10, rtl::Genre::western, "2000-Apr-10");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "title cannot be empty");
+}
+
+- (void)test_BookConstructor4_PassInvalidAuthor_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    std::vector<std::string> authorVector = {"testAuthor", "\n\n\n\n"};
+    
+    try {
+        rtl::Book testBook(authorVector, "testTitle", "testSeries", "testPublisher", 20, "western", "2001-Oct-29");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "author cannot be empty");
+}
+
+- (void)test_BookConstructor4_PassInvalidTitle_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    std::vector<std::string> authorVector = {"testAuthor1", "testAuthor2"};
+    
+    try {
+        rtl::Book testBook(authorVector, "\n\n\n\n\n", "testSeries", "testPublisher", 20, "western", "2001-Oct-29");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "title cannot be empty");
+}
+
 @end
