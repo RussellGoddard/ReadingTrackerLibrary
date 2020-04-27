@@ -9,7 +9,7 @@
 #include "ServerMethods.hpp"
 
 int testDyanamodb(int argc, char** argv) {
-    /*
+    
     const std::string USAGE = "\n" \
         "Usage:\n"
         "    create_table <table> <optional:region>\n\n"
@@ -71,7 +71,6 @@ int testDyanamodb(int argc, char** argv) {
         // snippet-end:[dynamodb.cpp.create_table.code]
     }
     Aws::ShutdownAPI(options);
-     */
     return 0;
      
 }

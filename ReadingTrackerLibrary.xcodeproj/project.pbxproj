@@ -11,6 +11,8 @@
 		DE5FC262237CDD7400346E3E /* testClassReadbook.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE5FC261237CDD7400346E3E /* testClassReadbook.mm */; };
 		DE7069D82442352A0042045C /* ServerMethods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE7069D62442352A0042045C /* ServerMethods.cpp */; };
 		DE7069D92442352A0042045C /* ServerMethods.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7069D72442352A0042045C /* ServerMethods.hpp */; };
+		DE70CA5E245605A200CC0A44 /* libaws-cpp-sdk-core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE70C8B92456053E00CC0A44 /* libaws-cpp-sdk-core.dylib */; };
+		DE70CA5F245605BD00CC0A44 /* libaws-cpp-sdk-dynamodb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE70C9442456054500CC0A44 /* libaws-cpp-sdk-dynamodb.dylib */; };
 		DE7132BD243912AF004145F8 /* Logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DE7132BC243912AF004145F8 /* Logger.hpp */; };
 		DE7132C1243912AF004145F8 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE7132C0243912AF004145F8 /* Logger.cpp */; };
 		DE7132D2243948A8004145F8 /* libboost_log-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7132CA24394856004145F8 /* libboost_log-mt.dylib */; };
@@ -113,6 +115,237 @@
 		DE5FC261237CDD7400346E3E /* testClassReadbook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = testClassReadbook.mm; sourceTree = "<group>"; };
 		DE7069D62442352A0042045C /* ServerMethods.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ServerMethods.cpp; sourceTree = "<group>"; };
 		DE7069D72442352A0042045C /* ServerMethods.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ServerMethods.hpp; sourceTree = "<group>"; };
+		DE70C8902456052300CC0A44 /* libaws-cpp-sdk-s3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-s3.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-s3.dylib"; sourceTree = "<group>"; };
+		DE70C8922456053C00CC0A44 /* libaws-cpp-sdk-application-insights.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-application-insights.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-application-insights.dylib"; sourceTree = "<group>"; };
+		DE70C8932456053C00CC0A44 /* libaws-cpp-sdk-signer.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-signer.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-signer.dylib"; sourceTree = "<group>"; };
+		DE70C8942456053C00CC0A44 /* libaws-cpp-sdk-forecast.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-forecast.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-forecast.dylib"; sourceTree = "<group>"; };
+		DE70C8952456053C00CC0A44 /* libaws-cpp-sdk-accessanalyzer.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-accessanalyzer.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-accessanalyzer.dylib"; sourceTree = "<group>"; };
+		DE70C8962456053C00CC0A44 /* libaws-cpp-sdk-AWSMigrationHub.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-AWSMigrationHub.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-AWSMigrationHub.dylib"; sourceTree = "<group>"; };
+		DE70C8972456053C00CC0A44 /* libaws-cpp-sdk-fsx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-fsx.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-fsx.dylib"; sourceTree = "<group>"; };
+		DE70C8982456053C00CC0A44 /* libaws-cpp-sdk-cloudsearch.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloudsearch.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloudsearch.dylib"; sourceTree = "<group>"; };
+		DE70C8992456053C00CC0A44 /* libaws-cpp-sdk-frauddetector.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-frauddetector.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-frauddetector.dylib"; sourceTree = "<group>"; };
+		DE70C89A2456053C00CC0A44 /* libaws-cpp-sdk-globalaccelerator.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-globalaccelerator.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-globalaccelerator.dylib"; sourceTree = "<group>"; };
+		DE70C89B2456053C00CC0A44 /* libaws-cpp-sdk-importexport.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-importexport.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-importexport.dylib"; sourceTree = "<group>"; };
+		DE70C89C2456053C00CC0A44 /* libaws-cpp-sdk-mediatailor.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mediatailor.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mediatailor.dylib"; sourceTree = "<group>"; };
+		DE70C89D2456053C00CC0A44 /* libaws-cpp-sdk-kinesis-video-media.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kinesis-video-media.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kinesis-video-media.dylib"; sourceTree = "<group>"; };
+		DE70C89E2456053C00CC0A44 /* libaws-cpp-sdk-comprehend.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-comprehend.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-comprehend.dylib"; sourceTree = "<group>"; };
+		DE70C89F2456053C00CC0A44 /* libaws-cpp-sdk-mediapackage-vod.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mediapackage-vod.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mediapackage-vod.dylib"; sourceTree = "<group>"; };
+		DE70C8A02456053D00CC0A44 /* libaws-cpp-sdk-license-manager.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-license-manager.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-license-manager.dylib"; sourceTree = "<group>"; };
+		DE70C8A12456053D00CC0A44 /* libaws-cpp-sdk-codebuild.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codebuild.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codebuild.dylib"; sourceTree = "<group>"; };
+		DE70C8A22456053D00CC0A44 /* libaws-cpp-sdk-pi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-pi.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-pi.dylib"; sourceTree = "<group>"; };
+		DE70C8A32456053D00CC0A44 /* libaws-cpp-sdk-resourcegroupstaggingapi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-resourcegroupstaggingapi.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-resourcegroupstaggingapi.dylib"; sourceTree = "<group>"; };
+		DE70C8A42456053D00CC0A44 /* libaws-cpp-sdk-ecs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ecs.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ecs.dylib"; sourceTree = "<group>"; };
+		DE70C8A52456053D00CC0A44 /* libaws-cpp-sdk-marketplacecommerceanalytics.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-marketplacecommerceanalytics.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-marketplacecommerceanalytics.dylib"; sourceTree = "<group>"; };
+		DE70C8A62456053D00CC0A44 /* libaws-cpp-sdk-networkmanager.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-networkmanager.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-networkmanager.dylib"; sourceTree = "<group>"; };
+		DE70C8A72456053D00CC0A44 /* libaws-cpp-sdk-opsworkscm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-opsworkscm.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-opsworkscm.dylib"; sourceTree = "<group>"; };
+		DE70C8A82456053D00CC0A44 /* libaws-cpp-sdk-logs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-logs.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-logs.dylib"; sourceTree = "<group>"; };
+		DE70C8A92456053D00CC0A44 /* libaws-cpp-sdk-macie.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-macie.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-macie.dylib"; sourceTree = "<group>"; };
+		DE70C8AA2456053D00CC0A44 /* libaws-cpp-sdk-machinelearning.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-machinelearning.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-machinelearning.dylib"; sourceTree = "<group>"; };
+		DE70C8AB2456053D00CC0A44 /* libaws-cpp-sdk-guardduty.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-guardduty.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-guardduty.dylib"; sourceTree = "<group>"; };
+		DE70C8AC2456053D00CC0A44 /* libaws-cpp-sdk-workmail.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-workmail.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-workmail.dylib"; sourceTree = "<group>"; };
+		DE70C8AD2456053D00CC0A44 /* libaws-cpp-sdk-worklink.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-worklink.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-worklink.dylib"; sourceTree = "<group>"; };
+		DE70C8AE2456053D00CC0A44 /* libaws-cpp-sdk-savingsplans.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-savingsplans.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-savingsplans.dylib"; sourceTree = "<group>"; };
+		DE70C8AF2456053D00CC0A44 /* libaws-cpp-sdk-athena.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-athena.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-athena.dylib"; sourceTree = "<group>"; };
+		DE70C8B02456053D00CC0A44 /* libaws-cpp-sdk-devicefarm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-devicefarm.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-devicefarm.dylib"; sourceTree = "<group>"; };
+		DE70C8B12456053D00CC0A44 /* libaws-cpp-sdk-kinesis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kinesis.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kinesis.dylib"; sourceTree = "<group>"; };
+		DE70C8B22456053E00CC0A44 /* libaws-cpp-sdk-schemas.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-schemas.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-schemas.dylib"; sourceTree = "<group>"; };
+		DE70C8B32456053E00CC0A44 /* libaws-cpp-sdk-opsworks.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-opsworks.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-opsworks.dylib"; sourceTree = "<group>"; };
+		DE70C8B42456053E00CC0A44 /* libaws-cpp-sdk-config.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-config.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-config.dylib"; sourceTree = "<group>"; };
+		DE70C8B52456053E00CC0A44 /* libaws-cpp-sdk-appmesh.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-appmesh.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-appmesh.dylib"; sourceTree = "<group>"; };
+		DE70C8B62456053E00CC0A44 /* libaws-cpp-sdk-connect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-connect.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-connect.dylib"; sourceTree = "<group>"; };
+		DE70C8B72456053E00CC0A44 /* libaws-cpp-sdk-groundstation.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-groundstation.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-groundstation.dylib"; sourceTree = "<group>"; };
+		DE70C8B82456053E00CC0A44 /* libaws-cpp-sdk-email.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-email.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-email.dylib"; sourceTree = "<group>"; };
+		DE70C8B92456053E00CC0A44 /* libaws-cpp-sdk-core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-core.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-core.dylib"; sourceTree = "<group>"; };
+		DE70C8BA2456053E00CC0A44 /* libaws-cpp-sdk-managedblockchain.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-managedblockchain.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-managedblockchain.dylib"; sourceTree = "<group>"; };
+		DE70C8BB2456053E00CC0A44 /* libaws-cpp-sdk-connectparticipant.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-connectparticipant.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-connectparticipant.dylib"; sourceTree = "<group>"; };
+		DE70C8BC2456053E00CC0A44 /* libaws-cpp-sdk-waf-regional.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-waf-regional.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-waf-regional.dylib"; sourceTree = "<group>"; };
+		DE70C8BD2456053E00CC0A44 /* libaws-cpp-sdk-s3-encryption.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-s3-encryption.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-s3-encryption.dylib"; sourceTree = "<group>"; };
+		DE70C8BE2456053E00CC0A44 /* libaws-cpp-sdk-eks.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-eks.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-eks.dylib"; sourceTree = "<group>"; };
+		DE70C8BF2456053E00CC0A44 /* libaws-cpp-sdk-snowball.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-snowball.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-snowball.dylib"; sourceTree = "<group>"; };
+		DE70C8C02456053E00CC0A44 /* libaws-cpp-sdk-transcribe.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-transcribe.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-transcribe.dylib"; sourceTree = "<group>"; };
+		DE70C8C12456053E00CC0A44 /* libaws-cpp-sdk-codestar-notifications.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codestar-notifications.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codestar-notifications.dylib"; sourceTree = "<group>"; };
+		DE70C8C22456053E00CC0A44 /* libaws-c-event-stream.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-c-event-stream.1.0.0.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-c-event-stream.1.0.0.dylib"; sourceTree = "<group>"; };
+		DE70C8C32456053E00CC0A44 /* libaws-cpp-sdk-sso.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sso.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sso.dylib"; sourceTree = "<group>"; };
+		DE70C8C42456053E00CC0A44 /* libaws-cpp-sdk-text-to-speech.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-text-to-speech.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-text-to-speech.dylib"; sourceTree = "<group>"; };
+		DE70C8C52456053F00CC0A44 /* libaws-c-common.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-c-common.1.0.0.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-c-common.1.0.0.dylib"; sourceTree = "<group>"; };
+		DE70C8C62456053F00CC0A44 /* libaws-cpp-sdk-pinpoint-email.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-pinpoint-email.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-pinpoint-email.dylib"; sourceTree = "<group>"; };
+		DE70C8C72456053F00CC0A44 /* libaws-cpp-sdk-fms.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-fms.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-fms.dylib"; sourceTree = "<group>"; };
+		DE70C8C82456053F00CC0A44 /* libaws-cpp-sdk-compute-optimizer.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-compute-optimizer.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-compute-optimizer.dylib"; sourceTree = "<group>"; };
+		DE70C8C92456053F00CC0A44 /* libaws-cpp-sdk-es.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-es.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-es.dylib"; sourceTree = "<group>"; };
+		DE70C8CA2456053F00CC0A44 /* libaws-cpp-sdk-mobile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mobile.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mobile.dylib"; sourceTree = "<group>"; };
+		DE70C8CB2456053F00CC0A44 /* libaws-cpp-sdk-personalize.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-personalize.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-personalize.dylib"; sourceTree = "<group>"; };
+		DE70C8CC2456053F00CC0A44 /* libaws-cpp-sdk-apigatewaymanagementapi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-apigatewaymanagementapi.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-apigatewaymanagementapi.dylib"; sourceTree = "<group>"; };
+		DE70C8CD2456053F00CC0A44 /* libaws-cpp-sdk-cognito-identity.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cognito-identity.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cognito-identity.dylib"; sourceTree = "<group>"; };
+		DE70C8CE2456053F00CC0A44 /* libaws-cpp-sdk-mediaconvert.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mediaconvert.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mediaconvert.dylib"; sourceTree = "<group>"; };
+		DE70C8CF2456053F00CC0A44 /* libaws-cpp-sdk-route53resolver.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-route53resolver.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-route53resolver.dylib"; sourceTree = "<group>"; };
+		DE70C8D02456053F00CC0A44 /* libaws-cpp-sdk-kms.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kms.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kms.dylib"; sourceTree = "<group>"; };
+		DE70C8D12456053F00CC0A44 /* libaws-cpp-sdk-cloudsearchdomain.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloudsearchdomain.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloudsearchdomain.dylib"; sourceTree = "<group>"; };
+		DE70C8D22456053F00CC0A44 /* libaws-cpp-sdk-inspector.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-inspector.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-inspector.dylib"; sourceTree = "<group>"; };
+		DE70C8D32456053F00CC0A44 /* libaws-cpp-sdk-iot.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iot.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iot.dylib"; sourceTree = "<group>"; };
+		DE70C8D42456053F00CC0A44 /* libaws-cpp-sdk-appconfig.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-appconfig.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-appconfig.dylib"; sourceTree = "<group>"; };
+		DE70C8D52456053F00CC0A44 /* libaws-cpp-sdk-securityhub.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-securityhub.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-securityhub.dylib"; sourceTree = "<group>"; };
+		DE70C8D62456053F00CC0A44 /* libaws-cpp-sdk-dynamodbstreams.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-dynamodbstreams.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-dynamodbstreams.dylib"; sourceTree = "<group>"; };
+		DE70C8D72456053F00CC0A44 /* libaws-cpp-sdk-elasticfilesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elasticfilesystem.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elasticfilesystem.dylib"; sourceTree = "<group>"; };
+		DE70C8D82456054000CC0A44 /* libaws-cpp-sdk-detective.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-detective.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-detective.dylib"; sourceTree = "<group>"; };
+		DE70C8D92456054000CC0A44 /* libaws-cpp-sdk-sso-oidc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sso-oidc.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sso-oidc.dylib"; sourceTree = "<group>"; };
+		DE70C8DA2456054000CC0A44 /* libaws-cpp-sdk-translate.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-translate.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-translate.dylib"; sourceTree = "<group>"; };
+		DE70C8DB2456054000CC0A44 /* libaws-cpp-sdk-cloudhsmv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloudhsmv2.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloudhsmv2.dylib"; sourceTree = "<group>"; };
+		DE70C8DC2456054000CC0A44 /* libaws-cpp-sdk-rds.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-rds.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-rds.dylib"; sourceTree = "<group>"; };
+		DE70C8DD2456054000CC0A44 /* libaws-cpp-sdk-cloudhsm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloudhsm.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloudhsm.dylib"; sourceTree = "<group>"; };
+		DE70C8DE2456054000CC0A44 /* libaws-cpp-sdk-migrationhub-config.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-migrationhub-config.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-migrationhub-config.dylib"; sourceTree = "<group>"; };
+		DE70C8DF2456054000CC0A44 /* libaws-cpp-sdk-budgets.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-budgets.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-budgets.dylib"; sourceTree = "<group>"; };
+		DE70C8E02456054000CC0A44 /* libaws-cpp-sdk-ec2-instance-connect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ec2-instance-connect.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ec2-instance-connect.dylib"; sourceTree = "<group>"; };
+		DE70C8E12456054000CC0A44 /* libaws-cpp-sdk-autoscaling-plans.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-autoscaling-plans.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-autoscaling-plans.dylib"; sourceTree = "<group>"; };
+		DE70C8E22456054000CC0A44 /* libaws-cpp-sdk-mediastore-data.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mediastore-data.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mediastore-data.dylib"; sourceTree = "<group>"; };
+		DE70C8E32456054000CC0A44 /* libaws-cpp-sdk-application-autoscaling.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-application-autoscaling.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-application-autoscaling.dylib"; sourceTree = "<group>"; };
+		DE70C8E42456054000CC0A44 /* libaws-cpp-sdk-elasticache.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elasticache.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elasticache.dylib"; sourceTree = "<group>"; };
+		DE70C8E52456054000CC0A44 /* libaws-cpp-sdk-datapipeline.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-datapipeline.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-datapipeline.dylib"; sourceTree = "<group>"; };
+		DE70C8E62456054000CC0A44 /* libaws-cpp-sdk-servicediscovery.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-servicediscovery.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-servicediscovery.dylib"; sourceTree = "<group>"; };
+		DE70C8E72456054000CC0A44 /* libaws-cpp-sdk-lambda.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-lambda.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-lambda.dylib"; sourceTree = "<group>"; };
+		DE70C8E82456054000CC0A44 /* libaws-cpp-sdk-sagemaker-runtime.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sagemaker-runtime.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sagemaker-runtime.dylib"; sourceTree = "<group>"; };
+		DE70C8E92456054000CC0A44 /* libaws-cpp-sdk-elasticmapreduce.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elasticmapreduce.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elasticmapreduce.dylib"; sourceTree = "<group>"; };
+		DE70C8EA2456054000CC0A44 /* libaws-cpp-sdk-kinesisanalytics.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kinesisanalytics.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kinesisanalytics.dylib"; sourceTree = "<group>"; };
+		DE70C8EB2456054100CC0A44 /* libaws-cpp-sdk-dataexchange.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-dataexchange.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-dataexchange.dylib"; sourceTree = "<group>"; };
+		DE70C8EC2456054100CC0A44 /* libaws-cpp-sdk-imagebuilder.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-imagebuilder.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-imagebuilder.dylib"; sourceTree = "<group>"; };
+		DE70C8ED2456054100CC0A44 /* libaws-cpp-sdk-servicecatalog.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-servicecatalog.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-servicecatalog.dylib"; sourceTree = "<group>"; };
+		DE70C8EE2456054100CC0A44 /* libaws-cpp-sdk-ec2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ec2.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ec2.dylib"; sourceTree = "<group>"; };
+		DE70C8EF2456054100CC0A44 /* libaws-cpp-sdk-workdocs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-workdocs.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-workdocs.dylib"; sourceTree = "<group>"; };
+		DE70C8F02456054100CC0A44 /* libaws-cpp-sdk-elasticbeanstalk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elasticbeanstalk.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elasticbeanstalk.dylib"; sourceTree = "<group>"; };
+		DE70C8F12456054100CC0A44 /* libaws-cpp-sdk-organizations.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-organizations.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-organizations.dylib"; sourceTree = "<group>"; };
+		DE70C8F22456054100CC0A44 /* libaws-cpp-sdk-sms.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sms.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sms.dylib"; sourceTree = "<group>"; };
+		DE70C8F32456054100CC0A44 /* libaws-cpp-sdk-elasticloadbalancingv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elasticloadbalancingv2.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elasticloadbalancingv2.dylib"; sourceTree = "<group>"; };
+		DE70C8F42456054100CC0A44 /* libaws-cpp-sdk-sts.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sts.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sts.dylib"; sourceTree = "<group>"; };
+		DE70C8F52456054100CC0A44 /* libaws-cpp-sdk-iot-jobs-data.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iot-jobs-data.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iot-jobs-data.dylib"; sourceTree = "<group>"; };
+		DE70C8F62456054100CC0A44 /* libaws-cpp-sdk-outposts.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-outposts.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-outposts.dylib"; sourceTree = "<group>"; };
+		DE70C8F72456054100CC0A44 /* libaws-cpp-sdk-apigateway.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-apigateway.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-apigateway.dylib"; sourceTree = "<group>"; };
+		DE70C8F82456054100CC0A44 /* libaws-cpp-sdk-cognito-idp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cognito-idp.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cognito-idp.dylib"; sourceTree = "<group>"; };
+		DE70C8F92456054100CC0A44 /* libaws-cpp-sdk-codeguru-reviewer.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codeguru-reviewer.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codeguru-reviewer.dylib"; sourceTree = "<group>"; };
+		DE70C8FA2456054100CC0A44 /* libaws-cpp-sdk-lex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-lex.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-lex.dylib"; sourceTree = "<group>"; };
+		DE70C8FB2456054100CC0A44 /* libaws-cpp-sdk-sdb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sdb.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sdb.dylib"; sourceTree = "<group>"; };
+		DE70C8FC2456054100CC0A44 /* libaws-cpp-sdk-shield.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-shield.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-shield.dylib"; sourceTree = "<group>"; };
+		DE70C8FD2456054200CC0A44 /* libaws-cpp-sdk-sqs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sqs.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sqs.dylib"; sourceTree = "<group>"; };
+		DE70C8FE2456054200CC0A44 /* libaws-cpp-sdk-kafka.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kafka.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kafka.dylib"; sourceTree = "<group>"; };
+		DE70C8FF2456054200CC0A44 /* libaws-cpp-sdk-health.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-health.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-health.dylib"; sourceTree = "<group>"; };
+		DE70C9002456054200CC0A44 /* libaws-cpp-sdk-rekognition.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-rekognition.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-rekognition.dylib"; sourceTree = "<group>"; };
+		DE70C9012456054200CC0A44 /* libaws-cpp-sdk-marketplace-entitlement.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-marketplace-entitlement.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-marketplace-entitlement.dylib"; sourceTree = "<group>"; };
+		DE70C9022456054200CC0A44 /* libaws-cpp-sdk-queues.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-queues.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-queues.dylib"; sourceTree = "<group>"; };
+		DE70C9032456054200CC0A44 /* libaws-cpp-sdk-autoscaling.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-autoscaling.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-autoscaling.dylib"; sourceTree = "<group>"; };
+		DE70C9042456054200CC0A44 /* libaws-cpp-sdk-qldb-session.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-qldb-session.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-qldb-session.dylib"; sourceTree = "<group>"; };
+		DE70C9052456054200CC0A44 /* libaws-cpp-sdk-awstransfer.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-awstransfer.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-awstransfer.dylib"; sourceTree = "<group>"; };
+		DE70C9062456054200CC0A44 /* libaws-cpp-sdk-dms.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-dms.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-dms.dylib"; sourceTree = "<group>"; };
+		DE70C9072456054200CC0A44 /* libaws-cpp-sdk-identity-management.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-identity-management.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-identity-management.dylib"; sourceTree = "<group>"; };
+		DE70C9082456054200CC0A44 /* libaws-cpp-sdk-serverlessrepo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-serverlessrepo.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-serverlessrepo.dylib"; sourceTree = "<group>"; };
+		DE70C9092456054200CC0A44 /* libaws-cpp-sdk-forecastquery.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-forecastquery.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-forecastquery.dylib"; sourceTree = "<group>"; };
+		DE70C90A2456054200CC0A44 /* libaws-cpp-sdk-appsync.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-appsync.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-appsync.dylib"; sourceTree = "<group>"; };
+		DE70C90B2456054200CC0A44 /* libaws-cpp-sdk-access-management.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-access-management.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-access-management.dylib"; sourceTree = "<group>"; };
+		DE70C90C2456054200CC0A44 /* libaws-cpp-sdk-cloudformation.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloudformation.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloudformation.dylib"; sourceTree = "<group>"; };
+		DE70C90D2456054200CC0A44 /* libaws-cpp-sdk-iotevents.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iotevents.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iotevents.dylib"; sourceTree = "<group>"; };
+		DE70C90E2456054200CC0A44 /* libaws-cpp-sdk-lightsail.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-lightsail.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-lightsail.dylib"; sourceTree = "<group>"; };
+		DE70C90F2456054300CC0A44 /* libaws-cpp-sdk-iotsecuretunneling.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iotsecuretunneling.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iotsecuretunneling.dylib"; sourceTree = "<group>"; };
+		DE70C9102456054300CC0A44 /* libaws-cpp-sdk-ds.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ds.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ds.dylib"; sourceTree = "<group>"; };
+		DE70C9112456054300CC0A44 /* libaws-cpp-sdk-datasync.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-datasync.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-datasync.dylib"; sourceTree = "<group>"; };
+		DE70C9122456054300CC0A44 /* libaws-cpp-sdk-meteringmarketplace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-meteringmarketplace.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-meteringmarketplace.dylib"; sourceTree = "<group>"; };
+		DE70C9132456054300CC0A44 /* libaws-cpp-sdk-iotanalytics.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iotanalytics.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iotanalytics.dylib"; sourceTree = "<group>"; };
+		DE70C9142456054300CC0A44 /* libaws-cpp-sdk-personalize-events.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-personalize-events.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-personalize-events.dylib"; sourceTree = "<group>"; };
+		DE70C9152456054300CC0A44 /* libaws-cpp-sdk-sesv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sesv2.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sesv2.dylib"; sourceTree = "<group>"; };
+		DE70C9162456054300CC0A44 /* libaws-cpp-sdk-amplify.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-amplify.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-amplify.dylib"; sourceTree = "<group>"; };
+		DE70C9172456054300CC0A44 /* libaws-cpp-sdk-elastictranscoder.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elastictranscoder.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elastictranscoder.dylib"; sourceTree = "<group>"; };
+		DE70C9182456054300CC0A44 /* libaws-cpp-sdk-resource-groups.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-resource-groups.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-resource-groups.dylib"; sourceTree = "<group>"; };
+		DE70C9192456054300CC0A44 /* libaws-cpp-sdk-quicksight.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-quicksight.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-quicksight.dylib"; sourceTree = "<group>"; };
+		DE70C91A2456054300CC0A44 /* libaws-cpp-sdk-xray.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-xray.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-xray.dylib"; sourceTree = "<group>"; };
+		DE70C91B2456054300CC0A44 /* libaws-cpp-sdk-iot1click-projects.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iot1click-projects.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iot1click-projects.dylib"; sourceTree = "<group>"; };
+		DE70C91C2456054300CC0A44 /* libaws-cpp-sdk-monitoring.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-monitoring.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-monitoring.dylib"; sourceTree = "<group>"; };
+		DE70C91D2456054300CC0A44 /* libaws-cpp-sdk-workmailmessageflow.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-workmailmessageflow.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-workmailmessageflow.dylib"; sourceTree = "<group>"; };
+		DE70C91E2456054300CC0A44 /* libaws-cpp-sdk-ecr.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ecr.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ecr.dylib"; sourceTree = "<group>"; };
+		DE70C91F2456054300CC0A44 /* libaws-cpp-sdk-gamelift.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-gamelift.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-gamelift.dylib"; sourceTree = "<group>"; };
+		DE70C9202456054300CC0A44 /* libaws-cpp-sdk-ce.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ce.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ce.dylib"; sourceTree = "<group>"; };
+		DE70C9212456054300CC0A44 /* libaws-cpp-sdk-codedeploy.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codedeploy.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codedeploy.dylib"; sourceTree = "<group>"; };
+		DE70C9222456054400CC0A44 /* libaws-cpp-sdk-sns.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sns.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sns.dylib"; sourceTree = "<group>"; };
+		DE70C9232456054400CC0A44 /* libaws-cpp-sdk-pricing.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-pricing.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-pricing.dylib"; sourceTree = "<group>"; };
+		DE70C9242456054400CC0A44 /* libaws-cpp-sdk-codeguruprofiler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codeguruprofiler.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codeguruprofiler.dylib"; sourceTree = "<group>"; };
+		DE70C9252456054400CC0A44 /* libaws-cpp-sdk-personalize-runtime.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-personalize-runtime.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-personalize-runtime.dylib"; sourceTree = "<group>"; };
+		DE70C9262456054400CC0A44 /* libaws-cpp-sdk-kinesis-video-archived-media.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kinesis-video-archived-media.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kinesis-video-archived-media.dylib"; sourceTree = "<group>"; };
+		DE70C9272456054400CC0A44 /* libaws-cpp-sdk-waf.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-waf.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-waf.dylib"; sourceTree = "<group>"; };
+		DE70C9282456054400CC0A44 /* libaws-cpp-sdk-polly.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-polly.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-polly.dylib"; sourceTree = "<group>"; };
+		DE70C9292456054400CC0A44 /* libaws-cpp-sdk-sagemaker-a2i-runtime.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sagemaker-a2i-runtime.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sagemaker-a2i-runtime.dylib"; sourceTree = "<group>"; };
+		DE70C92A2456054400CC0A44 /* libaws-cpp-sdk-workspaces.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-workspaces.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-workspaces.dylib"; sourceTree = "<group>"; };
+		DE70C92B2456054400CC0A44 /* libaws-cpp-sdk-cloud9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloud9.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloud9.dylib"; sourceTree = "<group>"; };
+		DE70C92C2456054400CC0A44 /* libaws-cpp-sdk-docdb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-docdb.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-docdb.dylib"; sourceTree = "<group>"; };
+		DE70C92D2456054400CC0A44 /* libaws-cpp-sdk-pinpoint.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-pinpoint.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-pinpoint.dylib"; sourceTree = "<group>"; };
+		DE70C92E2456054400CC0A44 /* libaws-cpp-sdk-iotevents-data.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iotevents-data.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iotevents-data.dylib"; sourceTree = "<group>"; };
+		DE70C92F2456054400CC0A44 /* libaws-cpp-sdk-textract.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-textract.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-textract.dylib"; sourceTree = "<group>"; };
+		DE70C9302456054400CC0A44 /* libaws-cpp-sdk-dlm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-dlm.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-dlm.dylib"; sourceTree = "<group>"; };
+		DE70C9312456054400CC0A44 /* libaws-cpp-sdk-chime.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-chime.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-chime.dylib"; sourceTree = "<group>"; };
+		DE70C9322456054400CC0A44 /* libaws-cpp-sdk-kinesisanalyticsv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kinesisanalyticsv2.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kinesisanalyticsv2.dylib"; sourceTree = "<group>"; };
+		DE70C9332456054500CC0A44 /* libaws-cpp-sdk-kinesis-video-signaling.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kinesis-video-signaling.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kinesis-video-signaling.dylib"; sourceTree = "<group>"; };
+		DE70C9342456054500CC0A44 /* libaws-cpp-sdk-batch.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-batch.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-batch.dylib"; sourceTree = "<group>"; };
+		DE70C9352456054500CC0A44 /* libaws-cpp-sdk-lakeformation.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-lakeformation.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-lakeformation.dylib"; sourceTree = "<group>"; };
+		DE70C9362456054500CC0A44 /* libaws-cpp-sdk-cloudfront.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloudfront.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloudfront.dylib"; sourceTree = "<group>"; };
+		DE70C9372456054500CC0A44 /* libaws-cpp-sdk-glacier.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-glacier.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-glacier.dylib"; sourceTree = "<group>"; };
+		DE70C9382456054500CC0A44 /* libaws-cpp-sdk-ssm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ssm.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ssm.dylib"; sourceTree = "<group>"; };
+		DE70C9392456054500CC0A44 /* libaws-cpp-sdk-backup.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-backup.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-backup.dylib"; sourceTree = "<group>"; };
+		DE70C93A2456054500CC0A44 /* libaws-cpp-sdk-sms-voice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sms-voice.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sms-voice.dylib"; sourceTree = "<group>"; };
+		DE70C93B2456054500CC0A44 /* libaws-cpp-sdk-support.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-support.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-support.dylib"; sourceTree = "<group>"; };
+		DE70C93C2456054500CC0A44 /* libaws-cpp-sdk-iot-data.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iot-data.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iot-data.dylib"; sourceTree = "<group>"; };
+		DE70C93D2456054500CC0A44 /* libaws-cpp-sdk-iotthingsgraph.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iotthingsgraph.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iotthingsgraph.dylib"; sourceTree = "<group>"; };
+		DE70C93E2456054500CC0A44 /* libaws-cpp-sdk-mediapackage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mediapackage.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mediapackage.dylib"; sourceTree = "<group>"; };
+		DE70C93F2456054500CC0A44 /* libaws-cpp-sdk-discovery.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-discovery.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-discovery.dylib"; sourceTree = "<group>"; };
+		DE70C9402456054500CC0A44 /* libaws-cpp-sdk-clouddirectory.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-clouddirectory.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-clouddirectory.dylib"; sourceTree = "<group>"; };
+		DE70C9412456054500CC0A44 /* libaws-cpp-sdk-qldb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-qldb.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-qldb.dylib"; sourceTree = "<group>"; };
+		DE70C9422456054500CC0A44 /* libaws-cpp-sdk-lex-models.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-lex-models.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-lex-models.dylib"; sourceTree = "<group>"; };
+		DE70C9432456054500CC0A44 /* libaws-cpp-sdk-cloudtrail.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cloudtrail.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cloudtrail.dylib"; sourceTree = "<group>"; };
+		DE70C9442456054500CC0A44 /* libaws-cpp-sdk-dynamodb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-dynamodb.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-dynamodb.dylib"; sourceTree = "<group>"; };
+		DE70C9452456054600CC0A44 /* libaws-cpp-sdk-apigatewayv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-apigatewayv2.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-apigatewayv2.dylib"; sourceTree = "<group>"; };
+		DE70C9462456054600CC0A44 /* libaws-cpp-sdk-rds-data.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-rds-data.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-rds-data.dylib"; sourceTree = "<group>"; };
+		DE70C9472456054600CC0A44 /* libaws-cpp-sdk-service-quotas.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-service-quotas.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-service-quotas.dylib"; sourceTree = "<group>"; };
+		DE70C9482456054600CC0A44 /* libaws-cpp-sdk-route53.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-route53.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-route53.dylib"; sourceTree = "<group>"; };
+		DE70C9492456054600CC0A44 /* libaws-cpp-sdk-appstream.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-appstream.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-appstream.dylib"; sourceTree = "<group>"; };
+		DE70C94A2456054600CC0A44 /* libaws-cpp-sdk-sagemaker.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-sagemaker.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-sagemaker.dylib"; sourceTree = "<group>"; };
+		DE70C94B2456054600CC0A44 /* libaws-cpp-sdk-firehose.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-firehose.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-firehose.dylib"; sourceTree = "<group>"; };
+		DE70C94C2456054600CC0A44 /* libaws-cpp-sdk-s3control.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-s3control.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-s3control.dylib"; sourceTree = "<group>"; };
+		DE70C94D2456054600CC0A44 /* libaws-cpp-sdk-mturk-requester.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mturk-requester.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mturk-requester.dylib"; sourceTree = "<group>"; };
+		DE70C94E2456054600CC0A44 /* libaws-cpp-sdk-iot1click-devices.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iot1click-devices.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iot1click-devices.dylib"; sourceTree = "<group>"; };
+		DE70C94F2456054600CC0A44 /* libaws-cpp-sdk-elasticloadbalancing.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elasticloadbalancing.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elasticloadbalancing.dylib"; sourceTree = "<group>"; };
+		DE70C9502456054600CC0A44 /* libaws-cpp-sdk-iam.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-iam.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-iam.dylib"; sourceTree = "<group>"; };
+		DE70C9512456054600CC0A44 /* libaws-cpp-sdk-redshift.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-redshift.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-redshift.dylib"; sourceTree = "<group>"; };
+		DE70C9522456054600CC0A44 /* libaws-cpp-sdk-swf.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-swf.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-swf.dylib"; sourceTree = "<group>"; };
+		DE70C9532456054600CC0A44 /* libaws-cpp-sdk-robomaker.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-robomaker.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-robomaker.dylib"; sourceTree = "<group>"; };
+		DE70C9542456054600CC0A44 /* libaws-cpp-sdk-comprehendmedical.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-comprehendmedical.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-comprehendmedical.dylib"; sourceTree = "<group>"; };
+		DE70C9552456054700CC0A44 /* libaws-cpp-sdk-codecommit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codecommit.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codecommit.dylib"; sourceTree = "<group>"; };
+		DE70C9562456054700CC0A44 /* libaws-cpp-sdk-codestar-connections.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codestar-connections.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codestar-connections.dylib"; sourceTree = "<group>"; };
+		DE70C9572456054700CC0A44 /* libaws-cpp-sdk-transcribestreaming.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-transcribestreaming.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-transcribestreaming.dylib"; sourceTree = "<group>"; };
+		DE70C9582456054700CC0A44 /* libaws-cpp-sdk-codestar.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codestar.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codestar.dylib"; sourceTree = "<group>"; };
+		DE70C9592456054700CC0A44 /* libaws-cpp-sdk-neptune.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-neptune.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-neptune.dylib"; sourceTree = "<group>"; };
+		DE70C95A2456054700CC0A44 /* libaws-cpp-sdk-acm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-acm.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-acm.dylib"; sourceTree = "<group>"; };
+		DE70C95B2456054700CC0A44 /* libaws-cpp-sdk-ram.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ram.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ram.dylib"; sourceTree = "<group>"; };
+		DE70C95C2456054700CC0A44 /* libaws-cpp-sdk-kinesisvideo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kinesisvideo.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kinesisvideo.dylib"; sourceTree = "<group>"; };
+		DE70C95D2456054700CC0A44 /* libaws-cpp-sdk-cur.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cur.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cur.dylib"; sourceTree = "<group>"; };
+		DE70C95E2456054700CC0A44 /* libaws-cpp-sdk-states.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-states.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-states.dylib"; sourceTree = "<group>"; };
+		DE70C95F2456054700CC0A44 /* libaws-cpp-sdk-events.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-events.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-events.dylib"; sourceTree = "<group>"; };
+		DE70C9602456054700CC0A44 /* libaws-cpp-sdk-transfer.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-transfer.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-transfer.dylib"; sourceTree = "<group>"; };
+		DE70C9612456054700CC0A44 /* libaws-cpp-sdk-greengrass.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-greengrass.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-greengrass.dylib"; sourceTree = "<group>"; };
+		DE70C9622456054700CC0A44 /* libaws-cpp-sdk-mobileanalytics.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mobileanalytics.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mobileanalytics.dylib"; sourceTree = "<group>"; };
+		DE70C9632456054700CC0A44 /* libaws-cpp-sdk-kendra.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-kendra.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-kendra.dylib"; sourceTree = "<group>"; };
+		DE70C9642456054700CC0A44 /* libaws-cpp-sdk-medialive.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-medialive.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-medialive.dylib"; sourceTree = "<group>"; };
+		DE70C9652456054700CC0A44 /* libaws-cpp-sdk-glue.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-glue.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-glue.dylib"; sourceTree = "<group>"; };
+		DE70C9662456054800CC0A44 /* libaws-cpp-sdk-mq.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mq.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mq.dylib"; sourceTree = "<group>"; };
+		DE70C9672456054800CC0A44 /* libaws-cpp-sdk-eventbridge.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-eventbridge.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-eventbridge.dylib"; sourceTree = "<group>"; };
+		DE70C9682456054800CC0A44 /* libaws-cpp-sdk-wafv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-wafv2.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-wafv2.dylib"; sourceTree = "<group>"; };
+		DE70C9692456054800CC0A44 /* libaws-cpp-sdk-mediastore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mediastore.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mediastore.dylib"; sourceTree = "<group>"; };
+		DE70C96A2456054800CC0A44 /* libaws-cpp-sdk-alexaforbusiness.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-alexaforbusiness.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-alexaforbusiness.dylib"; sourceTree = "<group>"; };
+		DE70C96B2456054800CC0A44 /* libaws-checksums.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-checksums.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-checksums.dylib"; sourceTree = "<group>"; };
+		DE70C96C2456054800CC0A44 /* libaws-cpp-sdk-dax.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-dax.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-dax.dylib"; sourceTree = "<group>"; };
+		DE70C96D2456054800CC0A44 /* libaws-cpp-sdk-acm-pca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-acm-pca.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-acm-pca.dylib"; sourceTree = "<group>"; };
+		DE70C96E2456054800CC0A44 /* libaws-cpp-sdk-cognito-sync.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-cognito-sync.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-cognito-sync.dylib"; sourceTree = "<group>"; };
+		DE70C96F2456054800CC0A44 /* libaws-cpp-sdk-mediaconnect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-mediaconnect.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-mediaconnect.dylib"; sourceTree = "<group>"; };
+		DE70C9702456054800CC0A44 /* libaws-cpp-sdk-elastic-inference.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-elastic-inference.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-elastic-inference.dylib"; sourceTree = "<group>"; };
+		DE70C9712456054800CC0A44 /* libaws-cpp-sdk-secretsmanager.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-secretsmanager.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-secretsmanager.dylib"; sourceTree = "<group>"; };
+		DE70C9722456054800CC0A44 /* libaws-cpp-sdk-ebs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-ebs.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-ebs.dylib"; sourceTree = "<group>"; };
+		DE70C9732456054800CC0A44 /* libaws-cpp-sdk-storagegateway.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-storagegateway.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-storagegateway.dylib"; sourceTree = "<group>"; };
+		DE70C9742456054800CC0A44 /* libaws-cpp-sdk-marketplace-catalog.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-marketplace-catalog.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-marketplace-catalog.dylib"; sourceTree = "<group>"; };
+		DE70C9752456054800CC0A44 /* libaws-cpp-sdk-route53domains.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-route53domains.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-route53domains.dylib"; sourceTree = "<group>"; };
+		DE70C9762456054800CC0A44 /* libaws-cpp-sdk-directconnect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-directconnect.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-directconnect.dylib"; sourceTree = "<group>"; };
+		DE70C9772456054900CC0A44 /* libaws-cpp-sdk-codepipeline.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libaws-cpp-sdk-codepipeline.dylib"; path = "../../../../usr/local/Cellar/aws-sdk-cpp/1.7.310/lib/libaws-cpp-sdk-codepipeline.dylib"; sourceTree = "<group>"; };
 		DE7132BA243912AE004145F8 /* libLogger.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libLogger.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7132BC243912AF004145F8 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		DE7132C0243912AF004145F8 /* Logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
@@ -563,6 +796,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE70CA5F245605BD00CC0A44 /* libaws-cpp-sdk-dynamodb.dylib in Frameworks */,
+				DE70CA5E245605A200CC0A44 /* libaws-cpp-sdk-core.dylib in Frameworks */,
 				DE922F58243FE5D000459025 /* libcurl.a in Frameworks */,
 				DE922F4F243FE4F400459025 /* libboost_date_time-mt.dylib in Frameworks */,
 				DEB0F3B3243AAF9C005DC0E2 /* libboost_log-mt.dylib in Frameworks */,
@@ -1360,6 +1595,237 @@
 		DEF9CCA82377B44A00B5089A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE70C8C52456053F00CC0A44 /* libaws-c-common.1.0.0.dylib */,
+				DE70C8C22456053E00CC0A44 /* libaws-c-event-stream.1.0.0.dylib */,
+				DE70C96B2456054800CC0A44 /* libaws-checksums.dylib */,
+				DE70C90B2456054200CC0A44 /* libaws-cpp-sdk-access-management.dylib */,
+				DE70C8952456053C00CC0A44 /* libaws-cpp-sdk-accessanalyzer.dylib */,
+				DE70C96D2456054800CC0A44 /* libaws-cpp-sdk-acm-pca.dylib */,
+				DE70C95A2456054700CC0A44 /* libaws-cpp-sdk-acm.dylib */,
+				DE70C96A2456054800CC0A44 /* libaws-cpp-sdk-alexaforbusiness.dylib */,
+				DE70C9162456054300CC0A44 /* libaws-cpp-sdk-amplify.dylib */,
+				DE70C8F72456054100CC0A44 /* libaws-cpp-sdk-apigateway.dylib */,
+				DE70C8CC2456053F00CC0A44 /* libaws-cpp-sdk-apigatewaymanagementapi.dylib */,
+				DE70C9452456054600CC0A44 /* libaws-cpp-sdk-apigatewayv2.dylib */,
+				DE70C8D42456053F00CC0A44 /* libaws-cpp-sdk-appconfig.dylib */,
+				DE70C8E32456054000CC0A44 /* libaws-cpp-sdk-application-autoscaling.dylib */,
+				DE70C8922456053C00CC0A44 /* libaws-cpp-sdk-application-insights.dylib */,
+				DE70C8B52456053E00CC0A44 /* libaws-cpp-sdk-appmesh.dylib */,
+				DE70C9492456054600CC0A44 /* libaws-cpp-sdk-appstream.dylib */,
+				DE70C90A2456054200CC0A44 /* libaws-cpp-sdk-appsync.dylib */,
+				DE70C8AF2456053D00CC0A44 /* libaws-cpp-sdk-athena.dylib */,
+				DE70C8E12456054000CC0A44 /* libaws-cpp-sdk-autoscaling-plans.dylib */,
+				DE70C9032456054200CC0A44 /* libaws-cpp-sdk-autoscaling.dylib */,
+				DE70C8962456053C00CC0A44 /* libaws-cpp-sdk-AWSMigrationHub.dylib */,
+				DE70C9052456054200CC0A44 /* libaws-cpp-sdk-awstransfer.dylib */,
+				DE70C9392456054500CC0A44 /* libaws-cpp-sdk-backup.dylib */,
+				DE70C9342456054500CC0A44 /* libaws-cpp-sdk-batch.dylib */,
+				DE70C8DF2456054000CC0A44 /* libaws-cpp-sdk-budgets.dylib */,
+				DE70C9202456054300CC0A44 /* libaws-cpp-sdk-ce.dylib */,
+				DE70C9312456054400CC0A44 /* libaws-cpp-sdk-chime.dylib */,
+				DE70C92B2456054400CC0A44 /* libaws-cpp-sdk-cloud9.dylib */,
+				DE70C9402456054500CC0A44 /* libaws-cpp-sdk-clouddirectory.dylib */,
+				DE70C90C2456054200CC0A44 /* libaws-cpp-sdk-cloudformation.dylib */,
+				DE70C9362456054500CC0A44 /* libaws-cpp-sdk-cloudfront.dylib */,
+				DE70C8DD2456054000CC0A44 /* libaws-cpp-sdk-cloudhsm.dylib */,
+				DE70C8DB2456054000CC0A44 /* libaws-cpp-sdk-cloudhsmv2.dylib */,
+				DE70C8982456053C00CC0A44 /* libaws-cpp-sdk-cloudsearch.dylib */,
+				DE70C8D12456053F00CC0A44 /* libaws-cpp-sdk-cloudsearchdomain.dylib */,
+				DE70C9432456054500CC0A44 /* libaws-cpp-sdk-cloudtrail.dylib */,
+				DE70C8A12456053D00CC0A44 /* libaws-cpp-sdk-codebuild.dylib */,
+				DE70C9552456054700CC0A44 /* libaws-cpp-sdk-codecommit.dylib */,
+				DE70C9212456054300CC0A44 /* libaws-cpp-sdk-codedeploy.dylib */,
+				DE70C8F92456054100CC0A44 /* libaws-cpp-sdk-codeguru-reviewer.dylib */,
+				DE70C9242456054400CC0A44 /* libaws-cpp-sdk-codeguruprofiler.dylib */,
+				DE70C9772456054900CC0A44 /* libaws-cpp-sdk-codepipeline.dylib */,
+				DE70C9562456054700CC0A44 /* libaws-cpp-sdk-codestar-connections.dylib */,
+				DE70C8C12456053E00CC0A44 /* libaws-cpp-sdk-codestar-notifications.dylib */,
+				DE70C9582456054700CC0A44 /* libaws-cpp-sdk-codestar.dylib */,
+				DE70C8CD2456053F00CC0A44 /* libaws-cpp-sdk-cognito-identity.dylib */,
+				DE70C8F82456054100CC0A44 /* libaws-cpp-sdk-cognito-idp.dylib */,
+				DE70C96E2456054800CC0A44 /* libaws-cpp-sdk-cognito-sync.dylib */,
+				DE70C89E2456053C00CC0A44 /* libaws-cpp-sdk-comprehend.dylib */,
+				DE70C9542456054600CC0A44 /* libaws-cpp-sdk-comprehendmedical.dylib */,
+				DE70C8C82456053F00CC0A44 /* libaws-cpp-sdk-compute-optimizer.dylib */,
+				DE70C8B42456053E00CC0A44 /* libaws-cpp-sdk-config.dylib */,
+				DE70C8B62456053E00CC0A44 /* libaws-cpp-sdk-connect.dylib */,
+				DE70C8BB2456053E00CC0A44 /* libaws-cpp-sdk-connectparticipant.dylib */,
+				DE70C8B92456053E00CC0A44 /* libaws-cpp-sdk-core.dylib */,
+				DE70C95D2456054700CC0A44 /* libaws-cpp-sdk-cur.dylib */,
+				DE70C8EB2456054100CC0A44 /* libaws-cpp-sdk-dataexchange.dylib */,
+				DE70C8E52456054000CC0A44 /* libaws-cpp-sdk-datapipeline.dylib */,
+				DE70C9112456054300CC0A44 /* libaws-cpp-sdk-datasync.dylib */,
+				DE70C96C2456054800CC0A44 /* libaws-cpp-sdk-dax.dylib */,
+				DE70C8D82456054000CC0A44 /* libaws-cpp-sdk-detective.dylib */,
+				DE70C8B02456053D00CC0A44 /* libaws-cpp-sdk-devicefarm.dylib */,
+				DE70C9762456054800CC0A44 /* libaws-cpp-sdk-directconnect.dylib */,
+				DE70C93F2456054500CC0A44 /* libaws-cpp-sdk-discovery.dylib */,
+				DE70C9302456054400CC0A44 /* libaws-cpp-sdk-dlm.dylib */,
+				DE70C9062456054200CC0A44 /* libaws-cpp-sdk-dms.dylib */,
+				DE70C92C2456054400CC0A44 /* libaws-cpp-sdk-docdb.dylib */,
+				DE70C9102456054300CC0A44 /* libaws-cpp-sdk-ds.dylib */,
+				DE70C9442456054500CC0A44 /* libaws-cpp-sdk-dynamodb.dylib */,
+				DE70C8D62456053F00CC0A44 /* libaws-cpp-sdk-dynamodbstreams.dylib */,
+				DE70C9722456054800CC0A44 /* libaws-cpp-sdk-ebs.dylib */,
+				DE70C8E02456054000CC0A44 /* libaws-cpp-sdk-ec2-instance-connect.dylib */,
+				DE70C8EE2456054100CC0A44 /* libaws-cpp-sdk-ec2.dylib */,
+				DE70C91E2456054300CC0A44 /* libaws-cpp-sdk-ecr.dylib */,
+				DE70C8A42456053D00CC0A44 /* libaws-cpp-sdk-ecs.dylib */,
+				DE70C8BE2456053E00CC0A44 /* libaws-cpp-sdk-eks.dylib */,
+				DE70C9702456054800CC0A44 /* libaws-cpp-sdk-elastic-inference.dylib */,
+				DE70C8E42456054000CC0A44 /* libaws-cpp-sdk-elasticache.dylib */,
+				DE70C8F02456054100CC0A44 /* libaws-cpp-sdk-elasticbeanstalk.dylib */,
+				DE70C8D72456053F00CC0A44 /* libaws-cpp-sdk-elasticfilesystem.dylib */,
+				DE70C94F2456054600CC0A44 /* libaws-cpp-sdk-elasticloadbalancing.dylib */,
+				DE70C8F32456054100CC0A44 /* libaws-cpp-sdk-elasticloadbalancingv2.dylib */,
+				DE70C8E92456054000CC0A44 /* libaws-cpp-sdk-elasticmapreduce.dylib */,
+				DE70C9172456054300CC0A44 /* libaws-cpp-sdk-elastictranscoder.dylib */,
+				DE70C8B82456053E00CC0A44 /* libaws-cpp-sdk-email.dylib */,
+				DE70C8C92456053F00CC0A44 /* libaws-cpp-sdk-es.dylib */,
+				DE70C9672456054800CC0A44 /* libaws-cpp-sdk-eventbridge.dylib */,
+				DE70C95F2456054700CC0A44 /* libaws-cpp-sdk-events.dylib */,
+				DE70C94B2456054600CC0A44 /* libaws-cpp-sdk-firehose.dylib */,
+				DE70C8C72456053F00CC0A44 /* libaws-cpp-sdk-fms.dylib */,
+				DE70C8942456053C00CC0A44 /* libaws-cpp-sdk-forecast.dylib */,
+				DE70C9092456054200CC0A44 /* libaws-cpp-sdk-forecastquery.dylib */,
+				DE70C8992456053C00CC0A44 /* libaws-cpp-sdk-frauddetector.dylib */,
+				DE70C8972456053C00CC0A44 /* libaws-cpp-sdk-fsx.dylib */,
+				DE70C91F2456054300CC0A44 /* libaws-cpp-sdk-gamelift.dylib */,
+				DE70C9372456054500CC0A44 /* libaws-cpp-sdk-glacier.dylib */,
+				DE70C89A2456053C00CC0A44 /* libaws-cpp-sdk-globalaccelerator.dylib */,
+				DE70C9652456054700CC0A44 /* libaws-cpp-sdk-glue.dylib */,
+				DE70C9612456054700CC0A44 /* libaws-cpp-sdk-greengrass.dylib */,
+				DE70C8B72456053E00CC0A44 /* libaws-cpp-sdk-groundstation.dylib */,
+				DE70C8AB2456053D00CC0A44 /* libaws-cpp-sdk-guardduty.dylib */,
+				DE70C8FF2456054200CC0A44 /* libaws-cpp-sdk-health.dylib */,
+				DE70C9502456054600CC0A44 /* libaws-cpp-sdk-iam.dylib */,
+				DE70C9072456054200CC0A44 /* libaws-cpp-sdk-identity-management.dylib */,
+				DE70C8EC2456054100CC0A44 /* libaws-cpp-sdk-imagebuilder.dylib */,
+				DE70C89B2456053C00CC0A44 /* libaws-cpp-sdk-importexport.dylib */,
+				DE70C8D22456053F00CC0A44 /* libaws-cpp-sdk-inspector.dylib */,
+				DE70C93C2456054500CC0A44 /* libaws-cpp-sdk-iot-data.dylib */,
+				DE70C8F52456054100CC0A44 /* libaws-cpp-sdk-iot-jobs-data.dylib */,
+				DE70C8D32456053F00CC0A44 /* libaws-cpp-sdk-iot.dylib */,
+				DE70C94E2456054600CC0A44 /* libaws-cpp-sdk-iot1click-devices.dylib */,
+				DE70C91B2456054300CC0A44 /* libaws-cpp-sdk-iot1click-projects.dylib */,
+				DE70C9132456054300CC0A44 /* libaws-cpp-sdk-iotanalytics.dylib */,
+				DE70C92E2456054400CC0A44 /* libaws-cpp-sdk-iotevents-data.dylib */,
+				DE70C90D2456054200CC0A44 /* libaws-cpp-sdk-iotevents.dylib */,
+				DE70C90F2456054300CC0A44 /* libaws-cpp-sdk-iotsecuretunneling.dylib */,
+				DE70C93D2456054500CC0A44 /* libaws-cpp-sdk-iotthingsgraph.dylib */,
+				DE70C8FE2456054200CC0A44 /* libaws-cpp-sdk-kafka.dylib */,
+				DE70C9632456054700CC0A44 /* libaws-cpp-sdk-kendra.dylib */,
+				DE70C9262456054400CC0A44 /* libaws-cpp-sdk-kinesis-video-archived-media.dylib */,
+				DE70C89D2456053C00CC0A44 /* libaws-cpp-sdk-kinesis-video-media.dylib */,
+				DE70C9332456054500CC0A44 /* libaws-cpp-sdk-kinesis-video-signaling.dylib */,
+				DE70C8B12456053D00CC0A44 /* libaws-cpp-sdk-kinesis.dylib */,
+				DE70C8EA2456054000CC0A44 /* libaws-cpp-sdk-kinesisanalytics.dylib */,
+				DE70C9322456054400CC0A44 /* libaws-cpp-sdk-kinesisanalyticsv2.dylib */,
+				DE70C95C2456054700CC0A44 /* libaws-cpp-sdk-kinesisvideo.dylib */,
+				DE70C8D02456053F00CC0A44 /* libaws-cpp-sdk-kms.dylib */,
+				DE70C9352456054500CC0A44 /* libaws-cpp-sdk-lakeformation.dylib */,
+				DE70C8E72456054000CC0A44 /* libaws-cpp-sdk-lambda.dylib */,
+				DE70C9422456054500CC0A44 /* libaws-cpp-sdk-lex-models.dylib */,
+				DE70C8FA2456054100CC0A44 /* libaws-cpp-sdk-lex.dylib */,
+				DE70C8A02456053D00CC0A44 /* libaws-cpp-sdk-license-manager.dylib */,
+				DE70C90E2456054200CC0A44 /* libaws-cpp-sdk-lightsail.dylib */,
+				DE70C8A82456053D00CC0A44 /* libaws-cpp-sdk-logs.dylib */,
+				DE70C8AA2456053D00CC0A44 /* libaws-cpp-sdk-machinelearning.dylib */,
+				DE70C8A92456053D00CC0A44 /* libaws-cpp-sdk-macie.dylib */,
+				DE70C8BA2456053E00CC0A44 /* libaws-cpp-sdk-managedblockchain.dylib */,
+				DE70C9742456054800CC0A44 /* libaws-cpp-sdk-marketplace-catalog.dylib */,
+				DE70C9012456054200CC0A44 /* libaws-cpp-sdk-marketplace-entitlement.dylib */,
+				DE70C8A52456053D00CC0A44 /* libaws-cpp-sdk-marketplacecommerceanalytics.dylib */,
+				DE70C96F2456054800CC0A44 /* libaws-cpp-sdk-mediaconnect.dylib */,
+				DE70C8CE2456053F00CC0A44 /* libaws-cpp-sdk-mediaconvert.dylib */,
+				DE70C9642456054700CC0A44 /* libaws-cpp-sdk-medialive.dylib */,
+				DE70C89F2456053C00CC0A44 /* libaws-cpp-sdk-mediapackage-vod.dylib */,
+				DE70C93E2456054500CC0A44 /* libaws-cpp-sdk-mediapackage.dylib */,
+				DE70C8E22456054000CC0A44 /* libaws-cpp-sdk-mediastore-data.dylib */,
+				DE70C9692456054800CC0A44 /* libaws-cpp-sdk-mediastore.dylib */,
+				DE70C89C2456053C00CC0A44 /* libaws-cpp-sdk-mediatailor.dylib */,
+				DE70C9122456054300CC0A44 /* libaws-cpp-sdk-meteringmarketplace.dylib */,
+				DE70C8DE2456054000CC0A44 /* libaws-cpp-sdk-migrationhub-config.dylib */,
+				DE70C8CA2456053F00CC0A44 /* libaws-cpp-sdk-mobile.dylib */,
+				DE70C9622456054700CC0A44 /* libaws-cpp-sdk-mobileanalytics.dylib */,
+				DE70C91C2456054300CC0A44 /* libaws-cpp-sdk-monitoring.dylib */,
+				DE70C9662456054800CC0A44 /* libaws-cpp-sdk-mq.dylib */,
+				DE70C94D2456054600CC0A44 /* libaws-cpp-sdk-mturk-requester.dylib */,
+				DE70C9592456054700CC0A44 /* libaws-cpp-sdk-neptune.dylib */,
+				DE70C8A62456053D00CC0A44 /* libaws-cpp-sdk-networkmanager.dylib */,
+				DE70C8B32456053E00CC0A44 /* libaws-cpp-sdk-opsworks.dylib */,
+				DE70C8A72456053D00CC0A44 /* libaws-cpp-sdk-opsworkscm.dylib */,
+				DE70C8F12456054100CC0A44 /* libaws-cpp-sdk-organizations.dylib */,
+				DE70C8F62456054100CC0A44 /* libaws-cpp-sdk-outposts.dylib */,
+				DE70C9142456054300CC0A44 /* libaws-cpp-sdk-personalize-events.dylib */,
+				DE70C9252456054400CC0A44 /* libaws-cpp-sdk-personalize-runtime.dylib */,
+				DE70C8CB2456053F00CC0A44 /* libaws-cpp-sdk-personalize.dylib */,
+				DE70C8A22456053D00CC0A44 /* libaws-cpp-sdk-pi.dylib */,
+				DE70C8C62456053F00CC0A44 /* libaws-cpp-sdk-pinpoint-email.dylib */,
+				DE70C92D2456054400CC0A44 /* libaws-cpp-sdk-pinpoint.dylib */,
+				DE70C9282456054400CC0A44 /* libaws-cpp-sdk-polly.dylib */,
+				DE70C9232456054400CC0A44 /* libaws-cpp-sdk-pricing.dylib */,
+				DE70C9042456054200CC0A44 /* libaws-cpp-sdk-qldb-session.dylib */,
+				DE70C9412456054500CC0A44 /* libaws-cpp-sdk-qldb.dylib */,
+				DE70C9022456054200CC0A44 /* libaws-cpp-sdk-queues.dylib */,
+				DE70C9192456054300CC0A44 /* libaws-cpp-sdk-quicksight.dylib */,
+				DE70C95B2456054700CC0A44 /* libaws-cpp-sdk-ram.dylib */,
+				DE70C9462456054600CC0A44 /* libaws-cpp-sdk-rds-data.dylib */,
+				DE70C8DC2456054000CC0A44 /* libaws-cpp-sdk-rds.dylib */,
+				DE70C9512456054600CC0A44 /* libaws-cpp-sdk-redshift.dylib */,
+				DE70C9002456054200CC0A44 /* libaws-cpp-sdk-rekognition.dylib */,
+				DE70C9182456054300CC0A44 /* libaws-cpp-sdk-resource-groups.dylib */,
+				DE70C8A32456053D00CC0A44 /* libaws-cpp-sdk-resourcegroupstaggingapi.dylib */,
+				DE70C9532456054600CC0A44 /* libaws-cpp-sdk-robomaker.dylib */,
+				DE70C9482456054600CC0A44 /* libaws-cpp-sdk-route53.dylib */,
+				DE70C9752456054800CC0A44 /* libaws-cpp-sdk-route53domains.dylib */,
+				DE70C8CF2456053F00CC0A44 /* libaws-cpp-sdk-route53resolver.dylib */,
+				DE70C8BD2456053E00CC0A44 /* libaws-cpp-sdk-s3-encryption.dylib */,
+				DE70C94C2456054600CC0A44 /* libaws-cpp-sdk-s3control.dylib */,
+				DE70C9292456054400CC0A44 /* libaws-cpp-sdk-sagemaker-a2i-runtime.dylib */,
+				DE70C8E82456054000CC0A44 /* libaws-cpp-sdk-sagemaker-runtime.dylib */,
+				DE70C94A2456054600CC0A44 /* libaws-cpp-sdk-sagemaker.dylib */,
+				DE70C8AE2456053D00CC0A44 /* libaws-cpp-sdk-savingsplans.dylib */,
+				DE70C8B22456053E00CC0A44 /* libaws-cpp-sdk-schemas.dylib */,
+				DE70C8FB2456054100CC0A44 /* libaws-cpp-sdk-sdb.dylib */,
+				DE70C9712456054800CC0A44 /* libaws-cpp-sdk-secretsmanager.dylib */,
+				DE70C8D52456053F00CC0A44 /* libaws-cpp-sdk-securityhub.dylib */,
+				DE70C9082456054200CC0A44 /* libaws-cpp-sdk-serverlessrepo.dylib */,
+				DE70C9472456054600CC0A44 /* libaws-cpp-sdk-service-quotas.dylib */,
+				DE70C8ED2456054100CC0A44 /* libaws-cpp-sdk-servicecatalog.dylib */,
+				DE70C8E62456054000CC0A44 /* libaws-cpp-sdk-servicediscovery.dylib */,
+				DE70C9152456054300CC0A44 /* libaws-cpp-sdk-sesv2.dylib */,
+				DE70C8FC2456054100CC0A44 /* libaws-cpp-sdk-shield.dylib */,
+				DE70C8932456053C00CC0A44 /* libaws-cpp-sdk-signer.dylib */,
+				DE70C93A2456054500CC0A44 /* libaws-cpp-sdk-sms-voice.dylib */,
+				DE70C8F22456054100CC0A44 /* libaws-cpp-sdk-sms.dylib */,
+				DE70C8BF2456053E00CC0A44 /* libaws-cpp-sdk-snowball.dylib */,
+				DE70C9222456054400CC0A44 /* libaws-cpp-sdk-sns.dylib */,
+				DE70C8FD2456054200CC0A44 /* libaws-cpp-sdk-sqs.dylib */,
+				DE70C9382456054500CC0A44 /* libaws-cpp-sdk-ssm.dylib */,
+				DE70C8D92456054000CC0A44 /* libaws-cpp-sdk-sso-oidc.dylib */,
+				DE70C8C32456053E00CC0A44 /* libaws-cpp-sdk-sso.dylib */,
+				DE70C95E2456054700CC0A44 /* libaws-cpp-sdk-states.dylib */,
+				DE70C9732456054800CC0A44 /* libaws-cpp-sdk-storagegateway.dylib */,
+				DE70C8F42456054100CC0A44 /* libaws-cpp-sdk-sts.dylib */,
+				DE70C93B2456054500CC0A44 /* libaws-cpp-sdk-support.dylib */,
+				DE70C9522456054600CC0A44 /* libaws-cpp-sdk-swf.dylib */,
+				DE70C8C42456053E00CC0A44 /* libaws-cpp-sdk-text-to-speech.dylib */,
+				DE70C92F2456054400CC0A44 /* libaws-cpp-sdk-textract.dylib */,
+				DE70C8C02456053E00CC0A44 /* libaws-cpp-sdk-transcribe.dylib */,
+				DE70C9572456054700CC0A44 /* libaws-cpp-sdk-transcribestreaming.dylib */,
+				DE70C9602456054700CC0A44 /* libaws-cpp-sdk-transfer.dylib */,
+				DE70C8DA2456054000CC0A44 /* libaws-cpp-sdk-translate.dylib */,
+				DE70C8BC2456053E00CC0A44 /* libaws-cpp-sdk-waf-regional.dylib */,
+				DE70C9272456054400CC0A44 /* libaws-cpp-sdk-waf.dylib */,
+				DE70C9682456054800CC0A44 /* libaws-cpp-sdk-wafv2.dylib */,
+				DE70C8EF2456054100CC0A44 /* libaws-cpp-sdk-workdocs.dylib */,
+				DE70C8AD2456053D00CC0A44 /* libaws-cpp-sdk-worklink.dylib */,
+				DE70C8AC2456053D00CC0A44 /* libaws-cpp-sdk-workmail.dylib */,
+				DE70C91D2456054300CC0A44 /* libaws-cpp-sdk-workmailmessageflow.dylib */,
+				DE70C92A2456054400CC0A44 /* libaws-cpp-sdk-workspaces.dylib */,
+				DE70C91A2456054300CC0A44 /* libaws-cpp-sdk-xray.dylib */,
+				DE70C8902456052300CC0A44 /* libaws-cpp-sdk-s3.dylib */,
 				DEB0F26C243A7C1B005DC0E2 /* cmake */,
 				DEB0F26B243A7C1B005DC0E2 /* libcurlpp.1.0.0.dylib */,
 				DEB0F391243A7C1C005DC0E2 /* libosxfuse.2.dylib */,
@@ -1935,6 +2401,7 @@
 					/usr/local/Cellar/boost/1.72.0/lib,
 					/usr/local/Cellar/curl/7.69.0/lib,
 					/usr/local/Cellar/curlpp/0.8.1/lib,
+					"/usr/local/Cellar/aws-sdk-cpp/1.7.310/lib",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -1961,6 +2428,7 @@
 					/usr/local/Cellar/boost/1.72.0/lib,
 					/usr/local/Cellar/curl/7.69.0/lib,
 					/usr/local/Cellar/curlpp/0.8.1/lib,
+					"/usr/local/Cellar/aws-sdk-cpp/1.7.310/lib",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",

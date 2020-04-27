@@ -315,5 +315,34 @@ std::shared_ptr<rtl::Book> testBook2;
     
     XCTAssert(testAuthor.SetDateBorn(test) == false);
 }
+/*
+ Author(std::string name, boost::posix_time::ptime dateBorn = defaultDateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
+ Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
+ */
+- (void)test_Constructor1_PassInvalidName_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    
+    try {
+        rtl::Author testAuthor("\n\n\t\t");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "name cannot be empty");
+}
+
+- (void)test_Constructor2_PassInvalidName_ThrowInvalidArgument {
+    std::string exceptionMessage = "";
+    
+    try {
+        rtl::Author testAuthor("\n\n\t\t", "1999-Sep-17");
+    }
+    catch (std::invalid_argument ex) {
+        exceptionMessage = ex.what();
+    }
+    
+    XCTAssert(exceptionMessage == "name cannot be empty");
+}
 
 @end

@@ -53,9 +53,15 @@
     //TODO: verify logging when this happens
     std::stringstream inputSs, outputSs;
     inputSs.str("testAuthor\n1998-Nov-25\n");
-    rtl::Author testAuthor = rtl::CommandLine::GetNewAuthor(inputSs, outputSs, 10000);
-    
-    XCTAssert(testAuthor.GetName() == "");}
+    std::string exceptionMessage = "";
+    try {
+        rtl::Author testAuthor = rtl::CommandLine::GetNewAuthor(inputSs, outputSs, 10000);
+    }
+    catch (std::invalid_argument& ex) {
+        exceptionMessage = ex.what();
+    }
+    XCTAssert(exceptionMessage == "name cannot be empty");
+}
 
 - (void)test_GetNewBook_Manual_ReturnNewBook {
     std::stringstream inputSs, outputSs;

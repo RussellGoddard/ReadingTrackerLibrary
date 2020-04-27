@@ -180,14 +180,18 @@ std::string rtl::Author::PrintHeader() const {
 }
 
 rtl::Author::Author(std::string name, boost::posix_time::ptime dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten) {
-    this->SetName(name);
+    if (!this->SetName(name)) {
+        throw std::invalid_argument("name cannot be empty");
+    }
     this->SetDateBorn(dateBorn);
     this->AddBookWritten(booksWritten);
     this->authorId = GenerateId(name);
 }
 
 rtl::Author::Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten) {
-    this->SetName(name);
+    if (!this->SetName(name)) {
+        throw std::invalid_argument("name cannot be empty");
+    }
     this->SetDateBorn(dateBorn);
     this->AddBookWritten(booksWritten);
     this->authorId = GenerateId(name);
