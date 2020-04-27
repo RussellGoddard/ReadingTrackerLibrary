@@ -40,7 +40,7 @@ namespace rtl {
         boost::posix_time::ptime GetDateReadAsPosixTime();
         std::string PrintDateRead() const;
         int GetRating() const;
-        int GetReaderId() const;
+        std::string GetReaderId() const;
         
         SetsPtr GetUpdateFunction(std::string input) override;
         std::string PrintJson() const override;
@@ -49,12 +49,12 @@ namespace rtl {
         std::string PrintHeader() const override;
         
         ReadBook() = delete; //ReadBook class HAS to be constructed with a readerId, book author and book title
-        ReadBook(int readerId, Book book, int rating, boost::posix_time::ptime dateRead);
-        ReadBook(int readerId, Book book, int rating, std::string dateRead);
-        ReadBook(int readerId, std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, rtl::Genre genre = rtl::Genre::genreNotSet, boost::posix_time::ptime publishDate = boost::posix_time::second_clock::universal_time(), int rating = 0, boost::posix_time::ptime dateRead = boost::posix_time::second_clock::universal_time());
-        ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead);
+        ReadBook(std::string readerId, Book book, int rating, boost::posix_time::ptime dateRead);
+        ReadBook(std::string readerId, Book book, int rating, std::string dateRead);
+        ReadBook(std::string readerId, std::string author, std::string title, std::string series = "", std::string publisher = "", int pageCount = -1, rtl::Genre genre = rtl::Genre::genreNotSet, boost::posix_time::ptime publishDate = boost::posix_time::second_clock::universal_time(), int rating = 0, boost::posix_time::ptime dateRead = boost::posix_time::second_clock::universal_time());
+        ReadBook(std::string readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead);
     private:
-        int readerId;
+        std::string readerId;
         tm dateRead;
         int rating = -1;
         

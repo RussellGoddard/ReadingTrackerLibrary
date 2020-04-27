@@ -15,7 +15,7 @@
 
 @implementation testClassReadbook
 
-int testReaderId = 1;
+std::string testReaderId = "1";
 
 - (void)setUp {
 }
@@ -228,8 +228,8 @@ int testReaderId = 1;
 
 - (void)test_Constructor1 {
     rtl::Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::Genre::fantasy, boost::date_time::min_date_time);
-    rtl::ReadBook testConstructor(2147483647, newBook, 9, boost::date_time::min_date_time);
-    XCTAssert(testConstructor.GetReaderId() == 2147483647);
+    rtl::ReadBook testConstructor("2147483647", newBook, 9, boost::date_time::min_date_time);
+    XCTAssert(testConstructor.GetReaderId() == "2147483647");
     XCTAssert(testConstructor.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testConstructor.GetTitle() == "testTitle");
     XCTAssert(testConstructor.GetSeries() == "testSeries");
@@ -244,7 +244,7 @@ int testReaderId = 1;
 
 - (void)test_Constructor2 {
     rtl::Book newBook("testAuthor", "testTitle", "testSeries", "testPublisher", 111, rtl::Genre::fantasy, boost::date_time::min_date_time);
-    rtl::ReadBook testConstructor3(456, newBook, 1, "1913-Feb-11");
+    rtl::ReadBook testConstructor3("456", newBook, 1, "1913-Feb-11");
     XCTAssert(testConstructor3.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testConstructor3.GetTitle() == "testTitle");
     XCTAssert(testConstructor3.GetSeries() == "testSeries");
@@ -258,7 +258,7 @@ int testReaderId = 1;
 }
 
 - (void)test_ConstructorDefault {
-    rtl::ReadBook testConstructor2(789, "testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 222, rtl::Genre::western, boost::date_time::min_date_time, 8, boost::date_time::min_date_time);
+    rtl::ReadBook testConstructor2("789", "testAuthor2", "testTitle2", "testSeries2", "testPublisher2", 222, rtl::Genre::western, boost::date_time::min_date_time, 8, boost::date_time::min_date_time);
     XCTAssert(testConstructor2.GetAuthors().at(0) == "testAuthor2");
     XCTAssert(testConstructor2.GetTitle() == "testTitle2");
     XCTAssert(testConstructor2.GetSeries() == "testSeries2");
@@ -272,7 +272,7 @@ int testReaderId = 1;
 }
 
 - (void)test_Constructor4 {
-    rtl::ReadBook testConstructor4(-1234567890, "testAuthor4", "testTitle4", "testSeries4", "testPublisher4", 444, "mystery", "1972-Aug-13", 4, "2019-Nov-14");
+    rtl::ReadBook testConstructor4("-1234567890", "testAuthor4", "testTitle4", "testSeries4", "testPublisher4", 444, "mystery", "1972-Aug-13", 4, "2019-Nov-14");
     XCTAssert(testConstructor4.GetAuthors().at(0) == "testAuthor4");
     XCTAssert(testConstructor4.GetTitle() == "testTitle4");
     XCTAssert(testConstructor4.GetSeries() == "testSeries4");
@@ -298,9 +298,9 @@ int testReaderId = 1;
     std::string testGirl = "Stieg Larsson       The Girl with the Dragon Tattoo   480   2019-Nov-19  9   ";
     std::string testWidth = "Robert Jordan123456 The Eye of the World1234567890123 70212 2019-Oct-27  8   ";
 
-    rtl::ReadBook bookMist(123, "Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", 9, "2019-Sep-13");
-    rtl::ReadBook bookGirl(123, "Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01", 9, "2019-Nov-19");
-    rtl::ReadBook bookWidth(123, "Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15", 8, "2019-Oct-27");
+    rtl::ReadBook bookMist("123", "Brandon Sanderson", "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", 9, "2019-Sep-13");
+    rtl::ReadBook bookGirl("123", "Stieg Larsson", "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01", 9, "2019-Nov-19");
+    rtl::ReadBook bookWidth("123", "Robert Jordan1234567", "The Eye of the World123456789012345", "The Wheel of Time123", "Tor Books", 70212, "fantasy", "1990-Jan-15", 8, "2019-Oct-27");
     
     XCTAssert(bookMist.PrintSimple() == testMist);
     XCTAssert(bookGirl.PrintSimple() == testGirl);
@@ -308,17 +308,17 @@ int testReaderId = 1;
 }
 
 - (void)test_PrintDetailed {
-    std::string testMist = "Title:         Mistborn: The Final Empire                                       \nBookId:        1c5fdaf7109aa47ef2                                               \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2006-Jul-17                                                      \nISBN:          9780765311788                                                    \nOCLC:          62342185                                                         \nReader ID:     123                                                              \nRating:        9                                                                \nDate Read:     2019-Sep-13                                                      \n";
-    std::string testGirl = "Title:         The Girl with the Dragon Tattoo                                  \nBookId:        2c844f9a4aac31a8848f80                                           \nAuthor Name:   Stieg Larsson                                                    \nAuthorId:      7052c8                                                           \nSeries:        Millennium                                                       \nGenre:         thriller                                                         \nPage Count:    480                                                              \nPublisher:     Norstedts Förlag                                                \nPublish Date:  2005-Aug-01                                                      \nISBN:          9781847242532                                                    \nOCLC:          186764078                                                        \nReader ID:     123                                                              \nRating:        9                                                                \nDate Read:     2019-Nov-19                                                      \n";
-    std::string testWidth = "Title:         The Eye of the World123456789012345678901234567890123456789012345\nBookId:        cfcbb4cef513c9c904bf8                                            \nAuthor Name:   Robert Jordan1234567890123456789012345678901234567890123456789012\nAuthorId:      2766def2                                                         \nSeries:        The Wheel of Time123456789012345678901234567890123456789012345678\nGenre:         fantasy                                                          \nPage Count:    70212                                                            \nPublisher:     Tor Books12345678901234567890123456789012345678901234567890123456\nPublish Date:  1990-Jan-15                                                      \nISBN:          19723327, 1234567890, 1234567890, 1234567890, 1234567890, 1234567\nOCLC:          0312850093, 1234567890, 1234567890, 1234567890, 1234567890, 12345\nReader ID:     123                                                              \nRating:        8                                                                \nDate Read:     2019-Oct-27                                                      \n";
+    std::string testMist = "Title:         Mistborn: The Final Empire                                       \nBookId:        1c5fdaf7109aa47ef2                                               \nAuthor Name:   Brandon Sanderson                                                \nAuthorId:      1567187                                                          \nSeries:        Mistborn                                                         \nGenre:         fantasy                                                          \nPage Count:    541                                                              \nPublisher:     Tor Books                                                        \nPublish Date:  2006-Jul-17                                                      \nISBN:          9780765311788                                                    \nOCLC:          62342185                                                         \nReader ID:     1                                                                \nRating:        9                                                                \nDate Read:     2019-Sep-13                                                      \n";
+    std::string testGirl = "Title:         The Girl with the Dragon Tattoo                                  \nBookId:        2c844f9a4aac31a8848f80                                           \nAuthor Name:   Stieg Larsson                                                    \nAuthorId:      7052c8                                                           \nSeries:        Millennium                                                       \nGenre:         thriller                                                         \nPage Count:    480                                                              \nPublisher:     Norstedts Förlag                                                \nPublish Date:  2005-Aug-01                                                      \nISBN:          9781847242532                                                    \nOCLC:          186764078                                                        \nReader ID:     1                                                                \nRating:        9                                                                \nDate Read:     2019-Nov-19                                                      \n";
+    std::string testWidth = "Title:         The Eye of the World123456789012345678901234567890123456789012345\nBookId:        cfcbb4cef513c9c904bf8                                            \nAuthor Name:   Robert Jordan1234567890123456789012345678901234567890123456789012\nAuthorId:      2766def2                                                         \nSeries:        The Wheel of Time123456789012345678901234567890123456789012345678\nGenre:         fantasy                                                          \nPage Count:    70212                                                            \nPublisher:     Tor Books12345678901234567890123456789012345678901234567890123456\nPublish Date:  1990-Jan-15                                                      \nISBN:          19723327, 1234567890, 1234567890, 1234567890, 1234567890, 1234567\nOCLC:          0312850093, 1234567890, 1234567890, 1234567890, 1234567890, 12345\nReader ID:     1                                                                \nRating:        8                                                                \nDate Read:     2019-Oct-27                                                      \n";
     
     rtl::Book bookMist({"Brandon Sanderson"}, "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", std::vector<std::string> {"9780765311788"}, std::vector<std::string> {"62342185"});
     rtl::Book bookGirl({"Stieg Larsson"}, "The Girl with the Dragon Tattoo", "Millennium", "Norstedts Förlag", 480, "thriller", "2005-Aug-01", std::vector<std::string> {"9781847242532"}, std::vector<std::string> {"186764078"});
     rtl::Book bookWidth({"Robert Jordan123456789012345678901234567890123456789012345678901234567890"}, "The Eye of the World12345678901234567890123456789012345678901234567890", "The Wheel of Time12345678901234567890123456789012345678901234567890", "Tor Books123456789012345678901234567890123456789012345678901234567890", 70212, "fantasy", "1990-Jan-15", std::vector<std::string> {"19723327", "1234567890", "1234567890", "1234567890", "1234567890", "1234567890"}, std::vector<std::string> {"0312850093", "1234567890", "1234567890", "1234567890", "1234567890", "1234567890"});
     
-    rtl::ReadBook readBookMist(123, bookMist, 9, "2019-Sep-13");
-    rtl::ReadBook readBookGirl(123, bookGirl, 9, "2019-Nov-19");
-    rtl::ReadBook readBookWidth(123, bookWidth, 8, "2019-Oct-27");
+    rtl::ReadBook readBookMist(testReaderId, bookMist, 9, "2019-Sep-13");
+    rtl::ReadBook readBookGirl(testReaderId, bookGirl, 9, "2019-Nov-19");
+    rtl::ReadBook readBookWidth(testReaderId, bookWidth, 8, "2019-Oct-27");
     
     XCTAssert(readBookMist.PrintDetailed() == testMist);
     XCTAssert(readBookGirl.PrintDetailed() == testGirl);
@@ -326,7 +326,7 @@ int testReaderId = 1;
 }
 
 - (void)test_PrintJson {
-    rtl::ReadBook testReadBook1(1, "a", "a");
+    rtl::ReadBook testReadBook1(testReaderId, "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");
@@ -335,13 +335,13 @@ int testReaderId = 1;
     testReadBook1.SetDateRead("1993-Mar-25");
     testReadBook1.SetRating(4);
     
-    std::string jsonString = R"({"bookId":"1bba","isbn":[],"oclc":[],"author":["a"],"authorId":["4e"],"title":"a","series":"a","publisher":"a","genre":"fantasy","pageCount":100,"publishDate":"1990-Dec-01","rating":4,"dateRead":"1993-Mar-25","readerId":1})";
+    std::string jsonString = R"({"bookId":"1bba","isbn":[],"oclc":[],"author":["a"],"authorId":["4e"],"title":"a","series":"a","publisher":"a","genre":"fantasy","pageCount":100,"publishDate":"1990-Dec-01","rating":4,"dateRead":"1993-Mar-25","readerId":"1"})";
     
     XCTAssert(testReadBook1.PrintJson() == jsonString);
 }
 
 - (void)test_GetUpdateFunction_PassStringRating_ReturnPointerToSetRating {
-    rtl::ReadBook testReadBook(123, "testAuthor", "testTitle");
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     
     rtl::SetsPtr returnFunction = testReadBook.GetUpdateFunction("Rating");
     
@@ -352,7 +352,7 @@ int testReaderId = 1;
 }
 
 - (void)test_GetUpdateFunction_PassStringDateRead_ReturnPointerToSetDateRead {
-    rtl::ReadBook testReadBook(123, "testAuthor", "testTitle");
+    rtl::ReadBook testReadBook(testReaderId, "testAuthor", "testTitle");
     
     rtl::SetsPtr returnFunction = testReadBook.GetUpdateFunction("Date Read");
     
@@ -364,7 +364,7 @@ int testReaderId = 1;
 
 - (void)test_SetDateRead_PassStringWithControlCharacters_ControlCharactersAreRemoved {
     std::string test = "\n\n1990-Apr-01\n";
-    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    rtl::ReadBook testBook(testReaderId, "testAuthor", "testTitle");
     
     XCTAssert(testBook.SetDateRead(test) == true);
     
@@ -373,14 +373,14 @@ int testReaderId = 1;
 
 - (void)test_SetDateRead_PassStringOnlyWithControlCharacters_ReturnFalse {
     std::string test = "\n\n\t\t\n";
-    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    rtl::ReadBook testBook(testReaderId, "testAuthor", "testTitle");
     
     XCTAssert(testBook.SetDateRead(test) == false);
 }
 
 - (void)test_SetRating_PassStringWithControlCharacters_ControlCharactersAreRemoved {
     std::string test = "\n\n9\n";
-    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    rtl::ReadBook testBook(testReaderId, "testAuthor", "testTitle");
     
     XCTAssert(testBook.SetRating(test) == true);
     
@@ -389,7 +389,7 @@ int testReaderId = 1;
 
 - (void)test_SetRating_PassStringOnlyWithControlCharacters_ReturnFalse {
     std::string test = "\n\n\t\t\n";
-    rtl::ReadBook testBook(123, "testAuthor", "testTitle");
+    rtl::ReadBook testBook(testReaderId, "testAuthor", "testTitle");
     
     XCTAssert(testBook.SetRating(test) == false);
 }

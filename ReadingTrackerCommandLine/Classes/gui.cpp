@@ -183,7 +183,7 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
 }
 */
 //TODO: validation on inputs
-rtl::ReadBook rtl::CommandLine::GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, int readerId, int inputMode) {
+rtl::ReadBook rtl::CommandLine::GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, std::string readerId, int inputMode) {
     
     rtl::Book newBook = rtl::CommandLine::GetNewBook(inputStream, outputStream, inputMode);
 
@@ -258,7 +258,7 @@ void rtl::CommandLine::UpdateRecord(std::istream& inputStream, std::ostream& out
 
 //TODO: do all the options need to share so much code not abstracted away (too much copy/paste)
 //should only be called from mainMenu so not in header
-void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList, int readerId) {
+void addMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InMemoryContainers& masterList, std::string readerId) {
     
     std::vector<std::string> inputModes {"manual", "by identifier (isbn/oclc)", "by title" };
     int currentMode = 0;
@@ -556,7 +556,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
     return;
 }
 
-void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputStream, int readerId) {
+void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputStream, std::string readerId) {
     rtl::InMemoryContainers& masterList = rtl::InMemoryContainers::GetInstance();
     
     while(true) {

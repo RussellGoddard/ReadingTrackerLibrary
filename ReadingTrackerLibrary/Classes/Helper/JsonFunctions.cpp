@@ -33,7 +33,7 @@ std::shared_ptr<rtl::Book> rtl::ConvertJsonToBookPtr(nlohmann::json json) {
 
 std::shared_ptr<rtl::ReadBook> rtl::ConvertJsonToReadBookPtr(nlohmann::json json) {
     try {
-        int readerId = json["readerId"].get<int>();
+        std::string readerId = json["readerId"].get<std::string>();
         std::vector<std::string> author = json["author"].get<std::vector<std::string>>();
         std::string title = json["title"].get<std::string>();
         std::string series = json["series"].get<std::string>();

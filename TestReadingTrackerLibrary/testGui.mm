@@ -185,9 +185,9 @@
     std::stringstream inputSs, outputSs;
     inputSs.str("testAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
-    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 0);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, "123", 0);
     
-    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetReaderId() == "123");
     XCTAssert(testReadBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testReadBook.GetTitle() == "testTitle");
     XCTAssert(testReadBook.GetPublisher() == "testPublisher");
@@ -207,9 +207,9 @@
     std::stringstream inputSs, outputSs;
     inputSs.str("ISBN\n12341234213412341234\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
-    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 1);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, "123", 1);
     
-    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetReaderId() == "123");
     XCTAssert(testReadBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testReadBook.GetTitle() == "testTitle");
     XCTAssert(testReadBook.GetPublisher() == "testPublisher");
@@ -231,9 +231,9 @@
     std::vector<std::string> isbnAnswer {"0312850093", "9780765324887"};
     std::vector<std::string> oclcAnswer {"19723327"};
     
-    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 1);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, "123", 1);
     
-    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetReaderId() == "123");
     XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
     XCTAssert(testReadBook.GetRating() == 9);
     XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
@@ -251,9 +251,9 @@
     std::stringstream inputSs, outputSs;
     inputSs.str("gibberishtitle\ntestAuthor\n1234567890\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n1999-Oct-02\n9\n");
     
-    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, "123", 2);
     
-    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetReaderId() == "123");
     XCTAssert(testReadBook.GetAuthors().at(0) == "testAuthor");
     XCTAssert(testReadBook.GetTitle() == "testTitle");
     XCTAssert(testReadBook.GetPublisher() == "testPublisher");
@@ -273,9 +273,9 @@
     std::stringstream inputSs, outputSs;
     inputSs.str("The Eye of the World\n1999-Oct-02\n9\n");
     
-    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, "123", 2);
     
-    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetReaderId() == "123");
     XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
     XCTAssert(testReadBook.GetRating() == 9);
     XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");
@@ -295,9 +295,9 @@
     std::stringstream inputSs, outputSs;
     inputSs.str("The Eye of the World\n199-123-ab\n9\n");
     
-    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, "123", 2);
     
-    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetReaderId() == "123");
     std::string testStr = testReadBook.PrintDateRead();
     XCTAssert(testReadBook.PrintDateRead() == "");
     XCTAssert(testReadBook.GetRating() == 9);
@@ -318,9 +318,9 @@
     std::stringstream inputSs, outputSs;
     inputSs.str("The Eye of the World\n1999-Oct-02\nab\n");
     
-    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, 123, 2);
+    rtl::ReadBook testReadBook = rtl::CommandLine::GetNewReadBook(inputSs, outputSs, "123", 2);
     
-    XCTAssert(testReadBook.GetReaderId() == 123);
+    XCTAssert(testReadBook.GetReaderId() == "123");
     XCTAssert(testReadBook.PrintDateRead() == "1999-Oct-02");
     XCTAssert(testReadBook.GetRating() == -1);
     XCTAssert(testReadBook.GetAuthors().at(0) == "Robert Jordan");

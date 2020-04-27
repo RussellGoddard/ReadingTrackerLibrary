@@ -27,7 +27,7 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
 }
 
 - (void)test_AddMasterReadBooks_PassSharedPtrReadBook_ThenReadBookAndBookVectorHaveNewBook {
-    rtl::ReadBook testReadBook1(1, "a", "a");
+    rtl::ReadBook testReadBook1("1", "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");
@@ -47,7 +47,7 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
 }
 
 - (void)test_AddMasterReadBooks_PassSharedPtrReadBookVector_ThenReadBookAndBookVectorHaveNewBooksAndDuplicatesRemoved {
-    rtl::ReadBook testReadBook1(1, "a", "a");
+    rtl::ReadBook testReadBook1("1", "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");
@@ -56,7 +56,7 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     testReadBook1.SetRating(4);
     testReadBook1.SetDateRead("1993-Mar-25");
     
-    rtl::ReadBook testReadBook2(1, "b", "b");
+    rtl::ReadBook testReadBook2("1", "b", "b");
     testReadBook2.SetSeries("b");
     testReadBook2.SetPublisher("b");
     testReadBook2.SetGenre("fantasy");
@@ -65,7 +65,7 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     testReadBook2.SetRating(4);
     testReadBook2.SetDateRead("1993-Mar-25");
     
-    rtl::ReadBook testReadBook3(1, "a", "a");
+    rtl::ReadBook testReadBook3("1", "a", "a");
     testReadBook3.SetSeries("a");
     testReadBook3.SetPublisher("a");
     testReadBook3.SetGenre("fantasy");
@@ -261,7 +261,7 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     testBook1.SetPageCount(10);
     testBook1.SetPublishDate("1990-Dec-01");
     
-    rtl::ReadBook testReadBook1(1, "a", "a");
+    rtl::ReadBook testReadBook1("1", "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");
@@ -306,7 +306,7 @@ rtl::InMemoryContainers& testContainer = rtl::InMemoryContainers::GetInstance();
     testBook1.SetPageCount(10);
     testBook1.SetPublishDate("1990-Dec-01");
     
-    rtl::ReadBook testReadBook1(1, "a", "a");
+    rtl::ReadBook testReadBook1("1", "a", "a");
     testReadBook1.SetSeries("a");
     testReadBook1.SetPublisher("a");
     testReadBook1.SetGenre("fantasy");

@@ -111,7 +111,7 @@ int rtl::ReadBook::GetRating() const {
     return this->rating;
 }
 
-int rtl::ReadBook::GetReaderId() const {
+std::string rtl::ReadBook::GetReaderId() const {
     return this->readerId;
 }
 
@@ -134,7 +134,7 @@ std::string rtl::ReadBook::PrintJson() const {
     returnString.pop_back(); //remove ending bracket
     
     //append ReadBook variables
-    returnString += R"(,"rating":)" + std::to_string(this->GetRating()) + R"(,"dateRead":")" + this->PrintDateRead() + R"(","readerId":)" + std::to_string(this->GetReaderId()) + R"(})";
+    returnString += R"(,"rating":)" + std::to_string(this->GetRating()) + R"(,"dateRead":")" + this->PrintDateRead() + R"(","readerId":")" + this->GetReaderId() + R"("})";
     
     return returnString;
     
@@ -208,26 +208,26 @@ std::string rtl::ReadBook::PrintHeader() const {
     return returnStr.str();
 }
 
-rtl::ReadBook::ReadBook(int readerId, Book book, int rating, boost::posix_time::ptime dateRead) : Book(book) {
+rtl::ReadBook::ReadBook(std::string readerId, Book book, int rating, boost::posix_time::ptime dateRead) : Book(book) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
 }
 
-rtl::ReadBook::ReadBook(int readerId, Book book, int rating, std::string dateRead) : Book(book) {
+rtl::ReadBook::ReadBook(std::string readerId, Book book, int rating, std::string dateRead) : Book(book) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
 }
 
 
-rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, rtl::Genre genre, boost::posix_time::ptime publishDate, int rating, boost::posix_time::ptime dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
+rtl::ReadBook::ReadBook(std::string readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, rtl::Genre genre, boost::posix_time::ptime publishDate, int rating, boost::posix_time::ptime dateRead) : Book(author, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);
 }
 
-rtl::ReadBook::ReadBook(int readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book({author}, title, series, publisher, pageCount, genre, publishDate) {
+rtl::ReadBook::ReadBook(std::string readerId, std::string author, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, int rating, std::string dateRead) : Book({author}, title, series, publisher, pageCount, genre, publishDate) {
     this->readerId = readerId;
     this->SetDateRead(dateRead);
     this->SetRating(rating);

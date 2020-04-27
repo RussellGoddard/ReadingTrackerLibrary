@@ -71,7 +71,7 @@
 - (void)test_ConvertJsonToReadBookPtr_PassJson_ReturnSharedPtrReadBook {
     nlohmann::json jsonTestPass = R"(
       {
-        "readerId":123,
+        "readerId":"123",
         "author":["Robert Jordan"],
         "isbn":[],
         "oclc":["123456"],
@@ -89,7 +89,7 @@
     
     std::shared_ptr<rtl::ReadBook> testPtrReadBook1 = rtl::ConvertJsonToReadBookPtr(jsonTestPass);
     
-    XCTAssert(testPtrReadBook1->GetReaderId() == jsonTestPass["readerId"].get<int>());
+    XCTAssert(testPtrReadBook1->GetReaderId() == jsonTestPass["readerId"].get<std::string>());
     XCTAssert(testPtrReadBook1->GetAuthors() == jsonTestPass["author"].get<std::vector<std::string>>());
     XCTAssert(testPtrReadBook1->PrintGenre() == jsonTestPass["genre"].get<std::string>());
     XCTAssert(testPtrReadBook1->GetPageCount() == jsonTestPass["pageCount"].get<int>());
@@ -108,7 +108,7 @@
 - (void)test_ConvertJsonToReadBookPtr_PassInvalid_ReturnNullptr {
     nlohmann::json jsonTestFail = R"(
       {
-        "r":123,
+        "r":"123",
         "a":"Robert Jordan",
         "dateRead":"2020-Jan-29",
         "genre":"fantasy",
