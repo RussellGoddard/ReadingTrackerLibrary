@@ -23,7 +23,8 @@
 }
 
 - (void)test_Dynamodb {
-    //testDyanamodb(2, 'name');
+    std::vector<std::string> test = {"name"};
+    //testDyanamodb(2, test);
 }
 
 @end

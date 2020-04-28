@@ -98,6 +98,7 @@ std::string rtl::Book::PrintPublishDate() const {
 
 bool rtl::Book::AddAuthor(std::string author) {
     rtl::Book::RemoveNonPrint(author);
+    rtl::Trim(author);
     if (author.empty()) {
         return false;
     }

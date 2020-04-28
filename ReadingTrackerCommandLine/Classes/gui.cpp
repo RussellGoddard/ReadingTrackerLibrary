@@ -59,7 +59,6 @@ rtl::Author rtl::CommandLine::GetNewAuthor(std::istream& inputStream, std::ostre
 }
 */
 
-//TODO: validation on inputs
 rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& outputStream, int inputMode) {
     std::vector<std::string> author;
     std::vector<std::string> isbn;
@@ -76,9 +75,8 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
         //manual
         case 0: {
             //TODO: more descriptive input messages
-            OutputLine(outputStream, "Input author");
-            //TODO: support multiple authors
-            author.push_back(GetInput(inputStream));
+            OutputLine(outputStream, "Input author, sepearte multiple authors by comma");
+            author = rtl::splitString(GetInput(inputStream), ",");
             OutputLine(outputStream, "Input ISBN");
             //TODO: support multiple ISBN
             isbn.push_back(GetInput(inputStream));
