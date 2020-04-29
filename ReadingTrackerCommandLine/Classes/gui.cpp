@@ -75,14 +75,12 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
         //manual
         case 0: {
             //TODO: more descriptive input messages
-            OutputLine(outputStream, "Input author, sepearte multiple authors by comma");
+            OutputLine(outputStream, "Input author, seperate multiple authors by comma");
             author = rtl::splitString(GetInput(inputStream), ",");
-            OutputLine(outputStream, "Input ISBN");
-            //TODO: support multiple ISBN
-            isbn.push_back(GetInput(inputStream));
+            OutputLine(outputStream, "Input ISBN, seperate multiple ISBN by comma");
+            isbn = rtl::splitString(GetInput(inputStream), ",");
             OutputLine(outputStream, "Input OCLC");
-            //TODO: support multiple OCLC
-            oclc.push_back(GetInput(inputStream));
+            oclc = rtl::splitString(GetInput(inputStream), ",");
             OutputLine(outputStream, "Input title");
             title = GetInput(inputStream);
             OutputLine(outputStream, "Input publisher");

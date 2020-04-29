@@ -233,6 +233,7 @@ bool rtl::Book::SetPublishDate(std::string publishDate) {
 //TODO: oclc validation
 bool rtl::Book::AddOclc(std::string oclc) {
     rtl::Book::RemoveNonPrint(oclc);
+    rtl::Trim(oclc);
     if (oclc.empty()) {
         return false;
     }
@@ -244,6 +245,7 @@ bool rtl::Book::AddOclc(std::string oclc) {
 //TODO: better validation of ISBN
 bool rtl::Book::AddIsbn(std::string isbn) {
     rtl::Book::RemoveNonPrint(isbn);
+    rtl::Trim(isbn);
     if (isbn.empty()) {
         return false;
     }

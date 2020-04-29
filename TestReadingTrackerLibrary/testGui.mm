@@ -418,4 +418,48 @@
     XCTAssert(testBook.GetOclc().at(0) == "123456");
 }
 
+- (void)test_GetNewBook_Manual_PassMultipleISBN_ReturnNewBook {
+    std::stringstream inputSs, outputSs;
+    
+    inputSs.str("testAuthor1\n1234567890, 1234567890123\n123456\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
+    
+    rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 0);
+    
+    XCTAssert(testBook.GetAuthors().size() == 1);
+    XCTAssert(testBook.GetAuthors().at(0) == "testAuthor1");
+    XCTAssert(testBook.GetTitle() == "testTitle");
+    XCTAssert(testBook.GetPublisher() == "testPublisher");
+    XCTAssert(testBook.GetSeries() == "testSeries");
+    XCTAssert(testBook.GetGenre() == rtl::Genre::fantasy);
+    XCTAssert(testBook.PrintPublishDate() == "1999-Oct-01");
+    XCTAssert(testBook.GetPageCount() == 123);
+    XCTAssert(testBook.GetIsbn().size() == 2);
+    XCTAssert(testBook.GetIsbn().at(0) == "1234567890");
+    XCTAssert(testBook.GetIsbn().at(1) == "1234567890123");
+    XCTAssert(testBook.GetOclc().size() == 1);
+    XCTAssert(testBook.GetOclc().at(0) == "123456");
+}
+
+- (void)test_GetNewBook_Manual_PassMultipleOCLC_ReturnNewBook {
+    std::stringstream inputSs, outputSs;
+    
+    inputSs.str("testAuthor1\n1234567890\n123456, 789012\ntestTitle\ntestPublisher\ntestSeries\nfantasy\n1999-Oct-01\n123\n");
+    
+    rtl::Book testBook = rtl::CommandLine::GetNewBook(inputSs, outputSs, 0);
+    
+    XCTAssert(testBook.GetAuthors().size() == 1);
+    XCTAssert(testBook.GetAuthors().at(0) == "testAuthor1");
+    XCTAssert(testBook.GetTitle() == "testTitle");
+    XCTAssert(testBook.GetPublisher() == "testPublisher");
+    XCTAssert(testBook.GetSeries() == "testSeries");
+    XCTAssert(testBook.GetGenre() == rtl::Genre::fantasy);
+    XCTAssert(testBook.PrintPublishDate() == "1999-Oct-01");
+    XCTAssert(testBook.GetPageCount() == 123);
+    XCTAssert(testBook.GetIsbn().size() == 1);
+    XCTAssert(testBook.GetIsbn().at(0) == "1234567890");
+    XCTAssert(testBook.GetOclc().size() == 2);
+    XCTAssert(testBook.GetOclc().at(0) == "123456");
+    XCTAssert(testBook.GetOclc().at(1) == "789012");
+}
+
 @end
