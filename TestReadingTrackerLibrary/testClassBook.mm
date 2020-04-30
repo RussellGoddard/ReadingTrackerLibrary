@@ -491,6 +491,23 @@
     XCTAssert(testBook.GetOclc()[0] == "123456");
 }
 
+- (void)test_GetUpdateFunction_PassValueThatCannotBeChanged_ReturnNullptr {
+    
+    rtl::Book testBook("testAuthor", "testTitle");
+
+    rtl::SetsPtr returnFunction = testBook.GetUpdateFunction("Author Name");
+    XCTAssert(returnFunction == nullptr);
+    
+    returnFunction = testBook.GetUpdateFunction("AuthorId");
+    XCTAssert(returnFunction == nullptr);
+    
+    returnFunction = testBook.GetUpdateFunction("Title");
+    XCTAssert(returnFunction == nullptr);
+    
+    returnFunction = testBook.GetUpdateFunction("BookId");
+    XCTAssert(returnFunction == nullptr);
+}
+
 - (void)test_SetSeries_PassStringWithControlCharacters_ControlCharactersAreRemoved {
     std::string test = "\n\ntestSeries\n";
     rtl::Book testBook("testAuthor", "testTitle");

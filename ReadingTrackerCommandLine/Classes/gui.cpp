@@ -178,7 +178,7 @@ rtl::Book rtl::CommandLine::GetNewBook(std::istream& inputStream, std::ostream& 
     "dateRead" : "Oct 26 2019"
 }
 */
-//TODO: validation on inputs
+
 rtl::ReadBook rtl::CommandLine::GetNewReadBook(std::istream& inputStream, std::ostream& outputStream, std::string readerId, int inputMode) {
     
     rtl::Book newBook = rtl::CommandLine::GetNewBook(inputStream, outputStream, inputMode);
@@ -386,6 +386,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
     int currentDisplay = 0;
     
     while(true) {
+        //TODO: implement sort and search
         rtl::CommandLine::OutputLine(outputStream, std::vector<std::string>
         {   "Please select what you want to display",
             "1: Book",
