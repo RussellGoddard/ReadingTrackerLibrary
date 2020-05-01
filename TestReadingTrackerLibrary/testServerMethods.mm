@@ -16,6 +16,8 @@
 
 @implementation testServerMethods
 
+rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance();
+
 - (void)setUp {
 }
 

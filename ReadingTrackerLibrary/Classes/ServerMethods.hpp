@@ -26,9 +26,19 @@
 #include <aws/dynamodb/model/ListTablesResult.h>
 #include <iostream>
 
+namespace rtl {
 
-
-
-int testDyanamodb(int argc, std::vector<std::string> argv);
+    class ServerMethods {
+    public:
+        int testDyanamodb(int argc, std::vector<std::string> argv);
+        
+        static ServerMethods& GetInstance();
+    private:
+        ServerMethods() = default;
+        ~ServerMethods();
+        ServerMethods(ServerMethods const&) = delete;
+        void operator=(ServerMethods const&) = delete;
+    };
+}
 
 #endif /* ServerMethods_hpp */
