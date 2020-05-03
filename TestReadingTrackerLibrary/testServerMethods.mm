@@ -26,7 +26,7 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance();
 
 - (void)test_Dynamodb {
     std::vector<std::string> test = {"name"};
-    //testDyanamodb(2, test);
+    serverMethodsTest.testDyanamodb(2, test);
 }
 
 @end

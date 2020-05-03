@@ -9,10 +9,11 @@
 #include "ServerMethods.hpp"
 
 int rtl::ServerMethods::testDyanamodb(int argc, std::vector<std::string> argv) {
+    
     std::cout << "Your DynamoDB Tables:" << std::endl;
     
     // snippet-start:[dynamodb.cpp.list_tables.code]
-    Aws::Client::ClientConfiguration clientConfig;
+    std::cout << clientConfig.region << std::endl;
     Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
 
     Aws::DynamoDB::Model::ListTablesRequest ltr;
@@ -34,11 +35,20 @@ int rtl::ServerMethods::testDyanamodb(int argc, std::vector<std::string> argv) {
     return 0;
 }
 
+void rtl::ServerMethods::SetClientConfig() {
+    this->clientConfig.scheme = Aws::Http::Scheme::HTTPS;
+    this->clientConfig.region = "us-east-2";
+}
+
 rtl::ServerMethods& rtl::ServerMethods::GetInstance() {
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
     static ServerMethods instance;
     return instance;
+}
+
+rtl::ServerMethods::ServerMethods() {
+    Aws::SDKOptions options;
+    Aws::InitAPI(options);
+    SetClientConfig();
 }
 
 rtl::ServerMethods::~ServerMethods() {

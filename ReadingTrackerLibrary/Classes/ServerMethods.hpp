@@ -24,6 +24,8 @@
 #include <aws/dynamodb/DynamoDBClient.h>
 #include <aws/dynamodb/model/ListTablesRequest.h>
 #include <aws/dynamodb/model/ListTablesResult.h>
+
+#include <aws/dynamodb/model/DeleteTableRequest.h>
 #include <iostream>
 
 namespace rtl {
@@ -34,7 +36,12 @@ namespace rtl {
         
         static ServerMethods& GetInstance();
     private:
-        ServerMethods() = default;
+        
+        Aws::Client::ClientConfiguration clientConfig;
+        
+        void SetClientConfig();
+        
+        ServerMethods();
         ~ServerMethods();
         ServerMethods(ServerMethods const&) = delete;
         void operator=(ServerMethods const&) = delete;
