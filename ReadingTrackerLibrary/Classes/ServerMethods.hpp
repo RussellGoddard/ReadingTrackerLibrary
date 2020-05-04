@@ -26,6 +26,11 @@
 #include <aws/dynamodb/model/ListTablesResult.h>
 
 #include <aws/dynamodb/model/DeleteTableRequest.h>
+
+#include <aws/dynamodb/model/AttributeDefinition.h>
+#include <aws/dynamodb/model/PutItemRequest.h>
+#include <aws/dynamodb/model/PutItemResult.h>
+
 #include <iostream>
 
 namespace rtl {
