@@ -41,10 +41,49 @@ int rtl::ServerMethods::testDyanamodb(int argc, std::vector<std::string> argv) {
     bookId.SetS("1c5fdaf7109aa47ef2");
     pir.AddItem("BookId", bookId);
 
+    //TODO: should be a aws list
     Aws::DynamoDB::Model::AttributeValue author;
     author.SetS("Brandon Sanderson");
     pir.AddItem("Author", author);
     
+    //TODO: should be aws list
+    Aws::DynamoDB::Model::AttributeValue isbn;
+    isbn.SetS("9780765311788");
+    pir.AddItem("ISBN", isbn);
+    
+    //TODO: should be aws list
+    Aws::DynamoDB::Model::AttributeValue oclc;
+    oclc.SetS("62342185");
+    pir.AddItem("OCLC", oclc);
+    
+    //TODO: should be aws list
+    Aws::DynamoDB::Model::AttributeValue authorId;
+    authorId.SetS("1567187");
+    pir.AddItem("AuthorId", authorId);
+    
+    Aws::DynamoDB::Model::AttributeValue title;
+    title.SetS("Mistborn: The Final Empire");
+    pir.AddItem("Title", title);
+    
+    Aws::DynamoDB::Model::AttributeValue series;
+    series.SetS("Mistborn");
+    pir.AddItem("Series", series);
+    
+    Aws::DynamoDB::Model::AttributeValue publisher;
+    publisher.SetS("Tor Books");
+    pir.AddItem("Publisher", publisher);
+    
+    Aws::DynamoDB::Model::AttributeValue genre;
+    genre.SetS("fantasy");
+    pir.AddItem("Genre", genre);
+    
+    Aws::DynamoDB::Model::AttributeValue pageCount;
+    pageCount.SetN("541");
+    pir.AddItem("Page Count", pageCount);
+    
+    Aws::DynamoDB::Model::AttributeValue publishDate;
+    publishDate.SetS("2006-Jul-17");
+    pir.AddItem("Publish Date", publishDate);
     
     const Aws::DynamoDB::Model::PutItemOutcome result = dynamoClient.PutItem(pir);
     if (!result.IsSuccess())
