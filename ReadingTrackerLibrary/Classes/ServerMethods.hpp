@@ -10,14 +10,12 @@
 #define ServerMethods_hpp
 
 #include <iostream>
+#include <vector>
+#include "Book.hpp"
 
 // turn off the specific warning
+#pragma GCC diagnostic ignored "-Wcomma"
 #pragma GCC diagnostic ignored "-Wdocumentation"
-
-
-
-// turn the warnings back on
-#pragma GCC diagnostic pop
 
 #include <aws/core/Aws.h>
 #include <aws/core/utils/Outcome.h>
@@ -25,19 +23,23 @@
 #include <aws/dynamodb/model/ListTablesRequest.h>
 #include <aws/dynamodb/model/ListTablesResult.h>
 
-#include <aws/dynamodb/model/DeleteTableRequest.h>
-
 #include <aws/dynamodb/model/AttributeDefinition.h>
 #include <aws/dynamodb/model/PutItemRequest.h>
 #include <aws/dynamodb/model/PutItemResult.h>
 
-#include <iostream>
+#include <aws/dynamodb/model/ScanRequest.h>
+
+// turn the warnings back on
+#pragma GCC diagnostic pop
+
 
 namespace rtl {
 
     class ServerMethods {
     public:
         int testDyanamodb(int argc, std::vector<std::string> argv);
+        
+        std::vector<rtl::Book> LoadBooks();
         
         static ServerMethods& GetInstance();
     private:
