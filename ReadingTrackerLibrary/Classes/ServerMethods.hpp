@@ -37,8 +37,9 @@ namespace rtl {
 
     class ServerMethods {
     public:
-        int testDyanamodb(int argc, std::vector<std::string> argv);
+        int testDyanamodb(int argc, std::vector<std::string> argv); //TODO: delete this, just for experimentation
         
+        bool AddBook(std::shared_ptr<rtl::Book> input);
         std::vector<rtl::Book> LoadBooks();
         
         static ServerMethods& GetInstance();

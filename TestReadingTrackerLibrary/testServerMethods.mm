@@ -30,35 +30,44 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance();
     //serverMethodsTest.testDyanamodb(2, test);
 }
 
-- (void)test_LoadBooks_ReturnAllBooksInAWS {
+- (void)test_AddBookAndLoadBooks_PassBookToAws_RetrieveSameBookFromAws {
+    /*
+     Book(std::vector<std::string> authors, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn = {}, std::vector<std::string> oclc = {});
+     */
+    rtl::Book finalEmpire({"Brandon Sanderson"}, "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", {"9780765311788"}, {"62342185"});
+    rtl::Book wellAscension({"Brandon Sanderson"}, "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 590, "fantasy", "2007-Aug-21", {"9780765316882"}, {"122715367"});
+    rtl::Book heroAges({"Brandon Sanderson"}, "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 572, "fantasy", "2008-Oct-14", {"9780765356147"}, {"191245491"});
+    
+    XCTAssert(serverMethodsTest.AddBook(std::make_shared<rtl::Book>(finalEmpire)));
+    XCTAssert(serverMethodsTest.AddBook(std::make_shared<rtl::Book>(wellAscension)));
+    XCTAssert(serverMethodsTest.AddBook(std::make_shared<rtl::Book>(heroAges)));
+    
+    
     std::vector<rtl::Book> bookVector;
     
     bookVector = serverMethodsTest.LoadBooks();
     
-    XCTAssert(bookVector.size() == 2);
-    XCTAssert(bookVector.at(0).GetBookId() == "1c5fdaf7109aa47ef2");
-    XCTAssert(bookVector.at(0).GetAuthors().at(0) == "Brandon Sanderson");
-    XCTAssert(bookVector.at(0).GetAuthorId().at(0) == "1567187");
-    XCTAssert(bookVector.at(0).PrintGenre() == "fantasy");
-    XCTAssert(bookVector.at(0).GetIsbn().at(0) == "9780765311788");
-    XCTAssert(bookVector.at(0).GetOclc().at(0) == "62342185");
-    XCTAssert(bookVector.at(0).GetPageCount() == 541);
-    XCTAssert(bookVector.at(0).PrintPublishDate() == "2006-Jul-17");
-    XCTAssert(bookVector.at(0).GetPublisher() == "Tor Books");
-    XCTAssert(bookVector.at(0).GetSeries() == "Mistborn");
-    XCTAssert(bookVector.at(0).GetTitle() == "Mistborn: The Final Empire");
     
-    XCTAssert(bookVector.at(1).GetBookId() == "3ffc6bac06439747e1b0");
-    XCTAssert(bookVector.at(1).GetAuthors().at(0) == "Brandon Sanderson");
-    XCTAssert(bookVector.at(1).GetAuthorId().at(0) == "1567187");
-    XCTAssert(bookVector.at(1).PrintGenre() == "fantasy");
-    XCTAssert(bookVector.at(1).GetIsbn().at(0) == "9780765316882");
-    XCTAssert(bookVector.at(1).GetOclc().at(0) == "122715367");
-    XCTAssert(bookVector.at(1).GetPageCount() == 590);
-    XCTAssert(bookVector.at(1).PrintPublishDate() == "2007-Aug-21");
-    XCTAssert(bookVector.at(1).GetPublisher() == "Tor Books");
-    XCTAssert(bookVector.at(1).GetSeries() == "Mistborn");
-    XCTAssert(bookVector.at(1).GetTitle() == "Mistborn: The Well of Ascension");
+    bool foundEmpire, foundWell, foundHero;
+    XCTAssert(bookVector.size() == 3);
+    
+    for (auto x : bookVector) {
+        if (x == finalEmpire) {
+            foundEmpire = true;
+        }
+        else if (x == wellAscension) {
+            foundWell = true;
+        }
+        else if (x == heroAges) {
+            foundHero = true;
+        }
+    }
+    
+    XCTAssert(foundEmpire);
+    XCTAssert(foundWell);
+    XCTAssert(foundHero);
 }
+
+
 
 @end
