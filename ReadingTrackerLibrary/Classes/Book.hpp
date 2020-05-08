@@ -100,7 +100,7 @@ namespace rtl {
         const int kWidthSeries = 19;
         const int kWidthPage = 5;
         
-        const std::string kAuthor = "Author Name";
+        const std::string kAuthor = "Author";
         const std::string kAuthorId = "AuthorId";
         const std::string kTitle = "Title";
         const std::string kBookId = "BookId";

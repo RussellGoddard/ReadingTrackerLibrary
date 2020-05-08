@@ -65,7 +65,7 @@ namespace rtl {
         const int kWidthDateRead = 13;
         const int kWidthRating = 4;
         
-        const std::string kReaderId = "Reader ID";
+        const std::string kReaderId = "ReaderId";
         const std::string kDateRead = "Date Read";
         const std::string kRating = "Rating";
     };

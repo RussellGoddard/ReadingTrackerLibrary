@@ -101,11 +101,11 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
     Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
     
     Aws::DynamoDB::Model::PutItemRequest pir;
-    pir.SetTableName("Books");
+    pir.SetTableName(Aws::String(this->booksTableName));
 
     Aws::DynamoDB::Model::AttributeValue bookId;
     bookId.SetS(Aws::String(input->GetBookId()));
-    pir.AddItem("BookId", bookId);
+    pir.AddItem("bookId", bookId);
 
     Aws::DynamoDB::Model::AttributeValue author;
     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authors;
@@ -113,7 +113,7 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
         authors.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
     }
     author.SetL(authors);
-    pir.AddItem("Authors", author);
+    pir.AddItem("author", author);
     
     Aws::DynamoDB::Model::AttributeValue isbn;
     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> isbns;
@@ -121,7 +121,7 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
         isbns.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
     }
     isbn.SetL(isbns);
-    pir.AddItem("ISBN", isbn);
+    pir.AddItem("isbn", isbn);
     
     Aws::DynamoDB::Model::AttributeValue oclc;
     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> oclcs;
@@ -129,7 +129,7 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
         oclcs.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
     }
     oclc.SetL(oclcs);
-    pir.AddItem("OCLC", oclc);
+    pir.AddItem("oclc", oclc);
     
     Aws::DynamoDB::Model::AttributeValue authorId;
     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authorIds;
@@ -137,31 +137,31 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
         authorIds.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
     }
     authorId.SetL(authorIds);
-    pir.AddItem("AuthorId", authorId);
+    pir.AddItem("authorId", authorId);
     
     Aws::DynamoDB::Model::AttributeValue title;
     title.SetS(Aws::String(input->GetTitle()));
-    pir.AddItem("Title", title);
+    pir.AddItem("title", title);
     
     Aws::DynamoDB::Model::AttributeValue series;
     series.SetS(Aws::String(input->GetSeries()));
-    pir.AddItem("Series", series);
+    pir.AddItem("series", series);
     
     Aws::DynamoDB::Model::AttributeValue publisher;
     publisher.SetS(Aws::String(input->GetPublisher()));
-    pir.AddItem("Publisher", publisher);
+    pir.AddItem("publisher", publisher);
     
     Aws::DynamoDB::Model::AttributeValue genre;
     genre.SetS(Aws::String(input->PrintGenre()));
-    pir.AddItem("Genre", genre);
+    pir.AddItem("genre", genre);
     
     Aws::DynamoDB::Model::AttributeValue pageCount;
     pageCount.SetN(input->GetPageCount());
-    pir.AddItem("Page Count", pageCount);
+    pir.AddItem("pageCount", pageCount);
     
     Aws::DynamoDB::Model::AttributeValue publishDate;
     publishDate.SetS(Aws::String(input->PrintPublishDate()));
-    pir.AddItem("Publish Date", publishDate);
+    pir.AddItem("publishDate", publishDate);
     
     const Aws::DynamoDB::Model::PutItemOutcome result = dynamoClient.PutItem(pir);
     if (!result.IsSuccess())
@@ -172,12 +172,13 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
     return true;
 }
 
+//TODO: LoadBooks should put books in FileMethods
 std::vector<rtl::Book> rtl::ServerMethods::LoadBooks() {
     //TODO: support pagination
     std::vector<rtl::Book> returnVector;
     
     Aws::DynamoDB::Model::ScanRequest scanRequest;
-    scanRequest.WithTableName("Books");
+    scanRequest.WithTableName(Aws::String(this->booksTableName));
     
     Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
     Aws::DynamoDB::Model::ScanOutcome scanOutcome = dynamoClient.Scan(scanRequest);
@@ -187,23 +188,230 @@ std::vector<rtl::Book> rtl::ServerMethods::LoadBooks() {
         for (auto x : items) {
             
             std::vector<std::string> allAuthors;
-            for (auto y : x.find("Authors")->second.GetL()) {
+            for (auto y : x.find("author")->second.GetL()) {
                 allAuthors.push_back(y->GetS().c_str());
             }
             
             std::vector<std::string> allIsbn;
-            for (auto y : x.find("ISBN")->second.GetL()) {
+            for (auto y : x.find("isbn")->second.GetL()) {
                 allIsbn.push_back(y->GetS().c_str());
             }
             
             std::vector<std::string> allOclc;
-            for (auto y : x.find("OCLC")->second.GetL()) {
+            for (auto y : x.find("oclc")->second.GetL()) {
                 allOclc.push_back(y->GetS().c_str());
             }
             
-            rtl::Book newBook(allAuthors, x.find("Title")->second.GetS().c_str(), x.find("Series")->second.GetS().c_str(), x.find("Publisher")->second.GetS().c_str(), std::stoi(x.find("Page Count")->second.GetN().c_str()), x.find("Genre")->second.GetS().c_str(), x.find("Publish Date")->second.GetS().c_str(), allIsbn, allOclc);
+            rtl::Book newBook(allAuthors, x.find("title")->second.GetS().c_str(), x.find("series")->second.GetS().c_str(), x.find("publisher")->second.GetS().c_str(), std::stoi(x.find("pageCount")->second.GetN().c_str()), x.find("genre")->second.GetS().c_str(), x.find("publishDate")->second.GetS().c_str(), allIsbn, allOclc);
             
             returnVector.push_back(newBook);
+        }
+    }
+    else {
+        //TODO: should this always return empty vector?
+        BOOST_LOG_TRIVIAL(warning) << scanOutcome.GetError();
+        returnVector.clear();
+        return returnVector;
+    }
+    
+    
+    return returnVector;
+}
+
+bool rtl::ServerMethods::AddReadBook(std::shared_ptr<rtl::ReadBook> input) {
+    Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
+    
+    Aws::DynamoDB::Model::PutItemRequest pir;
+    pir.SetTableName(Aws::String(this->readbooksTableName));
+
+    Aws::DynamoDB::Model::AttributeValue bookId;
+    bookId.SetS(Aws::String(input->GetBookId()));
+    pir.AddItem("bookId", bookId);
+
+    Aws::DynamoDB::Model::AttributeValue author;
+    Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authors;
+    for (auto x : input->GetAuthors()) {
+        authors.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadReadBook", Aws::String(x)));
+    }
+    author.SetL(authors);
+    pir.AddItem("author", author);
+    
+    Aws::DynamoDB::Model::AttributeValue isbn;
+    Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> isbns;
+    for (auto x : input->GetIsbn()) {
+        isbns.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadReadBook", Aws::String(x)));
+    }
+    isbn.SetL(isbns);
+    pir.AddItem("isbn", isbn);
+    
+    Aws::DynamoDB::Model::AttributeValue oclc;
+    Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> oclcs;
+    for (auto x : input->GetOclc()) {
+        oclcs.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadReadBook", Aws::String(x)));
+    }
+    oclc.SetL(oclcs);
+    pir.AddItem("oclc", oclc);
+    
+    Aws::DynamoDB::Model::AttributeValue authorId;
+    Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authorIds;
+    for (auto x : input->GetAuthorId()) {
+        authorIds.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadReadBook", Aws::String(x)));
+    }
+    authorId.SetL(authorIds);
+    pir.AddItem("authorId", authorId);
+    
+    Aws::DynamoDB::Model::AttributeValue title;
+    title.SetS(Aws::String(input->GetTitle()));
+    pir.AddItem("title", title);
+    
+    Aws::DynamoDB::Model::AttributeValue series;
+    series.SetS(Aws::String(input->GetSeries()));
+    pir.AddItem("series", series);
+    
+    Aws::DynamoDB::Model::AttributeValue publisher;
+    publisher.SetS(Aws::String(input->GetPublisher()));
+    pir.AddItem("publisher", publisher);
+    
+    Aws::DynamoDB::Model::AttributeValue genre;
+    genre.SetS(Aws::String(input->PrintGenre()));
+    pir.AddItem("genre", genre);
+    
+    Aws::DynamoDB::Model::AttributeValue pageCount;
+    pageCount.SetN(input->GetPageCount());
+    pir.AddItem("pageCount", pageCount);
+    
+    Aws::DynamoDB::Model::AttributeValue publishDate;
+    publishDate.SetS(Aws::String(input->PrintPublishDate()));
+    pir.AddItem("publishDate", publishDate);
+    
+    Aws::DynamoDB::Model::AttributeValue readerId;
+    readerId.SetS(Aws::String(input->GetReaderId()));
+    pir.AddItem("readerId", readerId);
+    
+    Aws::DynamoDB::Model::AttributeValue rating;
+    rating.SetN(input->GetRating());
+    pir.AddItem("rating", rating);
+    
+    Aws::DynamoDB::Model::AttributeValue dateRead;
+    dateRead.SetS(Aws::String(input->PrintDateRead()));
+    pir.AddItem("dateRead", dateRead);
+    
+    const Aws::DynamoDB::Model::PutItemOutcome result = dynamoClient.PutItem(pir);
+    if (!result.IsSuccess())
+    {
+        BOOST_LOG_TRIVIAL(warning) << result.GetError().GetMessage();
+        return false;
+    }
+    return true;
+}
+
+//TODO: LoadReadBooks should put readbooks in FileMethods
+std::vector<rtl::ReadBook> rtl::ServerMethods::LoadReadBooks() {
+    //TODO: support pagination
+    std::vector<rtl::ReadBook> returnVector;
+    
+    Aws::DynamoDB::Model::ScanRequest scanRequest;
+    scanRequest.WithTableName(Aws::String(this->readbooksTableName));
+    
+    Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
+    Aws::DynamoDB::Model::ScanOutcome scanOutcome = dynamoClient.Scan(scanRequest);
+    
+    if (scanOutcome.IsSuccess()) {
+        auto items = scanOutcome.GetResult().GetItems();
+        for (auto x : items) {
+            
+            std::vector<std::string> allAuthors;
+            for (auto y : x.find("author")->second.GetL()) {
+                allAuthors.push_back(y->GetS().c_str());
+            }
+            
+            std::vector<std::string> allIsbn;
+            for (auto y : x.find("isbn")->second.GetL()) {
+                allIsbn.push_back(y->GetS().c_str());
+            }
+            
+            std::vector<std::string> allOclc;
+            for (auto y : x.find("oclc")->second.GetL()) {
+                allOclc.push_back(y->GetS().c_str());
+            }
+            
+            rtl::Book newBook(allAuthors, x.find("title")->second.GetS().c_str(), x.find("series")->second.GetS().c_str(), x.find("publisher")->second.GetS().c_str(), std::stoi(x.find("pageCount")->second.GetN().c_str()), x.find("genre")->second.GetS().c_str(), x.find("publishDate")->second.GetS().c_str(), allIsbn, allOclc);
+            
+            rtl::ReadBook newReadBook(x.find("readerId")->second.GetS().c_str(), newBook, std::stoi(x.find("rating")->second.GetN().c_str()), x.find("dateRead")->second.GetS().c_str());
+            
+            returnVector.push_back(newReadBook);
+        }
+    }
+    else {
+        //TODO: should this always return empty vector?
+        BOOST_LOG_TRIVIAL(warning) << scanOutcome.GetError();
+        returnVector.clear();
+        return returnVector;
+    }
+    
+    
+    return returnVector;
+}
+
+bool rtl::ServerMethods::AddAuthor(std::shared_ptr<rtl::Author> input) {
+    Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
+    
+    Aws::DynamoDB::Model::PutItemRequest pir;
+    pir.SetTableName(Aws::String(this->authorsTableName));
+
+    Aws::DynamoDB::Model::AttributeValue authorId;
+    authorId.SetS(Aws::String(input->GetAuthorId()));
+    pir.AddItem("authorId", authorId);
+
+    Aws::DynamoDB::Model::AttributeValue name;
+    name.SetS(Aws::String(input->GetName()));
+    pir.AddItem("name", name);
+    
+    Aws::DynamoDB::Model::AttributeValue dateBorn;
+    dateBorn.SetS(Aws::String(input->PrintDateBorn()));
+    pir.AddItem("dateBorn", dateBorn);
+    
+    Aws::DynamoDB::Model::AttributeValue booksWritten;
+    Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> books;
+    for (auto x : input->GetBooksWritten()) {
+        books.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadAuthor", Aws::String(x->PrintJson())));
+    }
+    booksWritten.SetL(books);
+    pir.AddItem("booksWritten", booksWritten);
+
+    const Aws::DynamoDB::Model::PutItemOutcome result = dynamoClient.PutItem(pir);
+    if (!result.IsSuccess())
+    {
+        BOOST_LOG_TRIVIAL(warning) << result.GetError().GetMessage();
+        return false;
+    }
+    return true;
+}
+
+//TODO: LoadAuthors should put authors in FileMethods
+std::vector<rtl::Author> rtl::ServerMethods::LoadAuthors() {
+    //TODO: support pagination
+    std::vector<rtl::Author> returnVector;
+    
+    Aws::DynamoDB::Model::ScanRequest scanRequest;
+    scanRequest.WithTableName(Aws::String(this->authorsTableName));
+    
+    Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
+    Aws::DynamoDB::Model::ScanOutcome scanOutcome = dynamoClient.Scan(scanRequest);
+    
+    if (scanOutcome.IsSuccess()) {
+        auto items = scanOutcome.GetResult().GetItems();
+        for (auto x : items) {
+            
+            std::vector<std::shared_ptr<rtl::Book>> booksWritten;
+            for (auto y : x.find("booksWritten")->second.GetL()) {
+                std::shared_ptr<rtl::Book> newBook = rtl::ConvertJsonToBookPtr(nlohmann::json::parse(y->GetS().c_str()));
+                booksWritten.push_back(newBook);
+            }
+
+            rtl::Author newAuthor(x.find("name")->second.GetS().c_str(), x.find("dateBorn")->second.GetS().c_str(), booksWritten);
+            
+            returnVector.push_back(newAuthor);
         }
     }
     else {
@@ -224,15 +432,20 @@ void rtl::ServerMethods::SetClientConfig() {
     return;
 }
 
-rtl::ServerMethods& rtl::ServerMethods::GetInstance() {
-    static ServerMethods instance;
+rtl::ServerMethods& rtl::ServerMethods::GetInstance(bool isDev) {
+    static ServerMethods instance(isDev);
     return instance;
 }
 
-rtl::ServerMethods::ServerMethods() {
+rtl::ServerMethods::ServerMethods(bool isDev) {
     Aws::SDKOptions options;
     Aws::InitAPI(options);
     SetClientConfig();
+    if (isDev) {
+        this->booksTableName = "DevBooks";
+        this->readbooksTableName = "DevReadBooks";
+        this->authorsTableName = "DevAuthors";
+    }
 }
 
 rtl::ServerMethods::~ServerMethods() {

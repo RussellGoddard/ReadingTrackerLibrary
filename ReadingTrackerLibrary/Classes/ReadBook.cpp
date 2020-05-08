@@ -182,7 +182,7 @@ std::string rtl::ReadBook::PrintDetailed() const {
     
     returnStr << std::left;
     returnStr << this->Book::PrintDetailed();
-    returnStr << std::setw(15) << this->kReaderId + ": " << std::setw(65) << this->GetReaderId() << std::endl;
+    returnStr << std::setw(14) << this->kReaderId + ": " << std::setw(66) << this->GetReaderId() << std::endl;
     returnStr << std::setw(15) << this->kRating + ": " << std::setw(65) << this->GetRating() << std::endl;
     returnStr << std::setw(15) << this->kDateRead + ": " << std::setw(65) << this->PrintDateRead() << std::endl;
     

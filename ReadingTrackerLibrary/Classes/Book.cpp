@@ -383,7 +383,7 @@ std::string rtl::Book::PrintDetailed() const {
     returnStr << std::left;
     returnStr << std::setw(15) << this->kTitle + ": " << std::setw(65) << this->GetTitle().substr(0, 65) << std::endl;
     returnStr << std::setw(15) << this->kBookId + ": " << std::setw(65) << this->GetBookId().substr(0, 65) << std::endl;
-    returnStr << std::setw(15) << this->kAuthor + ": " << std::setw(65) << this->GetAuthorsString().substr(0, 65) << std::endl;
+    returnStr << std::setw(10) << this->kAuthor + ": " << std::setw(70) << this->GetAuthorsString().substr(0, 70) << std::endl;
     returnStr << std::setw(15) << this->kAuthorId + ": " << std::setw(65) << this->GetAuthorIdString().substr(0, 65) << std::endl;
     returnStr << std::setw(15) << this->kSeries + ": " << std::setw(65) << this->GetSeries().substr(0, 65) << std::endl;
     returnStr << std::setw(15) << this->kGenre + ": " << std::setw(65) << this->PrintGenre().substr(0, 65) << std::endl;

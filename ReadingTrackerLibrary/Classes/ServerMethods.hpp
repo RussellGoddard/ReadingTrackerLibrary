@@ -11,7 +11,10 @@
 
 #include <iostream>
 #include <vector>
+#include "Author.hpp"
 #include "Book.hpp"
+#include "JsonFunctions.hpp"
+#include "ReadBook.hpp"
 
 // turn off the specific warning
 #pragma GCC diagnostic ignored "-Wcomma"
@@ -41,15 +44,24 @@ namespace rtl {
         
         bool AddBook(std::shared_ptr<rtl::Book> input);
         std::vector<rtl::Book> LoadBooks();
+        bool AddReadBook(std::shared_ptr<rtl::ReadBook> input);
+        std::vector<rtl::ReadBook> LoadReadBooks();
+        bool AddAuthor(std::shared_ptr<rtl::Author> input);
+        std::vector<rtl::Author> LoadAuthors();
         
-        static ServerMethods& GetInstance();
+        static ServerMethods& GetInstance(bool isDev);
     private:
         
         Aws::Client::ClientConfiguration clientConfig;
+        std::string booksTableName = "Books";
+        std::string readbooksTableName = "ReadBooks";
+        std::string authorsTableName = "Authors";
         
         void SetClientConfig();
         
-        ServerMethods();
+        
+        ServerMethods(bool isDev);
+        ServerMethods() = delete;
         ~ServerMethods();
         ServerMethods(ServerMethods const&) = delete;
         void operator=(ServerMethods const&) = delete;
