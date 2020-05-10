@@ -173,9 +173,9 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
 }
 
 //TODO: LoadBooks should put books in FileMethods
-std::vector<rtl::Book> rtl::ServerMethods::LoadBooks() {
+std::vector<std::shared_ptr<rtl::Book>> rtl::ServerMethods::LoadBooks() {
     //TODO: support pagination
-    std::vector<rtl::Book> returnVector;
+    std::vector<std::shared_ptr<rtl::Book>> returnVector;
     
     Aws::DynamoDB::Model::ScanRequest scanRequest;
     scanRequest.WithTableName(Aws::String(this->booksTableName));
@@ -204,7 +204,7 @@ std::vector<rtl::Book> rtl::ServerMethods::LoadBooks() {
             
             rtl::Book newBook(allAuthors, x.find("title")->second.GetS().c_str(), x.find("series")->second.GetS().c_str(), x.find("publisher")->second.GetS().c_str(), std::stoi(x.find("pageCount")->second.GetN().c_str()), x.find("genre")->second.GetS().c_str(), x.find("publishDate")->second.GetS().c_str(), allIsbn, allOclc);
             
-            returnVector.push_back(newBook);
+            returnVector.push_back(std::make_shared<rtl::Book>(newBook));
         }
     }
     else {
@@ -306,9 +306,9 @@ bool rtl::ServerMethods::AddReadBook(std::shared_ptr<rtl::ReadBook> input) {
 }
 
 //TODO: LoadReadBooks should put readbooks in FileMethods
-std::vector<rtl::ReadBook> rtl::ServerMethods::LoadReadBooks() {
+std::vector<std::shared_ptr<rtl::ReadBook>> rtl::ServerMethods::LoadReadBooks() {
     //TODO: support pagination
-    std::vector<rtl::ReadBook> returnVector;
+    std::vector<std::shared_ptr<rtl::ReadBook>> returnVector;
     
     Aws::DynamoDB::Model::ScanRequest scanRequest;
     scanRequest.WithTableName(Aws::String(this->readbooksTableName));
@@ -339,7 +339,7 @@ std::vector<rtl::ReadBook> rtl::ServerMethods::LoadReadBooks() {
             
             rtl::ReadBook newReadBook(x.find("readerId")->second.GetS().c_str(), newBook, std::stoi(x.find("rating")->second.GetN().c_str()), x.find("dateRead")->second.GetS().c_str());
             
-            returnVector.push_back(newReadBook);
+            returnVector.push_back(std::make_shared<rtl::ReadBook>(newReadBook));
         }
     }
     else {
@@ -388,10 +388,9 @@ bool rtl::ServerMethods::AddAuthor(std::shared_ptr<rtl::Author> input) {
     return true;
 }
 
-//TODO: LoadAuthors should put authors in FileMethods
-std::vector<rtl::Author> rtl::ServerMethods::LoadAuthors() {
+std::vector<std::shared_ptr<rtl::Author>> rtl::ServerMethods::LoadAuthors() {
     //TODO: support pagination
-    std::vector<rtl::Author> returnVector;
+    std::vector<std::shared_ptr<rtl::Author>> returnVector;
     
     Aws::DynamoDB::Model::ScanRequest scanRequest;
     scanRequest.WithTableName(Aws::String(this->authorsTableName));
@@ -411,7 +410,7 @@ std::vector<rtl::Author> rtl::ServerMethods::LoadAuthors() {
 
             rtl::Author newAuthor(x.find("name")->second.GetS().c_str(), x.find("dateBorn")->second.GetS().c_str(), booksWritten);
             
-            returnVector.push_back(newAuthor);
+            returnVector.push_back(std::make_shared<rtl::Author>(newAuthor));
         }
     }
     else {
@@ -421,6 +420,9 @@ std::vector<rtl::Author> rtl::ServerMethods::LoadAuthors() {
         return returnVector;
     }
     
+    rtl::InMemoryContainers& inMemoryContainer = rtl::InMemoryContainers::GetInstance();
+    
+    inMemoryContainer.AddMasterAuthors(returnVector);
     
     return returnVector;
 }

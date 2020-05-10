@@ -13,6 +13,7 @@
 #include <vector>
 #include "Author.hpp"
 #include "Book.hpp"
+#include "FileMethods.hpp"
 #include "JsonFunctions.hpp"
 #include "ReadBook.hpp"
 
@@ -43,11 +44,11 @@ namespace rtl {
         int testDyanamodb(int argc, std::vector<std::string> argv); //TODO: delete this, just for experimentation
         
         bool AddBook(std::shared_ptr<rtl::Book> input);
-        std::vector<rtl::Book> LoadBooks();
+        std::vector<std::shared_ptr<rtl::Book>> LoadBooks();
         bool AddReadBook(std::shared_ptr<rtl::ReadBook> input);
-        std::vector<rtl::ReadBook> LoadReadBooks();
+        std::vector<std::shared_ptr<rtl::ReadBook>> LoadReadBooks();
         bool AddAuthor(std::shared_ptr<rtl::Author> input);
-        std::vector<rtl::Author> LoadAuthors();
+        std::vector<std::shared_ptr<rtl::Author>> LoadAuthors();
         
         static ServerMethods& GetInstance(bool isDev);
     private:

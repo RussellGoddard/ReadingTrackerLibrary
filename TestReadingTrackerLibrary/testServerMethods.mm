@@ -18,6 +18,7 @@
 @implementation testServerMethods
 
 rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
+rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstance();
 
 //TODO: need to clear tables after all tests
 
@@ -25,6 +26,7 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
 }
 
 - (void)tearDown {
+    testFileContainer.ClearAll();
 }
 
 - (void)test_Dynamodb {
@@ -45,7 +47,7 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
     XCTAssert(serverMethodsTest.AddBook(std::make_shared<rtl::Book>(heroAges)));
     
     
-    std::vector<rtl::Book> bookVector;
+    std::vector<std::shared_ptr<rtl::Book>> bookVector;
     
     bookVector = serverMethodsTest.LoadBooks();
     
@@ -54,13 +56,13 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
     XCTAssert(bookVector.size() == 3);
     
     for (auto x : bookVector) {
-        if (x == finalEmpire) {
+        if (*x == finalEmpire) {
             foundEmpire = true;
         }
-        else if (x == wellAscension) {
+        else if (*x == wellAscension) {
             foundWell = true;
         }
-        else if (x == heroAges) {
+        else if (*x == heroAges) {
             foundHero = true;
         }
     }
@@ -87,7 +89,7 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
     XCTAssert(serverMethodsTest.AddReadBook(std::make_shared<rtl::ReadBook>(readHeroAges)));
     
     
-    std::vector<rtl::ReadBook> readbookVector;
+    std::vector<std::shared_ptr<rtl::ReadBook>> readbookVector;
     
     readbookVector = serverMethodsTest.LoadReadBooks();
     
@@ -96,46 +98,6 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
     XCTAssert(readbookVector.size() == 3);
     
     for (auto x : readbookVector) {
-        if (x == finalEmpire) {
-            foundEmpire = true;
-        }
-        else if (x == wellAscension) {
-            foundWell = true;
-        }
-        else if (x == heroAges) {
-            foundHero = true;
-        }
-    }
-    
-    XCTAssert(foundEmpire);
-    XCTAssert(foundWell);
-    XCTAssert(foundHero);
-}
-
-- (void)test_AddAuthor_LoadAuthors_PassAuthorToAws_RetrieveSameAuthorFromAws {
-    /*
-     Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
-     */
-    rtl::Book finalEmpire({"Brandon Sanderson"}, "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", {"9780765311788"}, {"62342185"});
-    rtl::Book wellAscension({"Brandon Sanderson"}, "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 590, "fantasy", "2007-Aug-21", {"9780765316882"}, {"122715367"});
-    rtl::Book heroAges({"Brandon Sanderson"}, "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 572, "fantasy", "2008-Oct-14", {"9780765356147"}, {"191245491"});
-    
-    rtl::Author newAuthor("Brandon Sanderson", "1975-Dec-19", {std::make_shared<rtl::Book>(finalEmpire), std::make_shared<rtl::Book>(wellAscension), std::make_shared<rtl::Book>(heroAges)});
-    
-    XCTAssert(serverMethodsTest.AddAuthor(std::make_shared<rtl::Author>(newAuthor)));
-    
-    
-    std::vector<rtl::Author> authorVector;
-    
-    authorVector = serverMethodsTest.LoadAuthors();
-
-    XCTAssert(authorVector.size() == 1);
-    XCTAssert(authorVector.at(0) == newAuthor);
-    
-    bool foundEmpire, foundWell, foundHero;
-    XCTAssert(authorVector.at(0).GetBooksWritten().size() == 3);
-    
-    for (auto x : authorVector.at(0).GetBooksWritten()) {
         if (*x == finalEmpire) {
             foundEmpire = true;
         }
@@ -150,6 +112,48 @@ rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
     XCTAssert(foundEmpire);
     XCTAssert(foundWell);
     XCTAssert(foundHero);
+}
+
+- (void)test_AddAuthor_LoadAuthors_PassAuthorToAws_RetrieveSameAuthorFromAwsAndAuthorsInMemoryContainer {
+    /*
+     Author(std::string name, std::string dateBorn, std::vector<std::shared_ptr<rtl::Book>> booksWritten = {});
+     */
+    rtl::Book finalEmpire({"Brandon Sanderson"}, "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", {"9780765311788"}, {"62342185"});
+    rtl::Book wellAscension({"Brandon Sanderson"}, "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 590, "fantasy", "2007-Aug-21", {"9780765316882"}, {"122715367"});
+    rtl::Book heroAges({"Brandon Sanderson"}, "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 572, "fantasy", "2008-Oct-14", {"9780765356147"}, {"191245491"});
+    
+    rtl::Author newAuthor("Brandon Sanderson", "1975-Dec-19", {std::make_shared<rtl::Book>(finalEmpire), std::make_shared<rtl::Book>(wellAscension), std::make_shared<rtl::Book>(heroAges)});
+    
+    XCTAssert(serverMethodsTest.AddAuthor(std::make_shared<rtl::Author>(newAuthor)));
+    
+    std::vector<std::shared_ptr<rtl::Author>> authorVector;
+    
+    authorVector = serverMethodsTest.LoadAuthors();
+
+    XCTAssert(authorVector.size() == 1);
+    XCTAssert(*authorVector.at(0) == newAuthor);
+    
+    bool foundEmpire, foundWell, foundHero;
+    XCTAssert(authorVector.at(0)->GetBooksWritten().size() == 3);
+    
+    for (auto x : authorVector.at(0)->GetBooksWritten()) {
+        if (*x == finalEmpire) {
+            foundEmpire = true;
+        }
+        else if (*x == wellAscension) {
+            foundWell = true;
+        }
+        else if (*x == heroAges) {
+            foundHero = true;
+        }
+    }
+    
+    XCTAssert(foundEmpire);
+    XCTAssert(foundWell);
+    XCTAssert(foundHero);
+    
+    XCTAssert(testFileContainer.GetMasterAuthors().size() == 1);
+    XCTAssert(*testFileContainer.GetMasterAuthors().at(0) == *authorVector.at(0));
 }
 
 @end
