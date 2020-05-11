@@ -9,6 +9,7 @@
 #ifndef ServerMethods_hpp
 #define ServerMethods_hpp
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include "Author.hpp"
@@ -33,6 +34,14 @@
 
 #include <aws/dynamodb/model/ScanRequest.h>
 
+#include <aws/dynamodb/model/DeleteTableRequest.h>
+
+#include <aws/dynamodb/model/AttributeDefinition.h>
+#include <aws/dynamodb/model/CreateTableRequest.h>
+#include <aws/dynamodb/model/KeySchemaElement.h>
+#include <aws/dynamodb/model/ProvisionedThroughput.h>
+#include <aws/dynamodb/model/ScalarAttributeType.h>
+
 // turn the warnings back on
 #pragma GCC diagnostic pop
 
@@ -50,16 +59,18 @@ namespace rtl {
         bool AddAuthor(std::shared_ptr<rtl::Author> input);
         std::vector<std::shared_ptr<rtl::Author>> LoadAuthors();
         
+        bool ClearTables();
+        
         static ServerMethods& GetInstance(bool isDev);
     private:
+        bool ClearTable(std::string tableName);
+        bool CreateTable(std::string tableName, std::string partitionKey, std::string sortKey);
+        void SetClientConfig();
         
         Aws::Client::ClientConfiguration clientConfig;
         std::string booksTableName = "Books";
         std::string readbooksTableName = "ReadBooks";
         std::string authorsTableName = "Authors";
-        
-        void SetClientConfig();
-        
         
         ServerMethods(bool isDev);
         ServerMethods() = delete;

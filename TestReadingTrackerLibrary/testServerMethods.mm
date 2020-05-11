@@ -191,4 +191,24 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
     XCTAssert(*testFileContainer.GetMasterAuthors().at(0) == *authorVector.at(0));
 }
 
+- (void)test_ClearTables_AllTablesAreDeletedAndRecreated {
+    rtl::Book finalEmpire({"Brandon Sanderson"}, "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", {"9780765311788"}, {"62342185"});
+    rtl::Book wellAscension({"Brandon Sanderson"}, "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 590, "fantasy", "2007-Aug-21", {"9780765316882"}, {"122715367"});
+    rtl::ReadBook readWellAscension("123", wellAscension, 8, "2019-Sep-30");
+    rtl::Author newAuthor("Brandon Sanderson", "1975-Dec-19");
+    
+    XCTAssert(serverMethodsTest.AddBook(std::make_shared<rtl::Book>(finalEmpire)));
+    XCTAssert(serverMethodsTest.AddReadBook(std::make_shared<rtl::ReadBook>(readWellAscension)));
+    XCTAssert(serverMethodsTest.AddAuthor(std::make_shared<rtl::Author>(newAuthor)));
+    XCTAssert(serverMethodsTest.ClearTables());
+    
+    std::vector<std::shared_ptr<rtl::Book>> bookVector = serverMethodsTest.LoadBooks();
+    std::vector<std::shared_ptr<rtl::ReadBook>> readbookVector = serverMethodsTest.LoadReadBooks();
+    std::vector<std::shared_ptr<rtl::Author>> authorVector = serverMethodsTest.LoadAuthors();
+    
+    XCTAssert(bookVector.size() == 0);
+    XCTAssert(readbookVector.size() == 0);
+    XCTAssert(authorVector.size() == 0);
+}
+
 @end

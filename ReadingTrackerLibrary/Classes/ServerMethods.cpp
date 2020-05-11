@@ -428,6 +428,83 @@ std::vector<std::shared_ptr<rtl::Author>> rtl::ServerMethods::LoadAuthors() {
     return returnVector;
 }
 
+bool rtl::ServerMethods::ClearTables() {
+    if (this->booksTableName.find("Dev") != 0) {
+        BOOST_LOG_TRIVIAL(info) << "ClearTables can only be performed on dev tables: " << this->booksTableName;
+        return false;
+    }
+    else if (this->readbooksTableName.find("Dev") != 0) {
+        BOOST_LOG_TRIVIAL(info) << "ClearTables can only be performed on dev tables: " << this->readbooksTableName;
+        return false;
+    }
+    else if (this->authorsTableName.find("Dev") != 0) {
+        BOOST_LOG_TRIVIAL(info) << "ClearTables can only be performed on dev tables: " << this->authorsTableName;
+        return false;
+    }
+    
+    bool isSuccess = false;
+    if (ClearTable(this->booksTableName)) {
+        isSuccess = std::max(CreateTable(this->booksTableName, "bookId", "author"), isSuccess);
+    }
+    if (ClearTable(this->readbooksTableName)) {
+        isSuccess = std::max(CreateTable(this->readbooksTableName, "readerId", "bookId"), isSuccess);
+    }
+    if (ClearTable(this->authorsTableName)) {
+        isSuccess = std::max(CreateTable(this->authorsTableName, "authorId", "name"), isSuccess);
+    }
+    
+    return isSuccess;
+}
+
+bool rtl::ServerMethods::ClearTable(std::string tableName) {
+    Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
+
+    Aws::DynamoDB::Model::DeleteTableRequest dtr;
+    dtr.SetTableName(Aws::String(tableName));
+
+    const Aws::DynamoDB::Model::DeleteTableOutcome& result = dynamoClient.DeleteTable(dtr);
+    if (result.IsSuccess()) {
+        return true;
+    }
+    else {
+        BOOST_LOG_TRIVIAL(error) << "Failed to delete table: " << result.GetError().GetMessage();
+        return false;
+    }
+}
+
+bool rtl::ServerMethods::CreateTable(std::string tableName, std::string partitionKey, std::string sortKey) {
+    
+    Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
+    Aws::DynamoDB::Model::CreateTableRequest req;
+
+    Aws::DynamoDB::Model::AttributeDefinition hashKey1, hashKey2;
+    hashKey1.WithAttributeName(Aws::String(partitionKey)).WithAttributeType(Aws::DynamoDB::Model::ScalarAttributeType::S);
+    req.AddAttributeDefinitions(hashKey1);
+    hashKey2.WithAttributeName(Aws::String(sortKey)).WithAttributeType(Aws::DynamoDB::Model::ScalarAttributeType::S);
+    req.AddAttributeDefinitions(hashKey2);
+
+    Aws::DynamoDB::Model::KeySchemaElement kse1, kse2;
+    kse1.WithAttributeName(Aws::String(partitionKey)).WithKeyType(Aws::DynamoDB::Model::KeyType::HASH);
+    req.AddKeySchema(kse1);
+    kse2.WithAttributeName(Aws::String(sortKey)).WithKeyType(Aws::DynamoDB::Model::KeyType::RANGE);
+    req.AddKeySchema(kse2);
+
+    Aws::DynamoDB::Model::ProvisionedThroughput thruput;
+    thruput.WithReadCapacityUnits(5).WithWriteCapacityUnits(5);
+    req.SetProvisionedThroughput(thruput);
+
+    req.SetTableName(Aws::String(tableName));
+
+    const Aws::DynamoDB::Model::CreateTableOutcome& result = dynamoClient.CreateTable(req);
+    if (result.IsSuccess()) {
+        return true;
+    }
+    else {
+        BOOST_LOG_TRIVIAL(error) << "Failed to create table:" << result.GetError().GetMessage();
+        return false;
+    }
+}
+
 void rtl::ServerMethods::SetClientConfig() {
     this->clientConfig.scheme = Aws::Http::Scheme::HTTPS;
     this->clientConfig.region = "us-east-2";
