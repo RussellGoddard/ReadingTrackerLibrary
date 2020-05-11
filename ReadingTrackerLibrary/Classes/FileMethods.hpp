@@ -68,10 +68,7 @@ namespace rtl {
         bool LoadInMemoryFromFile(std::string filePath);
         void ClearAll();
         
-        static InMemoryContainers& GetInstance() {
-            static InMemoryContainers instance;
-            return instance;
-        }
+        static InMemoryContainers& GetInstance();
         
     private:
         bool SaveJson(std::string input, std::fstream& filePath);

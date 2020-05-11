@@ -109,6 +109,11 @@ void rtl::InMemoryContainers::ClearAll() {
     return;
 }
 
+rtl::InMemoryContainers& rtl::InMemoryContainers::GetInstance() {
+    static InMemoryContainers instance;
+    return instance;
+}
+
 bool rtl::InMemoryContainers::SaveInMemoryToFile(std::string filePath) {
     
     std::fstream saveFile;

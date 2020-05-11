@@ -172,7 +172,6 @@ bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
     return true;
 }
 
-//TODO: LoadBooks should put books in FileMethods
 std::vector<std::shared_ptr<rtl::Book>> rtl::ServerMethods::LoadBooks() {
     //TODO: support pagination
     std::vector<std::shared_ptr<rtl::Book>> returnVector;
@@ -214,6 +213,8 @@ std::vector<std::shared_ptr<rtl::Book>> rtl::ServerMethods::LoadBooks() {
         return returnVector;
     }
     
+    rtl::InMemoryContainers& inMemoryContainer = rtl::InMemoryContainers::GetInstance();
+    inMemoryContainer.AddMasterBooks(returnVector);
     
     return returnVector;
 }
@@ -305,7 +306,6 @@ bool rtl::ServerMethods::AddReadBook(std::shared_ptr<rtl::ReadBook> input) {
     return true;
 }
 
-//TODO: LoadReadBooks should put readbooks in FileMethods
 std::vector<std::shared_ptr<rtl::ReadBook>> rtl::ServerMethods::LoadReadBooks() {
     //TODO: support pagination
     std::vector<std::shared_ptr<rtl::ReadBook>> returnVector;
@@ -349,6 +349,8 @@ std::vector<std::shared_ptr<rtl::ReadBook>> rtl::ServerMethods::LoadReadBooks() 
         return returnVector;
     }
     
+    rtl::InMemoryContainers& inMemoryContainer = rtl::InMemoryContainers::GetInstance();
+    inMemoryContainer.AddMasterReadBooks(returnVector);
     
     return returnVector;
 }
@@ -421,7 +423,6 @@ std::vector<std::shared_ptr<rtl::Author>> rtl::ServerMethods::LoadAuthors() {
     }
     
     rtl::InMemoryContainers& inMemoryContainer = rtl::InMemoryContainers::GetInstance();
-    
     inMemoryContainer.AddMasterAuthors(returnVector);
     
     return returnVector;

@@ -46,16 +46,34 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
     XCTAssert(serverMethodsTest.AddBook(std::make_shared<rtl::Book>(wellAscension)));
     XCTAssert(serverMethodsTest.AddBook(std::make_shared<rtl::Book>(heroAges)));
     
-    
     std::vector<std::shared_ptr<rtl::Book>> bookVector;
-    
     bookVector = serverMethodsTest.LoadBooks();
-    
     
     bool foundEmpire, foundWell, foundHero;
     XCTAssert(bookVector.size() == 3);
     
     for (auto x : bookVector) {
+        if (*x == finalEmpire) {
+            foundEmpire = true;
+        }
+        else if (*x == wellAscension) {
+            foundWell = true;
+        }
+        else if (*x == heroAges) {
+            foundHero = true;
+        }
+    }
+    
+    XCTAssert(foundEmpire);
+    XCTAssert(foundWell);
+    XCTAssert(foundHero);
+    XCTAssert(testFileContainer.GetMasterBooks().size() == 3);
+    
+    foundEmpire = false;
+    foundWell = false;
+    foundHero = false;
+    
+    for (auto x : testFileContainer.GetMasterBooks()) {
         if (*x == finalEmpire) {
             foundEmpire = true;
         }
@@ -88,16 +106,34 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
     XCTAssert(serverMethodsTest.AddReadBook(std::make_shared<rtl::ReadBook>(readWellAscension)));
     XCTAssert(serverMethodsTest.AddReadBook(std::make_shared<rtl::ReadBook>(readHeroAges)));
     
-    
     std::vector<std::shared_ptr<rtl::ReadBook>> readbookVector;
-    
     readbookVector = serverMethodsTest.LoadReadBooks();
-    
     
     bool foundEmpire, foundWell, foundHero;
     XCTAssert(readbookVector.size() == 3);
     
     for (auto x : readbookVector) {
+        if (*x == finalEmpire) {
+            foundEmpire = true;
+        }
+        else if (*x == wellAscension) {
+            foundWell = true;
+        }
+        else if (*x == heroAges) {
+            foundHero = true;
+        }
+    }
+    
+    XCTAssert(foundEmpire);
+    XCTAssert(foundWell);
+    XCTAssert(foundHero);
+    XCTAssert(testFileContainer.GetMasterReadBooks().size() == 3);
+    
+    foundEmpire = false;
+    foundWell = false;
+    foundHero = false;
+    
+    for (auto x : testFileContainer.GetMasterReadBooks()) {
         if (*x == finalEmpire) {
             foundEmpire = true;
         }
@@ -127,7 +163,6 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
     XCTAssert(serverMethodsTest.AddAuthor(std::make_shared<rtl::Author>(newAuthor)));
     
     std::vector<std::shared_ptr<rtl::Author>> authorVector;
-    
     authorVector = serverMethodsTest.LoadAuthors();
 
     XCTAssert(authorVector.size() == 1);
