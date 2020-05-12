@@ -27,6 +27,7 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
 
 - (void)tearDown {
     testFileContainer.ClearAll();
+    serverMethodsTest.ClearTables();
 }
 
 - (void)test_Dynamodb {
