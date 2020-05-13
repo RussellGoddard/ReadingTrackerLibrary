@@ -20,8 +20,6 @@
 rtl::ServerMethods& serverMethodsTest = rtl::ServerMethods::GetInstance(true);
 rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstance();
 
-//TODO: need to clear tables after all tests
-
 - (void)setUp {
 }
 

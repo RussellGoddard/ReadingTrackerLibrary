@@ -64,7 +64,7 @@ namespace rtl {
         static ServerMethods& GetInstance(bool isDev);
     private:
         bool ClearTable(std::string tableName);
-        bool CreateTable(std::string tableName, std::string partitionKey, std::string sortKey);
+        bool CreateTable(std::string tableName, std::string partitionKey, std::string sortKey = "");
         void SetClientConfig();
         
         Aws::Client::ClientConfiguration clientConfig;

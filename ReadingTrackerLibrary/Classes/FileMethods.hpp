@@ -14,7 +14,6 @@
 #include <future>
 #include <memory>
 #include <regex>
-#include <set>
 #include <utility>
 #include "Author.hpp"
 #include "HelperFunctions.hpp"

@@ -41,22 +41,18 @@ int rtl::ServerMethods::testDyanamodb(int argc, std::vector<std::string> argv) {
     bookId.SetS("1c5fdaf7109aa47ef2");
     pir.AddItem("BookId", bookId);
 
-    //TODO: should be a aws list
     Aws::DynamoDB::Model::AttributeValue author;
     author.SetS("Brandon Sanderson");
     pir.AddItem("Author", author);
     
-    //TODO: should be aws list
     Aws::DynamoDB::Model::AttributeValue isbn;
     isbn.SetS("9780765311788");
     pir.AddItem("ISBN", isbn);
     
-    //TODO: should be aws list
     Aws::DynamoDB::Model::AttributeValue oclc;
     oclc.SetS("62342185");
     pir.AddItem("OCLC", oclc);
-    
-    //TODO: should be aws list
+
     Aws::DynamoDB::Model::AttributeValue authorId;
     authorId.SetS("1567187");
     pir.AddItem("AuthorId", authorId);
@@ -444,13 +440,13 @@ bool rtl::ServerMethods::ClearTables() {
     
     bool isSuccess = false;
     if (ClearTable(this->booksTableName)) {
-        isSuccess = std::max(CreateTable(this->booksTableName, "bookId", "author"), isSuccess);
+        isSuccess = std::max(CreateTable(this->booksTableName, "bookId"), isSuccess);
     }
     if (ClearTable(this->readbooksTableName)) {
         isSuccess = std::max(CreateTable(this->readbooksTableName, "readerId", "bookId"), isSuccess);
     }
     if (ClearTable(this->authorsTableName)) {
-        isSuccess = std::max(CreateTable(this->authorsTableName, "authorId", "name"), isSuccess);
+        isSuccess = std::max(CreateTable(this->authorsTableName, "authorId"), isSuccess);
     }
     
     return isSuccess;
@@ -480,15 +476,19 @@ bool rtl::ServerMethods::CreateTable(std::string tableName, std::string partitio
     Aws::DynamoDB::Model::AttributeDefinition hashKey1, hashKey2;
     hashKey1.WithAttributeName(Aws::String(partitionKey)).WithAttributeType(Aws::DynamoDB::Model::ScalarAttributeType::S);
     req.AddAttributeDefinitions(hashKey1);
-    hashKey2.WithAttributeName(Aws::String(sortKey)).WithAttributeType(Aws::DynamoDB::Model::ScalarAttributeType::S);
-    req.AddAttributeDefinitions(hashKey2);
+    if (sortKey != "") {
+        hashKey2.WithAttributeName(Aws::String(sortKey)).WithAttributeType(Aws::DynamoDB::Model::ScalarAttributeType::S);
+        req.AddAttributeDefinitions(hashKey2);
+    }
 
     Aws::DynamoDB::Model::KeySchemaElement kse1, kse2;
     kse1.WithAttributeName(Aws::String(partitionKey)).WithKeyType(Aws::DynamoDB::Model::KeyType::HASH);
     req.AddKeySchema(kse1);
-    kse2.WithAttributeName(Aws::String(sortKey)).WithKeyType(Aws::DynamoDB::Model::KeyType::RANGE);
-    req.AddKeySchema(kse2);
-
+    if (sortKey != "") {
+        kse2.WithAttributeName(Aws::String(sortKey)).WithKeyType(Aws::DynamoDB::Model::KeyType::RANGE);
+        req.AddKeySchema(kse2);
+    }
+    
     Aws::DynamoDB::Model::ProvisionedThroughput thruput;
     thruput.WithReadCapacityUnits(5).WithWriteCapacityUnits(5);
     req.SetProvisionedThroughput(thruput);
