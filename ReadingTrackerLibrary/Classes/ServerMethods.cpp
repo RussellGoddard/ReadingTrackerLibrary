@@ -93,6 +93,16 @@ int rtl::ServerMethods::testDyanamodb(int argc, std::vector<std::string> argv) {
     return 0;
 }
 
+bool rtl::ServerMethods::AddBook(std::vector<std::shared_ptr<rtl::Book>> input) {
+    bool isSuccess = true;
+    
+    for (auto x : input) {
+        isSuccess = std::min(this->AddBook(x), isSuccess);
+    }
+    
+    return isSuccess;
+}
+
 bool rtl::ServerMethods::AddBook(std::shared_ptr<rtl::Book> input) {
     Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
     
@@ -302,6 +312,16 @@ bool rtl::ServerMethods::AddReadBook(std::shared_ptr<rtl::ReadBook> input) {
     return true;
 }
 
+bool rtl::ServerMethods::AddReadBook(std::vector<std::shared_ptr<rtl::ReadBook>> input) {
+    bool isSuccess = true;
+    
+    for (auto x : input) {
+        isSuccess = std::min(this->AddReadBook(x), isSuccess);
+    }
+    
+    return isSuccess;
+}
+
 std::vector<std::shared_ptr<rtl::ReadBook>> rtl::ServerMethods::LoadReadBooks() {
     //TODO: support pagination
     std::vector<std::shared_ptr<rtl::ReadBook>> returnVector;
@@ -384,6 +404,16 @@ bool rtl::ServerMethods::AddAuthor(std::shared_ptr<rtl::Author> input) {
         return false;
     }
     return true;
+}
+
+bool rtl::ServerMethods::AddAuthor(std::vector<std::shared_ptr<rtl::Author>> input) {
+    bool isSuccess = true;
+    
+    for (auto x : input) {
+        isSuccess = std::min(this->AddAuthor(x), isSuccess);
+    }
+    
+    return isSuccess;
 }
 
 std::vector<std::shared_ptr<rtl::Author>> rtl::ServerMethods::LoadAuthors() {

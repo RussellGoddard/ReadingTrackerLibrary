@@ -599,7 +599,9 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                 input = rtl::CommandLine::GetInput(inputStream);
                 bool saveSuccess = false;
                 if (input == "aws") {
-                    
+                    //saveSuccess = awsConnection.AddAuthor(<#std::shared_ptr<rtl::Author> input#>);
+                    //awsConnection.AddReadBook(<#std::shared_ptr<rtl::ReadBook> input#>);
+                    //awsConnection.AddBook(<#std::shared_ptr<rtl::Book> input#>);
                 }
                 else if (input == "" || input == "default") {
                     input = "./Files/rtlDataFile.txt";

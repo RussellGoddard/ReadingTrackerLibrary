@@ -55,10 +55,13 @@ namespace rtl {
         int testDyanamodb(int argc, std::vector<std::string> argv); //TODO: delete this, just for experimentation
         
         bool AddBook(std::shared_ptr<rtl::Book> input);
+        bool AddBook(std::vector<std::shared_ptr<rtl::Book>> input);
         std::vector<std::shared_ptr<rtl::Book>> LoadBooks();
         bool AddReadBook(std::shared_ptr<rtl::ReadBook> input);
+        bool AddReadBook(std::vector<std::shared_ptr<rtl::ReadBook>> input);
         std::vector<std::shared_ptr<rtl::ReadBook>> LoadReadBooks();
         bool AddAuthor(std::shared_ptr<rtl::Author> input);
+        bool AddAuthor(std::vector<std::shared_ptr<rtl::Author>> input);
         std::vector<std::shared_ptr<rtl::Author>> LoadAuthors();
         
         bool ClearTables();
