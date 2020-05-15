@@ -10,7 +10,9 @@
 #define ServerMethods_hpp
 
 #include <algorithm>
+#include <chrono>
 #include <iostream>
+#include <thread>
 #include <vector>
 #include "Author.hpp"
 #include "Book.hpp"

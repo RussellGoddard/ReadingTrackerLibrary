@@ -555,6 +555,7 @@ void displayMenu(std::istream& inputStream, std::ostream& outputStream, rtl::InM
 
 void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputStream, std::string readerId) {
     rtl::InMemoryContainers& masterList = rtl::InMemoryContainers::GetInstance();
+    rtl::ServerMethods& awsConnection = rtl::ServerMethods::GetInstance(false);
     
     while(true) {
         rtl::CommandLine::OutputLine(outputStream, std::vector<std::string>
@@ -592,18 +593,25 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                 rtl::CommandLine::OutputLine(outputStream, std::vector<std::string> {
                     "Input file path for save file or enter shortcut below:",
                     "default: same as blank, saves in ./Files/",
-                    "desktop: (shortcut to macOS user desktop)"
+                    "desktop: (shortcut to macOS user desktop)",
+                    "aws: saves to AWS"
                 });
                 input = rtl::CommandLine::GetInput(inputStream);
-                if (input == "" || input == "default") {
+                bool saveSuccess = false;
+                if (input == "aws") {
+                    
+                }
+                else if (input == "" || input == "default") {
                     input = "./Files/rtlDataFile.txt";
+                    saveSuccess = masterList.SaveInMemoryToFile(input);
                 }
                 //shortcut to macOS desktop
                 else if (input == "desktop") {
                     input = std::getenv("HOME");
                     input += "/Desktop/rtlDataFile.txt";
+                    saveSuccess = masterList.SaveInMemoryToFile(input);
                 }
-                if (masterList.SaveInMemoryToFile(input)) {
+                if (saveSuccess) {
                     rtl::CommandLine::OutputLine(outputStream, "save success\n");
                 }
                 else {

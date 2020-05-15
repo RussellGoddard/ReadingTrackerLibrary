@@ -15,6 +15,7 @@
 #include "CommandLineHelpers.hpp"
 #include "FileMethods.hpp"
 #include "Logger.hpp"
+#include "ServerMethods.hpp"
 
 namespace rtl::CommandLine {
    

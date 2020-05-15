@@ -26,6 +26,7 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
 - (void)tearDown {
     testFileContainer.ClearAll();
     serverMethodsTest.ClearTables();
+    std::this_thread::sleep_for (std::chrono::seconds(5));
 }
 
 - (void)test_Dynamodb {
