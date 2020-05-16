@@ -597,11 +597,12 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                     "aws: saves to AWS"
                 });
                 input = rtl::CommandLine::GetInput(inputStream);
-                bool saveSuccess = false;
+                bool saveSuccess = true;
+                
                 if (input == "aws") {
-                    //saveSuccess = awsConnection.AddAuthor(<#std::shared_ptr<rtl::Author> input#>);
-                    //awsConnection.AddReadBook(<#std::shared_ptr<rtl::ReadBook> input#>);
-                    //awsConnection.AddBook(<#std::shared_ptr<rtl::Book> input#>);
+                    saveSuccess = std::min(saveSuccess, awsConnection.AddAuthor(masterList.GetMasterAuthors()));
+                    saveSuccess = std::min(saveSuccess, awsConnection.AddReadBook(masterList.GetMasterReadBooks()));
+                    saveSuccess = std::min(saveSuccess, awsConnection.AddBook(masterList.GetMasterBooks()));
                 }
                 else if (input == "" || input == "default") {
                     input = "./Files/rtlDataFile.txt";
@@ -613,6 +614,7 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
                     input += "/Desktop/rtlDataFile.txt";
                     saveSuccess = masterList.SaveInMemoryToFile(input);
                 }
+                
                 if (saveSuccess) {
                     rtl::CommandLine::OutputLine(outputStream, "save success\n");
                 }
@@ -625,22 +627,45 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
             case '8': {
                 rtl::CommandLine::OutputLine(outputStream, std::vector<std::string> {
                     "Input file path to load file or enter shortcut below:",
-                    "desktop: (shortcut to macOS user desktop)"
+                    "default: same as blank, loads from ./Files/",
+                    "desktop: (shortcut to macOS user desktop)",
+                    "aws: loads from AWS"
                 });
                 input = rtl::CommandLine::GetInput(inputStream);
-                if (input == "" || input == "default") {
+                bool loadSuccess = false;
+                
+                if (input == "aws") {
+                    std::vector<std::shared_ptr<rtl::Author>> awsAuthors = awsConnection.LoadAuthors();
+                    std::vector<std::shared_ptr<rtl::ReadBook>> awsReadBooks = awsConnection.LoadReadBooks();
+                    std::vector<std::shared_ptr<rtl::Book>> awsBooks = awsConnection.LoadBooks();
+                    
+                    //TODO: ServerMethods load functions must return something other than empty vector on failure
+                    if (awsBooks.empty() || awsReadBooks.empty() || awsAuthors.empty()) {
+                        loadSuccess = false;
+                    }
+                    else {
+                        loadSuccess = true;
+                        masterList.AddMasterBooks(awsBooks);
+                        masterList.AddMasterReadBooks(awsReadBooks);
+                        masterList.AddMasterAuthors(awsAuthors);
+                    }
+                }
+                else if (input == "" || input == "default") {
                     input = "./Files/rtlDataFile.txt";
+                    loadSuccess = masterList.LoadInMemoryFromFile(input);
                 }
                 //shortcut to macOS desktop
                 else if (input == "desktop") {
                     input = std::getenv("HOME");
                     input += "/Desktop/rtlDataFile.txt";
+                    loadSuccess = masterList.LoadInMemoryFromFile(input);
                 }
-                if (masterList.LoadInMemoryFromFile(input)) {
+                
+                if (loadSuccess) {
                     rtl::CommandLine::OutputLine(outputStream, "load success\n");
                 }
                 else {
-                    BOOST_LOG_TRIVIAL(error) << "error loading path: " << input;
+                    BOOST_LOG_TRIVIAL(error) << "error loading from: " << input;
                     rtl::CommandLine::OutputLine(outputStream, "error loading\n");
                 }
                 break;
