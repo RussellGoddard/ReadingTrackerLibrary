@@ -44,6 +44,8 @@
 #include <aws/dynamodb/model/ProvisionedThroughput.h>
 #include <aws/dynamodb/model/ScalarAttributeType.h>
 
+#include <aws/dynamodb/model/TransactWriteItemsRequest.h>
+
 // turn the warnings back on
 #pragma GCC diagnostic pop
 
@@ -52,7 +54,7 @@ namespace rtl {
 
     class ServerMethods {
     public:
-        int testDyanamodb(int argc, std::vector<std::string> argv); //TODO: delete this, just for experimentation
+        bool testDyanamodb(std::vector<std::shared_ptr<rtl::Book>> input); //TODO: delete this, just for experimentation
         
         bool AddBook(std::shared_ptr<rtl::Book> input);
         bool AddBook(std::vector<std::shared_ptr<rtl::Book>> input);
