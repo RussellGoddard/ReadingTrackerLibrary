@@ -8,9 +8,6 @@
 #ifndef Book_hpp
 #define Book_hpp
 
-#include <ios>
-#include <ctime>
-#include <exception>
 #include <sstream>
 #include <string>
 #include <vector>

@@ -9,11 +9,11 @@
 #ifndef StandardOutput_hpp
 #define StandardOutput_hpp
 
-#include <string>
 #include <algorithm>
-#include <string>
-#include <iostream>
 #include <cctype>
+#include <iostream>
+#include <string>
+#include <vector>
 
 //below pragma's are taken from https://stackoverflow.com/a/13492589 to suppress warnings from boost
 // save diagnostic state
