@@ -44,7 +44,9 @@
 #include <aws/dynamodb/model/ProvisionedThroughput.h>
 #include <aws/dynamodb/model/ScalarAttributeType.h>
 
+#include <aws/dynamodb/model/TransactWriteItem.h>
 #include <aws/dynamodb/model/TransactWriteItemsRequest.h>
+#include <aws/dynamodb/model/Put.h>
 
 // turn the warnings back on
 #pragma GCC diagnostic pop

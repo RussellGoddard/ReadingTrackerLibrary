@@ -30,8 +30,7 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
 }
 
 - (void)test_Dynamodb {
-    std::vector<std::string> test = {"name"};
-    //serverMethodsTest.testDyanamodb(2, test);
+    //serverMethodsTest.testDyanamodb({rtl::Book({"testAuthor1"}, "testTitle"});
 }
 
 - (void)test_AddBook_LoadBooks_PassBookToAws_RetrieveSameBookFromAws {
