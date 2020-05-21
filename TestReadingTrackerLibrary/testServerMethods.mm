@@ -30,7 +30,60 @@ rtl::InMemoryContainers& testFileContainer = rtl::InMemoryContainers::GetInstanc
 }
 
 - (void)test_Dynamodb {
-    //serverMethodsTest.testDyanamodb({rtl::Book({"testAuthor1"}, "testTitle"});
+    /*
+     Book(std::vector<std::string> authors, std::string title, std::string series, std::string publisher, int pageCount, std::string genre, std::string publishDate, std::vector<std::string> isbn = {}, std::vector<std::string> oclc = {});
+     
+    rtl::Book finalEmpire({"Brandon Sanderson"}, "Mistborn: The Final Empire", "Mistborn", "Tor Books", 541, "fantasy", "2006-Jul-17", {"9780765311788"}, {"62342185"});
+    rtl::Book wellAscension({"Brandon Sanderson"}, "Mistborn: The Well of Ascension", "Mistborn", "Tor Books", 590, "fantasy", "2007-Aug-21", {"9780765316882"}, {"122715367"});
+    rtl::Book heroAges({"Brandon Sanderson"}, "Mistborn: The Hero of Ages", "Mistborn", "Tor Books", 572, "fantasy", "2008-Oct-14", {"9780765356147"}, {"191245491"});
+    
+    std::vector<std::shared_ptr<rtl::Book>> toAws {std::make_shared<rtl::Book>(finalEmpire), std::make_shared<rtl::Book>(wellAscension), std::make_shared<rtl::Book>(heroAges)};
+    
+    XCTAssert(serverMethodsTest.testDyanamodb(toAws));
+    
+    std::vector<std::shared_ptr<rtl::Book>> bookVector;
+    bookVector = serverMethodsTest.LoadBooks();
+    
+    bool foundEmpire, foundWell, foundHero;
+    XCTAssert(bookVector.size() == 3);
+    
+    for (auto x : bookVector) {
+        if (*x == finalEmpire) {
+            foundEmpire = true;
+        }
+        else if (*x == wellAscension) {
+            foundWell = true;
+        }
+        else if (*x == heroAges) {
+            foundHero = true;
+        }
+    }
+    
+    XCTAssert(foundEmpire);
+    XCTAssert(foundWell);
+    XCTAssert(foundHero);
+    XCTAssert(testFileContainer.GetMasterBooks().size() == 3);
+    
+    foundEmpire = false;
+    foundWell = false;
+    foundHero = false;
+    
+    for (auto x : testFileContainer.GetMasterBooks()) {
+        if (*x == finalEmpire) {
+            foundEmpire = true;
+        }
+        else if (*x == wellAscension) {
+            foundWell = true;
+        }
+        else if (*x == heroAges) {
+            foundHero = true;
+        }
+    }
+    
+    XCTAssert(foundEmpire);
+    XCTAssert(foundWell);
+    XCTAssert(foundHero);
+*/
 }
 
 - (void)test_AddBook_LoadBooks_PassBookToAws_RetrieveSameBookFromAws {

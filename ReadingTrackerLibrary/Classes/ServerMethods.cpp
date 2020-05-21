@@ -17,77 +17,78 @@ bool rtl::ServerMethods::testDyanamodb(std::vector<std::shared_ptr<rtl::Book>> i
     Aws::DynamoDB::DynamoDBClient dynamoClient(clientConfig);
     Aws::DynamoDB::Model::TransactWriteItemsRequest test;
     Aws::DynamoDB::Model::TransactWriteItem test2;
-    Aws::DynamoDB::Model::Put test3;
     
-    /*
-     Aws::DynamoDB::Model::AttributeValue bookId;
-     bookId.SetS(Aws::String(input->GetBookId()));
-     pir.AddItem("bookId", bookId);
+    
+    for (auto x : input) {
+        Aws::DynamoDB::Model::Put test3;
+        Aws::DynamoDB::Model::AttributeValue bookId;
+        bookId.SetS(Aws::String(x->GetBookId()));
+        test3.AddItem("bookId", bookId);
 
-     Aws::DynamoDB::Model::AttributeValue author;
-     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authors;
-     for (auto x : input->GetAuthors()) {
-         authors.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
-     }
-     author.SetL(authors);
-     pir.AddItem("author", author);
-     
-     Aws::DynamoDB::Model::AttributeValue isbn;
-     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> isbns;
-     for (auto x : input->GetIsbn()) {
-         isbns.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
-     }
-     isbn.SetL(isbns);
-     pir.AddItem("isbn", isbn);
-     
-     Aws::DynamoDB::Model::AttributeValue oclc;
-     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> oclcs;
-     for (auto x : input->GetOclc()) {
-         oclcs.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
-     }
-     oclc.SetL(oclcs);
-     pir.AddItem("oclc", oclc);
-     
-     Aws::DynamoDB::Model::AttributeValue authorId;
-     Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authorIds;
-     for (auto x : input->GetAuthorId()) {
-         authorIds.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
-     }
-     authorId.SetL(authorIds);
-     pir.AddItem("authorId", authorId);
-     
-     Aws::DynamoDB::Model::AttributeValue title;
-     title.SetS(Aws::String(input->GetTitle()));
-     pir.AddItem("title", title);
-     
-     Aws::DynamoDB::Model::AttributeValue series;
-     series.SetS(Aws::String(input->GetSeries()));
-     pir.AddItem("series", series);
-     
-     Aws::DynamoDB::Model::AttributeValue publisher;
-     publisher.SetS(Aws::String(input->GetPublisher()));
-     pir.AddItem("publisher", publisher);
-     
-     Aws::DynamoDB::Model::AttributeValue genre;
-     genre.SetS(Aws::String(input->PrintGenre()));
-     pir.AddItem("genre", genre);
-     
-     Aws::DynamoDB::Model::AttributeValue pageCount;
-     pageCount.SetN(input->GetPageCount());
-     pir.AddItem("pageCount", pageCount);
-     
-     Aws::DynamoDB::Model::AttributeValue publishDate;
-     publishDate.SetS(Aws::String(input->PrintPublishDate()));
-     pir.AddItem("publishDate", publishDate);
-     */
+        Aws::DynamoDB::Model::AttributeValue author;
+        Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authors;
+        for (auto x : x->GetAuthors()) {
+            authors.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
+        }
+        author.SetL(authors);
+        test3.AddItem("author", author);
+         
+        Aws::DynamoDB::Model::AttributeValue isbn;
+        Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> isbns;
+        for (auto x : x->GetIsbn()) {
+            isbns.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
+        }
+        isbn.SetL(isbns);
+        test3.AddItem("isbn", isbn);
+         
+        Aws::DynamoDB::Model::AttributeValue oclc;
+        Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> oclcs;
+        for (auto x : x->GetOclc()) {
+            oclcs.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
+        }
+        oclc.SetL(oclcs);
+        test3.AddItem("oclc", oclc);
+         
+        Aws::DynamoDB::Model::AttributeValue authorId;
+        Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> authorIds;
+        for (auto x : x->GetAuthorId()) {
+            authorIds.push_back(Aws::MakeShared<Aws::DynamoDB::Model::AttributeValue>("UploadBook", Aws::String(x)));
+        }
+        authorId.SetL(authorIds);
+        test3.AddItem("authorId", authorId);
+         
+        Aws::DynamoDB::Model::AttributeValue title;
+        title.SetS(Aws::String(x->GetTitle()));
+        test3.AddItem("title", title);
+         
+        Aws::DynamoDB::Model::AttributeValue series;
+        series.SetS(Aws::String(x->GetSeries()));
+        test3.AddItem("series", series);
+         
+        Aws::DynamoDB::Model::AttributeValue publisher;
+        publisher.SetS(Aws::String(x->GetPublisher()));
+        test3.AddItem("publisher", publisher);
+         
+        Aws::DynamoDB::Model::AttributeValue genre;
+        genre.SetS(Aws::String(x->PrintGenre()));
+        test3.AddItem("genre", genre);
+         
+        Aws::DynamoDB::Model::AttributeValue pageCount;
+        pageCount.SetN(x->GetPageCount());
+        test3.AddItem("pageCount", pageCount);
+         
+        Aws::DynamoDB::Model::AttributeValue publishDate;
+        publishDate.SetS(Aws::String(x->PrintPublishDate()));
+        test3.AddItem("publishDate", publishDate);
+        
+        test2.SetPut(test3);
+    }
     
-    test3.Additem();
-    test2.SetPut(<#const Put &value#>);
     test.AddTransactItems(test2);
     
-    //dynamoClient.TransactWriteItems(<#const Model::TransactWriteItemsRequest &request#>);
+    const Aws::DynamoDB::Model::TransactWriteItemsOutcome test4 = dynamoClient.TransactWriteItems(test);
     
-    return isSuccess;
+    return test4.IsSuccess();
 }
 
 bool rtl::ServerMethods::AddBook(std::vector<std::shared_ptr<rtl::Book>> input) {
