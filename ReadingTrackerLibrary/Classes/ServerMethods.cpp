@@ -684,6 +684,7 @@ bool rtl::ServerMethods::ClearTable(std::string tableName) {
         return true;
     }
     else if (result.GetError().GetExceptionName() == "ResourceNotFoundException") {
+        BOOST_LOG_TRIVIAL(info) << "Failed to delete table: " << result.GetError().GetMessage();
         return true;
     }
     else {
