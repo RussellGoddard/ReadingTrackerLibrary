@@ -558,6 +558,9 @@ void rtl::CommandLine::MainMenu(std::istream& inputStream, std::ostream& outputS
     rtl::ServerMethods& awsConnection = rtl::ServerMethods::GetInstance(false);
     
     while(true) {
+        //TODO: Add sorting
+        //TODO: Add searching
+        //TODO: Add music
         rtl::CommandLine::OutputLine(outputStream, std::vector<std::string>
         {   "Please select your option by typing the number displayed",
             "1: Add new object",
